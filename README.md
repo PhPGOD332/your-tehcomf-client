@@ -1,2 +1,2 @@
-# your-furniture-client
+# your-tehcomf-client
 Фронтенд-часть сайта "Мебель"
