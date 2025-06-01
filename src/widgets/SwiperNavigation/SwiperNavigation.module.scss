@@ -1,0 +1,24 @@
+@import '@/shared/styles/vars';
+
+.navigationBlock {
+
+  .navigationNextEl {
+    width: rem(25);
+    height: rem(25);
+    position: absolute;
+    right: 6.5%;
+    top: calc(50% - 12.5px);
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .navigationPrevEl {
+    width: rem(25);
+    height: rem(25);
+    position: absolute;
+    left: 6.5%;
+    top: calc(50% - 12.5px);
+    z-index: 1;
+    cursor: pointer;
+  }
+}

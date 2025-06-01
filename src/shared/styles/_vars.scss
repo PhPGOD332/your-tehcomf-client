@@ -1,0 +1,35 @@
+@use "sass:math";
+
+@function rem($px) {
+  $result: math.div($px, 16) + rem;
+  @return $result;
+}
+
+@function em($px) {
+  $result: math.div($px, 16) + em;
+  @return $result;
+}
+
+// Цвета
+
+$green: #00A651;
+$light-green: #9DD2A8;
+$white: #FAFAFA;
+$gray: #58595B;
+$dark-gray: #29292B;
+
+// Разрешение
+
+$max-1400: em(1400);
+$max-1300: em(1300);
+$max-1200: em(1200);
+$max-1100: em(1100);
+$max-1000: em(1000);
+$max-950: em(950);
+$max-900: em(900);
+$max-800: em(800);
+$max-700: em(700);
+$max-600: em(600);
+$max-500: em(500);
+$max-400: em(400);
+$max-320: em(320);

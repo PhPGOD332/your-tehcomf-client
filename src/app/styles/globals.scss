@@ -1,0 +1,29 @@
+@import "@/shared/styles/vars";
+
+* {
+  font-family: 'Onest', sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+body.white {
+  background-color: $white;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
