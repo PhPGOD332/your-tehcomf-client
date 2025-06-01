@@ -4,7 +4,7 @@ export const CLIENT_URL = "https://tehcomf.ru";
 export const pagesData: IPages = {
     main: {
         name: SITE_NAME,
-        title: 'НАЗВАНИЕ',
+        title: 'ТехКомф',
         description: 'ОПИСАНИЕ',
         keywords: 'КЛЮЧЕВЫЕ СЛОВА',
         type: "website",
