@@ -1,0 +1,158 @@
+@import '@/shared/styles/vars';
+
+.wrapper {
+  display: grid;
+  padding: rem(70) 0;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: rem(70) rem(266) repeat(2, rem(133));
+  gap: rem(20);
+
+  .subTitle {
+    grid-column: 1 / 5;
+  }
+
+  .catalogItem {
+    position: relative;
+    border-radius: rem(20);
+    //padding: rem(24) rem(20);
+    overflow: hidden;
+    transition: 0.3s;
+    
+    @keyframes cardGradientFlow {
+      0%  {
+        opacity: 0;
+      }
+      100% {
+        background: linear-gradient(360deg, rgba($gray, 0) 0%, rgba($gray, 0.5) 100%);
+        opacity: 1;
+      }
+    }
+
+    @keyframes cardWithIconGradientFlow {
+      0% {
+        background: linear-gradient(90deg, rgba($green, 0.7) 0%, rgba($white, 0.1) 100%);
+      }
+      100% {
+        background: $green;
+      }
+    }
+
+    &:hover {
+      &:before {
+        animation: cardGradientFlow 0.2s ease;
+        background: linear-gradient(360deg, rgba($gray, 0) 0%, rgba($gray, 0.5) 100%);
+      }
+
+      .cardCaption {
+        color: $white;
+      }
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(360deg, rgba($light-gray, 0) 0%, rgba($light-gray, 0.5) 25%, rgba($light-gray, 0.75) 50%, rgba($light-gray, 1) 95%);
+      z-index: 1;
+      transition: 0.3s;
+    }
+
+    &_withIcon {
+      background: linear-gradient(90deg, rgba($green, 0.7) 0%, rgba($white, 0.1) 100%);
+      overflow: visible;
+      clip-path: inset(rem(-30) rem(-20) 0 0);
+
+      &:before {
+        display: none;
+      }
+
+      &:hover {
+        //animation: cardWithIconGradientFlow 0.2s ease;
+        background: $green;
+      }
+    }
+
+    .cardCaption {
+      position: absolute;
+      z-index: 2;
+      font-size: rem(19);
+      font-weight: 700;
+      line-height: 120%;
+      margin: rem(24) rem(20);
+
+      &_white {
+        color: $white;
+      }
+    }
+
+    .cardBg {
+      position: absolute;
+      z-index: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .cardIcon {
+      position: absolute;
+      width: rem(190);
+      height: rem(190);
+      top: rem(-25);
+      right: rem(-15);
+    }
+
+    &_bathrooms {
+      grid-row: 1/3;
+      grid-column: 5;
+    }
+
+    &_offices {
+      grid-row: 1/3;
+      grid-column: 6;
+    }
+
+    &_kitchens {
+      grid-row: 2;
+      grid-column: 1;
+    }
+
+    &_wardrobes {
+      grid-row: 2;
+      grid-column: 2/4;
+    }
+
+    &_livings {
+      grid-row: 2;
+      grid-column: 4;
+    }
+
+    &_hallways {
+      grid-row: 3 / 5;
+      grid-column: 1 / 3;
+    }
+
+    &_dressings {
+      grid-row: 3 / 5;
+      grid-column: 3 / 4;
+    }
+
+    &_furnishings {
+      grid-row: 3;
+      grid-column: 4 / 6;
+    }
+
+    &_childish {
+      grid-row: 3 / 5;
+      grid-column: 6;
+    }
+
+    &_basket {
+      grid-row: 4;
+      grid-column: 4 / 6;
+    }
+  }
+}

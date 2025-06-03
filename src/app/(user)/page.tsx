@@ -1,6 +1,8 @@
 import {Metadata} from "next";
 import {pagesData} from "@/shared/constants";
 import SliderScreen, {PhotoSliderSlides} from "@/widgets/SliderScreen/SliderScreen";
+import Advantages from "@/widgets/Advantages/Advantages";
+import CatalogNav from "@/widgets/CatalogNav/CatalogNav";
 
 export const metadata: Metadata = {
   metadataBase: new URL(pagesData.main.url),
@@ -46,7 +48,9 @@ export default function Home() {
   return (
     <>
       <main>
-        <SliderScreen slides={startScreenSlides}/>
+        <SliderScreen slides={startScreenSlides} />
+        <Advantages />
+        <CatalogNav title='Мебель под любой запрос'/>
       </main>
     </>
   );
