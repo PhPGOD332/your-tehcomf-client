@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './CatalogNav.module.scss';
-import SubTitle from "@/shared/UI/SubTitle/SubTitle";
+import SubTitle, {TitleColors} from "@/shared/UI/SubTitle/SubTitle";
 import ImageBathrooms from '@/data/images/catalog/bathrooms.webp';
 import ImageOffice from '@/data/images/catalog/office.webp';
 import ImageKitchens from '@/data/images/catalog/kitchens.webp';
@@ -11,7 +11,7 @@ import ImageDressings from '@/data/images/catalog/dressings.webp';
 import ImageFurnishings from '@/data/images/catalog/furnishings.webp';
 import ImageChildish from '@/data/images/catalog/childish.webp';
 import ImageBasket from '@/data/images/catalog/basket.webp';
-import {StaticImageData} from "next/image";
+import Image, {StaticImageData} from "next/image";
 
 export interface CatalogProps {
     title: string;
@@ -82,7 +82,7 @@ const CatalogNav = ({ title }: CatalogProps) => {
     return (
         <div className='container'>
             <div className={styles.wrapper}>
-                <SubTitle color='black' classNames={`${styles.subTitle}`}>{title}</SubTitle>
+                <SubTitle color={TitleColors.BLACK} classNames={`${styles.subTitle}`}>{title}</SubTitle>
                 {catalogCards.map((card, num) =>
                     <a
                         href='#'
@@ -90,11 +90,16 @@ const CatalogNav = ({ title }: CatalogProps) => {
                         key={num}
                     >
                         <span className={`${styles.cardCaption} ${card.isIcon ? styles.cardCaption_white : ''}`}>{card.caption}</span>
-                        <img
+                        <Image
                             src={card.image.src}
                             alt={''}
                             className={card.isIcon ? styles.cardIcon : styles.cardBg}
                         />
+                        {/*<img*/}
+                        {/*    src={card.image.src}*/}
+                        {/*    alt={''}*/}
+                        {/*    className={card.isIcon ? styles.cardIcon : styles.cardBg}*/}
+                        {/*/>*/}
                     </a>
                 )}
             </div>

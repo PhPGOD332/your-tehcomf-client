@@ -45,6 +45,7 @@ const MaskedInput = (
                 className={`${classNames ? styles.maskedInput + ' ' + classNames : styles.maskedInput}`}
                 id={id || ''}
                 name={name || ''}
+                value={value || undefined}
             />
         </label>
     );

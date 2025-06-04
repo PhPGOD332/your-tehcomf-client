@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './MiniTitle.module.scss';
-import {TitleProps} from "@/shared/UI/SubTitle/SubTitle";
+import {TitleColors, TitleProps} from "@/shared/UI/SubTitle/SubTitle";
 
-const MiniTitle = ({children, color = 'black', classNames}: TitleProps) => {
+const MiniTitle = ({children, color = TitleColors.BLACK, classNames}: TitleProps) => {
     return (
         <h3
             style={{color: color}}
