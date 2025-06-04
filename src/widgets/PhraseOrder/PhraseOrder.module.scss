@@ -1,0 +1,28 @@
+@use '@/shared/styles/vars' as vars;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: vars.rem(24);
+  text-align: center;
+  max-width: vars.rem(580);
+  margin: 0 auto;
+  padding: vars.rem(68) 0 0 0;
+}
+
+.caption {
+  font-size: vars.rem(31);
+  font-weight: 600;
+  line-height: 140%;
+}
+
+.orderButton {
+  font-size: vars.rem(19);
+  padding: vars.rem(20) vars.rem(60);
+
+  &:hover {
+    background-color: vars.$light-green;
+  }
+}

@@ -1,0 +1,128 @@
+@use '@/shared/styles/vars' as vars;
+
+.wrapper {
+  padding: vars.rem(68) 0;
+}
+
+@keyframes hideEl {
+  0% {
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+@keyframes showEl {
+  0% {
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+  }
+}
+
+.sequenceList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: vars.rem(20);
+  list-style-type: none;
+  counter-reset: num;
+  padding: vars.rem(25) vars.rem(15);
+
+  > li {
+    position: relative;
+    cursor: default;
+    overflow: hidden;
+    width: vars.rem(295);
+    height: vars.rem(135);
+    border-radius: vars.rem(20);
+
+    &:has(.notify:hover) {
+      .notify svg path {
+        fill: transparent;
+      }
+
+      .sequenceItem {
+        background-color: vars.$gray;
+      }
+
+      .sequenceTitle {
+        opacity: 0;
+        visibility: hidden;
+        position: relative;
+      }
+
+      .sequenceDescription {
+        opacity: 1;
+        visibility: visible;
+        position: absolute;
+      }
+
+      &:before {
+        background: linear-gradient(180deg, rgba(vars.$green, 1) -80%, rgba(vars.$white, 1) 80%);
+        background-clip: text;
+      }
+    }
+
+    &:before {
+      font-family: 'Onest', sans-serif;
+      font-size: vars.rem(200);
+      font-weight: 700;
+      color: transparent;
+      background: linear-gradient(180deg, rgba(vars.$gray, 0.5) -80%, rgba(vars.$light-gray, 1) 80%);
+      background-clip: text;
+      content: counter(num);
+      counter-increment: num;
+      position: absolute;
+      left: calc(-5%);
+      top: calc(-40%);
+      transition: 0.2s;
+    }
+
+    .sequenceItem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: vars.rem(20);
+      background-color: vars.$light-gray;
+      width: 100%;
+      height: 100%;
+      padding-right: vars.rem(20);
+      transition: background-color 0.2s;
+    }
+
+    .notify {
+      position: absolute;
+      top: vars.rem(15);
+      right: vars.rem(15);
+      width: vars.rem(21);
+      height: vars.rem(21);
+      z-index: 1;
+    }
+  }
+
+  .sequenceTitle {
+    font-size: vars.rem(19);
+    font-weight: 600;
+    line-height: 120%;
+    color: vars.$black;
+    margin-left: vars.rem(110);
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+  }
+
+  .sequenceDescription {
+    color: vars.$white;
+    line-height: 140%;
+    margin-left: vars.rem(120);
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    //z-index: 2;
+    transition: opacity 0.2s;
+  }
+}

@@ -1,10 +1,11 @@
 'use client'
 import React from 'react';
-import {Autoplay, Pagination} from "swiper/modules";
+import {Autoplay, EffectFade, Pagination} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/scss/pagination';
+import 'swiper/css/effect-fade';
 import styles from "./SliderScreen.module.scss";
 import Image from "next/image";
 import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
@@ -30,7 +31,7 @@ const SliderScreen = ({ slides }: PhotoSliderProps) => {
         <div className={styles.screen}>
             <Swiper
                 className={styles.swiper}
-                modules={[Pagination, Autoplay]}
+                modules={[Pagination, Autoplay, EffectFade]}
                 spaceBetween={0}
                 slidesPerView={1}
                 pagination={{
@@ -43,6 +44,7 @@ const SliderScreen = ({ slides }: PhotoSliderProps) => {
                 autoplay={{
                     delay: 10000,
                 }}
+                effect={"fade"}
             >
                 {slides.map((slide, num) =>
                     <SwiperSlide className={styles.swiperSlide} key={num}>

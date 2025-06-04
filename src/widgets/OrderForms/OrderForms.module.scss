@@ -1,0 +1,128 @@
+@use '@/shared/styles/vars' as vars;
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  position: relative !important;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute !important;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: vars.rem(40);
+  padding: vars.rem(68) vars.rem(80);
+  margin: 0 vars.rem(20);
+  border-radius: vars.rem(40);
+  background-color: vars.$dark-gray;
+  text-align: center;
+}
+
+.formsBlock {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: vars.rem(20);
+  max-width: vars.rem(1240);
+}
+
+.formItem {
+  position: relative;
+  background-color: vars.$white;
+  padding: vars.rem(32);
+  border-radius: vars.rem(40);
+
+  .formPreview {
+    text-align: start;
+    position: relative;
+    transition: opacity 0.3s ease;
+
+    .previewIcon {
+      position: absolute;
+      right: vars.rem(-30);
+      bottom: vars.rem(-30);
+      z-index: 0;
+    }
+
+    .previewTitle {
+      position: relative;
+      line-height: 120%;
+      margin-bottom: vars.rem(16);
+      z-index: 1;
+    }
+
+    .explanationText {
+      display: inline-block;
+      font-size: vars.rem(12);
+      line-height: 140%;
+      color: vars.$gray;
+      max-width: vars.rem(390);
+      margin-bottom: vars.rem(24);
+      z-index: 1;
+    }
+
+    .previewList {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: vars.rem(17);
+      list-style: none;
+      margin-bottom: vars.rem(32);
+      z-index: 1;
+
+      > li {
+        display: flex;
+        align-items: center;
+        gap: vars.rem(8);
+      }
+
+      .checkImage {
+        width: vars.rem(24);
+        height: vars.rem(24);
+      }
+    }
+
+    .orderButton {
+      position: relative;
+      padding: vars.rem(16.5) vars.rem(60);
+      font-size: vars.rem(19);
+      z-index: 1;
+    }
+  }
+
+  .formMain {
+    display: flex;
+    flex-direction: column;
+    gap: vars.rem(28);
+    transition: opacity 0.3s ease;
+
+    .inputsBlock {
+      display: flex;
+      flex-direction: column;
+      gap: vars.rem(20);
+    }
+
+    .submitBlock {
+      display: flex;
+      flex-direction: column;
+      gap: vars.rem(16);
+
+      .personalText {
+        font-size: vars.rem(12);
+        font-weight: 400;
+        line-height: 130%;
+        color: rgba(vars.$gray, 0.6);
+        text-align: start;
+
+        > a {
+          color: rgba(vars.$gray, 0.6);
+        }
+      }
+    }
+  }
+}

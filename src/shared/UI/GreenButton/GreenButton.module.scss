@@ -1,0 +1,17 @@
+@use '@/shared/styles/vars' as vars;
+
+.greenButton {
+  font-size: vars.rem(16);
+  padding: vars.rem(16) vars.rem(28);
+  cursor: pointer;
+  background-color: vars.$green;
+  color: vars.$white;
+  border-radius: vars.rem(40);
+  border: none;
+  font-weight: 600;
+  transition: 0.2s;
+
+  &:hover {
+    background-color: vars.$light-green;
+  }
+}

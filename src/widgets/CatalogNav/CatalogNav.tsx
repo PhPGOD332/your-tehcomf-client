@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './CatalogNav.module.scss';
-import SubTitle from "@/shared/UI/Title/SubTitle";
+import SubTitle from "@/shared/UI/SubTitle/SubTitle";
 import ImageBathrooms from '@/data/images/catalog/bathrooms.webp';
 import ImageOffice from '@/data/images/catalog/office.webp';
 import ImageKitchens from '@/data/images/catalog/kitchens.webp';

@@ -1,3 +1,5 @@
-.swiperSlide {
-  width: 100vw;
+@use '@/shared/styles/vars' as vars;
+
+.main {
+  background-color: vars.$white;
 }

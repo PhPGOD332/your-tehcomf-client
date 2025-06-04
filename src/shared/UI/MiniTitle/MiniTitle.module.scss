@@ -1,0 +1,7 @@
+@use '@/shared/styles/vars' as vars;
+
+.miniTitle {
+  font-size: vars.rem(31);
+  font-weight: 600;
+  line-height: 140%;
+}

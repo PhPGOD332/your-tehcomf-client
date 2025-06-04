@@ -1,11 +1,11 @@
-@import '@/shared/styles/vars';
+@use '@/shared/styles/vars' as vars;
 
 .wrapper {
   display: grid;
-  padding: rem(70) 0;
+  padding: vars.rem(70) 0;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: rem(70) rem(266) repeat(2, rem(133));
-  gap: rem(20);
+  grid-template-rows: vars.rem(70) vars.rem(266) repeat(2, vars.rem(133));
+  gap: vars.rem(20);
 
   .subTitle {
     grid-column: 1 / 5;
@@ -13,7 +13,7 @@
 
   .catalogItem {
     position: relative;
-    border-radius: rem(20);
+    border-radius: vars.rem(20);
     //padding: rem(24) rem(20);
     overflow: hidden;
     transition: 0.3s;
@@ -23,28 +23,28 @@
         opacity: 0;
       }
       100% {
-        background: linear-gradient(360deg, rgba($gray, 0) 0%, rgba($gray, 0.5) 100%);
+        background: linear-gradient(360deg, rgba(vars.$gray, 0) 0%, rgba(vars.$gray, 0.5) 100%);
         opacity: 1;
       }
     }
 
     @keyframes cardWithIconGradientFlow {
       0% {
-        background: linear-gradient(90deg, rgba($green, 0.7) 0%, rgba($white, 0.1) 100%);
+        background: linear-gradient(90deg, rgba(vars.$green, 0.7) 0%, rgba(vars.$white, 0.1) 100%);
       }
       100% {
-        background: $green;
+        background: vars.$green;
       }
     }
 
     &:hover {
       &:before {
         animation: cardGradientFlow 0.2s ease;
-        background: linear-gradient(360deg, rgba($gray, 0) 0%, rgba($gray, 0.5) 100%);
+        background: linear-gradient(360deg, rgba(vars.$gray, 0) 0%, rgba(vars.$gray, 0.5) 100%);
       }
 
       .cardCaption {
-        color: $white;
+        color: vars.$white;
       }
     }
 
@@ -55,15 +55,15 @@
       right: 0;
       bottom: 0;
       left: 0;
-      background: linear-gradient(360deg, rgba($light-gray, 0) 0%, rgba($light-gray, 0.5) 25%, rgba($light-gray, 0.75) 50%, rgba($light-gray, 1) 95%);
+      background: linear-gradient(360deg, rgba(vars.$light-gray, 0) 0%, rgba(vars.$light-gray, 0.5) 25%, rgba(vars.$light-gray, 0.75) 50%, rgba(vars.$light-gray, 1) 95%);
       z-index: 1;
       transition: 0.3s;
     }
 
     &_withIcon {
-      background: linear-gradient(90deg, rgba($green, 0.7) 0%, rgba($white, 0.1) 100%);
+      background: linear-gradient(90deg, rgba(vars.$green, 0.7) 0%, rgba(vars.$white, 0.1) 100%);
       overflow: visible;
-      clip-path: inset(rem(-30) rem(-20) 0 0);
+      clip-path: inset(vars.rem(-30) vars.rem(-20) 0 0);
 
       &:before {
         display: none;
@@ -71,20 +71,20 @@
 
       &:hover {
         //animation: cardWithIconGradientFlow 0.2s ease;
-        background: $green;
+        background: vars.$green;
       }
     }
 
     .cardCaption {
       position: absolute;
       z-index: 2;
-      font-size: rem(19);
+      font-size: vars.rem(19);
       font-weight: 700;
       line-height: 120%;
-      margin: rem(24) rem(20);
+      margin: vars.rem(24) vars.rem(20);
 
       &_white {
-        color: $white;
+        color: vars.$white;
       }
     }
 
@@ -99,10 +99,10 @@
 
     .cardIcon {
       position: absolute;
-      width: rem(190);
-      height: rem(190);
-      top: rem(-25);
-      right: rem(-15);
+      width: vars.rem(190);
+      height: vars.rem(190);
+      top: vars.rem(-25);
+      right: vars.rem(-15);
     }
 
     &_bathrooms {

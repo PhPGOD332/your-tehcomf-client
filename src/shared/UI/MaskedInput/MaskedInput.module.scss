@@ -1,0 +1,26 @@
+@use '@/shared/styles/vars' as vars;
+
+.maskedLabel {
+  display: flex;
+  flex-direction: column;
+  gap: vars.rem(8);
+  font-size: vars.rem(16);
+  font-weight: 600;
+  color: vars.$gray;
+  text-align: start;
+
+  .maskedInput {
+    font-weight: 400;
+    background-color: vars.$light-gray;
+    padding: vars.rem(8);
+    border-radius: vars.rem(10);
+    border: none;
+    outline: none;
+    color: vars.$gray;
+
+    &::placeholder {
+      color: rgba(vars.$gray, 0.3);
+      font-weight: 400;
+    }
+  }
+}

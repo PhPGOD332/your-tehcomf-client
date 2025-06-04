@@ -1,27 +1,27 @@
-@import '@/shared/styles/vars';
+@use '@/shared/styles/vars' as vars;
 
 .wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: rem(20);
-  padding: rem(80) 0;
+  gap: vars.rem(20);
+  padding: vars.rem(80) 0;
   flex-wrap: wrap;
 }
 
 .advantageItem {
   display: flex;
   align-items: center;
-  gap: rem(16);
-  max-width: rem(295);
+  gap: vars.rem(16);
+  max-width: vars.rem(295);
 
   .advantageImage {
-    min-width: rem(72);
-    height: rem(72);
+    min-width: vars.rem(72);
+    height: vars.rem(72);
   }
 
   .advantageText {
-    font-size: rem(19);
+    font-size: vars.rem(19);
     line-height: 120%;
   }
 }

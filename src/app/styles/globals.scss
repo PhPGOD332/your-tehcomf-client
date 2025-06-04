@@ -1,4 +1,4 @@
-@import "@/shared/styles/vars";
+@use "@/shared/styles/vars" as vars;
 
 * {
   font-family: 'Onest', sans-serif;
@@ -13,7 +13,7 @@ body {
 }
 
 body.white {
-  background-color: $white;
+  background-color: vars.$white;
 }
 
 a {
@@ -28,6 +28,10 @@ ul {
 }
 
 .container {
-  max-width: rem(1240);
+  max-width: vars.rem(1240);
   margin: 0 auto;
+}
+
+.underline {
+  text-decoration: underline;
 }

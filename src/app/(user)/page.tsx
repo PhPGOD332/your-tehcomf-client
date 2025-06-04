@@ -1,8 +1,13 @@
 import {Metadata} from "next";
 import {pagesData} from "@/shared/constants";
+import styles from '@/app/styles/pages/main.module.scss';
 import SliderScreen, {PhotoSliderSlides} from "@/widgets/SliderScreen/SliderScreen";
 import Advantages from "@/widgets/Advantages/Advantages";
 import CatalogNav from "@/widgets/CatalogNav/CatalogNav";
+import PhraseOrder from "@/widgets/PhraseOrder/PhraseOrder";
+import ProjectSequence from "@/widgets/ProjectSequence/ProjectSequence";
+import ReviewsInfo from "@/widgets/ReviewsInfo/ReviewsInfo";
+import OrderForms from "@/widgets/OrderForms/OrderForms";
 
 export const metadata: Metadata = {
   metadataBase: new URL(pagesData.main.url),
@@ -47,10 +52,14 @@ const startScreenSlides: PhotoSliderSlides = [
 export default function Home() {
   return (
     <>
-      <main>
+      <main className={styles.main}>
         <SliderScreen slides={startScreenSlides} />
         <Advantages />
         <CatalogNav title='Мебель под любой запрос'/>
+        <PhraseOrder />
+        <ProjectSequence />
+        <ReviewsInfo />
+        <OrderForms />
       </main>
     </>
   );

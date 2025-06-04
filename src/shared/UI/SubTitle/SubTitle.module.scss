@@ -1,0 +1,7 @@
+@use '@/shared/styles/vars' as vars;
+
+.subTitle {
+  font-size: vars.rem(50);
+  font-weight: 600;
+  line-height: 120%;
+}

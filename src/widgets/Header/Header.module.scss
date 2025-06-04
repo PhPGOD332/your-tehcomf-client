@@ -1,22 +1,22 @@
-@import "@/shared/styles/vars";
+@use "@/shared/styles/vars" as vars;
 
 .header {
   position: fixed;
   display: flex;
   justify-content: space-between;
-  width: rem(1240);
-  padding: rem(5) rem(50);
-  background: rgba($white, 0.5);
-  border-radius: rem(60);
-  top: rem(20);
+  width: vars.rem(1240);
+  padding: vars.rem(5) vars.rem(50);
+  background: rgba(vars.$white, 0.5);
+  border-radius: vars.rem(60);
+  top: vars.rem(20);
   z-index: 5;
-  backdrop-filter: blur(rem(7));
+  backdrop-filter: blur(vars.rem(7));
 }
 
 .navSide {
   display: flex;
   align-items: center;
-  gap: rem(40);
+  gap: vars.rem(40);
   font-weight: 600;
 
   .logoBlock {
@@ -25,13 +25,13 @@
 
   .navList {
     display: flex;
-    gap: rem(40);
+    gap: vars.rem(40);
 
     .navItem {
       transition: 0.2s;
 
       &:hover {
-        color: $green;
+        color: vars.$green;
         text-decoration: underline;
       }
     }
@@ -41,7 +41,7 @@
 .searchSide {
   display: flex;
   align-items: center;
-  gap: rem(30);
+  gap: vars.rem(30);
 
   .searchButton {
     cursor: pointer;
@@ -50,7 +50,7 @@
 
       svg > path {
         transition: 0.2s;
-        stroke: $gray;
+        stroke: vars.$gray;
       }
     }
   }
@@ -62,24 +62,8 @@
 
       svg > path {
         transition: 0.2s;
-        fill: $dark-gray;
+        fill: vars.$dark-gray;
       }
-    }
-  }
-
-  .orderButton {
-    padding: rem(16) rem(28);
-    cursor: pointer;
-    background-color: $green;
-    color: $white;
-    border-radius: rem(40);
-    border: none;
-    font-weight: 600;
-    transition: 0.2s;
-
-    &:hover {
-
-      background-color: $light-green;
     }
   }
 }

@@ -1,5 +1,6 @@
-
+'use client'
 import styles from "./Header.module.scss";
+import GreenButton from "@/shared/UI/GreenButton/GreenButton";
 
 const Header = () => {
     return (
@@ -44,7 +45,7 @@ const Header = () => {
                               strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </div>
-                <button className={styles.orderButton}>Заказать проект</button>
+                <GreenButton>Заказать проект</GreenButton>
                 <a href="tel: +74959885528" className={styles.callButton}>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path

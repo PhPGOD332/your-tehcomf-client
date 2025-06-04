@@ -1,17 +1,22 @@
 import React from 'react';
 import styles from './SubTitle.module.scss';
 
+export enum TitleColors {
+    BLACK = 'black',
+    WHITE = 'white'
+}
+
 export interface TitleProps {
-    color?: 'black' | 'white';
+    color?: TitleColors;
     classNames?: string;
     children: React.ReactNode;
 }
 
-const SubTitle = ({children, color = 'black', classNames}: TitleProps) => {
+const SubTitle = ({children, color = TitleColors.BLACK, classNames}: TitleProps) => {
     return (
         <h2
             style={{color: color}}
-            className={`${classNames ? classNames + ' ' + styles.subTitle : styles.subTitle}`}
+            className={`${classNames ? styles.subTitle + ' ' + classNames : styles.subTitle}`}
         >
             {children}
         </h2>

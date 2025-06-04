@@ -1,0 +1,66 @@
+@use '@/shared/styles/vars' as vars;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: vars.rem(68) 0;
+  gap: vars.rem(44);
+}
+
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: vars.rem(20);
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: vars.rem(20);
+  height: vars.rem(242);
+  background-color: #fff;
+  border-radius: vars.rem(20);
+  padding: vars.rem(20) vars.rem(16);
+
+  .reviewText {
+    font-size: vars.rem(23);
+    line-height: 130%;
+    letter-spacing: -2%;
+    color: vars.$dark-gray;
+    text-align: start;
+  }
+
+  .reviewCard {
+    display: flex;
+    align-items: center;
+    gap: vars.rem(12);
+
+    .reviewImage {
+      width: vars.rem(44);
+      height: vars.rem(44);
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .reviewCardText {
+      text-align: start;
+
+      .reviewName {
+        display: block;
+        font-size: vars.rem(15);
+        font-weight: 600;
+        line-height: 130%;
+        color: vars.$black;
+      }
+
+      .reviewProject {
+        font-size: vars.rem(13);
+        line-height: 130%;
+        color: vars.$gray;
+      }
+    }
+  }
+}
