@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
 import styles from './MaskedInput.module.scss';
 import {InputMask} from "@react-input/mask";
 
@@ -32,6 +32,18 @@ const MaskedInput = (
         name,
         onChange
     }: MaskedInputProps) => {
+
+    const inputHandler = (e: FormEvent<HTMLInputElement>) => {
+        const label = e.currentTarget?.parentElement;
+
+        if (!label) return;
+
+        if (e.currentTarget.value.length > 0)
+            label.classList.add(styles.maskedLabel_active);
+        else
+            label.classList.remove(styles.maskedLabel_active);
+    }
+
     return (
         <label className={styles.maskedLabel}>
             {label}
@@ -40,7 +52,7 @@ const MaskedInput = (
                 replacement={replacement}
                 showMask={showMask}
                 onChange={(e) => onChange ? onChange(e) : null}
-
+                onInput={(e) => inputHandler(e)}
                 placeholder={placeholder || ''}
                 className={`${classNames ? styles.maskedInput + ' ' + classNames : styles.maskedInput}`}
                 id={id || ''}

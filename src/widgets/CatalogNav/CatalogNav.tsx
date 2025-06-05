@@ -94,6 +94,8 @@ const CatalogNav = ({ title }: CatalogProps) => {
                             src={card.image.src}
                             alt={''}
                             className={card.isIcon ? styles.cardIcon : styles.cardBg}
+                            width={191}
+                            height={184}
                         />
                         {/*<img*/}
                         {/*    src={card.image.src}*/}

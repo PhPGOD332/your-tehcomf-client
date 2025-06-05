@@ -8,15 +8,21 @@
   font-weight: 600;
   color: vars.$gray;
   text-align: start;
+  transition: color 0.2s;
+
+  &_active {
+    color: vars.$green;
+  }
 
   .maskedInput {
-    font-weight: 400;
+    font-size: vars.rem(16);
+    font-weight: 600;
     background-color: vars.$light-gray;
     padding: vars.rem(8);
     border-radius: vars.rem(10);
     border: none;
     outline: none;
-    color: vars.$gray;
+    color: vars.$black;
 
     &::placeholder {
       color: rgba(vars.$gray, 0.3);

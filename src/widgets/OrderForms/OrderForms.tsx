@@ -7,6 +7,8 @@ import GreenButton from "@/shared/UI/GreenButton/GreenButton";
 import TextInput from "@/shared/UI/TextInput/TextInput";
 import MaskedInput from "@/shared/UI/MaskedInput/MaskedInput";
 import Image from "next/image";
+import TextArea from "@/shared/UI/TextArea/TextArea";
+import DragAndDropButton from "@/shared/UI/DragAndDropButton/DragAndDropButton";
 
 const OrderForms = () => {
     const showForm = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -35,6 +37,8 @@ const OrderForms = () => {
                             src={'/icons/track-icon.svg'}
                             alt={''}
                             className={styles.previewIcon}
+                            width={256}
+                            height={256}
                         />
                         {/*<img src="/icons/track-icon.svg" alt="" className={styles.previewIcon}/>*/}
                         <MiniTitle classNames={styles.previewTitle}>Я хочу замерить помещение и проконсультироваться с
@@ -98,9 +102,15 @@ const OrderForms = () => {
                                 replacement={{_: /[1-9]/}}
                                 placeholder='+7 (000) 000-00-00'
                             />
+                            <TextArea
+                                placeholder='Ваши пожелания или любая информация, который хотите поделиться'
+                                label='Примечание'
+                                rows={4}
+                            ></TextArea>
                         </div>
                         <div className={styles.submitBlock}>
                             <span className={styles.personalText}>Я согласен(на) на <a href="#" className='underline'>обработку персональных данных</a></span>
+                            <DragAndDropButton />
                         </div>
                     </div>
                 </div>
@@ -110,6 +120,8 @@ const OrderForms = () => {
                             src={'/icons/3dmodeling-icon.svg'}
                             alt={''}
                             className={styles.previewIcon}
+                            width={256}
+                            height={256}
                         />
                         {/*<img src="/icons/3dmodeling-icon.svg" alt="" className={styles.previewIcon}/>*/}
                         <MiniTitle classNames={styles.previewTitle}>У меня уже есть все замеры, и я хочу визуализировать
@@ -167,9 +179,15 @@ const OrderForms = () => {
                                 replacement={{_: /[1-9]/}}
                                 placeholder='+7 (000) 000-00-00'
                             />
+                            <TextArea
+                                placeholder='Ваши пожелания или любая информация, который хотите поделиться'
+                                label='Примечание'
+                                rows={4}
+                            ></TextArea>
                         </div>
                         <div className={styles.submitBlock}>
                             <span className={styles.personalText}>Я согласен(на) на <a href="#" className='underline'>обработку персональных данных</a></span>
+                            <DragAndDropButton />
                         </div>
                     </div>
                 </div>

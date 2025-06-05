@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
 import styles from './TextInput.module.scss';
 
 export enum InputType {
@@ -30,6 +30,18 @@ const TextInput = (
         id,
         name,
     }: TextInputProps) => {
+
+    const inputHandler = (e: FormEvent<HTMLInputElement>) => {
+        const label = e.currentTarget?.parentElement;
+
+        if (!label) return;
+
+        if (e.currentTarget.value.length > 0)
+            label.classList.add(styles.inputLabel_active);
+        else
+            label.classList.remove(styles.inputLabel_active);
+    }
+
     return (
         <label htmlFor="" className={styles.inputLabel}>
             {label}
@@ -39,6 +51,7 @@ const TextInput = (
                 className={`${classNames ? styles.textInput + ' ' + classNames : styles.textInput}`}
                 id={id}
                 name={name}
+                onInput={(e) => inputHandler(e)}
             />
         </label>
     );
