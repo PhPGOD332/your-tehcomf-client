@@ -3,8 +3,8 @@
 .screen {
   //margin-top: vars.rem(105);
   height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
+  max-width: 100vw;
+  //overflow-x: hidden;
 }
 
 .swiper {

@@ -8,6 +8,10 @@ import PhraseOrder from "@/widgets/PhraseOrder/PhraseOrder";
 import ProjectSequence from "@/widgets/ProjectSequence/ProjectSequence";
 import ReviewsInfo from "@/widgets/ReviewsInfo/ReviewsInfo";
 import OrderForms from "@/widgets/OrderForms/OrderForms";
+import ExamplesSlider from "@/widgets/ExamplesSlider/ExamplesSlider";
+import Questions from "@/widgets/Questions/Questions";
+import {IQuestion} from "@/types/IQuestion";
+import {IQuestionCategory} from "@/types/IQuestionCategory";
 
 export const metadata: Metadata = {
   metadataBase: new URL(pagesData.main.url),
@@ -47,7 +51,82 @@ const startScreenSlides: PhotoSliderSlides = [
         title: 'Мебель в любую комнату в вашем дизайне',
         text: 'Мебель для всей квартиры по индивидуальному проекту от производителя'
     },
+];
+
+const examplesSlides: PhotoSliderSlides = [
+    {
+        photo: '/sliders/examples/yellow.jpg',
+        photoAlt: 'Желтая',
+        title: 'Белая детская с деревом',
+        text: 'Кухня для молодой семьи. Главная задача проекта: спроектировать кухню так, чтобы еще осталось место для гостиной и игровой комнаты Самоеда Норда.'
+    },
+    {
+        photo: '/sliders/examples/turquoise.jpg',
+        photoAlt: 'Бирюзовая',
+        title: 'Шкаф с подвесной тумбой',
+        text: 'Кухня для молодой семьи. Главная задача проекта: спроектировать кухню так, чтобы еще осталось место для гостиной и игровой комнаты Самоеда Норда.'
+    },
+    {
+        photo: '/sliders/examples/black.jpg',
+        photoAlt: 'Бежевая кухня',
+        title: 'Бежевая кухня. Еггер',
+        text: 'Кухня для молодой семьи. Главная задача проекта: спроектировать кухню так, чтобы еще осталось место для гостиной и игровой комнаты Самоеда Норда.'
+    },
+    {
+        photo: '/sliders/examples/blue.jpg',
+        photoAlt: 'Синяя',
+        title: 'Шкаф в спальню',
+        text: 'Кухня для молодой семьи. Главная задача проекта: спроектировать кухню так, чтобы еще осталось место для гостиной и игровой комнаты Самоеда Норда.'
+    },
+    {
+        photo: '/sliders/examples/green.jpg',
+        photoAlt: 'Зеленая',
+        title: 'Серая гостиная с рабочим местом',
+        text: 'Кухня для молодой семьи. Главная задача проекта: спроектировать кухню так, чтобы еще осталось место для гостиной и игровой комнаты Самоеда Норда.'
+    },
+];
+
+const categories: IQuestionCategory[] = [
+    {
+        id: 1,
+        name: 'Категория 1'
+    },
+    {
+        id: 2,
+        name: 'Категория 2'
+    },
+    {
+        id: 3,
+        name: 'Категория 3'
+    }
 ]
+
+const questions: IQuestion[] = [
+    {
+        id: 1,
+        question: 'Вопрос 1',
+        answer: 'Ответ 1',
+        categoryId: 1
+    },
+    {
+        id: 2,
+        question: 'Вопрос 1',
+        answer: 'Ответ 1',
+        categoryId: 2
+    },
+    {
+        id: 3,
+        question: 'Вопрос 1',
+        answer: 'Ответ 1',
+        categoryId: 3
+    },
+    {
+        id: 4,
+        question: 'Вопрос 2',
+        answer: 'Ответ 2',
+        categoryId: 2
+    }
+];
 
 export default function Home() {
   return (
@@ -58,8 +137,16 @@ export default function Home() {
         <CatalogNav title='Мебель под любой запрос'/>
         <PhraseOrder />
         <ProjectSequence />
+        <ExamplesSlider
+            slides={examplesSlides}
+            title='Примеры наших работ'
+        />
         <ReviewsInfo />
         <OrderForms />
+        <Questions
+            questions={questions}
+            questionsCategories={categories}
+        />
       </main>
     </>
   );

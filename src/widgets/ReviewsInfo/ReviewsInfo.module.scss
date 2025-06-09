@@ -2,11 +2,16 @@
 
 .wrapper {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
   padding: vars.rem(68) 0;
   gap: vars.rem(44);
+  background-color: vars.$light-gray;
+  border-top-right-radius: vars.rem(40);
+  border-top-left-radius: vars.rem(40);
+}
+
+.reviewsTitle {
+  margin-bottom: vars.rem(44);
 }
 
 .reviews {

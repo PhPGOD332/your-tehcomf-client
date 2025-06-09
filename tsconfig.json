@@ -18,8 +18,12 @@
         "name": "next"
       }
     ],
+    "types": ["@types/swiper"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "swiper/*": ["./node_modules/swiper/*"],
+      "swiper/react": ["./node_modules/swiper/swiper-react.js"],
+      "swiper/css/*": ["./node_modules/swiper/swiper.min.css"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

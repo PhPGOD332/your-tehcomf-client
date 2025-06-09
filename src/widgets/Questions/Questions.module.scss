@@ -1,0 +1,149 @@
+@use '@/shared/styles/vars' as vars;
+
+@keyframes openQuestion {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes hideQuestion {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes hideEl {
+  100% {
+    //max-height: vars.rem(0);
+    opacity: 0;
+  }
+}
+
+@keyframes showEl {
+  100% {
+    //max-height: vars.rem(500);
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  background-color: vars.$light-gray;
+  padding: vars.rem(68) 0;
+}
+
+.innerWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: vars.rem(20);
+}
+
+.categorySide {
+  display: flex;
+  flex-direction: column;
+  gap: vars.rem(22);
+
+  .category {
+    cursor: pointer;
+    width: fit-content;
+
+    .categoryCaption {
+      font-size: vars.rem(19);
+      font-weight: 500;
+      text-decoration: underline;
+    }
+  }
+}
+
+.questionsSide {
+  display: flex;
+  flex-direction: column;
+  gap: vars.rem(16);
+
+  .questionItem {
+
+    &:not(&:last-of-type) {
+      border-bottom: vars.rem(1) solid vars.$neutral-border;
+    }
+
+    summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: vars.rem(32) 0;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: transparent;
+        z-index: 0;
+      }
+
+      .markerIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: vars.rem(32);
+        height: vars.rem(32);
+        border-radius: 50%;
+        background-color: vars.$white;
+        cursor: pointer;
+        z-index: 1;
+
+        > svg {
+          transition: 0.2s;
+
+          > path {
+            transition: 0.2s;
+          }
+
+          &.opened {
+            animation: openQuestion 0.2s ease-in-out forwards;
+
+            > path {
+              stroke: vars.$green;
+            }
+          }
+
+          &.closed {
+            animation: closeQuestion 0.2s ease-in-out forwards;
+          }
+        }
+      }
+    }
+
+    .questionAnswer {
+      display: inline-block;
+      font-size: vars.rem(19);
+      font-weight: 400;
+      line-height: 130%;
+      color: vars.$gray;
+      transition: max-height 0.2s ease, opacity 0.3s ease;
+      margin-bottom: vars.rem(32);
+
+      &_visible {
+        animation: showEl 0.2s ease forwards;
+      }
+
+      &_hidden {
+        animation: hideEl 0.2s ease forwards;
+      }
+    }
+  }
+}

@@ -43,9 +43,9 @@ const reviews: IReview[] = [
 
 const ReviewsInfo = () => {
     return (
-        <div className='container'>
-            <div className={styles.wrapper}>
-                <MiniTitle>Вот что говорят наши клиенты</MiniTitle>
+        <div className={styles.wrapper}>
+            <div className='container'>
+                <MiniTitle classNames={styles.reviewsTitle}>Вот что говорят наши клиенты</MiniTitle>
                 <div className={styles.reviews}>
                     {reviews.map((review, num) =>
                         <div className={styles.reviewItem} key={num}>

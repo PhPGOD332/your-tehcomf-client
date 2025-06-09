@@ -1,5 +1,6 @@
 @use '@/shared/styles/vars' as vars;
 
 .main {
+  overflow-x: hidden;
   background-color: vars.$white;
 }
