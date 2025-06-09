@@ -110,7 +110,7 @@ const OrderForms = () => {
                                 <TextArea
                                     placeholder='Ваши пожелания или любая информация, который хотите поделиться'
                                     label='Примечание'
-                                    rows={4}
+                                    rows={3}
                                 ></TextArea>
                             </div>
                             <div className={styles.submitBlock}>
@@ -187,7 +187,7 @@ const OrderForms = () => {
                                 <TextArea
                                     placeholder='Ваши пожелания или любая информация, который хотите поделиться'
                                     label='Примечание'
-                                    rows={4}
+                                    rows={3}
                                 ></TextArea>
                             </div>
                             <div className={styles.submitBlock}>

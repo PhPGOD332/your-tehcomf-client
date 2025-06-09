@@ -33,6 +33,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: vars.rem(20);
   max-width: vars.rem(1240);
+  width: vars.rem(1240);
 }
 
 .formItem {
