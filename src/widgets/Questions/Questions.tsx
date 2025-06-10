@@ -55,7 +55,7 @@ const Questions = (
         if (!category) return;
 
         for (let i = 0; i <= category?.children.length - 1; i++) {
-            category?.children.item(i).classList.remove(styles.category_selected);
+            category?.children.item(i)?.classList.remove(styles.category_selected);
         }
 
         e.currentTarget.classList.toggle(styles.category_selected);
