@@ -12,6 +12,7 @@ import ExamplesSlider from "@/widgets/ExamplesSlider/ExamplesSlider";
 import Questions from "@/widgets/Questions/Questions";
 import {IQuestion} from "@/types/IQuestion";
 import {IQuestionCategory} from "@/types/IQuestionCategory";
+import Footer from "@/widgets/Footer/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL(pagesData.main.url),
@@ -147,6 +148,7 @@ export default function Home() {
             questions={questions}
             questionsCategories={categories}
         />
+        <Footer isContact={true}/>
       </main>
     </>
   );

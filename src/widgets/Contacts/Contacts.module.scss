@@ -1,0 +1,98 @@
+@use '@/shared/styles/vars' as vars;
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+}
+
+.contactsBlock {
+  display: flex;
+  justify-content: space-between;
+  gap: vars.rem(20);
+  padding: vars.rem(68) 0;
+
+  .captionSide {
+    display: flex;
+    flex-direction: column;
+
+    .questionSpan {
+      font-size: vars.rem(19);
+      font-weight: 600;
+      color: vars.$gray;
+    }
+  }
+
+  .contactsSide {
+    display: flex;
+    align-items: center;
+    gap: vars.rem(24);
+
+    .contact {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-color: vars.$light-gray;
+      border-radius: vars.rem(40);
+      padding: vars.rem(8) vars.rem(17) vars.rem(8) vars.rem(8);
+      user-select: none;
+      cursor: pointer;
+      gap: vars.rem(12);
+      height: vars.rem(60);
+      transition: 0.2s;
+
+      &:hover {
+        background-color: vars.$gray;
+
+        .contactPreview {
+          opacity: 0;
+          visibility: hidden;
+          position: absolute;
+        }
+
+        .contactPostview {
+          opacity: 1;
+          visibility: visible;
+          position: relative;
+
+          .caption {
+            color: vars.$light-gray;
+          }
+
+          .contactIcon > svg > path {
+            transition: 0.2s;
+            fill: vars.$light-gray;
+          }
+        }
+      }
+
+      .contactPreview {
+        display: flex;
+        align-items: center;
+        gap: vars.rem(12);
+      }
+
+      .contactPostview {
+        display: flex;
+        align-items: center;
+        gap: vars.rem(12);
+      }
+
+      .caption {
+        font-size: vars.rem(19);
+        font-weight: 500;
+        color: vars.$gray;
+      }
+
+      .contactIcon {
+
+      }
+    }
+  }
+}

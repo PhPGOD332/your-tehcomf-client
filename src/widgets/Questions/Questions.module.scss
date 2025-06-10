@@ -54,10 +54,21 @@
     cursor: pointer;
     width: fit-content;
 
+    &_selected {
+
+
+      .categoryCaption {
+        transition: color 0.2s;
+        color: vars.$black !important;
+        text-decoration: underline;
+      }
+    }
+
     .categoryCaption {
       font-size: vars.rem(19);
       font-weight: 500;
-      text-decoration: underline;
+      color: vars.$link;
+      transition: 0.2s;
     }
   }
 }

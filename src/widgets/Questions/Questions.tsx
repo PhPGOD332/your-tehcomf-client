@@ -49,6 +49,16 @@ const Questions = (
     const selectCategoryHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const categoryId = e?.currentTarget.getAttribute('data-id') as unknown;
         setQuestionsView(questions.filter(question => question.categoryId == categoryId as number));
+
+        const category = e.currentTarget?.parentElement;
+
+        if (!category) return;
+
+        for (let i = 0; i <= category?.children.length - 1; i++) {
+            category?.children.item(i).classList.remove(styles.category_selected);
+        }
+
+        e.currentTarget.classList.toggle(styles.category_selected);
     }
 
     return (
@@ -57,8 +67,8 @@ const Questions = (
                 <div className={styles.innerWrapper}>
                     <div className={styles.categorySide}>
                         <SubTitle color={TitleColors.BLACK}>{title || 'Часто задаваемые вопросы'}</SubTitle>
-                        {questionsCategories.map((category) =>
-                            <div className={styles.category} key={category.id} data-id={category.id} onClick={(e) => selectCategoryHandler(e)}>
+                        {questionsCategories.map((category, num) =>
+                            <div className={`${styles.category} ${num === 0 ? styles.category_selected : ''}`} key={category.id} data-id={category.id} onClick={(e) => selectCategoryHandler(e)}>
                                 <span className={styles.categoryCaption}>{category.name}</span>
                             </div>
                         )}
