@@ -12,6 +12,10 @@ body {
   justify-content: center;
 }
 
+.overflowYHidden {
+  overflow-y: hidden;
+}
+
 body.white {
   background-color: vars.$white;
 }
