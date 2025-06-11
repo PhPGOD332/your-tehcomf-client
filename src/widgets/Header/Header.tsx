@@ -1,10 +1,122 @@
 'use client'
 import styles from "./Header.module.scss";
 import GreenButton from "@/shared/UI/GreenButton/GreenButton";
+import React, {useCallback, useEffect, useRef, useState} from "react";
+import Link from "next/link";
 
 const Header = () => {
+    const [activeTel, setActiveTel] = useState(false);
+    const telRef = useRef<HTMLDivElement | null>(null);
+    const noticeRef = useRef<HTMLSpanElement | null>(null);
+    const orderRef = useRef<HTMLButtonElement | null>(null);
+
+    // Обработка клика по телефону
+    const telClickHandler = async (e: React.MouseEvent<HTMLDivElement>) => {
+        try {
+            const telBlock = e.currentTarget;
+
+            if (telBlock) {
+                setActiveTel(false);
+                setActiveTel(true);
+
+
+                await navigator.clipboard.writeText(telBlock.getAttribute('data-tel') || '');
+
+                const timeout = await setTimeout(() => {
+                    setActiveTel(false);
+                }, 2000);
+
+                return () => clearTimeout(timeout);
+            }
+        } catch (e) {
+            console.error('Ошибка: ' + e);
+        }
+    }
+
+    // Обработка наведения на пункты меню
+    const hoverNavItemHandler = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+        const navItem: HTMLElement = e.currentTarget;
+
+        if (!navItem) return;
+
+        const navLi: HTMLElement | null = navItem?.parentElement;
+
+        if (!navLi) return;
+
+        const navList: HTMLElement | null = navLi?.parentElement;
+
+        navItem.nextElementSibling?.classList.add(styles.subNavList_visible);
+        navItem.setAttribute('selected', '1');
+
+
+        if (!navList) return;
+
+        for (let i = 0; i < navList.childNodes.length; i++) {
+            const itemLink = navList.children.item(i)?.children.item(0);
+            if (!itemLink) return;
+
+            // Если пункт меню имеет атрибут data-full, то все остальные пункты скрываются
+            if (navItem.getAttribute('data-full')) {
+                if (!itemLink.getAttribute('data-full'))
+                    itemLink.classList.add(styles.navItem_hidden);
+            }
+
+            if (itemLink.getAttribute('selected')) continue;
+
+            itemLink.classList.add(styles.navItem_inactive);
+        }
+
+        orderRef.current?.classList.add(styles.orderButton_hide);
+    }, [])
+
+    // Обработка отведения с пунктов меню
+    const unHoverNavItemHandler = (e: React.MouseEvent<HTMLLIElement>) => {
+        const navLi: HTMLElement | null = e.currentTarget;
+
+        if (!navLi) return;
+
+        const navItem: Element | null = navLi.children.item(0);
+
+        if (!navItem) return;
+
+        navItem.removeAttribute('selected');
+        navItem.nextElementSibling?.classList.remove(styles.subNavList_visible);
+
+        // const navLi: HTMLElement | null = navItem?.parentElement;
+
+        const navList: HTMLElement | null = navLi?.parentElement;
+
+        if (!navList) return;
+
+        for (let i = 0; i < navList.children.length; i++) {
+            const itemLink = navList.children.item(i)?.children.item(0);
+            if (!itemLink) return;
+            itemLink.classList.remove(styles.navItem_hidden);
+
+            if (navItem.getAttribute('data-full') === true) {
+                if (!itemLink.getAttribute('data-full'))
+                    itemLink.classList.remove(styles.navItem_hidden);
+            }
+
+            itemLink.classList.remove(styles.navItem_inactive);
+        }
+
+        orderRef.current?.classList.remove(styles.orderButton_hide);
+    }
+
+    useEffect(() => {
+        if (activeTel) {
+            telRef.current?.classList.add(styles.animate);
+            noticeRef.current?.classList.add(styles.notice_animate);
+        } else {
+            telRef.current?.classList.remove(styles.animate);
+            noticeRef.current?.classList.remove(styles.notice_animate);
+        }
+    }, [activeTel]);
+
     return (
         <header className={styles.header}>
+            <span ref={noticeRef} className={styles.notice}>Скопировано</span>
             {/*<div className="container">*/}
             <div className={styles.navSide}>
                 <a href='https://tehcomf.ru' className={styles.logoBlock}>
@@ -21,22 +133,106 @@ const Header = () => {
                     </svg>
                 </a>
                 <ul className={styles.navList}>
-                    <li>
-                        <a href="#" className={styles.navItem}>Каталог</a>
+                    <li
+                        onMouseLeave={(e) => unHoverNavItemHandler(e)}
+                        className={styles.navLiEl}
+                    >
+                        <Link
+                            href="#"
+                            className={styles.navItem}
+                            onMouseEnter={(e) => hoverNavItemHandler(e)}
+                            data-full={true}
+                        >Каталог</Link>
+                        <ul className={styles.subNavList}>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Кухни</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Шкафы</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Прихожие</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Гардеробные</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Гостиные</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Детские</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Ванные</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Для офиса</Link>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="#" className={styles.navItem}>Портфолио</a>
+                    <li
+                        onMouseLeave={(e) => unHoverNavItemHandler(e)}
+                        className={styles.navLiEl}
+                    >
+                        <Link
+                            href="#"
+                            className={styles.navItem}
+                            onMouseEnter={(e) => hoverNavItemHandler(e)}
+                        >Портфолио</Link>
                     </li>
-                    <li>
-                        <a href="#" className={styles.navItem}>Покупателям</a>
+                    <li
+                        onMouseLeave={(e) => unHoverNavItemHandler(e)}
+                        className={styles.navLiEl}
+                    >
+                        <Link
+                            href="#"
+                            className={styles.navItem}
+                            onMouseEnter={(e) => hoverNavItemHandler(e)}
+                        >Покупателям</Link>
+                        <ul className={styles.subNavList}>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Личный кабинет</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className={styles.navItem}>FAQ</Link>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="#" className={styles.navItem}>Партнерам</a>
+                    <li
+                        onMouseLeave={(e) => unHoverNavItemHandler(e)}
+                        className={styles.navLiEl}
+                    >
+                        <Link
+                            href="#"
+                            className={styles.navItem}
+                            onMouseEnter={(e) => hoverNavItemHandler(e)}
+                        >Партнерам</Link>
+                        <ul className={styles.subNavList}>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Дизайнерам</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className={styles.navItem}>Подрядчикам</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className={styles.navItem}>B2B</Link>
+                            </li>
+                        </ul>
+                    </li>
+                    <li
+                        onMouseLeave={(e) => unHoverNavItemHandler(e)}
+                        className={styles.navLiEl}
+                    >
+                        <Link
+                            href="#"
+                            className={styles.navItem}
+                            onMouseEnter={(e) => hoverNavItemHandler(e)}
+                        >Контакты</Link>
                     </li>
                 </ul>
             </div>
             <div className={styles.searchSide}>
-                <div className={styles.searchButton}>
+            <div className={styles.searchButton}>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M14.6667 25.3333C20.5577 25.3333 25.3333 20.5577 25.3333 14.6667C25.3333 8.77563 20.5577 4 14.6667 4C8.77563 4 4 8.77563 4 14.6667C4 20.5577 8.77563 25.3333 14.6667 25.3333Z"
@@ -45,14 +241,17 @@ const Header = () => {
                               strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </div>
-                <GreenButton>Заказать проект</GreenButton>
-                <a href="tel: +74959885528" className={styles.callButton}>
+                <GreenButton ref={orderRef} classNames={styles.orderButton}>Заказать проект</GreenButton>
+
+                <div ref={telRef} className={styles.callButton} data-tel={'+7 (495) 988-55-28'}
+                     onClick={(e) => telClickHandler(e)}>
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M22.6401 19.0816C22.207 18.8278 21.6747 18.8331 21.2438 19.0891L19.0614 20.3894C18.5729 20.6806 17.9627 20.6464 17.5147 20.2966C16.7403 19.6918 15.4934 18.6742 14.4086 17.5894C13.3238 16.5046 12.3062 15.2576 11.7014 14.4832C11.3515 14.0352 11.3174 13.4251 11.6086 12.9366L12.9089 10.7542C13.1659 10.3232 13.1681 9.7867 12.9142 9.35363L9.71206 3.88376C9.40166 3.3547 8.78513 3.09443 8.18887 3.24056C7.60967 3.38136 6.85767 3.72483 6.0694 4.51416C3.60113 6.98243 2.2902 11.1456 11.5723 20.4278C20.8545 29.7099 25.0166 28.4 27.4859 25.9307C28.2763 25.1403 28.6187 24.3872 28.7606 23.807C28.9046 23.2118 28.6486 22.5995 28.1206 22.2902C26.8022 21.519 23.9585 19.8539 22.6401 19.0816Z"
                             fill="#58595B"/>
                     </svg>
-                </a>
+                    <span className={styles.caption}>+7 (495) 988-55-28</span>
+                </div>
             </div>
             {/*</div>*/}
         </header>
