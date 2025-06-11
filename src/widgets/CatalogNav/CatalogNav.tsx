@@ -90,13 +90,23 @@ const CatalogNav = ({ title }: CatalogProps) => {
                         key={num}
                     >
                         <span className={`${styles.cardCaption} ${card.isIcon ? styles.cardCaption_white : ''}`}>{card.caption}</span>
-                        <Image
-                            src={card.image.src}
-                            alt={''}
-                            className={card.isIcon ? styles.cardIcon : styles.cardBg}
-                            width={191}
-                            height={184}
-                        />
+                        {card.isIcon
+                            ?
+                            <Image
+                                src={card.image.src}
+                                alt={''}
+                                className={card.isIcon ? styles.cardIcon : styles.cardBg}
+                                width={191}
+                                height={184}
+                            />
+                            :
+                            <Image
+                                src={card.image.src}
+                                alt={''}
+                                className={card.isIcon ? styles.cardIcon : styles.cardBg}
+                                fill={true}
+                            />
+                        }
                         {/*<img*/}
                         {/*    src={card.image.src}*/}
                         {/*    alt={''}*/}

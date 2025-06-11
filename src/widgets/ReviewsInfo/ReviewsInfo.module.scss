@@ -24,11 +24,18 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  position: relative;
   gap: vars.rem(20);
   height: vars.rem(242);
   background-color: #fff;
   border-radius: vars.rem(20);
   padding: vars.rem(20) vars.rem(16);
+
+  .quoteIcon {
+    position: absolute;
+    left: vars.rem(14);
+    top: vars.rem(14);
+  }
 
   .reviewText {
     font-size: vars.rem(23);
