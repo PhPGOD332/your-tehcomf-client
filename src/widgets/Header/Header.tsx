@@ -82,8 +82,6 @@ const Header = () => {
         navItem.removeAttribute('selected');
         navItem.nextElementSibling?.classList.remove(styles.subNavList_visible);
 
-        // const navLi: HTMLElement | null = navItem?.parentElement;
-
         const navList: HTMLElement | null = navLi?.parentElement;
 
         if (!navList) return;

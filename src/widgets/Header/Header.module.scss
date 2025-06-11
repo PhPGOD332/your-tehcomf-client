@@ -179,6 +179,7 @@
       opacity: 0;
       visibility: hidden;
       position: absolute;
+      display: none;
     }
   }
 
@@ -192,11 +193,11 @@
 
     &.animate {
       .caption {
-        animation: swapTextStyle 1.5s ease-in-out;
+        animation: swapTextStyle 2s ease-in-out;
       }
 
       svg > path {
-        animation: swapIconStyle 1.5s ease-in-out;
+        animation: swapIconStyle 2s ease-in-out;
       }
     }
 
