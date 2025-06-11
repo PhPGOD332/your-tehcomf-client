@@ -95,8 +95,10 @@
 
   .navList {
     display: flex;
+    align-items: center;
     gap: vars.rem(40);
     width: fit-content;
+    height: 100%;
 
     > li {
       display: flex;
@@ -125,10 +127,13 @@
     }
 
     .navLiEl {
+      display: flex;
+      align-items: center;
       opacity: 1;
       visibility: visible;
       position: relative;
       transition: 0.3s;
+      height: 100%;
 
       &_hidden {
         opacity: 0;
