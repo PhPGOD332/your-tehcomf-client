@@ -10,8 +10,16 @@
   text-align: start;
   transition: color 0.2s;
 
+  &:hover {
+    color: rgba(vars.$gray, 0.5);
+  }
+
   &_active {
     color: vars.$green;
+
+    &:hover {
+      color: rgba(vars.$green, 0.5);
+    }
   }
 
   .textarea {

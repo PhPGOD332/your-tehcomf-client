@@ -1,4 +1,4 @@
-import React, {FormEvent} from 'react';
+import React, {FormEvent, forwardRef} from 'react';
 import styles from './TextInput.module.scss';
 
 export enum InputType {
@@ -19,9 +19,10 @@ interface TextInputProps {
     classNames?: string;
     id?: string;
     name?: string;
+    error?: string;
 }
 
-const TextInput = (
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
     {
         type = InputType.TEXT,
         classNames,
@@ -29,7 +30,8 @@ const TextInput = (
         placeholder,
         id,
         name,
-    }: TextInputProps) => {
+        ...props
+    }: TextInputProps, ref) => {
 
     const inputHandler = (e: FormEvent<HTMLInputElement>) => {
         const label = e.currentTarget?.parentElement;
@@ -52,9 +54,13 @@ const TextInput = (
                 id={id}
                 name={name}
                 onInput={(e) => inputHandler(e)}
+                ref={ref}
+                {...props}
             />
         </label>
     );
-};
+});
+
+TextInput.displayName = 'TextInput';
 
 export default TextInput;

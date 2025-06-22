@@ -1,4 +1,4 @@
-import React, {FormEvent} from 'react';
+import React, {FormEvent, forwardRef} from 'react';
 import styles from './MaskedInput.module.scss';
 import {InputMask} from "@react-input/mask";
 
@@ -13,13 +13,14 @@ interface MaskedInputProps {
     showMask?: boolean;
     id?: string;
     name?: string;
+    error?: string;
 }
 
 interface IReplacement {
     [item: string]: RegExp;
 }
 
-const MaskedInput = (
+const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
     {
         mask,
         replacement,
@@ -30,8 +31,9 @@ const MaskedInput = (
         showMask = false,
         id,
         name,
-        onChange
-    }: MaskedInputProps) => {
+        onChange,
+        ...props
+    }: MaskedInputProps, ref) => {
 
     const inputHandler = (e: FormEvent<HTMLInputElement>) => {
         const label = e.currentTarget?.parentElement;
@@ -58,9 +60,13 @@ const MaskedInput = (
                 id={id || ''}
                 name={name || ''}
                 value={value || undefined}
+                ref={ref}
+                {...props}
             />
         </label>
     );
-};
+});
+
+MaskedInput.displayName = 'MaskedInput';
 
 export default MaskedInput;

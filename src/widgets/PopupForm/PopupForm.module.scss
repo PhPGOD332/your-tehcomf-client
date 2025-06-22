@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -27,23 +27,13 @@
   background-color: vars.$white;
   border-radius: vars.rem(40);
   width: vars.rem(480);
+  box-shadow: vars.rem(3) vars.rem(10) vars.rem(22) 0 vars.$shadow;
 
   .chooseBlock {
     display: flex;
     justify-content: space-between;
     gap: vars.rem(28);
-
-    .choseItem {
-      background-color: vars.$light-gray;
-      padding: vars.rem(16);
-      border-radius: vars.rem(16);
-      cursor: pointer;
-      transition: 0.2s;
-
-      &:hover {
-        background-color: vars.$gray;
-      }
-    }
+    margin-bottom: vars.rem(28);
   }
 
   .inputsBlock {

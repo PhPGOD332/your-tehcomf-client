@@ -1,8 +1,8 @@
 'use client'
-import React, {FormEvent} from 'react';
+import React, {FormEvent, forwardRef} from 'react';
 import styles from './TextArea.module.scss';
 
-interface textareaProps {
+interface TextareaProps {
     label?: string;
     children?: React.ReactNode;
     placeholder?: string;
@@ -15,7 +15,7 @@ interface textareaProps {
     isResizable?: boolean;
 }
 
-const TextArea = (
+const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
     {
         label,
         children,
@@ -26,8 +26,9 @@ const TextArea = (
         cols = 10,
         id,
         name,
-        isResizable = false
-    }:textareaProps) => {
+        isResizable = false,
+        ...props
+    }: TextareaProps, ref) => {
 
     const inputHandler = (e: FormEvent<HTMLTextAreaElement>) => {
         const label = e.currentTarget?.parentElement;
@@ -53,9 +54,13 @@ const TextArea = (
                 onChange={(e) => onChange ? onChange(e) : null}
                 onInput={(e) => inputHandler(e)}
                 style={{resize: isResizable ? "both" : "none"}}
+                ref={ref}
+                {...props}
             >{children || undefined}</textarea>
         </label>
     );
-};
+});
+
+TextArea.displayName = 'TextArea';
 
 export default TextArea;

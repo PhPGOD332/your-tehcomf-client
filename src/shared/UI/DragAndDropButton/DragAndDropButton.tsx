@@ -5,12 +5,17 @@ import styles from './DragAndDropButton.module.scss';
 interface DraggableButtonProps {
     id?: string;
     formSubmit?: () => void;
+    isResetButton: boolean;
+    resetTimeout: number;
 }
 
-const DragAndDropButton = (
+const
+    DragAndDropButton = (
     {
         id,
-        formSubmit
+        formSubmit,
+        isResetButton = false,
+        resetTimeout = 0
     }: DraggableButtonProps) => {
     const [isDragging, setIsDragging] = useState(false);
     const [dragProgress, setDragProgress] = useState(0);
@@ -21,6 +26,26 @@ const DragAndDropButton = (
     const dragButtonRef = useRef<HTMLDivElement | null>(null);
     const checkRef = useRef<SVGSVGElement | null>(null);
     const arrowRef = useRef<SVGSVGElement | null>(null);
+
+    const resetButton = () => {
+        if (isResetButton) {
+             const timeout = setTimeout(() => {
+                 setDragProgress(0);
+                 setIsDragging(false);
+                 setMaxX(0);
+                 setIsSubmitted(false);
+                 dragContainerRef.current?.classList.remove(styles.draggableButton_success);
+
+                 checkRef.current?.classList.add(styles.hidden);
+                 checkRef.current?.classList.remove(styles.visible);
+
+                 arrowRef.current?.classList.add(styles.visible);
+                 arrowRef.current?.classList.remove(styles.hidden);
+             }, resetTimeout);
+
+            return () => clearTimeout(timeout);
+        }
+    }
 
     const handleMouseDown = () => {
         if (!isSubmitted)
@@ -40,7 +65,7 @@ const DragAndDropButton = (
     }
 
     const handleMouseUp = () => {
-        if (dragProgress >= 50) {
+        if (dragProgress >= 80) {
             setIsSubmitted(true);
             setIsDragging(false);
             setDragProgress(100);
@@ -53,9 +78,11 @@ const DragAndDropButton = (
             checkRef.current?.classList.add(styles.visible);
             checkRef.current?.classList.remove(styles.hidden);
 
-            if (formSubmit) {
+            if (formSubmit)
                 formSubmit();
-            }
+
+            if (isResetButton)
+                resetButton();
         } else {
             setDragProgress(0);
             setIsDragging(false);

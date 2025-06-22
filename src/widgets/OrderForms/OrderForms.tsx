@@ -11,6 +11,7 @@ import TextArea from "@/shared/UI/TextArea/TextArea";
 import DragAndDropButton from "@/shared/UI/DragAndDropButton/DragAndDropButton";
 
 const OrderForms = () => {
+
     const showForm = (e: React.MouseEvent<HTMLButtonElement>) => {
         const parent = e.currentTarget?.parentElement;
         const grandParent = parent?.parentElement;
@@ -115,7 +116,11 @@ const OrderForms = () => {
                             </div>
                             <div className={styles.submitBlock}>
                                 <span className={styles.personalText}>Я согласен(на) на <a href="#" className='underline'>обработку персональных данных</a></span>
-                                <DragAndDropButton />
+                                <DragAndDropButton
+                                    isResetButton={true}
+                                    formSubmit={formSubmit}
+                                    resetTimeout={2000}
+                                />
                             </div>
                         </div>
                     </div>
@@ -170,7 +175,10 @@ const OrderForms = () => {
                                     <span>Помощь с выбором материалов</span>
                                 </li>
                             </ul>
-                            <GreenButton onClick={(e) => showForm(e)} classNames={`${styles.orderButton}`}>Заказать проект</GreenButton>
+                            <GreenButton
+                                onClick={(e) => showForm(e)}
+                                classNames={`${styles.orderButton}`}
+                            >Заказать проект</GreenButton>
                         </div>
                         <div className={`${styles.formMain} ${styles.hidden}`}>
                             <div className={styles.inputsBlock}>
@@ -192,7 +200,11 @@ const OrderForms = () => {
                             </div>
                             <div className={styles.submitBlock}>
                                 <span className={styles.personalText}>Я согласен(на) на <a href="#" className='underline'>обработку персональных данных</a></span>
-                                <DragAndDropButton formSubmit={formSubmit} />
+                                <DragAndDropButton
+                                    formSubmit={formSubmit}
+                                    isResetButton={true}
+                                    resetTimeout={2000}
+                                />
                             </div>
                         </div>
                     </div>
