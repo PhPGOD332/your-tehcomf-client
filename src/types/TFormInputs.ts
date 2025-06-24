@@ -3,6 +3,8 @@ export interface TFormInputs {
     mobilePhone: string;
     note: string;
     date: string;
+    callDesign: boolean;
+    discussProject: boolean;
 }
 export enum TFormInputsNames {
     firstName = 'firstName',

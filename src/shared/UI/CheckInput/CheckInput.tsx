@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {forwardRef, useState} from 'react';
 import styles from './CheckInput.module.scss';
 
 interface CheckProps {
@@ -6,14 +6,15 @@ interface CheckProps {
     firstIsChecked?: boolean;
 }
 
-const CheckInput = (
+const CheckInput = forwardRef<HTMLInputElement, CheckProps>((
     {
         caption,
         firstIsChecked = false,
-    }: CheckProps) => {
+        ...props
+    }: CheckProps, ref) => {
     const [isChecked, setIsChecked] = useState(firstIsChecked);
 
-    const checkHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const checkHandler = (e: React.MouseEvent<HTMLInputElement>) => {
         e.stopPropagation();
         setIsChecked(!isChecked);
     }
@@ -25,7 +26,9 @@ const CheckInput = (
                 type="checkbox"
                 className={styles.checkInput}
                 checked={isChecked}
-                onChange={(e) => checkHandler(e)}
+                onClick={(e) => checkHandler(e)}
+                ref={ref}
+                {...props}
             />
             <div className={`${isChecked ? styles.checkIcon_checked : styles.checkIcon}`}>
                 {isChecked
@@ -38,6 +41,8 @@ const CheckInput = (
             </div>
         </label>
     );
-};
+});
+
+CheckInput.displayName = 'CheckInput';
 
 export default CheckInput;

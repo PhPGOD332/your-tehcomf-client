@@ -3,4 +3,6 @@ export interface IClaim {
     fistName?: string;
     mobilPhone: string;
     note?: string;
+    callDesign?: boolean;
+    discussProject?: boolean;
 }

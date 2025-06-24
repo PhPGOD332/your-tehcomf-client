@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from './PopupForm.module.scss';
 import TextInput from "@/shared/UI/TextInput/TextInput";
 import MaskedInput from "@/shared/UI/MaskedInput/MaskedInput";
@@ -41,19 +41,19 @@ const PopupForm = (
                 date: new Date().toISOString()
             });
 
-            setIsOpen(false);
             await ClaimService.addClaim(claimDto);
+            setIsOpen(false);
 
         }, 2000);
 
         return () => clearTimeout(timeout);
     }
 
-    const bgPopupHandler = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
+    const bgPopupHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+        // e.stopPropagation();
         if (e.target === popupBgRef.current)
             setIsOpen(false);
-    }, [isOpen])
+    }
 
     useEffect(() => {
         if (isOpen) {
@@ -77,10 +77,12 @@ const PopupForm = (
                     <CheckInput
                         firstIsChecked={false}
                         caption='Вызвать дизайнера'
+                        {...register("callDesign")}
                     />
                     <CheckInput
                         firstIsChecked={false}
                         caption='Обсудить проект'
+                        {...register("discussProject")}
                     />
                 </div>
                 <div className={styles.inputsBlock}>
@@ -100,11 +102,11 @@ const PopupForm = (
                         placeholder='+7 (000) 000-00-00'
                         {...register("mobilePhone", {
                             required: "Введите ваш телефон",
-                            minLength: 9,
+                            minLength: 15,
                         })}
                     />
                     <TextArea
-                        placeholder='Ваши пожелания или любая информация, который хотите поделиться'
+                        placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
                         label='Примечание'
                         rows={3}
                         {...register("note", {

@@ -4,9 +4,11 @@ import GreenButton from "@/shared/UI/GreenButton/GreenButton";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import Link from "next/link";
 import PopupForm from "@/widgets/PopupForm/PopupForm";
+import SearchPopup from "@/widgets/SearchPopup/SearchPopup";
 
 const Header = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpenPopupForm, setIsOpenPopupForm] = useState(false);
+    const [isOpenPopupSearch, setIsOpenPopupSearch] = useState(false);
     const [activeTel, setActiveTel] = useState(false);
     const telRef = useRef<HTMLDivElement | null>(null);
     const noticeRef = useRef<HTMLSpanElement | null>(null);
@@ -233,7 +235,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className={styles.searchSide}>
-                    <div className={styles.searchButton}>
+                    <div className={styles.searchButton} onClick={() => setIsOpenPopupSearch(true)}>
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M14.6667 25.3333C20.5577 25.3333 25.3333 20.5577 25.3333 14.6667C25.3333 8.77563 20.5577 4 14.6667 4C8.77563 4 4 8.77563 4 14.6667C4 20.5577 8.77563 25.3333 14.6667 25.3333Z"
@@ -245,7 +247,7 @@ const Header = () => {
                     <GreenButton
                         ref={orderRef}
                         classNames={styles.orderButton}
-                        onClick={() => setIsOpen(true)}
+                        onClick={() => setIsOpenPopupForm(true)}
                     >Заказать проект</GreenButton>
 
                     <div ref={telRef} className={styles.callButton} data-tel={'+7 (495) 988-55-28'}
@@ -261,8 +263,12 @@ const Header = () => {
                 {/*</div>*/}
             </header>
             <PopupForm
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
+                isOpen={isOpenPopupForm}
+                setIsOpen={setIsOpenPopupForm}
+            />
+            <SearchPopup
+                isOpen={isOpenPopupSearch}
+                setIsOpen={setIsOpenPopupSearch}
             />
         </>
     );
