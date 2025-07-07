@@ -36,7 +36,7 @@
 
 @keyframes noticeAnim {
   0% {
-    right: -30%;
+    right: -100vw;
   }
   20% {
     right: 2%;
@@ -45,8 +45,15 @@
     right: 2%;
   }
   100% {
-    right: -30%;
+    right: -100vw;
   }
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  display: none;
 }
 
 .header {
@@ -67,7 +74,7 @@
     align-items: center;
     position: absolute;
     bottom: vars.rem(-16);
-    right: -30%;
+    right: -100vw;
     background-color: vars.$gray;
     height: vars.rem(32);
     padding: vars.rem(10) vars.rem(20);
@@ -80,6 +87,32 @@
       animation: noticeAnim 2s ease-in-out;
     }
   }
+
+  &:has(.callButton:hover) {
+    @media (max-width: vars.$max-1300) {
+      .orderButton {
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+      }
+
+      .searchButton {
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: vars.$max-1400) {
+    width: 84vw;
+    padding-right: vars.rem(45);
+  }
+
+  @media (max-width: vars.$max-1200) {
+    width: 92vw;
+    padding: vars.rem(5) vars.rem(32);
+  }
 }
 
 .navSide {
@@ -88,6 +121,7 @@
   gap: vars.rem(40);
   font-weight: 600;
   margin-right: vars.rem(-100);
+  width: fit-content;
 
   .logoBlock {
     width: 60px;
@@ -100,14 +134,31 @@
     width: fit-content;
     height: 100%;
 
+    @media (max-width: vars.$max-1400) {
+      gap: vars.rem(20);
+    }
+
+    @media (max-width: vars.$max-1200) {
+      gap: vars.rem(24);
+    }
+
     > li {
       display: flex;
       gap: vars.rem(40);
+
+      @media (max-width: vars.$max-1400) {
+        gap: vars.rem(20);
+      }
+
+      @media (max-width: vars.$max-1200) {
+        gap: vars.rem(24);
+      }
     }
 
     .navItem {
       color: vars.$black;
       transition: 0.3s;
+      text-wrap: nowrap;
 
       &_inactive {
         color: vars.$gray;
@@ -156,8 +207,20 @@
         visibility: visible;
         position: relative;
         transition: 0.3s;
+
+        @media (max-width: vars.$max-1400) {
+          gap: vars.rem(20);
+        }
+
+        @media (max-width: vars.$max-1200) {
+          gap: vars.rem(24);
+        }
       }
     }
+  }
+
+  @media (max-width: vars.$max-1100) {
+    gap: vars.rem(28);
   }
 }
 
@@ -180,12 +243,6 @@
 
   .orderButton {
 
-    &_hide {
-      opacity: 0;
-      visibility: hidden;
-      position: absolute;
-      display: none;
-    }
   }
 
   .callButton {
@@ -234,5 +291,9 @@
       font-size: vars.rem(16);
       margin-right: vars.em(-160);
     }
+  }
+
+  @media (max-width: vars.$max-1200) {
+    gap: vars.rem(24);
   }
 }

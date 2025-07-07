@@ -13,6 +13,7 @@ const Header = () => {
     const telRef = useRef<HTMLDivElement | null>(null);
     const noticeRef = useRef<HTMLSpanElement | null>(null);
     const orderRef = useRef<HTMLButtonElement | null>(null);
+    const searchRef = useRef<HTMLDivElement | null>(null);
 
     // Обработка клика по телефону
     const telClickHandler = async (e: React.MouseEvent<HTMLDivElement>) => {
@@ -39,38 +40,44 @@ const Header = () => {
 
     // Обработка наведения на пункты меню
     const hoverNavItemHandler = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-        const navItem: HTMLElement = e.currentTarget;
+        if (document.body.clientWidth >= 1200) {
+            const navItem: HTMLElement = e.currentTarget;
 
-        if (!navItem) return;
+            if (!navItem) return;
 
-        const navLi: HTMLElement | null = navItem?.parentElement;
+            const navLi: HTMLElement | null = navItem?.parentElement;
 
-        if (!navLi) return;
+            if (!navLi) return;
 
-        const navList: HTMLElement | null = navLi?.parentElement;
+            const navList: HTMLElement | null = navLi?.parentElement;
 
-        navItem.nextElementSibling?.classList.add(styles.subNavList_visible);
-        navItem.setAttribute('selected', '1');
+            navItem.nextElementSibling?.classList.add(styles.subNavList_visible);
+            navItem.setAttribute('selected', '1');
 
 
-        if (!navList) return;
+            if (!navList) return;
 
-        for (let i = 0; i < navList.childNodes.length; i++) {
-            const itemLink = navList.children.item(i)?.children.item(0);
-            if (!itemLink) return;
+            for (let i = 0; i < navList.childNodes.length; i++) {
+                const itemLink = navList.children.item(i)?.children.item(0);
+                if (!itemLink) return;
 
-            // Если пункт меню имеет атрибут data-full, то все остальные пункты скрываются
-            if (navItem.getAttribute('data-full')) {
-                if (!itemLink.getAttribute('data-full'))
-                    itemLink.classList.add(styles.navItem_hidden);
+                // Если пункт меню имеет атрибут data-full, то все остальные пункты скрываются
+                if (navItem.getAttribute('data-full')) {
+                    if (!itemLink.getAttribute('data-full'))
+                        itemLink.classList.add(styles.navItem_hidden);
+                }
+
+                if (itemLink.getAttribute('selected')) continue;
+
+                itemLink.classList.add(styles.navItem_inactive);
             }
 
-            if (itemLink.getAttribute('selected')) continue;
-
-            itemLink.classList.add(styles.navItem_inactive);
+            if (document.body.clientWidth >= 1400) {
+                orderRef.current?.classList.add(styles.hide);
+            } else {
+                searchRef.current?.classList.add(styles.hide);
+            }
         }
-
-        orderRef.current?.classList.add(styles.orderButton_hide);
     }, [])
 
     // Обработка отведения с пунктов меню
@@ -103,7 +110,8 @@ const Header = () => {
             itemLink.classList.remove(styles.navItem_inactive);
         }
 
-        orderRef.current?.classList.remove(styles.orderButton_hide);
+        orderRef.current?.classList.remove(styles.hide);
+        searchRef.current?.classList.remove(styles.hide);
     }
 
     useEffect(() => {
@@ -234,7 +242,7 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-                <div className={styles.searchSide}>
+                <div className={styles.searchSide} ref={searchRef}>
                     <div className={styles.searchButton} onClick={() => setIsOpenPopupSearch(true)}>
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -248,6 +256,7 @@ const Header = () => {
                         ref={orderRef}
                         classNames={styles.orderButton}
                         onClick={() => setIsOpenPopupForm(true)}
+                        isMobileSmall={true}
                     >Заказать проект</GreenButton>
 
                     <div ref={telRef} className={styles.callButton} data-tel={'+7 (495) 988-55-28'}
