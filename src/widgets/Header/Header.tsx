@@ -44,7 +44,6 @@ const Header = () => {
             const navItem: HTMLElement = e.currentTarget;
 
             if (!navItem) return;
-
             const navLi: HTMLElement | null = navItem?.parentElement;
 
             if (!navLi) return;

@@ -1,26 +1,47 @@
-import React, {forwardRef, useState} from 'react';
+import React, {forwardRef, RefObject, useEffect, useState} from 'react';
 import styles from './CheckInput.module.scss';
 
 interface CheckProps {
     caption: string;
     firstIsChecked?: boolean;
+    labelRef?: RefObject<HTMLLabelElement | null>;
+    changeHandle?: (currentRef: RefObject<HTMLLabelElement | null> | null) => void;
+    customIsChecked?: boolean;
+    setCustomIsChecked?: (checked: boolean) => void;
 }
 
 const CheckInput = forwardRef<HTMLInputElement, CheckProps>((
     {
         caption,
         firstIsChecked = false,
+        labelRef,
+        changeHandle,
+        customIsChecked,
+        setCustomIsChecked,
         ...props
     }: CheckProps, ref) => {
-    const [isChecked, setIsChecked] = useState(firstIsChecked);
+    const [isChecked, setIsChecked] = useState(customIsChecked ?? firstIsChecked);
 
     const checkHandler = (e: React.MouseEvent<HTMLInputElement>) => {
         e.stopPropagation();
-        setIsChecked(!isChecked);
+        if (!customIsChecked || !setCustomIsChecked)
+            setIsChecked(!isChecked);
+        if (changeHandle) {
+            changeHandle(labelRef || null);
+        }
     }
 
+    useEffect(() => {
+        if (setCustomIsChecked) {
+            setIsChecked(customIsChecked ?? false);
+        }
+    }, [customIsChecked]);
+
     return (
-        <label className={`${isChecked ? styles.checkLabel_checked : styles.checkLabel}`}>
+        <label
+            className={`${isChecked ? styles.checkLabel_checked : styles.checkLabel}`}
+            ref={labelRef}
+        >
             <span className={styles.checkSpan}>{caption}</span>
             <input
                 type="checkbox"

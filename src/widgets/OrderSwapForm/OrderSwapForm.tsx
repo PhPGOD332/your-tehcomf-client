@@ -47,7 +47,6 @@ const OrderSwapForm = (
     }
 
     const formSubmit: SubmitHandler<TFormInputs> = async (data: ClaimDto) => {
-        console.log('asdfsadfsadfsd')
         const timeout = setTimeout(async () => {
             const claimDto: ClaimDto = new ClaimDto({
                 ...data,

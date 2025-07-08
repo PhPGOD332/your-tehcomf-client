@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {RefObject, useEffect, useRef, useState} from 'react';
 import styles from './PopupForm.module.scss';
 import TextInput from "@/shared/UI/TextInput/TextInput";
 import MaskedInput from "@/shared/UI/MaskedInput/MaskedInput";
@@ -30,6 +30,10 @@ const PopupForm = (
         // resetField,
         // setValue
     } = useForm<TFormInputs>()
+    const [customDesignCheck, setCustomDesignCheck] = useState(false);
+    const [customProjectCheck, setCustomProjectCheck] = useState(false);
+    const checkDesignerRef = useRef<HTMLLabelElement | null>(null);
+    const checkProjectRef = useRef<HTMLLabelElement | null>(null);
 
     const popupBgRef = useRef<HTMLDivElement | null>(null);
     const popupFormRef = useRef<HTMLFormElement | null>(null);
@@ -47,6 +51,33 @@ const PopupForm = (
         }, 2000);
 
         return () => clearTimeout(timeout);
+    }
+
+    const checkChangeHandle = (labelRef: RefObject<HTMLLabelElement | null> | null) => {
+        if (!labelRef)
+            return;
+
+        if (labelRef === checkProjectRef) {
+            if (customDesignCheck && !customProjectCheck) {
+                setCustomProjectCheck(true);
+                setCustomDesignCheck(false);
+            } else if (!customDesignCheck && !customProjectCheck) {
+                setCustomProjectCheck(true);
+            } else {
+                setCustomProjectCheck(false);
+            }
+        }
+
+        if (labelRef === checkDesignerRef) {
+            if (customProjectCheck && !customDesignCheck) {
+                setCustomProjectCheck(false);
+                setCustomDesignCheck(true);
+            } else if (!customDesignCheck && !customProjectCheck) {
+                setCustomDesignCheck(true);
+            } else {
+                setCustomDesignCheck(false);
+            }
+        }
     }
 
     const bgPopupHandler = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -78,11 +109,19 @@ const PopupForm = (
                         firstIsChecked={false}
                         caption='Вызвать дизайнера'
                         {...register("callDesign")}
+                        labelRef={checkDesignerRef}
+                        changeHandle={checkChangeHandle}
+                        customIsChecked={customDesignCheck}
+                        setCustomIsChecked={setCustomDesignCheck}
                     />
                     <CheckInput
                         firstIsChecked={false}
                         caption='Обсудить проект'
                         {...register("discussProject")}
+                        labelRef={checkProjectRef}
+                        changeHandle={checkChangeHandle}
+                        customIsChecked={customProjectCheck}
+                        setCustomIsChecked={setCustomProjectCheck}
                     />
                 </div>
                 <div className={styles.inputsBlock}>
