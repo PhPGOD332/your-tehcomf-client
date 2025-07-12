@@ -1,0 +1,180 @@
+@use '@/shared/styles/vars' as vars;
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  display: none;
+}
+
+.mobileHeader {
+  position: fixed;
+  top: vars.rem(0);
+  width: 100vw;
+  min-height: vars.rem(80);
+  background-color: vars.$white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+  padding: vars.rem(10) vars.rem(25);
+
+  @keyframes widthFull {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  .searchBlock {
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap: vars.rem(8);
+    //left: vars.rem(-310);
+
+    &_active {
+      animation: widthFull 1s forwards;
+    }
+
+    @keyframes slideShow {
+      0% {
+        //margin-left: vars.rem(-310);
+        width: 0;
+        opacity: 0;
+        visibility: hidden;
+      }
+      100% {
+        //margin-left: 0;
+        opacity: 1;
+        visibility: visible;
+        width: 100%;
+      }
+    }
+
+    .inputSearchBlock {
+      display: flex;
+      gap: vars.rem(8);
+      align-items: center;
+      //display: none;
+      width: 0;
+      opacity: 0;
+      visibility: hidden;
+
+      .backButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: vars.rem(40);
+        height: vars.rem(40);
+        cursor: pointer;
+      }
+
+      .searchInput {
+        width: 100%;
+
+        //&_active {
+        //  width: 100%;
+        //}
+      }
+
+      &_active {
+        animation: slideShow 1s forwards;
+      }
+    }
+
+    .searchButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      width: vars.rem(40);
+      height: vars.rem(40);
+      transition: 0.2s;
+
+      &:hover {
+        > svg {
+          > path {
+            stroke: vars.$gray;
+          }
+        }
+      }
+
+      &_active {
+        > svg {
+          > path {
+            stroke: vars.$green;
+          }
+        }
+
+        &:hover {
+          > svg {
+            > path {
+              stroke: vars.$light-green;
+            }
+          }
+        }
+      }
+
+      > svg {
+        width: vars.rem(25);
+        height: vars.rem(25);
+
+        > path {
+          transition: 0.2s;
+        }
+      }
+    }
+  }
+
+  .logoBlock {
+    width: vars.rem(60);
+    height: vars.rem(60);
+
+    > svg {
+      width: 100%;
+      height: 100%
+    }
+
+    @media (max-width: vars.$max-600) {
+      width: vars.rem(40);
+      height: vars.rem(40);
+    }
+  }
+
+  .navBlock {
+    .navButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+      width: vars.rem(40);
+      height: vars.rem(40);
+
+      &_active {
+        > svg {
+          .top {
+            transform: translateX(vars.rem(4)) translateY(vars.rem(0)) rotate(45deg);
+          }
+
+          .middle {
+            opacity: 0;
+          }
+
+          .bottom {
+            transform: translateX(vars.rem(-9)) translateY(vars.rem(5)) rotate(-45deg);
+          }
+        }
+      }
+
+      > svg {
+        .top {transition: 0.2s}
+        .middle {transition: 0.2s}
+        .bottom {transition: 0.2s}
+      }
+    }
+  }
+}

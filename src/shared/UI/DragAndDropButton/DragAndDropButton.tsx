@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from './DragAndDropButton.module.scss';
 
 interface DraggableButtonProps {
@@ -47,21 +47,31 @@ const
         }
     }
 
-    const handleMouseDown = () => {
-        if (!isSubmitted)
-            setIsDragging(true);
-    }
-
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMove = useCallback((clientX: number) => {
         if (!isDragging || !dragContainerRef.current || !dragButtonRef.current) return;
 
         const containerRect = dragContainerRef.current?.getBoundingClientRect();
         const buttonRect = dragButtonRef.current?.getBoundingClientRect();
 
         const maxX = containerRect.width - buttonRect.width;
-        const newX = Math.min(Math.max(e.clientX - containerRect.left - buttonRect.width, 0), maxX);
+        const newX = Math.min(Math.max(clientX - containerRect.left - buttonRect.width, 0), maxX);
         setMaxX(maxX);
         setDragProgress((newX / maxX) * 150);
+    }, [isDragging])
+
+    const handleMouseDown = () => {
+        if (!isSubmitted)
+            setIsDragging(true);
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+        handleMove(e.clientX);
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+        if (!e.touches[0]) return;
+
+        handleMove(e.touches[0].clientX);
     }
 
     const handleMouseUp = () => {
@@ -93,14 +103,23 @@ const
         if (isDragging) {
             window.addEventListener('mousemove', handleMouseMove);
             window.addEventListener('mouseup', handleMouseUp);
+
+            window.addEventListener('touchmove', handleTouchMove);
+            window.addEventListener('touchend', handleMouseUp);
         } else {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseup', handleMouseUp);
+
+            window.removeEventListener('touchmove', handleTouchMove);
+            window.removeEventListener('touchend', handleMouseUp);
         }
 
         return  () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseup', handleMouseUp);
+
+            window.removeEventListener('touchmove', handleTouchMove);
+            window.removeEventListener('touchend', handleMouseUp);
         }
     }, [isDragging, dragProgress]);
 
@@ -109,6 +128,7 @@ const
             <div
                 className={styles.draggableWrapper}
                 onMouseDown={() => handleMouseDown()}
+                onTouchStart={() => handleMouseDown()}
                 style={{transform: `translateX(${dragProgress * 1.40}px)`}}
             >
                 <span className={styles.firstCaption}>{isSubmitted ? 'Заявка отправлена!' : 'Отпустите'}</span>
