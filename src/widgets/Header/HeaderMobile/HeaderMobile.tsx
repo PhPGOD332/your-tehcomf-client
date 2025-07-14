@@ -3,8 +3,12 @@ import styles from './HeaderMobile.module.scss';
 import TextInput from "@/shared/UI/TextInput/TextInput";
 import PopupForm from "@/widgets/PopupForm/PopupForm";
 import Link from "next/link";
+import {HeaderProps} from "@/widgets/Header/Header";
 
-const HeaderMobile = () => {
+const HeaderMobile = (
+    {
+        navItems
+    }: HeaderProps) => {
     const [isOpenPopupForm, setIsOpenPopupForm] = useState(false);
     const [isSearchActive, setIsSearchActive] = useState(false);
 
@@ -14,6 +18,7 @@ const HeaderMobile = () => {
     const searchInputBlockRef = useRef<HTMLDivElement | null>(null);
     const logoRef = useRef<HTMLAnchorElement | null>(null);
     const navBlockRef = useRef<HTMLDivElement| null>(null);
+    const navModalRef = useRef<HTMLDivElement | null>(null);
 
     const searchClickHandle = () => {
         setIsSearchActive(true);
@@ -23,8 +28,9 @@ const HeaderMobile = () => {
         setIsSearchActive(false);
     }
 
-    const navClickHandle = () => {
+    const navButtonClickHandle = () => {
         navButtonRef.current?.classList.toggle(styles.navButton_active);
+        navModalRef.current?.classList.toggle(styles.navModal_active);
     }
 
     useEffect(() => {
@@ -43,6 +49,24 @@ const HeaderMobile = () => {
             navBlockRef.current?.classList.remove(styles.hide);
         }
     }, [isSearchActive]);
+
+    const navItemClickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation();
+        const navButton = e.currentTarget;
+        const navBlock = navButton.parentElement;
+        if (!navBlock) return;
+
+        const navLiEl = navBlock.parentElement;
+        if (!navLiEl) return;
+
+        const subNavList = navBlock.nextElementSibling;
+
+        if (!subNavList) return;
+
+        if(subNavList?.getAttribute('data-is-set')) {
+            navLiEl.classList.toggle(styles.navLiEl_active);
+        }
+    }
 
     return (
         <>
@@ -101,7 +125,7 @@ const HeaderMobile = () => {
                     <div
                         className={styles.navButton}
                         ref={navButtonRef}
-                        onClick={() => navClickHandle()}
+                        onClick={() => navButtonClickHandle()}
                     >
                         <svg width="23" height="23" viewBox="0 0 23 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path className={styles.bottom} d="M1 17H21.9139" stroke="#0A0A0A" strokeWidth="2"
@@ -114,6 +138,59 @@ const HeaderMobile = () => {
                     </div>
                 </div>
             </header>
+            <nav
+                className={styles.navModal}
+                ref={navModalRef}
+            >
+                <ul className={styles.navList}>
+                    {navItems.map((navItem, navIndex) =>
+                        <li
+                            className={styles.navLiEl}
+                            key={navIndex}
+                        >
+                            <div className={styles.navItemBlock}>
+                                <Link
+                                    href={navItem.href ?? ''}
+                                    className={styles.navItem}
+                                    data-full={navItem.isFull}
+                                >{navItem.caption}</Link>
+                                {!!navItem.subItems
+                                    ?
+                                    <div
+                                        className={styles.navItemButton}
+                                        onClick={(e) => navItemClickHandle(e)}
+                                    >
+                                        <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M1 1.5L6.35982 5.96651C6.73066 6.27555 7.26934 6.27555 7.64018 5.96651L13 1.5"
+                                                stroke="#58595B" strokeWidth="2" strokeLinecap="round"/>
+                                        </svg>
+
+                                    </div>
+                                    :
+                                    ''
+                                }
+                            </div>
+                            {navItem.subItems
+                                ?
+                                <ul className={styles.subNavList} data-is-set={!!navItem.subItems}>
+                                    {navItem.subItems?.map((subNavItem, subNavIndex) =>
+                                        <li key={subNavIndex}>
+                                            <Link
+                                                href={subNavItem.href}
+                                                className={styles.subNavItem}
+                                            >{subNavItem.caption}</Link>
+                                        </li>
+                                    )}
+                                </ul>
+                                :
+                                ''
+                            }
+                        </li>
+                    )}
+                </ul>
+            </nav>
             <PopupForm
                 isOpen={isOpenPopupForm}
                 setIsOpen={setIsOpenPopupForm}

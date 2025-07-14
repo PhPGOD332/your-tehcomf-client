@@ -157,7 +157,7 @@
       &_active {
         > svg {
           .top {
-            transform: translateX(vars.rem(4)) translateY(vars.rem(0)) rotate(45deg);
+            transform: translateX(vars.rem(5)) translateY(vars.rem(17)) rotate(-45deg);
           }
 
           .middle {
@@ -165,7 +165,7 @@
           }
 
           .bottom {
-            transform: translateX(vars.rem(-9)) translateY(vars.rem(5)) rotate(-45deg);
+            transform: translateX(vars.rem(18)) translateY(vars.rem(-10)) rotate(45deg);
           }
         }
       }
@@ -175,6 +175,124 @@
         .middle {transition: 0.2s}
         .bottom {transition: 0.2s}
       }
+    }
+  }
+}
+
+.navModal {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  top: vars.rem(80);
+  padding: vars.rem(28) vars.rem(19);
+  width: 100vw;
+  max-height: calc(100vh - 80px);
+  overflow-y: visible;
+  background-color: vars.$white;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.2s ease-in-out;
+  z-index: 5;
+
+  &_active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes showEl {
+  0% {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: vars.rem(8);
+
+  .navLiEl {
+    display: flex;
+    flex-direction: column;
+    gap: vars.rem(8);
+    min-height: vars.rem(43);
+    max-height: vars.rem(43);
+    border-bottom: vars.rem(1) solid rgba(vars.$gray, 0.2);
+
+    &_active {
+      max-height: 100vh;
+      padding-bottom: vars.rem(20);
+
+      .subNavList {
+        position: relative;
+        //animation: showEl 1s forwards ease-in-out;
+        opacity: 1;
+        visibility: visible;
+        max-height: 100vh;
+      }
+
+      .navItem {
+        color: vars.$green !important;
+      }
+
+      .navItemButton {
+        > svg {
+          transition: 0.2s;
+          transform: rotate(180deg);
+
+          > path {
+            transition: 0.2s;
+            stroke: vars.$green;
+          }
+        }
+      }
+    }
+  }
+
+  .navItemBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    .navItem {
+      display: block;
+      font-size: vars.rem(31);
+      font-weight: 500;
+      color: vars.$dark-gray;
+      transition: 0.2s;
+    }
+
+    .navItemButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: vars.rem(40);
+      height: vars.rem(40);
+    }
+  }
+
+  .subNavList {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: vars.rem(8);
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.4s ease-out;
+
+    .subNavItem {
+      display: block;
+      font-size: vars.rem(19);
+      font-weight: 400;
+      color: vars.$dark-gray;
     }
   }
 }

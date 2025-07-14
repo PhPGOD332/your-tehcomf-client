@@ -4,8 +4,12 @@ import Link from "next/link";
 import GreenButton from "@/shared/UI/GreenButton/GreenButton";
 import PopupForm from "@/widgets/PopupForm/PopupForm";
 import SearchPopup from "@/widgets/SearchPopup/SearchPopup";
+import {HeaderProps} from "@/widgets/Header/Header";
 
-const HeaderDesktop = () => {
+const HeaderDesktop = (
+    {
+        navItems
+    }: HeaderProps) => {
     const [isOpenPopupForm, setIsOpenPopupForm] = useState(false);
     const [isOpenPopupSearch, setIsOpenPopupSearch] = useState(false);
     const [activeTel, setActiveTel] = useState(false);
@@ -141,102 +145,36 @@ const HeaderDesktop = () => {
                         </svg>
                     </a>
                     <ul className={styles.navList}>
-                        <li
-                            onMouseLeave={(e) => unHoverNavItemHandler(e)}
-                            className={styles.navLiEl}
-                        >
-                            <Link
-                                href="#"
-                                className={styles.navItem}
-                                onMouseEnter={(e) => hoverNavItemHandler(e)}
-                                data-full={true}
-                            >Каталог</Link>
-                            <ul className={styles.subNavList}>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Кухни</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Шкафы</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Прихожие</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Гардеробные</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Гостиные</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Детские</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Ванные</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Для офиса</Link>
-                                </li>
-                            </ul>
-                        </li>
-                        <li
-                            onMouseLeave={(e) => unHoverNavItemHandler(e)}
-                            className={styles.navLiEl}
-                        >
-                            <Link
-                                href="#"
-                                className={styles.navItem}
-                                onMouseEnter={(e) => hoverNavItemHandler(e)}
-                            >Портфолио</Link>
-                        </li>
-                        <li
-                            onMouseLeave={(e) => unHoverNavItemHandler(e)}
-                            className={styles.navLiEl}
-                        >
-                            <Link
-                                href="#"
-                                className={styles.navItem}
-                                onMouseEnter={(e) => hoverNavItemHandler(e)}
-                            >Покупателям</Link>
-                            <ul className={styles.subNavList}>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Личный кабинет</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>FAQ</Link>
-                                </li>
-                            </ul>
-                        </li>
-                        <li
-                            onMouseLeave={(e) => unHoverNavItemHandler(e)}
-                            className={styles.navLiEl}
-                        >
-                            <Link
-                                href="#"
-                                className={styles.navItem}
-                                onMouseEnter={(e) => hoverNavItemHandler(e)}
-                            >Партнерам</Link>
-                            <ul className={styles.subNavList}>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Дизайнерам</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>Подрядчикам</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className={styles.navItem}>B2B</Link>
-                                </li>
-                            </ul>
-                        </li>
-                        <li
-                            onMouseLeave={(e) => unHoverNavItemHandler(e)}
-                            className={styles.navLiEl}
-                        >
-                            <Link
-                                href="#"
-                                className={styles.navItem}
-                                onMouseEnter={(e) => hoverNavItemHandler(e)}
-                            >Контакты</Link>
-                        </li>
+                        {navItems.map((navItem, navIndex) =>
+                            <li
+                                onMouseLeave={(e) => unHoverNavItemHandler(e)}
+                                className={styles.navLiEl}
+                                key={navIndex}
+                            >
+                                <Link
+                                    href={navItem.href ?? ''}
+                                    className={styles.navItem}
+                                    onMouseEnter={(e) => hoverNavItemHandler(e)}
+                                    data-full={navItem.isFull}
+                                >{navItem.caption}</Link>
+                                {navItem.subItems
+                                    ?
+                                    <ul className={styles.subNavList}>
+                                        {navItem.subItems?.map((subNavItem, subNavIndex) =>
+                                            <li key={subNavIndex}>
+                                                <Link
+                                                    href={subNavItem.href}
+                                                    className={styles.navItem}
+                                                >{subNavItem.caption}</Link>
+                                            </li>
+                                        )}
+                                    </ul>
+                                    :
+                                    ''
+                                }
+                            </li>
+                        )}
+
                     </ul>
                 </div>
                 <div className={styles.searchSide} ref={searchRef}>
