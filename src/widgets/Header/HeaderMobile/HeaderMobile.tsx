@@ -190,6 +190,21 @@ const HeaderMobile = (
                         </li>
                     )}
                 </ul>
+                <div className={styles.personAccBlock}>
+                    <span className={styles.personAccSpan}>Личный кабинет</span>
+                    <div className={styles.personAccButton}>
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15 21.5H19C19.5304 21.5 20.0391 21.2893 20.4142 20.9142C20.7893 20.5391 21 20.0304 21 19.5V5.5C21 4.96957 20.7893 4.46086 20.4142 4.08579C20.0391 3.71071 19.5304 3.5 19 3.5H15"
+                                stroke="#00A651" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M10 17.5L15 12.5L10 7.5" stroke="#00A651" strokeWidth="2.2" strokeLinecap="round"
+                                  strokeLinejoin="round"/>
+                            <path d="M15 12.5H3" stroke="#00A651" strokeWidth="2.2" strokeLinecap="round"
+                                  strokeLinejoin="round"/>
+                        </svg>
+
+                    </div>
+                </div>
             </nav>
             <PopupForm
                 isOpen={isOpenPopupForm}

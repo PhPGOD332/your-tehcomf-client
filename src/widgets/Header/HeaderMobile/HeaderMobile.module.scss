@@ -296,3 +296,34 @@
     }
   }
 }
+
+.personAccBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: vars.rem(15) vars.rem(16) vars.rem(35) vars.rem(16);
+  border: vars.rem(1) solid vars.$light-gray;
+  border-top-left-radius: vars.rem(30);
+  border-top-right-radius: vars.rem(30);
+
+  .personAccSpan {
+    font-size: vars.rem(19);
+    font-weight: 600;
+    line-height: 140%;
+  }
+
+  .personAccButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: vars.rem(52);
+    height: vars.rem(52);
+    border-radius: vars.rem(16);
+    box-shadow: vars.rem(1) vars.rem(2) vars.rem(2) 0 rgba(vars.$light-shadow, 0.1);
+  }
+}
