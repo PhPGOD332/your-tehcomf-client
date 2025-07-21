@@ -8,6 +8,7 @@ interface CheckProps {
     changeHandle?: (currentRef: RefObject<HTMLLabelElement | null> | null) => void;
     customIsChecked?: boolean;
     setCustomIsChecked?: (checked: boolean) => void;
+    classNames?: string;
 }
 
 const CheckInput = forwardRef<HTMLInputElement, CheckProps>((
@@ -18,6 +19,7 @@ const CheckInput = forwardRef<HTMLInputElement, CheckProps>((
         changeHandle,
         customIsChecked,
         setCustomIsChecked,
+        classNames,
         ...props
     }: CheckProps, ref) => {
     const [isChecked, setIsChecked] = useState(customIsChecked ?? firstIsChecked);
@@ -39,7 +41,7 @@ const CheckInput = forwardRef<HTMLInputElement, CheckProps>((
 
     return (
         <label
-            className={`${isChecked ? styles.checkLabel_checked : styles.checkLabel}`}
+            className={`${isChecked ? styles.checkLabel_checked : styles.checkLabel} ${classNames ?? ''}`}
             ref={labelRef}
         >
             <span className={styles.checkSpan}>{caption}</span>
@@ -54,7 +56,7 @@ const CheckInput = forwardRef<HTMLInputElement, CheckProps>((
             <div className={`${isChecked ? styles.checkIcon_checked : styles.checkIcon}`}>
                 {isChecked
                     &&
-                <svg width="9.5" height="7" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="12.5" height="7" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 4.5L3.2706 7.14903C3.65929 7.60251 4.35624 7.61636 4.76265 7.17869L10.5 1"
                           stroke="#FAFAFA" strokeWidth="3" strokeLinecap="round"/>
                 </svg>

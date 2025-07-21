@@ -12,12 +12,20 @@
   top: vars.rem(0);
   width: 100vw;
   min-height: vars.rem(80);
-  background-color: vars.$white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 5;
   padding: vars.rem(10) vars.rem(25);
+  transition: background-color 0.3s;
+
+  &_white {
+    background-color: vars.$white;
+  }
+
+  &_transparent {
+    background-color: transparent;
+  }
 
   @keyframes widthFull {
     0% {

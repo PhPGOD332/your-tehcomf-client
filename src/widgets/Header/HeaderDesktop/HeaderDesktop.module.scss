@@ -56,14 +56,14 @@
   display: none;
 }
 
-.desktopStyle {
-  position: fixed;
-  display: contents;
-
-  @media (max-width: vars.$max-1000) {
-    display: none;
-  }
-}
+//.desktopStyle {
+//  position: fixed;
+//  display: contents;
+//
+//  @media (max-width: vars.$max-1000) {
+//    display: none;
+//  }
+//}
 
 //
 // ДЕСКТОП ВЕРСИЯ
@@ -73,6 +73,7 @@
   position: fixed;
   display: flex;
   justify-content: space-between;
+  align-self: center;
   width: vars.rem(1344);
   padding: vars.rem(5) vars.rem(50);
   background: rgba(vars.$white, 0.5);
@@ -80,6 +81,10 @@
   top: vars.rem(20);
   z-index: 5;
   backdrop-filter: blur(vars.rem(7));
+
+  @media (max-width: vars.$max-1000) {
+    display: none;
+  }
 
   .notice {
     display: flex;

@@ -4,6 +4,7 @@ import TextInput from "@/shared/UI/TextInput/TextInput";
 import PopupForm from "@/widgets/PopupForm/PopupForm";
 import Link from "next/link";
 import {HeaderProps} from "@/widgets/Header/Header";
+import MiniMenuPanel from "@/widgets/MiniMenuPanel/MiniMenuPanel";
 
 const HeaderMobile = (
     {
@@ -11,6 +12,7 @@ const HeaderMobile = (
     }: HeaderProps) => {
     const [isOpenPopupForm, setIsOpenPopupForm] = useState(false);
     const [isSearchActive, setIsSearchActive] = useState(false);
+    const [scrollPos, setScrollPos] = useState(0);
 
     const navButtonRef = useRef<HTMLDivElement | null>(null);
     const searchButtonRef = useRef<HTMLDivElement | null>(null);
@@ -68,9 +70,18 @@ const HeaderMobile = (
         }
     }
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollPos(window.scrollY);
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <>
-            <header className={styles.mobileHeader}>
+            <header className={`${styles.mobileHeader} ${scrollPos === 0 ? styles.mobileHeader_transparent : styles.mobileHeader_white}`}>
                 <div className={styles.searchBlock} ref={searchBlockRef}>
                     <div className={styles.inputSearchBlock} ref={searchInputBlockRef}>
                         <div
@@ -209,6 +220,10 @@ const HeaderMobile = (
             <PopupForm
                 isOpen={isOpenPopupForm}
                 setIsOpen={setIsOpenPopupForm}
+            />
+            <MiniMenuPanel
+                isPopup={isOpenPopupForm}
+                setIsOpenPopup={setIsOpenPopupForm}
             />
         </>
     );

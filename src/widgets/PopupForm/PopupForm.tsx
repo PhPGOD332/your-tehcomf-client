@@ -10,6 +10,7 @@ import {ClaimDto} from "@/types/dtos/Claim.dto";
 import {useForm} from "react-hook-form";
 import {TFormInputs} from "@/types/TFormInputs";
 import ClaimService from "@/services/ClaimService";
+import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 
 export interface PopupProps {
     isOpen: boolean;
@@ -21,15 +22,12 @@ const PopupForm = (
     {
         isOpen,
         setIsOpen,
-        // isPopup = false
     }: PopupProps) => {
     const {
         register,
         handleSubmit,
         formState: {errors},
-        // resetField,
-        // setValue
-    } = useForm<TFormInputs>()
+    } = useForm<TFormInputs>();
     const [customDesignCheck, setCustomDesignCheck] = useState(false);
     const [customProjectCheck, setCustomProjectCheck] = useState(false);
     const checkDesignerRef = useRef<HTMLLabelElement | null>(null);
@@ -37,6 +35,10 @@ const PopupForm = (
 
     const popupBgRef = useRef<HTMLDivElement | null>(null);
     const popupFormRef = useRef<HTMLFormElement | null>(null);
+
+    const isMobile = useMediaQuery('(max-width: 1000px)');
+    const [popupPosition, setPopupPosition] = useState(0);
+    const [popupStartPos, setPopupStartPos] = useState(0);
 
     const submitHandler = async (data: ClaimDto) => {
         const timeout = setTimeout(async () => {
@@ -81,90 +83,203 @@ const PopupForm = (
     }
 
     const bgPopupHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-        // e.stopPropagation();
         if (e.target === popupBgRef.current)
             setIsOpen(false);
+    }
+
+    const touchPopupStartDragHandler = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (!popupFormRef.current) return;
+
+        const touch = e.touches[0];
+        setPopupStartPos(touch.clientY);
+    }
+
+    const touchMoveHandle = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (!popupFormRef.current) return;
+
+        const touch = e.touches[0];
+        const currY = touch.clientY - popupStartPos;
+
+        if (currY > 0) {
+            setPopupPosition(currY);
+            console.log(popupPosition)
+        }
+    }
+
+    const touchEndHandle = () => {
+        if (!popupFormRef.current) return;
+
+        if (popupPosition > popupFormRef.current?.offsetHeight / 2) {
+            setIsOpen(false);
+        } else {
+            setPopupPosition(0);
+        }
     }
 
     useEffect(() => {
         if (isOpen) {
             document.body.classList.add('overflowYHidden');
-        } else if (!isOpen) {
+            setPopupPosition(0);
+        } else {
             document.body.classList.remove('overflowYHidden');
+            setPopupPosition(600);
         }
     }, [isOpen]);
 
     return (
-        <div
-            className={`${styles.popupWrapper} ${!isOpen ? styles.popupWrapper_hidden : ''}`}
-            ref={popupBgRef}
-            onClick={(e) => bgPopupHandler(e)}
-        >
-            <form
-                className={styles.popupContent}
-                ref={popupFormRef}
-            >
-                <div className={styles.chooseBlock}>
-                    <CheckInput
-                        firstIsChecked={false}
-                        caption='Вызвать дизайнера'
-                        {...register("callDesign")}
-                        labelRef={checkDesignerRef}
-                        changeHandle={checkChangeHandle}
-                        customIsChecked={customDesignCheck}
-                        setCustomIsChecked={setCustomDesignCheck}
-                    />
-                    <CheckInput
-                        firstIsChecked={false}
-                        caption='Обсудить проект'
-                        {...register("discussProject")}
-                        labelRef={checkProjectRef}
-                        changeHandle={checkChangeHandle}
-                        customIsChecked={customProjectCheck}
-                        setCustomIsChecked={setCustomProjectCheck}
-                    />
-                </div>
-                <div className={styles.inputsBlock}>
-                    <TextInput
-                        label={'Имя'}
-                        placeholder={'Иван'}
-                        {...register("firstName", {
-                            required: "Введите ваше имя",
-                            minLength: 2,
-                        })}
-                        error={errors.firstName?.message}
-                    />
-                    <MaskedInput
-                        label='Телефон'
-                        mask='+7 (___) ___-__-__'
-                        replacement={{_: /[1-9]/}}
-                        placeholder='+7 (000) 000-00-00'
-                        {...register("mobilePhone", {
-                            required: "Введите ваш телефон",
-                            minLength: 15,
-                        })}
-                    />
-                    <TextArea
-                        placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
-                        label='Примечание'
-                        rows={3}
-                        {...register("note", {
-                            required: "Введите пожелания",
-                            minLength: 5,
+        <>
+            {!isMobile ?
+                <div
+                    className={`${styles.popupWrapper} ${!isOpen ? styles.popupWrapper_hidden : ''}`}
+                    ref={popupBgRef}
+                    onClick={(e) => bgPopupHandler(e)}
+                >
+                    <form
+                        className={isOpen ? styles.popupContent : styles.popupWrapper_hidden}
+                        ref={popupFormRef}
+                    >
+                        <div className={styles.mobileDragBlock}></div>
+                        <div className={styles.chooseBlock}>
+                            <CheckInput
+                                firstIsChecked={false}
+                                caption='Вызвать дизайнера'
+                                {...register("callDesign")}
+                                labelRef={checkDesignerRef}
+                                changeHandle={checkChangeHandle}
+                                customIsChecked={customDesignCheck}
+                                setCustomIsChecked={setCustomDesignCheck}
+                                classNames={styles.checkInputLabel}
+                            />
+                            <CheckInput
+                                firstIsChecked={false}
+                                caption='Обсудить проект'
+                                {...register("discussProject")}
+                                labelRef={checkProjectRef}
+                                changeHandle={checkChangeHandle}
+                                customIsChecked={customProjectCheck}
+                                setCustomIsChecked={setCustomProjectCheck}
+                                classNames={styles.checkInputLabel}
+                            />
+                        </div>
+                        <div className={styles.inputsBlock}>
+                            <TextInput
+                                label={'Имя'}
+                                placeholder={'Иван'}
+                                {...register("firstName", {
+                                    required: "Введите ваше имя",
+                                    minLength: 2,
+                                })}
+                                error={errors.firstName?.message}
+                            />
+                            <MaskedInput
+                                label='Телефон'
+                                mask='+7 (___) ___-__-__'
+                                replacement={{_: /[1-9]/}}
+                                placeholder='+7 (000) 000-00-00'
+                                {...register("mobilePhone", {
+                                    required: "Введите ваш телефон",
+                                    minLength: 15,
+                                })}
+                            />
+                            <TextArea
+                                placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
+                                label='Примечание'
+                                rows={3}
+                                {...register("note", {
+                                    required: "Введите пожелания",
+                                    minLength: 5,
 
-                        })}
-                    ></TextArea>
+                                })}
+                            ></TextArea>
+                        </div>
+                        <div className={styles.submitBlock}>
+                    <span className={styles.politicsSpan}>Я согласен(на) на <Link className={`${styles.link}`} href={'#'}>обработку персональных данных</Link></span>
+                            <DragAndDropButton
+                                formSubmit={handleSubmit(submitHandler)}
+                                isResetButton={true}
+                                resetTimeout={2000}
+                            />
+                        </div>
+                    </form>
                 </div>
-                <div className={styles.submitBlock}>
-                    <span className={styles.politicsSpan}>Я согласен(на) на <Link className={`${styles.link}`} href={'#'} >обработку персональных данных</Link></span>
-                    <DragAndDropButton
-                        formSubmit={handleSubmit(submitHandler)}
-                        isResetButton={true}
-                        resetTimeout={2000}
-                    />
-                </div>
-            </form>
-        </div>
+                :
+                <form
+                    className={`${styles.popupContent} ${!isOpen ? styles.popupContent_hidden : ''}`}
+                    ref={popupFormRef}
+                    style={{
+                        bottom: `-${popupPosition}px`,
+                    }}
+                >
+                    <div
+                        className={styles.mobileDragBlock}
+                        onTouchStart={touchPopupStartDragHandler}
+                        onTouchMove={touchMoveHandle}
+                        onTouchEnd={touchEndHandle}
+                    ></div>
+                    <div className={styles.chooseBlock}>
+                        <CheckInput
+                            firstIsChecked={false}
+                            caption='Вызвать дизайнера'
+                            {...register("callDesign")}
+                            labelRef={checkDesignerRef}
+                            changeHandle={checkChangeHandle}
+                            customIsChecked={customDesignCheck}
+                            setCustomIsChecked={setCustomDesignCheck}
+                            classNames={styles.checkInputLabel}
+                        />
+                        <CheckInput
+                            firstIsChecked={false}
+                            caption='Обсудить проект'
+                            {...register("discussProject")}
+                            labelRef={checkProjectRef}
+                            changeHandle={checkChangeHandle}
+                            customIsChecked={customProjectCheck}
+                            setCustomIsChecked={setCustomProjectCheck}
+                            classNames={styles.checkInputLabel}
+                        />
+                    </div>
+                    <div className={styles.inputsBlock}>
+                        <TextInput
+                            label={'Имя'}
+                            placeholder={'Иван'}
+                            {...register("firstName", {
+                                required: "Введите ваше имя",
+                                minLength: 2,
+                            })}
+                            error={errors.firstName?.message}
+                        />
+                        <MaskedInput
+                            label='Телефон'
+                            mask='+7 (___) ___-__-__'
+                            replacement={{_: /[1-9]/}}
+                            placeholder='+7 (000) 000-00-00'
+                            {...register("mobilePhone", {
+                                required: "Введите ваш телефон",
+                                minLength: 15,
+                            })}
+                        />
+                        <TextArea
+                            placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
+                            label='Примечание'
+                            rows={3}
+                            {...register("note", {
+                                required: "Введите пожелания",
+                                minLength: 5,
+
+                            })}
+                        ></TextArea>
+                    </div>
+                    <div className={styles.submitBlock}>
+                    <span className={styles.politicsSpan}>Я согласен(на) на <Link className={`${styles.link}`} href={'#'}>обработку персональных данных</Link></span>
+                        <DragAndDropButton
+                            formSubmit={handleSubmit(submitHandler)}
+                            isResetButton={true}
+                            resetTimeout={2000}
+                        />
+                    </div>
+                </form>
+            }
+        </>
     );
 };
 

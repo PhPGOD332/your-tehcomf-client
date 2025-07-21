@@ -1,0 +1,55 @@
+@use '@/shared/styles/vars' as vars;
+
+.panelBlock {
+  position: fixed;
+  left: vars.rem(16);
+  right: vars.rem(16);
+  bottom: vars.rem(24);
+  z-index: 4;
+
+  .panelWrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: vars.rem(24);
+
+    .navBlock {
+      display: flex;
+      align-items: center;
+      gap: vars.rem(15);
+      background-color: #D2D3D4;
+      border-radius: vars.rem(24);
+      padding: vars.rem(16);
+      height: vars.rem(80);
+      //width: calc(100% - 102px);
+
+      .navItem {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: vars.rem(8);
+        width: vars.rem(48);
+        height: vars.rem(48);
+        cursor: pointer;
+
+        .navItemSpan {
+          font-size: vars.rem(14);
+          font-weight: 600;
+          color: vars.$white;
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .navItemIcon {
+          width: vars.rem(24);
+          height: vars.rem(24);
+        }
+      }
+    }
+
+    .orderButton {
+      height: vars.rem(80);
+      width: vars.rem(80);
+      border-radius: vars.rem(30);
+    }
+  }
+}
