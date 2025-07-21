@@ -12,6 +12,7 @@ const HeaderMobile = (
     }: HeaderProps) => {
     const [isOpenPopupForm, setIsOpenPopupForm] = useState(false);
     const [isSearchActive, setIsSearchActive] = useState(false);
+    const [isNavActive, setIsNavActive] = useState(false);
     const [scrollPos, setScrollPos] = useState(0);
 
     const navButtonRef = useRef<HTMLDivElement | null>(null);
@@ -31,6 +32,9 @@ const HeaderMobile = (
     }
 
     const navButtonClickHandle = () => {
+        navModalRef.current?.classList.contains(styles.navModal_active)
+            ? setIsNavActive(false)
+            : setIsNavActive(true);
         navButtonRef.current?.classList.toggle(styles.navButton_active);
         navModalRef.current?.classList.toggle(styles.navModal_active);
     }
@@ -81,7 +85,7 @@ const HeaderMobile = (
 
     return (
         <>
-            <header className={`${styles.mobileHeader} ${scrollPos === 0 ? styles.mobileHeader_transparent : styles.mobileHeader_white}`}>
+            <header className={`${styles.mobileHeader} ${!isNavActive ? (scrollPos !== 0 ? styles.mobileHeader_white : styles.mobileHeader_transparent) : styles.mobileHeader_white}`}>
                 <div className={styles.searchBlock} ref={searchBlockRef}>
                     <div className={styles.inputSearchBlock} ref={searchInputBlockRef}>
                         <div
