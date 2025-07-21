@@ -169,6 +169,7 @@ const OrderSwapForm = (
                         isResetButton={true}
                         formSubmit={handleSubmit(formSubmit)}
                         resetTimeout={2000}
+                        buttonStyle={'FORM'}
                     />
                 </div>
             </form>

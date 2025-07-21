@@ -198,6 +198,7 @@ const PopupForm = (
                                 formSubmit={handleSubmit(submitHandler)}
                                 isResetButton={true}
                                 resetTimeout={2000}
+                                buttonStyle={'FORM'}
                             />
                         </div>
                     </form>
@@ -275,6 +276,7 @@ const PopupForm = (
                             formSubmit={handleSubmit(submitHandler)}
                             isResetButton={true}
                             resetTimeout={2000}
+                            buttonStyle={'FORM'}
                         />
                     </div>
                 </form>

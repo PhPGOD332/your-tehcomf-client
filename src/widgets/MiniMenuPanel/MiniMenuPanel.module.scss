@@ -2,9 +2,9 @@
 
 .panelBlock {
   position: fixed;
-  left: vars.rem(16);
-  right: vars.rem(16);
+  padding: 0 vars.rem(16);
   bottom: vars.rem(24);
+  width: 100vw;
   z-index: 4;
 
   .panelWrapper {

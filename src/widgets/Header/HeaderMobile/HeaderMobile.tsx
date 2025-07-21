@@ -32,9 +32,11 @@ const HeaderMobile = (
     }
 
     const navButtonClickHandle = () => {
-        navModalRef.current?.classList.contains(styles.navModal_active)
-            ? setIsNavActive(false)
-            : setIsNavActive(true);
+        if (navModalRef.current?.classList.contains(styles.navModal_active))
+            setIsNavActive(false);
+        else
+            setIsNavActive(true);
+
         navButtonRef.current?.classList.toggle(styles.navButton_active);
         navModalRef.current?.classList.toggle(styles.navModal_active);
     }

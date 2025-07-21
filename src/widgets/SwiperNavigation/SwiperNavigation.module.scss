@@ -22,3 +22,27 @@
     cursor: pointer;
   }
 }
+
+.navigationMobileBlock {
+  position: absolute;
+  bottom: vars.rem(24);
+  padding: 0 vars.rem(16) 0 vars.rem(16);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: vars.rem(16);
+
+  .navigationPrevEl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: vars.rem(72);
+    height: vars.rem(72);
+    background-color: vars.$dark-gray;
+    cursor: pointer;
+    border: none;
+    border-radius: vars.rem(26);
+  }
+}

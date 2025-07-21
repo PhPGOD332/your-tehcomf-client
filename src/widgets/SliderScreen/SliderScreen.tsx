@@ -25,7 +25,10 @@ interface PhotoSliderProps {
     isPagination?: boolean;
 }
 
-const SliderScreen = ({ slides }: PhotoSliderProps) => {
+const SliderScreen = (
+    {
+        slides
+    }: PhotoSliderProps) => {
 
     return (
         <div className={styles.screen}>
@@ -39,28 +42,35 @@ const SliderScreen = ({ slides }: PhotoSliderProps) => {
                     clickable: true,
                     horizontalClass: styles.horizontalPagination,
                     bulletClass: styles.paginationBullet,
-                    bulletActiveClass: styles.paginationBulletActive
+                    bulletActiveClass: styles.paginationBulletActive,
                 }}
                 autoplay={{
                     delay: 10000,
                 }}
                 effect={"fade"}
+                breakpoints={{
+                    1000: {
+
+                    }
+                }}
             >
                 {slides.map((slide, num) =>
-                    <SwiperSlide className={styles.swiperSlide} key={num}>
-                        <div className={styles.swiperSlideContent}>
+                    <SwiperSlide className={styles.swiperSlide} key={num} onTouchStart={(e) => e.stopPropagation()}>
+                        <div className={styles.swiperImageWrapper}>
                             <Image
                                 src={slide.photo}
                                 alt={slide.photoAlt || ''}
                                 fill={true}
                                 className={styles.swiperImage}
                             />
+                        </div>
+                        <div className={styles.swiperSlideContent}>
                             <h2 className={styles.swiperTitle}>{slide.title}</h2>
                             <span className={styles.swiperText}>{slide.text}</span>
                         </div>
                     </SwiperSlide>
                 )}
-                <SwiperNavigation />
+                <SwiperNavigation/>
             </Swiper>
         </div>
     );

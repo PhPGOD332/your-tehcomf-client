@@ -7,6 +7,10 @@ interface DraggableButtonProps {
     formSubmit?: () => void;
     isResetButton: boolean;
     resetTimeout: number;
+    buttonStyle: string;
+    beforeDragCaption?: string;
+    afterDragCaption?: string;
+    afterDropCaption?: string;
 }
 
 const
@@ -15,7 +19,11 @@ const
         id,
         formSubmit,
         isResetButton = false,
-        resetTimeout = 0
+        resetTimeout = 0,
+        buttonStyle = 'FORM',
+        beforeDragCaption = 'Потяните для отправки',
+        afterDragCaption = 'Отпустите',
+        afterDropCaption = 'Заявка отправлена!'
     }: DraggableButtonProps) => {
     const [isDragging, setIsDragging] = useState(false);
     const [dragProgress, setDragProgress] = useState(0);
@@ -27,6 +35,28 @@ const
     const checkRef = useRef<SVGSVGElement | null>(null);
     const arrowRef = useRef<SVGSVGElement | null>(null);
 
+    const getStyle = (style: string) => {
+        switch (style) {
+            case 'FORM':
+                return styles.draggableFormButton;
+            case 'LIGHT':
+                return styles.draggableLightButton;
+            default:
+                return '';
+        }
+    }
+
+    const getActiveStyle = (style: string) => {
+        switch (style) {
+            case 'FORM':
+                return styles.draggableFormButton_success;
+            case 'LIGHT':
+                return styles.draggableLightButton_success;
+            default:
+                return '';
+        }
+    }
+
     const resetButton = () => {
         if (isResetButton) {
              const timeout = setTimeout(() => {
@@ -34,7 +64,7 @@ const
                  setIsDragging(false);
                  setMaxX(0);
                  setIsSubmitted(false);
-                 dragContainerRef.current?.classList.remove(styles.draggableButton_success);
+                 dragContainerRef.current?.classList.remove(getActiveStyle(buttonStyle as string));
 
                  checkRef.current?.classList.add(styles.hidden);
                  checkRef.current?.classList.remove(styles.visible);
@@ -59,7 +89,14 @@ const
         setDragProgress((newX / maxX) * 150);
     }, [isDragging])
 
-    const handleMouseDown = () => {
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation();
+        if (!isSubmitted)
+            setIsDragging(true);
+    }
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        e.stopPropagation();
         if (!isSubmitted)
             setIsDragging(true);
     }
@@ -69,6 +106,7 @@ const
     }
 
     const handleTouchMove = (e: TouchEvent) => {
+        e.stopPropagation();
         if (!e.touches[0]) return;
 
         handleMove(e.touches[0].clientX);
@@ -80,7 +118,7 @@ const
             setIsDragging(false);
             setDragProgress(100);
 
-            dragContainerRef.current?.classList.add(styles.draggableButton_success);
+            dragContainerRef.current?.classList.add(getActiveStyle(buttonStyle as string));
 
             arrowRef.current?.classList.add(styles.hidden);
             arrowRef.current?.classList.remove(styles.visible);
@@ -124,14 +162,14 @@ const
     }, [isDragging, dragProgress]);
 
     return (
-        <div className={styles.draggableButton} ref={dragContainerRef} id={id || ''}>
+        <div className={getStyle(buttonStyle) as string} ref={dragContainerRef} id={id || ''}>
             <div
                 className={styles.draggableWrapper}
-                onMouseDown={() => handleMouseDown()}
-                onTouchStart={() => handleMouseDown()}
+                onMouseDown={(e) => handleMouseDown(e)}
+                onTouchStart={(e) => handleTouchStart(e)}
                 style={{transform: `translateX(${dragProgress * 1.40}px)`}}
             >
-                <span className={styles.firstCaption}>{isSubmitted ? 'Заявка отправлена!' : 'Отпустите'}</span>
+                <span className={styles.firstCaption}>{isSubmitted ? afterDropCaption : afterDragCaption}</span>
                 <div className={styles.iconButton} ref={dragButtonRef}>
                     <svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.visible} ref={arrowRef}>
                         <path d="M2 8H19.5" stroke="#58595B" strokeWidth="3" strokeLinecap="round"/>
@@ -143,7 +181,7 @@ const
                         <path d="M8 18L2 12" stroke="#00A651" strokeWidth="3" strokeLinecap="round"/>
                     </svg>
                 </div>
-                <span className={styles.secondCaption}>Потяните для отправки</span>
+                <span className={styles.secondCaption}>{beforeDragCaption}</span>
             </div>
         </div>
     );
