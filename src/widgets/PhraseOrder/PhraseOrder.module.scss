@@ -10,6 +10,10 @@
   max-width: vars.rem(580);
   margin: 0 auto;
   padding: vars.rem(68) 0 0 0;
+
+  @media (max-width: vars.$max-1000) {
+    padding: vars.rem(68) vars.rem(16);
+  }
 }
 
 .caption {

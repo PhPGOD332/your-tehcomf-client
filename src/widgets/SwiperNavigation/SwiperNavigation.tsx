@@ -4,7 +4,14 @@ import styles from "./SwiperNavigation.module.scss";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 import DragAndDropButton from "@/shared/UI/DragAndDropButton/DragAndDropButton";
 
-const SwiperNavigation = () => {
+interface SwiperNavigationProps {
+    isMobilePanel?: boolean;
+}
+
+const SwiperNavigation = (
+    {
+        isMobilePanel = false
+    }: SwiperNavigationProps) => {
     const swiper = useSwiper();
     const isMobile = useMediaQuery('(max-width: 1000px)');
 
@@ -22,7 +29,7 @@ const SwiperNavigation = () => {
 
     return (
         <>
-            {isMobile
+            {isMobile && isMobilePanel
                 ?
                     <div className={styles.navigationMobileBlock}>
                         <button

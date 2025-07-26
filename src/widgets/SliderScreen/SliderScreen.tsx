@@ -70,7 +70,7 @@ const SliderScreen = (
                         </div>
                     </SwiperSlide>
                 )}
-                <SwiperNavigation/>
+                <SwiperNavigation isMobilePanel={true}/>
             </Swiper>
         </div>
     );

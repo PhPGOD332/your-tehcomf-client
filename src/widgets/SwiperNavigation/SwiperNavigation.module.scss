@@ -10,6 +10,14 @@
     top: calc(50% - 12.5px);
     z-index: 1;
     cursor: pointer;
+
+    @media (max-width: vars.$max-1000) {
+      > svg {
+        > path {
+          stroke: rgba(vars.$white, 0.4);
+        }
+      }
+    }
   }
 
   .navigationPrevEl {
@@ -20,6 +28,14 @@
     top: calc(50% - 12.5px);
     z-index: 1;
     cursor: pointer;
+
+    @media (max-width: vars.$max-1000) {
+      > svg {
+        > path {
+          stroke: rgba(vars.$white, 0.4);
+        }
+      }
+    }
   }
 }
 

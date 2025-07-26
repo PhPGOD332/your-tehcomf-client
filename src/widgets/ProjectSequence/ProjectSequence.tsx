@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, {useRef} from 'react';
 import styles from './ProjectSequence.module.scss';
 
 interface SequenceItem {
@@ -43,6 +43,7 @@ const sequenceItems: SequenceItem[] = [
 ];
 
 const ProjectSequence = () => {
+    const sequenceListRef = useRef<HTMLOListElement | null>(null);
     // const hoverOnNotify = (e: React.MouseEvent<HTMLDivElement>) => {
     //     if (e.target.) {
     //
@@ -51,12 +52,22 @@ const ProjectSequence = () => {
     //     e.currentTarget.parentElement.classList.toggle(styles.)
     // }
 
+    const clickMobileItemHandler = (e: React.MouseEvent<HTMLLIElement>) => {
+        if (!sequenceListRef.current) return;
+
+        e.currentTarget.classList.toggle(styles.sequenceLiItem_active);
+    }
+
     return (
         <div className='container'>
             <div className={styles.wrapper}>
-                <ol className={styles.sequenceList}>
+                <ol className={styles.sequenceList} ref={sequenceListRef}>
                     {sequenceItems.map((stage, num) =>
-                        <li key={num}>
+                        <li
+                            className={styles.sequenceLiItem}
+                            key={num}
+                            onClick={(e) => clickMobileItemHandler(e)}
+                        >
                             <div className={styles.sequenceItem}>
                                 <span className={styles.sequenceTitle}>{stage.title}</span>
                                 <span className={styles.sequenceDescription}>{stage.description}</span>

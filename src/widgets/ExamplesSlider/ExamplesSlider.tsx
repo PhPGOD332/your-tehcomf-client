@@ -60,6 +60,23 @@ const ExamplesSlider = ({ slides, title }: PhotoSliderProps) => {
                     modifier: 2,
                     slideShadows: true
                 }}
+                breakpoints={{
+                    0: {
+                        effect: 'coverflow',
+                        coverflowEffect: {
+                            stretch: -100
+                        }
+                    },
+                    1000: {
+                        coverflowEffect: {
+                            rotate: 20,
+                            stretch: -30,
+                            depth: 100,
+                            modifier: 2,
+                            slideShadows: true
+                        }
+                    }
+                }}
             >
                 {slides.map((slide, num) =>
                     <SwiperSlide className={styles.swiperSlide} key={num}>

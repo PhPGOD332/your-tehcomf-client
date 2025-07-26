@@ -7,6 +7,15 @@
   gap: vars.rem(20);
   padding: vars.rem(80) 0;
   flex-wrap: wrap;
+
+  @media (max-width: vars.$max-1250) {
+    justify-content: center;
+    padding: vars.rem(80) vars.rem(16);
+  }
+
+  @media (max-width: vars.$max-650) {
+    flex-direction: column;
+  }
 }
 
 .advantageItem {
@@ -14,6 +23,12 @@
   align-items: center;
   gap: vars.rem(16);
   max-width: vars.rem(295);
+
+  @media (max-width: vars.$max-650) {
+    flex-direction: column;
+    text-align: center;
+    max-width: vars.rem(195);
+  }
 
   .advantageImage {
     min-width: vars.rem(72);

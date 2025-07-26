@@ -30,15 +30,50 @@
   gap: vars.rem(20);
   list-style-type: none;
   counter-reset: num;
-  padding: vars.rem(25) vars.rem(15);
+  //padding: vars.rem(25) vars.rem(15);
 
-  > li {
+  @media (max-width: vars.$max-1300) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 vars.rem(16);
+  }
+
+  .sequenceLiItem {
     position: relative;
     cursor: default;
     overflow: hidden;
     width: vars.rem(295);
     height: vars.rem(135);
     border-radius: vars.rem(20);
+
+    @media (max-width: vars.$max-1300) {
+      width: 100%;
+      //padding-top: vars.rem(24);
+      box-shadow: 0 vars.rem(-2) vars.rem(4) 0 rgba(#BDBDBD, 0.1);
+
+      &:not(:last-child) {
+        margin-bottom: vars.rem(-50);
+      }
+
+      &_active {
+        margin-bottom: vars.rem(-50) !important;
+        height: vars.rem(220);
+
+        &:before {
+          background: vars.$dark-gray !important;
+        }
+
+        .sequenceDescription {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+
+    &_active {
+      transition: 0.2s;
+    }
 
     &:has(.notify:hover) {
       .notify svg path {
@@ -80,6 +115,21 @@
       left: calc(-5%);
       top: calc(-40%);
       transition: 0.2s;
+
+      @media (max-width: vars.$max-1300) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: vars.rem(31);
+        color: #fff;
+        left: vars.rem(16);
+        top: vars.rem(20);
+        width: vars.rem(72);
+        height: vars.rem(72);
+        background: vars.$light-green;
+        border-radius: vars.rem(30);
+        background-clip: content-box;
+      }
     }
 
     .sequenceItem {
@@ -92,6 +142,20 @@
       height: 100%;
       padding-right: vars.rem(20);
       transition: background-color 0.2s;
+
+      @media (max-width: vars.$max-1300) {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: vars.rem(16);
+        padding: vars.rem(45) vars.rem(16) 0 vars.rem(100);
+        background-color: vars.$white;
+        cursor: pointer;
+
+        &:hover {
+          background-color: vars.$neutral-border;
+        }
+      }
     }
 
     .notify {
@@ -101,6 +165,10 @@
       width: vars.rem(21);
       height: vars.rem(21);
       z-index: 1;
+
+      @media (max-width: vars.$max-1300) {
+        display: none;
+      }
     }
   }
 
@@ -113,6 +181,10 @@
     opacity: 1;
     visibility: visible;
     position: relative;
+
+    @media (max-width: vars.$max-1300) {
+      margin: 0;
+    }
   }
 
   .sequenceDescription {
@@ -124,5 +196,16 @@
     position: absolute;
     //z-index: 2;
     transition: opacity 0.2s;
+
+    @media (max-width: vars.$max-1300) {
+      opacity: 0;
+      visibility: hidden;
+      position: relative;
+      margin: 0;
+      font-size: vars.rem(19);
+      color: vars.$black;
+      font-weight: 400;
+      line-height: 140%;
+    }
   }
 }
