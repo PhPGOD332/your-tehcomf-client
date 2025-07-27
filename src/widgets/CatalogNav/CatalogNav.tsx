@@ -30,7 +30,7 @@ interface ICatalogCard {
     caption: string;
     className: string;
     isIcon?: boolean;
-    order?: number;
+    order: number;
     mobileOrder?: number;
 }
 
@@ -168,7 +168,7 @@ const CatalogNav = ({ title }: CatalogProps) => {
                     ref={sliderRef}
                     onSliderMove={(swiper) => sliderChangeHandler(swiper.activeIndex)}
                 >
-                {catalogCards.sort((card1, card2) => card1.mobileOrder - card2.mobileOrder).map((card, num) =>
+                {catalogCards.sort((card1, card2) => (card1.mobileOrder ?? card1.order) - (card2.mobileOrder ?? card2.order)).map((card, num) =>
                     <SwiperSlide key={num} className={styles.catalogItem}>
                         {!card.isIcon
                             ?
@@ -211,7 +211,7 @@ const CatalogNav = ({ title }: CatalogProps) => {
                 )}
                 </Swiper>
                 <div className={styles.swiperCatalogPagination}>
-                    {catalogCards.sort((card1, card2) => card1.mobileOrder - card2.mobileOrder).map((card, num) =>
+                    {catalogCards.sort((card1, card2) => (card1.mobileOrder ?? card1.order) - (card2.mobileOrder ?? card2.order)).map((card, num) =>
                         <button
                             key={num}
                             className={`${styles.catalogPaginationItem} ${sliderPos === num ? styles.catalogPaginationItem_active : ''}`}
