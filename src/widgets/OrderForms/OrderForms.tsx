@@ -10,7 +10,6 @@ import 'swiper/css/navigation';
 import 'swiper/scss/pagination';
 import 'swiper/css/effect-coverflow';
 import 'swiper/modules/effect-coverflow.min.css';
-import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
 
 interface IFormInfo {
     isReset: boolean;
