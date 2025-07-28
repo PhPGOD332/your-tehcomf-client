@@ -16,7 +16,7 @@ const SubTitle = ({children, color = TitleColors.BLACK, classNames}: TitleProps)
     return (
         <h2
             style={{color: color}}
-            className={`${classNames ? styles.subTitle + ' ' + classNames : styles.subTitle}`}
+            className={`${styles.subTitle} ${classNames ?? ''}`}
         >
             {children}
         </h2>

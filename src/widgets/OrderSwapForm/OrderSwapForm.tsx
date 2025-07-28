@@ -14,11 +14,13 @@ import {TFormInputs} from "@/types/TFormInputs";
 
 interface SwapFormProps {
     isReset: boolean;
+    bgImageSrc?: string;
 }
 
 const OrderSwapForm = (
     {
-        isReset = false
+        isReset = false,
+        bgImageSrc = ''
     }: SwapFormProps) => {
     const {
         register,
@@ -72,21 +74,21 @@ const OrderSwapForm = (
     return (
         <div className={styles.formItem}>
             <div className={`${styles.formPreview} ${styles.visible}`} ref={previewRef}>
+                {/*<img src="/icons/track-icon.svg" alt="" className={styles.previewIcon}/>*/}
+                <MiniTitle classNames={styles.previewTitle}>Я хочу замерить помещение и проконсультироваться с
+                    дизайнером</MiniTitle>
+                <span className={styles.explanationText}>
+                    Наш специалист приедет к вам с рулеткой,
+                    блокнотом и кучей идей. Обсудим, что вам нравится, померяем пространство и вместе
+                    придумаем, как реализовать вашу мечту
+                </span>
                 <Image
-                    src={'/icons/track-icon.svg'}
+                    src={bgImageSrc}
                     alt={''}
                     className={styles.previewIcon}
                     width={256}
                     height={256}
                 />
-                {/*<img src="/icons/track-icon.svg" alt="" className={styles.previewIcon}/>*/}
-                <MiniTitle classNames={styles.previewTitle}>Я хочу замерить помещение и проконсультироваться с
-                    дизайнером</MiniTitle>
-                <span className={styles.explanationText}>
-                                Наш специалист приедет к вам с рулеткой,
-                                блокнотом и кучей идей. Обсудим, что вам нравится, померяем пространство и вместе
-                                придумаем, как реализовать вашу мечту
-                            </span>
                 <ul className={styles.previewList}>
                     <li>
                         <Image

@@ -15,6 +15,16 @@
 
 .wrapper {
   background-color: vars.$light-gray;
+
+  @media (max-width: vars.$max-1000) {
+    background-color: vars.$white;
+  }
+}
+
+.title {
+  @media (max-width: vars.$max-500) {
+    color: vars.$black !important;
+  }
 }
 
 .formsWrapper {
@@ -27,6 +37,21 @@
   border-radius: vars.rem(40);
   background-color: vars.$dark-gray;
   text-align: center;
+
+  @media (max-width: vars.$max-1000) {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: vars.rem(68) vars.rem(16);
+  }
+
+  @media (max-width: vars.$max-1000) {
+    gap: vars.rem(20);
+  }
+
+  @media (max-width: vars.$max-500) {
+    background-color: vars.$white;
+  }
 }
 
 .formsBlock {
@@ -35,4 +60,27 @@
   gap: vars.rem(20);
   max-width: vars.rem(1240);
   width: vars.rem(1240);
+
+  @media (max-width: vars.$max-1300) {
+    display: flex;
+    width: 100%;
+  }
+
+  @media (max-width: vars.$max-1000) {
+    display: none;
+  }
+}
+
+.formsSwiper {
+  display: none;
+  height: fit-content;
+
+  @media (max-width: vars.$max-1000) {
+    display: block;
+    max-width: 100%;
+  }
+
+  .formSlide {
+    width: 90% !important;
+  }
 }

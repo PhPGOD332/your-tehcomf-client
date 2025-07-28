@@ -19,16 +19,41 @@
   padding: vars.rem(32);
   border-radius: vars.rem(40);
 
+  @media (max-width: vars.$max-500) {
+    background-color: vars.$dark-gray;
+    height: vars.rem(544);
+    border-radius: vars.rem(20);
+  }
+
   .formPreview {
     text-align: start;
     position: relative;
     transition: opacity 0.3s ease;
 
+    @media (max-width: vars.$max-500) {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .previewIcon {
-      position: absolute;
-      right: vars.rem(-30);
-      bottom: vars.rem(-30);
-      z-index: 0;
+       position: absolute;
+       right: vars.rem(-30);
+       bottom: vars.rem(-30);
+       z-index: 0;
+       user-select: none;
+
+      @media (max-width: vars.$max-500) {
+        position: relative;
+        //margin: 0 auto;
+        width: vars.rem(200);
+        height: vars.rem(200);
+        margin-top: vars.rem(-50);
+        margin-bottom: vars.rem(20);
+        //left: calc(50% - 100px);
+      }
     }
 
     .previewTitle {
@@ -36,6 +61,11 @@
       line-height: 120%;
       margin-bottom: vars.rem(16);
       z-index: 1;
+
+      @media (max-width: vars.$max-500) {
+        color: vars.$white !important;
+        font-size: vars.rem(19);
+      }
     }
 
     .explanationText {
@@ -46,6 +76,10 @@
       max-width: vars.rem(390);
       margin-bottom: vars.rem(24);
       z-index: 1;
+
+        @media (max-width: vars.$max-500) {
+          display: none;
+        }
     }
 
     .previewList {
@@ -61,6 +95,10 @@
         display: flex;
         align-items: center;
         gap: vars.rem(8);
+
+        @media (max-width: vars.$max-500) {
+          color: vars.$white;
+        }
       }
 
       .checkImage {
@@ -74,14 +112,21 @@
       padding: vars.rem(16.5) vars.rem(60);
       font-size: vars.rem(19);
       z-index: 1;
+
+      @media (max-width: vars.$max-500) {
+        width: 100%;
+        padding: vars.rem(12.5) vars.rem(50);
+      }
     }
   }
 
   .formMain {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: vars.rem(28);
     transition: opacity 0.3s ease;
+    height: 100%;
 
     .inputsBlock {
       display: flex;
