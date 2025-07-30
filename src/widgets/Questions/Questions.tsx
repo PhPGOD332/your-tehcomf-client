@@ -5,9 +5,11 @@ import SubTitle, {TitleColors} from "@/shared/UI/SubTitle/SubTitle";
 import {IQuestion} from "@/types/IQuestion";
 import {IQuestionCategory} from "@/types/IQuestionCategory";
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
+import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 
 export interface QuestionsProps {
     title?: string;
+    mobileTitle?: string;
     questions: IQuestion[];
     questionsCategories: IQuestionCategory[];
 }
@@ -15,11 +17,13 @@ export interface QuestionsProps {
 const Questions = (
     {
         title,
+        mobileTitle,
         questions,
         questionsCategories
     }: QuestionsProps) => {
 
     const [questionsView, setQuestionsView] = useState<IQuestion[]>(questions.filter(question => question.categoryId === questionsCategories[0].id))
+    const isMobile = useMediaQuery('(max-width: 1000px)');
 
     const questionMarkerHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const summary = e.currentTarget?.parentElement;
@@ -31,12 +35,16 @@ const Questions = (
             details.open = !details.open;
 
             if (details.open) {
+                details.classList.add(styles.questionItem_active);
+
                 svgElement?.classList.add(styles.opened);
                 svgElement?.classList.remove(styles.closed);
 
                 answerElement?.classList.add(styles.questionAnswer_visible);
                 answerElement?.classList.remove(styles.questionAnswer_hidden);
             } else {
+                details.classList.remove(styles.questionItem_active);
+
                 svgElement?.classList.add(styles.closed);
                 svgElement?.classList.remove(styles.opened);
 
@@ -66,12 +74,14 @@ const Questions = (
             <div className='container'>
                 <div className={styles.innerWrapper}>
                     <div className={styles.categorySide}>
-                        <SubTitle color={TitleColors.BLACK}>{title || 'Часто задаваемые вопросы'}</SubTitle>
-                        {questionsCategories.map((category, num) =>
-                            <div className={`${styles.category} ${num === 0 ? styles.category_selected : ''}`} key={category.id} data-id={category.id} onClick={(e) => selectCategoryHandler(e)}>
-                                <span className={styles.categoryCaption}>{category.name}</span>
-                            </div>
-                        )}
+                        <SubTitle classNames={styles.questionsTitle} color={TitleColors.BLACK}>{isMobile ? mobileTitle ?? 'FAQ' : title || 'Часто задаваемые вопросы'}</SubTitle>
+                        <div className={styles.questionsCategories}>
+                            {questionsCategories.map((category, num) =>
+                                <div className={`${styles.category} ${num === 0 ? styles.category_selected : ''}`} key={category.id} data-id={category.id} onClick={(e) => selectCategoryHandler(e)}>
+                                    <span className={styles.categoryCaption}>{category.name}</span>
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className={styles.questionsSide}>
                         {questionsView
@@ -82,7 +92,7 @@ const Questions = (
                                     onClick={(e) => e.preventDefault()}
                                 >
                                     <summary>
-                                        <MiniTitle>{question.question}</MiniTitle>
+                                        <MiniTitle classNames={styles.questionCaption}>{question.question}</MiniTitle>
                                         <div
                                             className={styles.markerIcon}
                                             onClick={(e) => questionMarkerHandler(e)}
