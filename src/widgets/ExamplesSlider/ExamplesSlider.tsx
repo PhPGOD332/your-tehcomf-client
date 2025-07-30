@@ -97,7 +97,7 @@ const ExamplesSlider = ({ slides, title }: PhotoSliderProps) => {
                         </div>
                     </SwiperSlide>
                 )}
-                <SwiperNavigation/>
+                <SwiperNavigation />
             </Swiper>
         </div>
     );

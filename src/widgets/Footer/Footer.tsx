@@ -22,76 +22,84 @@ const Footer = (
                     <div className={styles.footer}>
                         <div className={styles.footerNav}>
                             <ul className={styles.navList}>
-                                <li>
+                                <li className={styles.navUndLi}>
                                     <Link href={'#'} className={styles.navLink}>Каталог</Link>
                                 </li>
-                                <li>
+                                <li className={styles.navSubList}>
                                     <Link href={'#'} className={styles.navLink}>На заказ</Link>
-                                </li>
-                                <li>
                                     <Link href={'#'} className={styles.navLink}>Типовые решения</Link>
                                 </li>
+                                {/*<li>*/}
+                                {/*    */}
+                                {/*</li>*/}
                             </ul>
                             <ul className={styles.navList}>
-                                <li>
+                                <li className={styles.navUndLi}>
                                     <Link href={'#'} className={styles.navLink}>Портфолио</Link>
                                 </li>
-                                <li>
+                                <li className={styles.navSubList}>
                                     <Link href={'#'} className={styles.navLink}>Отзывы</Link>
                                 </li>
                             </ul>
                             <ul className={styles.navList}>
-                                <li>
+                                <li className={styles.navUndLi}>
                                     <Link href={'#'} className={styles.navLink}>О компании</Link>
                                 </li>
-                                <li>
+                                <li className={styles.navSubList}>
                                     <Link href={'#'} className={styles.navLink}>Производство</Link>
-                                </li>
-                                <li>
                                     <Link href={'#'} className={styles.navLink}>Блог</Link>
-                                </li>
-                                <li>
                                     <Link href={'#'} className={styles.navLink}>Гарантия</Link>
                                 </li>
+                                {/*<li>*/}
+                                {/*    */}
+                                {/*</li>*/}
+                                {/*<li>*/}
+                                {/*    */}
+                                {/*</li>*/}
                             </ul>
                             <ul className={styles.navList}>
-                                <li>
+                                <li className={styles.navUndLi}>
                                     <Link href={'#'} className={styles.navLink}>Покупателям</Link>
                                 </li>
-                                <li>
+                                <li className={styles.navSubList}>
                                     <Link href={'#'} className={styles.navLink}>FAQ</Link>
-                                </li>
-                                <li>
                                     <Link href={'#'} className={styles.navLink}>Личный кабинет</Link>
                                 </li>
+                                {/*<li>*/}
+                                {/*    */}
+                                {/*</li>*/}
                             </ul>
                             <ul className={styles.navList}>
-                                <li>
+                                <li className={styles.navUndLi}>
                                     <Link href={'#'} className={styles.navLink}>Партнерам</Link>
                                 </li>
-                                <li>
+                                <li className={styles.navSubList}>
                                     <Link href={'#'} className={styles.navLink}>Дизайнерам</Link>
-                                </li>
-                                <li>
                                     <Link href={'#'} className={styles.navLink}>Подрядчикам</Link>
-                                </li>
-                                <li>
                                     <Link href={'#'} className={styles.navLink}>B2B</Link>
                                 </li>
+                                {/*<li>*/}
+                                {/*    */}
+                                {/*</li>*/}
+                                {/*<li>*/}
+                                {/*    */}
+                                {/*</li>*/}
                             </ul>
                             <ul className={styles.navList}>
-                                <li>
+                                <li className={styles.navUndLi}>
                                     <Link href={'#'} className={styles.navLink}>Услуги</Link>
                                 </li>
-                                <li>
+                                <li className={styles.navSubList}>
                                     <Link href={'#'} className={styles.navLink}>Заказать проект</Link>
-                                </li>
-                                <li>
                                     <Link href={'#'} className={styles.navLink}>Вызвать дизайнера</Link>
-                                </li>
-                                <li>
                                     <Link href={'#'} className={styles.navLink}>Доставка и сборка</Link>
                                 </li>
+                                {/*<li>*/}
+                                {/*    */}
+                                {/*</li>*/}
+                                {/*<li>*/}
+                                {/*    */}
+                                {/*</li>*/}
                             </ul>
                         </div>
                         <div className={styles.footerSocials}>

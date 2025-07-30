@@ -111,6 +111,10 @@
 
   .questionItem {
 
+    @media (max-width: vars.$max-1000) {
+      border-bottom: vars.rem(1) solid vars.$neutral-border;
+    }
+
     &_active {
 
       .questionCaption {

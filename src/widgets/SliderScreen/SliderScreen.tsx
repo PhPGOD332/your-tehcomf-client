@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Autoplay, EffectFade, Pagination} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/css';
@@ -29,6 +29,36 @@ const SliderScreen = (
     {
         slides
     }: PhotoSliderProps) => {
+    const [isMoreCompleted, setIsMoreCompleted] = useState(false);
+
+    const handleMoreClick = () => {
+        const screenHeight = window.outerHeight - 160;
+
+        setTimeout(() => {
+            document.body.classList.remove('overflowYHidden');
+            window.scrollTo({
+                top: screenHeight,
+                behavior: "smooth"
+            });
+
+            setTimeout(() => {
+                setIsMoreCompleted(true);
+            }, 500)
+        }, 1000);
+    }
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (isMoreCompleted) {
+                if (window.scrollY < window.outerHeight - 160) {
+                    window.scrollTo(0, window.outerHeight - 160);
+                }
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isMoreCompleted]);
 
     return (
         <div className={styles.screen}>
@@ -70,7 +100,10 @@ const SliderScreen = (
                         </div>
                     </SwiperSlide>
                 )}
-                <SwiperNavigation isMobilePanel={true}/>
+                <SwiperNavigation
+                    isMobilePanel={true}
+                    mobilePanelHandler={handleMoreClick}
+                />
             </Swiper>
         </div>
     );

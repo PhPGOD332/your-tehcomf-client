@@ -12,10 +12,19 @@
   border-top-left-radius: vars.rem(40);
   border-top-right-radius: vars.rem(40);
   margin: 0 vars.rem(20);
+
+  @media (max-width: vars.$max-1000) {
+    background-color: transparent;
+  }
   
   .line {
     border: vars.rem(1) solid rgba(vars.$gray, 0.15);
     border-radius: vars.rem(5);
+
+    @media (max-width: vars.$max-1000) {
+      margin: vars.rem(40) vars.rem(16);
+      border: vars.rem(1) solid rgba(vars.$gray, 0.5);
+    }
   }
 }
 
@@ -23,7 +32,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: vars.rem(68) 0;
+  padding: vars.rem(68) vars.rem(16);
+
+  @media (max-width: vars.$max-1100) {
+    padding: 0 vars.rem(16);
+    padding-bottom: vars.rem(160);
+  }
 
   .footerNav {
     display: flex;
@@ -35,12 +49,46 @@
     max-width: vars.rem(1240);
     margin-bottom: vars.rem(90);
 
+    @media (max-width: vars.$max-1100) {
+      flex-direction: column;
+      gap: vars.rem(0);
+      margin-bottom: vars.rem(40);
+    }
+
     .navList {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       gap: vars.rem(12);
-      
+
+      @media (max-width: vars.$max-1100) {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr 30%;
+        border-bottom: vars.rem(2) solid rgba(vars.$gray, 0.15);
+        padding: vars.rem(20) 0;
+      }
+
+      @media (max-width: vars.$max-700) {
+        grid-template-columns: 1fr 52%;
+      }
+
+      .navUndLi {
+
+      }
+
+      .navSubList {
+        display: flex;
+        flex-direction: column;
+        gap: vars.rem(12);
+
+        @media (max-width: vars.$max-1100) {
+          > .navLink {
+            color: vars.$black;
+          }
+        }
+      }
+
       .navLink {
         font-size: vars.rem(19);
         font-weight: 600;
@@ -61,12 +109,21 @@
     gap: vars.rem(52);
     margin-bottom: vars.rem(32);
 
+    @media (max-width: vars.$max-1000) {
+      padding: 0 vars.rem(16);
+      gap: vars.rem(28);
+    }
+
     .socialLink {
 
+      @media (max-width: vars.$max-1000) {
+        > svg > rect {
+          transition: 0.3s;
+          fill: vars.$green;
+        }
+      }
 
       &:hover {
-
-
         > svg > rect {
           transition: 0.3s;
           fill: vars.$green;

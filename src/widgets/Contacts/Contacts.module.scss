@@ -12,11 +12,29 @@
   position: relative;
 }
 
+.wrapper {
+  @media (max-width: vars.$max-1000) {
+    padding: 0 vars.rem(16);
+  }
+}
+
 .contactsBlock {
   display: flex;
   justify-content: space-between;
   gap: vars.rem(20);
   padding: vars.rem(68) 0;
+
+  @media (max-width: vars.$max-1000) {
+    background-color: vars.$green;
+    padding: vars.rem(32) vars.rem(16);
+    border-radius: vars.rem(20);
+  }
+
+  @media (max-width: vars.$max-800) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
   .captionSide {
     display: flex;
@@ -26,6 +44,16 @@
       font-size: vars.rem(19);
       font-weight: 600;
       color: vars.$gray;
+
+      @media (max-width: vars.$max-1000) {
+        color: vars.$light-gray;
+      }
+    }
+
+    .title {
+      @media (max-width: vars.$max-1000) {
+        color: vars.$white !important;
+      }
     }
   }
 
@@ -33,6 +61,13 @@
     display: flex;
     align-items: center;
     gap: vars.rem(24);
+
+    @media (max-width: vars.$max-800) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
 
     .contact {
       position: relative;
@@ -46,6 +81,11 @@
       gap: vars.rem(12);
       height: vars.rem(60);
       transition: 0.2s;
+
+      @media (max-width: vars.$max-800) {
+        width: 100%;
+        justify-content: center;
+      }
 
       &:hover {
         background-color: vars.$gray;
@@ -72,22 +112,45 @@
         }
       }
 
+      .contactImage {
+        @media (max-width: vars.$max-800) {
+          position: absolute;
+          left: vars.rem(8);
+        }
+      }
+
       .contactPreview {
         display: flex;
         align-items: center;
         gap: vars.rem(12);
+
+        @media (max-width: vars.$max-800) {
+          width: 100%;
+          margin-left: vars.rem(50);
+          justify-content: space-between;
+        }
       }
 
       .contactPostview {
         display: flex;
         align-items: center;
         gap: vars.rem(12);
+
+        @media (max-width: vars.$max-800) {
+          width: 100%;
+          margin-left: vars.rem(50);
+          justify-content: space-between;
+        }
       }
 
       .caption {
         font-size: vars.rem(19);
         font-weight: 500;
         color: vars.$gray;
+
+        @media (max-width: vars.$max-800) {
+          color: vars.$black;
+        }
       }
 
       .contactIcon {

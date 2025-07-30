@@ -6,26 +6,16 @@ import DragAndDropButton from "@/shared/UI/DragAndDropButton/DragAndDropButton";
 
 interface SwiperNavigationProps {
     isMobilePanel?: boolean;
+    mobilePanelHandler?: () => void;
 }
 
 const SwiperNavigation = (
     {
-        isMobilePanel = false
+        isMobilePanel = false,
+        mobilePanelHandler = () => null
     }: SwiperNavigationProps) => {
     const swiper = useSwiper();
     const isMobile = useMediaQuery('(max-width: 1000px)');
-
-    const handleMoreClick = () => {
-        const screenHeight = window.outerHeight;
-
-        setTimeout(() => {
-            document.body.classList.remove('overflowYHidden');
-            window.scrollTo({
-                top: screenHeight,
-                behavior: "smooth"
-            });
-        }, 1000);
-    }
 
     return (
         <>
@@ -50,7 +40,7 @@ const SwiperNavigation = (
                             isResetButton={false}
                             resetTimeout={0}
                             buttonStyle={'LIGHT'}
-                            formSubmit={handleMoreClick}
+                            formSubmit={mobilePanelHandler}
                             beforeDragCaption={'Узнать больше'}
                             afterDragCaption={'Отпустите'}
                             afterDropCaption={'Вперёд!'}
