@@ -32,7 +32,7 @@ const SliderScreen = (
     const [isMoreCompleted, setIsMoreCompleted] = useState(false);
 
     const handleMoreClick = () => {
-        const screenHeight = window.outerHeight - 160;
+        const screenHeight = window.outerHeight - 80;
 
         setTimeout(() => {
             document.body.classList.remove('overflowYHidden');
@@ -50,8 +50,12 @@ const SliderScreen = (
     useEffect(() => {
         const handleScroll = () => {
             if (isMoreCompleted) {
-                if (window.scrollY < window.outerHeight - 160) {
-                    window.scrollTo(0, window.outerHeight - 160);
+                if (window.scrollY < window.outerHeight - 80) {
+                    window.scrollTo(0, window.outerHeight - 80);
+                }
+            } else {
+                if (window.scrollY > 0) {
+                    window.scrollTo(0, 0);
                 }
             }
         }
