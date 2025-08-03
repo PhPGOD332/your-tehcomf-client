@@ -59,8 +59,6 @@ const SliderScreen = (
         }
 
         const handleScroll = () => {
-
-
             if (isScreenSlide) {
                 if (document.body.clientWidth <= 1000) {
                     if (window.scrollY < screenHeight) {
@@ -71,7 +69,9 @@ const SliderScreen = (
                     }
                 }
             } else {
-                document.body.classList.add('overflowYHidden');
+                if (document.body.clientWidth <= 1000) {
+                    document.body.classList.add('overflowYHidden');
+                }
             }
         }
 
