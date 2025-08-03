@@ -29,40 +29,55 @@ const SliderScreen = (
     {
         slides
     }: PhotoSliderProps) => {
-    const [isMoreCompleted, setIsMoreCompleted] = useState(false);
+    const [isScreenSlide, setIsScreenSlide] = useState(false);
 
-    const handleMoreClick = () => {
-        const screenHeight = window.outerHeight - 80;
-
+    const handleMoreClick = async () => {
         setTimeout(() => {
-            document.body.classList.remove('overflowYHidden');
-            window.scrollTo({
-                top: screenHeight,
-                behavior: "smooth"
-            });
-
-            setTimeout(() => {
-                setIsMoreCompleted(true);
-            }, 500)
+            setIsScreenSlide(true);
         }, 1000);
     }
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+        setIsScreenSlide(false);
+    }, []);
+
+    useEffect(() => {
+        const screenHeight = window.outerHeight - 90;
+
+        if (isScreenSlide) {
+            document.body.classList.remove('overflowYHidden');
+            if (document.body.clientWidth <= 1000) {
+                window.scrollTo({
+                    top: screenHeight,
+                    behavior: "smooth"
+                });
+            }
+        }
+
         const handleScroll = () => {
-            if (isMoreCompleted) {
-                if (window.scrollY < window.outerHeight - 80) {
-                    window.scrollTo(0, window.outerHeight - 80);
+
+
+            if (isScreenSlide) {
+                if (document.body.clientWidth <= 1000) {
+                    if (window.scrollY < screenHeight) {
+                        window.scrollTo({
+                            top: screenHeight,
+                            behavior: "smooth"
+                        });
+                    }
                 }
             } else {
-                if (window.scrollY > 0) {
-                    window.scrollTo(0, 0);
-                }
+                document.body.classList.add('overflowYHidden');
             }
         }
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [isMoreCompleted]);
+    }, [isScreenSlide]);
 
     return (
         <div className={styles.screen}>

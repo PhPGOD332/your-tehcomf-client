@@ -115,6 +115,8 @@ const CatalogNav = ({ title }: CatalogProps) => {
     const sliderChangeHandler = (newPos: number) => {
         if (!sliderRef.current) return;
 
+        console.log(newPos)
+
         sliderRef.current?.swiper.slideTo(newPos);
         setSliderPos(newPos);
     }
@@ -147,11 +149,6 @@ const CatalogNav = ({ title }: CatalogProps) => {
                                 fill={true}
                             />
                         }
-                        {/*<img*/}
-                        {/*    src={card.image.src}*/}
-                        {/*    alt={''}*/}
-                        {/*    className={card.isIcon ? styles.cardIcon : styles.cardBg}*/}
-                        {/*/>*/}
                     </Link>
                 )}
             </div>
@@ -161,12 +158,9 @@ const CatalogNav = ({ title }: CatalogProps) => {
                     modules={[Pagination, Autoplay, EffectFade]}
                     spaceBetween={0}
                     slidesPerView={1}
-                    // autoplay={{
-                    //     delay: 10000,
-                    // }}
                     effect={"fade"}
                     ref={sliderRef}
-                    onSliderMove={(swiper) => sliderChangeHandler(swiper.activeIndex)}
+                    onSlideChange={(swiper) => sliderChangeHandler(swiper.activeIndex)}
                 >
                 {catalogCards.sort((card1, card2) => (card1.mobileOrder ?? card1.order) - (card2.mobileOrder ?? card2.order)).map((card, num) =>
                     <SwiperSlide key={num} className={styles.catalogItem}>

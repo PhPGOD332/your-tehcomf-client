@@ -32,6 +32,8 @@
   border-radius: vars.rem(40);
   width: vars.rem(480);
   box-shadow: vars.rem(3) vars.rem(10) vars.rem(22) 0 vars.$shadow;
+  bottom: vars.rem(-600);
+  transform: translateY(vars.rem(0)) ;
 
   &_hidden {}
 

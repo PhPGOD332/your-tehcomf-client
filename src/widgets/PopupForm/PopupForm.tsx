@@ -88,6 +88,7 @@ const PopupForm = (
     }
 
     const touchPopupStartDragHandler = (e: React.TouchEvent<HTMLDivElement>) => {
+        e.preventDefault();
         if (!popupFormRef.current) return;
 
         const touch = e.touches[0];
@@ -101,28 +102,30 @@ const PopupForm = (
         const currY = touch.clientY - popupStartPos;
 
         if (currY > 0) {
-            setPopupPosition(currY);
-            console.log(popupPosition)
+            setPopupPosition(-popupFormRef.current?.offsetHeight + currY);
         }
     }
 
     const touchEndHandle = () => {
         if (!popupFormRef.current) return;
 
-        if (popupPosition > popupFormRef.current?.offsetHeight / 2) {
+        if (popupPosition > -(popupFormRef.current?.offsetHeight / 2)) {
             setIsOpen(false);
         } else {
-            setPopupPosition(0);
+            setPopupPosition(-popupFormRef.current?.offsetHeight || 0);
         }
     }
 
     useEffect(() => {
+        if (!popupFormRef.current) return;
+
         if (isOpen) {
             document.body.classList.add('overflowYHidden');
-            setPopupPosition(0);
+            setPopupPosition(-popupFormRef.current?.offsetHeight || 0);
         } else {
             document.body.classList.remove('overflowYHidden');
-            setPopupPosition(600);
+            setPopupPosition(0);
+
         }
     }, [isOpen]);
 
@@ -208,7 +211,8 @@ const PopupForm = (
                     className={`${styles.popupContent} ${!isOpen ? styles.popupContent_hidden : ''}`}
                     ref={popupFormRef}
                     style={{
-                        bottom: `-${popupPosition}px`,
+                        transform: `translateY(${popupPosition}px)`,
+                        transition: '0.1s'
                     }}
                 >
                     <div
