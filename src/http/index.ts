@@ -6,7 +6,7 @@ const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 // Базовый путь
 const $api = axios.create({
     withCredentials: true,
-    baseURL: `${NEXT_PUBLIC_API_URL}`,
+    baseURL: `${NEXT_PUBLIC_API_URL}/api`,
 });
 
 // Настройка куки

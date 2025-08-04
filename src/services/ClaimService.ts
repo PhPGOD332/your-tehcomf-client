@@ -5,6 +5,7 @@ import {ClaimDto} from "@/types/dtos/Claim.dto";
 
 export default class ClaimService {
     static async addClaim(body: ClaimDto): Promise<AxiosResponse<IClaim>> {
+        console.log(body)
         return await $api.post<IClaim>(`/claims/addClaim`, body);
     }
 }
