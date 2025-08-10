@@ -115,7 +115,7 @@ const SliderScreen = (
                         </div>
                         <div className={styles.swiperSlideContent}>
                             <h2 className={styles.swiperTitle}>{slide.title}</h2>
-                            <span className={styles.swiperText}>{slide.text}</span>
+                            <span className={styles.swiperText} dangerouslySetInnerHTML={{__html: slide.text ?? ''}}></span>
                         </div>
                     </SwiperSlide>
                 )}

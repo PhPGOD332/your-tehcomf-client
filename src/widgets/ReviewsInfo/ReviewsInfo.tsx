@@ -3,10 +3,11 @@ import React from 'react';
 import styles from './ReviewsInfo.module.scss';
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
 import Image, {StaticImageData} from "next/image";
-import AlexandrImage from '@/data/images/reviews/Alexandr.png';
-import LarisaImage from '@/data/images/reviews/Larisa.png';
-import KonstantinImage from '@/data/images/reviews/Konstantin.png';
-import OlgaImage from '@/data/images/reviews/Olga.png';
+import MariaImage from '@/data/images/reviews/Maria.jpg';
+import NikolayImage from '@/data/images/reviews/Nikolay.jpg';
+import OlgaImage from '@/data/images/reviews/Olga.jpg';
+import AnatoliyImage from '@/data/images/reviews/Anatoliy.jpg';
+// import OlgaImage from '@/data/images/reviews/Olga.png';
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, EffectCoverflow, Pagination} from "swiper/modules";
 import 'swiper/css';
@@ -24,28 +25,28 @@ interface IReview {
 
 const reviews: IReview[] = [
     {
-        name: 'Александр',
+        name: 'Мария Н.',
         project: 'Кухня на заказ',
-        image: AlexandrImage,
-        text: 'Получили кухню своей мечты! Сделана “на совесть”.'
+        image: MariaImage,
+        text: 'Мебель прочная, цены адекватные, спасибо большое!'
     },
     {
-        name: 'Лариса',
+        name: 'Николай А.',
         project: 'Кухня на заказ',
-        image: LarisaImage,
-        text: 'Качество материалов на высоте. Большое спасибо команде!'
+        image: NikolayImage,
+        text: 'Просто восторг! Лучше и не придумаешь.'
     },
     {
-        name: 'Константин',
-        project: 'Гостиная',
-        image: KonstantinImage,
-        text: 'Сложно представить более компетентных специалистов!'
+        name: 'Анатолий И.',
+        project: 'Кухня на заказ',
+        image: AnatoliyImage,
+        text: 'Отличное качество, быстрая доставка, рекомендую!'
     },
     {
-        name: 'Ольга',
-        project: 'Творческий кабинет',
+        name: 'Ольга Е.',
+        project: 'Кухня на заказ',
         image: OlgaImage,
-        text: 'Теперь я обладательница мебели-мечты!'
+        text: 'Все выполнили точно в срок, очень рада сотрудничеству.'
     }
 ];
 

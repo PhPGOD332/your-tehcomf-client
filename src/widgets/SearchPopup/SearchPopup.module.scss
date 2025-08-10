@@ -12,14 +12,11 @@
 }
 
 .searchWrapper {
-  position: absolute;
-  display: flex;
-  align-items: center;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: vars.$black;
   z-index: 100;
   opacity: 1;
   visibility: visible;
@@ -28,7 +25,24 @@
   &_hidden {
     opacity: 0;
     visibility: hidden;
+    transition: 0.2s;
   }
+
+  .searchContent {
+    animation: showEl 0.5s ease-in-out;
+  }
+}
+
+.searchInnerWrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: vars.$black;
+  transition: opacity 0.2s;
 
   .closeBtn {
     position: absolute;
@@ -38,7 +52,7 @@
   }
 }
 
-.searchInnerWrapper {
+.searchContent {
   position: absolute;
   right: 0;
   left: 0;
@@ -51,11 +65,11 @@
   padding: 0 vars.rem(100);
   transition: top 0.5s ease-in-out, bottom 0.5s ease-in-out;
 
-  &_animated {
-    //top: vars.rem(100);
-    //bottom: vars.rem(100);
-    animation: showEl 0.3s ease-in-out forwards;
-  }
+  //&_animated {
+  //  //top: vars.rem(100);
+  //  //bottom: vars.rem(100);
+  //  animation: showEl 0.3s ease-in-out forwards;
+  //}
 
   .inputSide {
     display: flex;

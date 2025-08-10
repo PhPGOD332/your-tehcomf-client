@@ -17,7 +17,7 @@ const sequenceItems: SequenceItem[] = [
         description: 'Максимально точный вариант с конкретными размерами'
     },
     {
-        title: 'Создание 3D-проекта',
+        title: 'Создание <br> 3D-проекта',
         description: 'Увидели, полюбили, согласовали'
     },
     {
@@ -33,24 +33,17 @@ const sequenceItems: SequenceItem[] = [
         description: 'Производственный процесс изготовления мебели'
     },
     {
-        title: 'Оплата второй части',
+        title: 'Оплата <br> второй части',
         description: 'По готовности, вторая оплата по договору и отгрузка мебели'
     },
     {
-        title: 'Доставка и сборка',
+        title: 'Доставка <br> и сборка',
         description: 'Доставка по вашему адресу и сборка мебели нашей бригадой'
     }
 ];
 
 const ProjectSequence = () => {
     const sequenceListRef = useRef<HTMLOListElement | null>(null);
-    // const hoverOnNotify = (e: React.MouseEvent<HTMLDivElement>) => {
-    //     if (e.target.) {
-    //
-    //     }
-    //
-    //     e.currentTarget.parentElement.classList.toggle(styles.)
-    // }
 
     const clickMobileItemHandler = (e: React.MouseEvent<HTMLLIElement>) => {
         if (!sequenceListRef.current) return;
@@ -69,7 +62,7 @@ const ProjectSequence = () => {
                             onClick={(e) => clickMobileItemHandler(e)}
                         >
                             <div className={styles.sequenceItem}>
-                                <span className={styles.sequenceTitle}>{stage.title}</span>
+                                <span className={styles.sequenceTitle} dangerouslySetInnerHTML={{__html: stage.title}}></span>
                                 <span className={styles.sequenceDescription}>{stage.description}</span>
                             </div>
                             <div

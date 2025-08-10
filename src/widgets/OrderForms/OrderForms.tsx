@@ -14,16 +14,26 @@ import 'swiper/modules/effect-coverflow.min.css';
 interface IFormInfo {
     isReset: boolean;
     bgImageSrc?: string;
+    formTitle: string;
+    formText: string;
+    formChecks?: string[];
 }
 
 const formsInfo: IFormInfo[] = [
     {
         isReset: true,
-        bgImageSrc: '/icons/track-icon.svg'
+        bgImageSrc: '/icons/track-icon.svg',
+        formTitle: 'Я хочу замерить помещение и проконсультироваться с дизайнером',
+        formText: 'Наш специалист приедет к вам с рулеткой, блокнотом и кучей идей. Обсудим, что вам нравится, померяем пространство и вместе придумаем, как реализовать вашу мечту',
+        formChecks: ['Бесплатный выезд', 'Экспертная консультация', 'Образцы материалов и цветов'],
+
     },
     {
         isReset: true,
-        bgImageSrc: '/icons/3dmodeling-icon.svg'
+        bgImageSrc: '/icons/3dmodeling-icon.svg',
+        formTitle: 'У меня уже есть все замеры, и я хочу визуализировать и создать красивый 3D-проект',
+        formText: 'Превратим ваши "хочу" в 3D-проект с продуманными деталями. Вы увидите, как всё будет выглядеть, прежде чем мы начнём работу. Возможны правки и консультация',
+        formChecks: ['Бесплатно онлайн', 'Бесплатные правки', 'Помощь с выбором материалов']
     }
 ];
 
@@ -39,6 +49,9 @@ const OrderForms = () => {
                             key={num}
                             isReset={form.isReset}
                             bgImageSrc={form.bgImageSrc}
+                            formTitle={form.formTitle}
+                            formText={form.formText}
+                            formCheckItems={form.formChecks}
                         />
                     )}
                 </div>
@@ -58,6 +71,9 @@ const OrderForms = () => {
                         <OrderSwapForm
                             isReset={form.isReset}
                             bgImageSrc={form.bgImageSrc}
+                            formTitle={form.formTitle}
+                            formText={form.formText}
+                            formCheckItems={form.formChecks}
                         />
                     </SwiperSlide>
                 )}

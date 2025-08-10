@@ -32,13 +32,13 @@
 .reviewItem {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   position: relative;
   gap: vars.rem(20);
   height: vars.rem(242);
   background-color: #fff;
   border-radius: vars.rem(20);
-  padding: vars.rem(20) vars.rem(16);
+  padding: vars.rem(72) vars.rem(40) vars.rem(20) vars.rem(14);
 
   @media (max-width: vars.$max-1000) {
     width: 90% !important;

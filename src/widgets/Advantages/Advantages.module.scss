@@ -23,6 +23,7 @@
   align-items: center;
   gap: vars.rem(16);
   max-width: vars.rem(295);
+  padding: vars.rem(13) vars.rem(14) vars.rem(13) 0;
 
   @media (max-width: vars.$max-650) {
     flex-direction: column;

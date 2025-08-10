@@ -13,7 +13,7 @@ interface ButtonProps {
 const GreenButton = ({children, classNames, onClick, ref, isMobileSmall = false}: ButtonProps) => {
     return (
         <button
-            className={`${classNames ? styles.greenButton + ' ' + classNames : styles.greenButton} ${isMobileSmall ? styles.greenButtonMobileSmall : styles.greenButtonMobile}`}
+            className={`${classNames ? classNames + ' ' + styles.greenButton : styles.greenButton} ${isMobileSmall ? styles.greenButtonMobileSmall : styles.greenButtonMobile}`}
             onClick={(e) => onClick ? onClick(e) : ''}
             ref={ref || null}
         >

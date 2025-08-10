@@ -24,6 +24,10 @@
   gap: vars.rem(20);
   padding: vars.rem(68) 0;
 
+  @media (max-width: vars.$max-1300) {
+    padding: vars.rem(68) vars.rem(16);
+  }
+
   @media (max-width: vars.$max-1000) {
     background-color: vars.$green;
     padding: vars.rem(32) vars.rem(16);

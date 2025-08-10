@@ -41,6 +41,7 @@ const ExamplesSlider = ({ slides, title }: PhotoSliderProps) => {
                 spaceBetween={20}
                 slidesPerView={'auto'}
                 centeredSlides={true}
+                initialSlide={1}
                 wrapperClass={styles.swiperWrapper}
                 pagination={{
                     enabled: true,

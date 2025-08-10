@@ -23,10 +23,15 @@
 }
 
 .orderButton {
-  font-size: vars.rem(19);
+  //font-size: vars.rem(19);
   padding: vars.rem(20) vars.rem(60);
+  font-weight: 600;
 
   &:hover {
     background-color: vars.$light-green;
+  }
+
+  > span {
+    font-size: vars.rem(19) !important;
   }
 }

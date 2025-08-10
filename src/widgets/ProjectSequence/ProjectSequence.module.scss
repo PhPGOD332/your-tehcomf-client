@@ -195,6 +195,7 @@
     visibility: hidden;
     position: absolute;
     //z-index: 2;
+    margin-right: vars.rem(5);
     transition: opacity 0.2s;
 
     @media (max-width: vars.$max-1300) {

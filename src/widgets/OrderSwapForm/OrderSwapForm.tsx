@@ -15,12 +15,19 @@ import {TFormInputs} from "@/types/TFormInputs";
 interface SwapFormProps {
     isReset: boolean;
     bgImageSrc?: string;
+    formTitle?: string;
+    formText?: string;
+    formCheckItems?: string[];
 }
 
 const OrderSwapForm = (
     {
         isReset = false,
-        bgImageSrc = ''
+        bgImageSrc = '',
+        formTitle,
+        formText,
+        formCheckItems
+
     }: SwapFormProps) => {
     const {
         register,
@@ -75,12 +82,9 @@ const OrderSwapForm = (
         <div className={styles.formItem}>
             <div className={`${styles.formPreview} ${styles.visible}`} ref={previewRef}>
                 {/*<img src="/icons/track-icon.svg" alt="" className={styles.previewIcon}/>*/}
-                <MiniTitle classNames={styles.previewTitle}>Я хочу замерить помещение и проконсультироваться с
-                    дизайнером</MiniTitle>
+                <MiniTitle classNames={styles.previewTitle}>{formTitle}</MiniTitle>
                 <span className={styles.explanationText}>
-                    Наш специалист приедет к вам с рулеткой,
-                    блокнотом и кучей идей. Обсудим, что вам нравится, померяем пространство и вместе
-                    придумаем, как реализовать вашу мечту
+                    {formText}
                 </span>
                 <Image
                     src={bgImageSrc}
@@ -90,39 +94,19 @@ const OrderSwapForm = (
                     height={256}
                 />
                 <ul className={styles.previewList}>
-                    <li>
-                        <Image
-                            src='/icons/check-green.svg'
-                            alt={''}
-                            className={styles.checkImage}
-                            width={24}
-                            height={24}
-                        />
-                        {/*<img src="/icons/check-green.svg" alt="" className={styles.checkImage}/>*/}
-                        <span>Бесплатный выезд</span>
-                    </li>
-                    <li>
-                        <Image
-                            src='/icons/check-green.svg'
-                            alt={''}
-                            className={styles.checkImage}
-                            width={24}
-                            height={24}
-                        />
-                        {/*<img src="/icons/check-green.svg" alt="" className={styles.checkImage}/>*/}
-                        <span>Экспертная консультация</span>
-                    </li>
-                    <li>
-                        <Image
-                            src='/icons/check-green.svg'
-                            alt={''}
-                            className={styles.checkImage}
-                            width={24}
-                            height={24}
-                        />
-                        {/*<img src="/icons/check-green.svg" alt="" className={styles.checkImage}/>*/}
-                        <span>Образцы материалов и цветов</span>
-                    </li>
+                    {formCheckItems ? formCheckItems.map((checkItem, num) =>
+                        <li key={num}>
+                            <Image
+                                src='/icons/check-green.svg'
+                                alt={''}
+                                className={styles.checkImage}
+                                width={24}
+                                height={24}
+                            />
+                            {/*<img src="/icons/check-green.svg" alt="" className={styles.checkImage}/>*/}
+                            <span>{checkItem}</span>
+                        </li>
+                    ) : ''}
                 </ul>
                 <GreenButton
                     classNames={`${styles.orderButton}`}
