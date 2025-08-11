@@ -53,6 +53,9 @@ const SliderScreen = (
             behavior: "instant"
         });
         setIsScreenSlide(false);
+
+        const claims = ClaimService.getClaims();
+        claims.then((response) => console.log(response));
     }, []);
 
     useEffect(() => {
