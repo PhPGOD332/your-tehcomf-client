@@ -9,6 +9,7 @@ import 'swiper/css/effect-fade';
 import styles from "./SliderScreen.module.scss";
 import Image from "next/image";
 import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
+import ClaimService from "@/services/ClaimService";
 
 interface PhotoSlide {
     photo: string;
@@ -32,8 +33,17 @@ const SliderScreen = (
     const [isScreenSlide, setIsScreenSlide] = useState(false);
 
     const handleMoreClick = async () => {
+        const screenHeight = window.outerHeight - 90;
+
         setTimeout(() => {
-            setIsScreenSlide(true);
+            // setIsScreenSlide(true);
+            document.body.classList.remove('overflowYHidden');
+            if (document.body.clientWidth <= 1000) {
+                window.scrollTo({
+                    top: screenHeight,
+                    behavior: "smooth"
+                });
+            }
         }, 1000);
     }
 
@@ -46,37 +56,37 @@ const SliderScreen = (
     }, []);
 
     useEffect(() => {
-        const screenHeight = window.outerHeight - 90;
+        // const screenHeight = window.outerHeight - 90;
 
-        if (isScreenSlide) {
-            document.body.classList.remove('overflowYHidden');
-            if (document.body.clientWidth <= 1000) {
-                window.scrollTo({
-                    top: screenHeight,
-                    behavior: "smooth"
-                });
-            }
-        }
+        // if (isScreenSlide) {
+        //     document.body.classList.remove('overflowYHidden');
+        //     if (document.body.clientWidth <= 1000) {
+        //         window.scrollTo({
+        //             top: screenHeight,
+        //             behavior: "smooth"
+        //         });
+        //     }
+        // }
 
         const handleScroll = () => {
-            if (isScreenSlide) {
-                if (document.body.clientWidth <= 1000) {
-                    if (window.scrollY < screenHeight) {
-                        window.scrollTo({
-                            top: screenHeight,
-                            behavior: "smooth"
-                        });
-                    }
-                }
-            } else {
-                if (document.body.clientWidth <= 1000) {
-                    document.body.classList.add('overflowYHidden');
-                }
-            }
+            // if (isScreenSlide) {
+                // if (document.body.clientWidth <= 1000) {
+                //     if (window.scrollY < screenHeight) {
+                //         window.scrollTo({
+                //             top: screenHeight,
+                //             behavior: "smooth"
+                //         });
+                //     }
+                // }
+            // } else {
+            //     if (document.body.clientWidth <= 1000) {
+                    // document.body.classList.add('overflowYHidden');
+                // }
+            // }
         }
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        // window.addEventListener('scroll', handleScroll);
+        // return () => window.removeEventListener('scroll', handleScroll);
     }, [isScreenSlide]);
 
     return (

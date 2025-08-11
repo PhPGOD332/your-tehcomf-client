@@ -37,8 +37,8 @@ const SwiperNavigation = (
                             </svg>
                         </button>
                         <DragAndDropButton
-                            isResetButton={false}
-                            resetTimeout={0}
+                            isResetButton={true}
+                            resetTimeout={1000}
                             buttonStyle={'LIGHT'}
                             formSubmit={mobilePanelHandler}
                             beforeDragCaption={'Узнать больше'}
