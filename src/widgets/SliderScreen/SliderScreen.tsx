@@ -71,7 +71,7 @@ const SliderScreen = (
         //     }
         // }
 
-        const handleScroll = () => {
+        // const handleScroll = () => {
             // if (isScreenSlide) {
                 // if (document.body.clientWidth <= 1000) {
                 //     if (window.scrollY < screenHeight) {
@@ -86,7 +86,7 @@ const SliderScreen = (
                     // document.body.classList.add('overflowYHidden');
                 // }
             // }
-        }
+        // }
 
         // window.addEventListener('scroll', handleScroll);
         // return () => window.removeEventListener('scroll', handleScroll);
