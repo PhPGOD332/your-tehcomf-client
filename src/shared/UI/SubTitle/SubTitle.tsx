@@ -10,16 +10,28 @@ export interface TitleProps {
     color?: TitleColors;
     classNames?: string;
     children: React.ReactNode;
+    htmlContent?: string;
 }
 
-const SubTitle = ({children, color = TitleColors.BLACK, classNames}: TitleProps) => {
+const SubTitle = ({children, htmlContent, color = TitleColors.BLACK, classNames}: TitleProps) => {
     return (
-        <h2
-            style={{color: color}}
-            className={`${styles.subTitle} ${classNames ?? ''}`}
-        >
-            {children}
-        </h2>
+        <>
+            {htmlContent ?
+                <h2
+                    style={{color: color}}
+                    className={`${styles.subTitle} ${classNames ?? ''}`}
+                    dangerouslySetInnerHTML={{__html: htmlContent ?? ''}}
+                >
+                </h2>
+                :
+                <h2
+                    style={{color: color}}
+                    className={`${styles.subTitle} ${classNames ?? ''}`}
+                >
+                    {children}
+                </h2>
+            }
+        </>
     );
 };
 

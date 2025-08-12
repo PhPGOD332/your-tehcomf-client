@@ -29,9 +29,6 @@ const Footer = (
                                     <Link href={'#'} className={styles.navLink}>На заказ</Link>
                                     <Link href={'#'} className={styles.navLink}>Типовые решения</Link>
                                 </li>
-                                {/*<li>*/}
-                                {/*    */}
-                                {/*</li>*/}
                             </ul>
                             <ul className={styles.navList}>
                                 <li className={styles.navUndLi}>
@@ -50,12 +47,6 @@ const Footer = (
                                     <Link href={'#'} className={styles.navLink}>Блог</Link>
                                     <Link href={'#'} className={styles.navLink}>Гарантия</Link>
                                 </li>
-                                {/*<li>*/}
-                                {/*    */}
-                                {/*</li>*/}
-                                {/*<li>*/}
-                                {/*    */}
-                                {/*</li>*/}
                             </ul>
                             <ul className={styles.navList}>
                                 <li className={styles.navUndLi}>
@@ -65,9 +56,6 @@ const Footer = (
                                     <Link href={'#'} className={styles.navLink}>FAQ</Link>
                                     <Link href={'#'} className={styles.navLink}>Личный кабинет</Link>
                                 </li>
-                                {/*<li>*/}
-                                {/*    */}
-                                {/*</li>*/}
                             </ul>
                             <ul className={styles.navList}>
                                 <li className={styles.navUndLi}>
@@ -78,12 +66,6 @@ const Footer = (
                                     <Link href={'#'} className={styles.navLink}>Подрядчикам</Link>
                                     <Link href={'#'} className={styles.navLink}>B2B</Link>
                                 </li>
-                                {/*<li>*/}
-                                {/*    */}
-                                {/*</li>*/}
-                                {/*<li>*/}
-                                {/*    */}
-                                {/*</li>*/}
                             </ul>
                             <ul className={styles.navList}>
                                 <li className={styles.navUndLi}>
@@ -94,12 +76,6 @@ const Footer = (
                                     <Link href={'#'} className={styles.navLink}>Вызвать дизайнера</Link>
                                     <Link href={'#'} className={styles.navLink}>Доставка и сборка</Link>
                                 </li>
-                                {/*<li>*/}
-                                {/*    */}
-                                {/*</li>*/}
-                                {/*<li>*/}
-                                {/*    */}
-                                {/*</li>*/}
                             </ul>
                         </div>
                         <div className={styles.footerSocials}>

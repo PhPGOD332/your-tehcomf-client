@@ -74,7 +74,9 @@
       }
 
       .navUndLi {
-
+        > .navLink {
+          font-weight: 500;
+        }
       }
 
       .navSubList {
@@ -91,7 +93,7 @@
 
       .navLink {
         font-size: vars.rem(19);
-        font-weight: 500;
+        font-weight: 400;
         color: vars.$link;
         transition: 0.2s;
 

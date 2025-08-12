@@ -27,6 +27,7 @@ const PopupForm = (
         register,
         handleSubmit,
         formState: {errors},
+        resetField
     } = useForm<TFormInputs>();
     const [customDesignCheck, setCustomDesignCheck] = useState(false);
     const [customProjectCheck, setCustomProjectCheck] = useState(false);
@@ -48,8 +49,12 @@ const PopupForm = (
             });
 
             await ClaimService.addClaim(claimDto);
-            setIsOpen(false);
 
+            resetField('firstName');
+            resetField('mobilePhone');
+            resetField('note');
+
+            setIsOpen(false);
         }, 2000);
 
         return () => clearTimeout(timeout);

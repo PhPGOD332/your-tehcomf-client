@@ -46,7 +46,7 @@
 
     .questionSpan {
       font-size: vars.rem(19);
-      font-weight: 600;
+      font-weight: 500;
       color: vars.$gray;
 
       @media (max-width: vars.$max-1000) {
@@ -127,6 +127,7 @@
         display: flex;
         align-items: center;
         gap: vars.rem(12);
+        font-weight: 400;
 
         @media (max-width: vars.$max-800) {
           width: 100%;
@@ -139,6 +140,7 @@
         display: flex;
         align-items: center;
         gap: vars.rem(12);
+        font-weight: 400;
 
         @media (max-width: vars.$max-800) {
           width: 100%;

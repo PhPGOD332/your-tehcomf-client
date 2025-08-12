@@ -75,7 +75,7 @@
   justify-content: space-between;
   align-self: center;
   width: vars.rem(1344);
-  padding: vars.rem(5) vars.rem(50);
+  padding: vars.rem(10) vars.rem(50);
   background: rgba(vars.$white, 0.5);
   border-radius: vars.rem(60);
   top: vars.rem(20);
@@ -265,7 +265,9 @@
   }
 
   .orderButton {
-
+    > span {
+      font-weight: 500;
+    }
   }
 
   .callButton {

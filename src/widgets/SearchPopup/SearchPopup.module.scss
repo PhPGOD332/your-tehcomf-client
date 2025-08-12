@@ -2,12 +2,15 @@
 
 @keyframes showEl {
   0% {
-    top: 0;
-    bottom: 0;
+    //top: 0;
+    //bottom: 0;
+    opacity: 1;
+    visibility: visible;
   }
   100% {
-    top: vars.rem(100);
-    bottom: vars.rem(100);
+    //top: vars.rem(100);
+    //bottom: vars.rem(100);
+    background-color: vars.$white;
   }
 }
 
@@ -28,8 +31,8 @@
     transition: 0.2s;
   }
 
-  .searchContent {
-    animation: showEl 0.5s ease-in-out;
+  .searchInnerWrapper {
+    animation: showEl 0.5s ease-in-out forwards;
   }
 }
 
@@ -41,7 +44,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: vars.$black;
+  //background-color: vars.$black;
   transition: opacity 0.2s;
 
   .closeBtn {
@@ -56,8 +59,8 @@
   position: absolute;
   right: 0;
   left: 0;
-  top: vars.rem(100);
-  bottom: vars.rem(100);
+  top: vars.rem(0);
+  bottom: vars.rem(0);
   display: flex;
   align-items: center;
   gap: vars.rem(10);

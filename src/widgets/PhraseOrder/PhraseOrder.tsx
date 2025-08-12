@@ -16,7 +16,7 @@ const PhraseOrder = () => {
                 isPopup={true}
             />
             <div className={styles.wrapper}>
-                <MiniTitle>Не выбирайте из того что есть — создавайте исключительно для себя!</MiniTitle>
+                <MiniTitle classNames={styles.caption}>Не выбирайте из того что есть — создавайте исключительно для себя!</MiniTitle>
                 <GreenButton classNames={`${styles.orderButton}`} onClick={() => setIsModalOpen(true)}>Заказать проект</GreenButton>
             </div>
         </div>

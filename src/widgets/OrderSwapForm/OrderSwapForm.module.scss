@@ -71,6 +71,7 @@
     .explanationText {
       display: inline-block;
       font-size: vars.rem(12);
+      font-weight: 400;
       line-height: 140%;
       color: vars.$gray;
       max-width: vars.rem(390);
@@ -96,6 +97,10 @@
         align-items: center;
         gap: vars.rem(8);
 
+        .previewSpan {
+          font-weight: 500;
+        }
+
         @media (max-width: vars.$max-500) {
           color: vars.$white;
         }
@@ -109,9 +114,12 @@
 
     .orderButton {
       position: relative;
-      padding: vars.rem(16.5) vars.rem(60);
-      font-size: vars.rem(19);
+      padding: vars.rem(17.5) vars.rem(58);
       z-index: 1;
+
+      > span {
+        font-size: vars.rem(19);
+      }
 
       @media (max-width: vars.$max-500) {
         width: 100%;

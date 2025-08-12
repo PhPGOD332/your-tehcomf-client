@@ -36,7 +36,7 @@
       display: inline-block;
       color: #fff;
       font-size: vars.rem(16);
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .iconButton {
@@ -59,7 +59,7 @@
       display: inline-block;
       color: #fff;
       font-size: vars.rem(16);
-      font-weight: 600;
+      font-weight: 500;
     }
   }
 }
@@ -88,34 +88,25 @@
       display: inline-block;
       color: #fff;
       font-size: vars.rem(16);
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .iconButton {
       display: flex;
       justify-content: center;
       align-items: center;
-      //padding: vars.rem(16) vars.rem(13);
       width: vars.rem(72);
       height: vars.rem(72);
       background-color: vars.$white;
       border-radius: vars.rem(26);
       cursor: grabbing;
-
-      //> svg {
-      //  transition: opacity 0.2s;
-      //
-      //  > path {
-      //    stroke: vars.$dark-gray;
-      //  }
-      //}
     }
 
     .secondCaption {
       display: inline-block;
       color: #fff;
       font-size: vars.rem(16);
-      font-weight: 600;
+      font-weight: 500;
     }
   }
 }

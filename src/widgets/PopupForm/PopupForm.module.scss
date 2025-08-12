@@ -70,12 +70,18 @@
 
     .politicsSpan {
       font-size: vars.rem(12);
-      font-weight: 400;
-      color: vars.$gray;
+      font-weight: 300;
+      color: rgba(vars.$gray, 0.5);
 
       .link {
-        color: vars.$gray;
         text-decoration: underline;
+        font-weight: 300;
+        color: rgba(vars.$gray, 0.5);
+        transition: 0.3s;
+
+        &:hover {
+          color: rgba(vars.$gray, 1);
+        }
       }
     }
   }

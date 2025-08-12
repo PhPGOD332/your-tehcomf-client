@@ -10,11 +10,11 @@ interface SequenceItem {
 const sequenceItems: SequenceItem[] = [
     {
         title: 'Обсуждение проекта',
-        description: 'От вашей идеи до конкретного изделия'
+        description: 'От вашей идеи<br> до конкретного изделия'
     },
     {
         title: 'Подготовка эскиза',
-        description: 'Максимально точный вариант с конкретными размерами'
+        description: 'Максимально точный вариант<br> с конкретными размерами'
     },
     {
         title: 'Создание <br> 3D-проекта',
@@ -22,7 +22,7 @@ const sequenceItems: SequenceItem[] = [
     },
     {
         title: 'Подписание договора',
-        description: 'Подписание док-ов на изготовление с четкими сроками, суммой и гарантией'
+        description: 'Подписание док-ов на изготовление<br> с четкими сроками, суммой и гарантией'
     },
     {
         title: 'Оплата авансовой части',
@@ -63,7 +63,7 @@ const ProjectSequence = () => {
                         >
                             <div className={styles.sequenceItem}>
                                 <span className={styles.sequenceTitle} dangerouslySetInnerHTML={{__html: stage.title}}></span>
-                                <span className={styles.sequenceDescription}>{stage.description}</span>
+                                <span className={styles.sequenceDescription} dangerouslySetInnerHTML={{__html: stage.description}}></span>
                             </div>
                             <div
                                 className={styles.notify}

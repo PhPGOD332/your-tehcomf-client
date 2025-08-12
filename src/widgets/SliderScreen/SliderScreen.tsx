@@ -9,7 +9,6 @@ import 'swiper/css/effect-fade';
 import styles from "./SliderScreen.module.scss";
 import Image from "next/image";
 import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
-import ClaimService from "@/services/ClaimService";
 
 interface PhotoSlide {
     photo: string;

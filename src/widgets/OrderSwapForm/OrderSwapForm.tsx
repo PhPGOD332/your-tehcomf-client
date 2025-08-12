@@ -82,7 +82,7 @@ const OrderSwapForm = (
         <div className={styles.formItem}>
             <div className={`${styles.formPreview} ${styles.visible}`} ref={previewRef}>
                 {/*<img src="/icons/track-icon.svg" alt="" className={styles.previewIcon}/>*/}
-                <MiniTitle classNames={styles.previewTitle}>{formTitle}</MiniTitle>
+                <MiniTitle htmlContent={formTitle} classNames={styles.previewTitle}></MiniTitle>
                 <span className={styles.explanationText}>
                     {formText}
                 </span>
@@ -104,7 +104,7 @@ const OrderSwapForm = (
                                 height={24}
                             />
                             {/*<img src="/icons/check-green.svg" alt="" className={styles.checkImage}/>*/}
-                            <span>{checkItem}</span>
+                            <span className={styles.previewSpan}>{checkItem}</span>
                         </li>
                     ) : ''}
                 </ul>
