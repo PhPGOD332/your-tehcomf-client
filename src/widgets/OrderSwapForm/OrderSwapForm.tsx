@@ -82,7 +82,7 @@ const OrderSwapForm = (
         <div className={styles.formItem}>
             <div className={`${styles.formPreview} ${styles.visible}`} ref={previewRef}>
                 {/*<img src="/icons/track-icon.svg" alt="" className={styles.previewIcon}/>*/}
-                <MiniTitle htmlContent={formTitle} classNames={styles.previewTitle}></MiniTitle>
+                <MiniTitle htmlContent={formTitle} classNames={styles.previewTitle}>{''}</MiniTitle>
                 <span className={styles.explanationText}>
                     {formText}
                 </span>
