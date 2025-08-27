@@ -1,6 +1,7 @@
 'use client'
-import React, {FormEvent, forwardRef} from 'react';
+import React, {ChangeEvent, FormEvent, forwardRef} from 'react';
 import styles from './TextArea.module.scss';
+import {FieldError} from "react-hook-form";
 
 interface TextareaProps {
     label?: string;
@@ -13,6 +14,7 @@ interface TextareaProps {
     id?: string;
     name?: string;
     isResizable?: boolean;
+    error?: FieldError;
 }
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
@@ -27,10 +29,11 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
         id,
         name,
         isResizable = false,
+        error,
         ...props
     }: TextareaProps, ref) => {
 
-    const inputHandler = (e: FormEvent<HTMLTextAreaElement>) => {
+    const inputHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const label = e.currentTarget?.parentElement;
 
         if (!label) return;
@@ -42,7 +45,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
     }
 
     return (
-        <label className={styles.textareaLabel}>
+        <label className={`${styles.textareaLabel} ${error ? styles.textareaLabel_error : ''}`}>
             {label}
             <textarea
                 name={name || ''}
@@ -51,12 +54,13 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
                 rows={rows}
                 placeholder={placeholder}
                 className={`${classNames ? styles.textarea + ' ' + classNames : styles.textarea}`}
-                onChange={(e) => onChange ? onChange(e) : null}
-                onInput={(e) => inputHandler(e)}
+                onChange={(e) => inputHandler(e)}
+                // onInput={(e) => inputHandler(e)}
                 style={{resize: isResizable ? "both" : "none"}}
                 ref={ref}
                 {...props}
             >{children || undefined}</textarea>
+            <span className={styles.errorSpan}>{error ? error.message : ''}</span>
         </label>
     );
 });

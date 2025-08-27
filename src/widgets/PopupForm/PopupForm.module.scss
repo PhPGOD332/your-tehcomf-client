@@ -32,8 +32,8 @@
   border-radius: vars.rem(40);
   width: vars.rem(480);
   box-shadow: vars.rem(3) vars.rem(10) vars.rem(22) 0 vars.$shadow;
-  bottom: vars.rem(-600);
-  transform: translateY(vars.rem(0)) ;
+  //bottom: vars.rem(-665);
+  transform: translateY(vars.rem(0));
 
   &_hidden {}
 
@@ -99,6 +99,7 @@
     position: fixed;
 
     padding-top: vars.rem(16);
+    padding-bottom: vars.rem(50);
     width: 100vw;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;

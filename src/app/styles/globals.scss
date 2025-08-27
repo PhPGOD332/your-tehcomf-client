@@ -18,6 +18,10 @@ body {
   overflow-y: hidden;
 }
 
+.overflowStartYHidden {
+  overflow-y: hidden;
+}
+
 body.white {
   background-color: vars.$white;
 }

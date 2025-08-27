@@ -140,6 +140,7 @@
       display: flex;
       flex-direction: column;
       gap: vars.rem(20);
+
     }
 
     .submitBlock {
@@ -154,8 +155,16 @@
         color: rgba(vars.$gray, 0.6);
         text-align: start;
 
+        @media (max-width: vars.$max-500) {
+          color: rgba(vars.$white, 1);
+        }
+
         > a {
           color: rgba(vars.$gray, 0.6);
+
+          @media (max-width: vars.$max-500) {
+            color: rgba(vars.$white, 0.8);
+          }
         }
       }
     }

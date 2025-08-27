@@ -126,8 +126,9 @@ const
             checkRef.current?.classList.add(styles.visible);
             checkRef.current?.classList.remove(styles.hidden);
 
-            if (formSubmit)
+            if (formSubmit) {
                 formSubmit();
+            }
 
             if (isResetButton)
                 resetButton();
@@ -162,7 +163,7 @@ const
     }, [isDragging, dragProgress]);
 
     return (
-        <div className={getStyle(buttonStyle) as string} ref={dragContainerRef} id={id || ''}>
+        <div className={`no-swiping ${getStyle(buttonStyle) as string}`} ref={dragContainerRef} id={id || ''}>
             <div
                 className={styles.draggableWrapper}
                 onMouseDown={(e) => handleMouseDown(e)}

@@ -1,6 +1,11 @@
-import React, {FormEvent, forwardRef} from 'react';
+import React, {ChangeEvent, FormEvent, forwardRef, useEffect} from 'react';
 import styles from './MaskedInput.module.scss';
 import {InputMask} from "@react-input/mask";
+import {FieldError} from "react-hook-form";
+
+interface IReplacement {
+    [item: string]: RegExp;
+}
 
 interface MaskedInputProps {
     label?: string;
@@ -13,11 +18,7 @@ interface MaskedInputProps {
     showMask?: boolean;
     id?: string;
     name?: string;
-    error?: string;
-}
-
-interface IReplacement {
-    [item: string]: RegExp;
+    error?: FieldError;
 }
 
 const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
@@ -32,29 +33,34 @@ const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
         id,
         name,
         onChange,
+        error,
         ...props
     }: MaskedInputProps, ref) => {
 
-    const inputHandler = (e: FormEvent<HTMLInputElement>) => {
+    const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const label = e.currentTarget?.parentElement;
-
         if (!label) return;
 
-        if (e.currentTarget.value.length > 0)
+        if (e.currentTarget.value.length > 0) {
             label.classList.add(styles.maskedLabel_active);
-        else
+        } else {
             label.classList.remove(styles.maskedLabel_active);
+        }
     }
 
+    // useEffect(() => {
+    //     console.log(error)
+    // }, [error]);
+
     return (
-        <label className={styles.maskedLabel}>
+        <label htmlFor="" className={`${styles.maskedLabel} ${error ? styles.maskedLabel_error : ''}`}>
             {label}
             <InputMask
                 mask={mask}
                 replacement={replacement}
                 showMask={showMask}
-                onChange={(e) => onChange ? onChange(e) : null}
-                onInput={(e) => inputHandler(e)}
+                onChange={(e) => inputHandler(e)}
+                // onInput={(e) => inputHandler(e)}
                 placeholder={placeholder || ''}
                 className={`${classNames ? styles.maskedInput + ' ' + classNames : styles.maskedInput}`}
                 id={id || ''}
@@ -63,6 +69,7 @@ const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
                 ref={ref}
                 {...props}
             />
+            <span className={styles.errorSpan}>{error ? error.message : ''}</span>
         </label>
     );
 });

@@ -1,5 +1,6 @@
-import React, {FormEvent, forwardRef} from 'react';
+import React, {ChangeEvent, FormEvent, forwardRef} from 'react';
 import styles from './TextInput.module.scss';
+import {FieldError} from "react-hook-form";
 
 export enum InputType {
     TEXT = 'text',
@@ -19,7 +20,7 @@ interface TextInputProps {
     classNames?: string;
     id?: string;
     name?: string;
-    error?: string;
+    error?: FieldError;
 }
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
@@ -30,12 +31,12 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
         placeholder,
         id,
         name,
+        error,
         ...props
     }: TextInputProps, ref) => {
 
     const inputHandler = (e: FormEvent<HTMLInputElement>) => {
         const label = e.currentTarget?.parentElement;
-
         if (!label) return;
 
         if (e.currentTarget.value.length > 0)
@@ -45,7 +46,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
     }
 
     return (
-        <label htmlFor="" className={styles.inputLabel}>
+        <label htmlFor="" className={`${styles.inputLabel} ${error ? styles.inputLabel_error : ''}`}>
             {label}
             <input
                 type={type}
@@ -54,9 +55,11 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
                 id={id}
                 name={name}
                 onInput={(e) => inputHandler(e)}
+                // onChange={(e) => inputHandler(e)}
                 ref={ref}
                 {...props}
             />
+            <span className={styles.errorSpan}>{error ? error.message : ''}</span>
         </label>
     );
 });

@@ -28,7 +28,7 @@ const PopupForm = (
         handleSubmit,
         formState: {errors},
         resetField
-    } = useForm<TFormInputs>();
+    } = useForm<TFormInputs>({mode: "onChange", reValidateMode: "onChange"});
     const [customDesignCheck, setCustomDesignCheck] = useState(false);
     const [customProjectCheck, setCustomProjectCheck] = useState(false);
     const checkDesignerRef = useRef<HTMLLabelElement | null>(null);
@@ -48,7 +48,9 @@ const PopupForm = (
                 date: new Date().toISOString()
             });
 
-            await ClaimService.addClaim(claimDto);
+            const newClaim = await ClaimService.addClaim(claimDto);
+
+            console.log(newClaim);
 
             resetField('firstName');
             resetField('mobilePhone');
@@ -130,7 +132,6 @@ const PopupForm = (
         } else {
             document.body.classList.remove('overflowYHidden');
             setPopupPosition(0);
-
         }
     }, [isOpen]);
 
@@ -174,10 +175,12 @@ const PopupForm = (
                                 label={'Имя'}
                                 placeholder={'Иван'}
                                 {...register("firstName", {
-                                    required: "Введите ваше имя",
-                                    minLength: 2,
+                                    required: {
+                                        value: true,
+                                        message: "Введите ваше имя"
+                                    },
                                 })}
-                                error={errors.firstName?.message}
+                                error={errors.firstName}
                             />
                             <MaskedInput
                                 label='Телефон'
@@ -186,18 +189,29 @@ const PopupForm = (
                                 placeholder='+7 (000) 000-00-00'
                                 {...register("mobilePhone", {
                                     required: "Введите ваш телефон",
-                                    minLength: 15,
+                                    minLength: {
+                                        value: 18,
+                                        message: "Введите телефон полностью"
+                                    }
                                 })}
+                                error={errors.mobilePhone}
                             />
                             <TextArea
                                 placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
                                 label='Примечание'
                                 rows={3}
                                 {...register("note", {
-                                    required: "Введите пожелания",
-                                    minLength: 5,
-
+                                    required: {
+                                        value: true,
+                                        message: "Введите пожелания"
+                                    },
+                                    // minLength: {
+                                    //     value: 5,
+                                    //     message: "Введите пожелания"
+                                    // },
+                                    // onChange: () =>
                                 })}
+                                error={errors.note}
                             ></TextArea>
                         </div>
                         <div className={styles.submitBlock}>
@@ -217,7 +231,8 @@ const PopupForm = (
                     ref={popupFormRef}
                     style={{
                         transform: `translateY(${popupPosition}px)`,
-                        transition: '0.1s'
+                        transition: '0.1s',
+                        bottom: `${errors.firstName || errors.mobilePhone || errors.note ? '-665px' : '-630px'}`
                     }}
                 >
                     <div
@@ -253,10 +268,12 @@ const PopupForm = (
                             label={'Имя'}
                             placeholder={'Иван'}
                             {...register("firstName", {
-                                required: "Введите ваше имя",
-                                minLength: 2,
+                                required: {
+                                    value: true,
+                                    message: "Введите ваше имя"
+                                },
                             })}
-                            error={errors.firstName?.message}
+                            error={errors.firstName}
                         />
                         <MaskedInput
                             label='Телефон'
@@ -265,18 +282,29 @@ const PopupForm = (
                             placeholder='+7 (000) 000-00-00'
                             {...register("mobilePhone", {
                                 required: "Введите ваш телефон",
-                                minLength: 15,
+                                minLength: {
+                                    value: 18,
+                                    message: "Введите телефон полностью"
+                                }
                             })}
+                            error={errors.mobilePhone}
                         />
                         <TextArea
                             placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
                             label='Примечание'
                             rows={3}
                             {...register("note", {
-                                required: "Введите пожелания",
-                                minLength: 5,
-
+                                required: {
+                                    value: true,
+                                    message: "Введите пожелания"
+                                },
+                                // minLength: {
+                                //     value: 5,
+                                //     message: "Введите пожелания"
+                                // },
+                                // onChange: () =>
                             })}
+                            error={errors.note}
                         ></TextArea>
                     </div>
                     <div className={styles.submitBlock}>

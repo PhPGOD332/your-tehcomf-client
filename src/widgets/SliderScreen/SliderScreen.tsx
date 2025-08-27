@@ -29,14 +29,14 @@ const SliderScreen = (
     {
         slides
     }: PhotoSliderProps) => {
-    const [isScreenSlide, setIsScreenSlide] = useState(false);
+    // const [isScreenSlide, setIsScreenSlide] = useState(false);
 
     const handleMoreClick = async () => {
         const screenHeight = window.outerHeight - 90;
 
         setTimeout(() => {
             // setIsScreenSlide(true);
-            document.body.classList.remove('overflowYHidden');
+            document.body.classList.remove('overflowStartYHidden');
             if (document.body.clientWidth <= 1000) {
                 window.scrollTo({
                     top: screenHeight,
@@ -51,10 +51,11 @@ const SliderScreen = (
             top: 0,
             behavior: "instant"
         });
-        setIsScreenSlide(false);
+        document.body.classList.add('overflowStartYHidden');
+        // setIsScreenSlide(false);
     }, []);
 
-    useEffect(() => {
+    // useEffect(() => {
         // const screenHeight = window.outerHeight - 90;
 
         // if (isScreenSlide) {
@@ -86,7 +87,7 @@ const SliderScreen = (
 
         // window.addEventListener('scroll', handleScroll);
         // return () => window.removeEventListener('scroll', handleScroll);
-    }, [isScreenSlide]);
+    // }, [isScreenSlide]);
 
     return (
         <div className={styles.screen}>

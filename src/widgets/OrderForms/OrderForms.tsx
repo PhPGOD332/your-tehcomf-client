@@ -62,6 +62,8 @@ const OrderForms = () => {
                     slidesPerView={'auto'}
                     effect={"slide"}
                     preventInteractionOnTransition={true}
+                    noSwiping={true}
+                    noSwipingClass={'no-swiping'}
                 >
                 {formsInfo.map((form, num) =>
                     <SwiperSlide

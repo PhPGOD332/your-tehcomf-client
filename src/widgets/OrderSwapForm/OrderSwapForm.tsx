@@ -124,10 +124,12 @@ const OrderSwapForm = (
                         label='Имя'
                         placeholder='Иван Петров'
                         {...register('firstName', {
-                            required: "Введите ваше имя",
-                            minLength: 2,
+                            required: {
+                                value: true,
+                                message: "Введите ваше имя"
+                            },
                         })}
-                        error={errors.firstName?.message}
+                        error={errors.firstName}
                     />
                     <MaskedInput
                         label='Телефон'
@@ -136,17 +138,24 @@ const OrderSwapForm = (
                         placeholder='+7 (000) 000-00-00'
                         {...register('mobilePhone', {
                             required: "Введите ваш телефон",
-                            minLength: 15,
+                            minLength: {
+                                value: 18,
+                                message: "Введите телефон полностью"
+                            }
                         })}
+                        error={errors.mobilePhone}
                     />
                     <TextArea
                         placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
                         label='Примечание'
                         rows={3}
                         {...register("note", {
-                            required: "Введите пожелания",
-                            minLength: 5,
+                            required: {
+                                value: true,
+                                message: "Введите пожелания"
+                            },
                         })}
+                        error={errors.note}
                     ></TextArea>
                 </div>
                 <div className={styles.submitBlock}>
