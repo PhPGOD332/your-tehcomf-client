@@ -1,5 +1,5 @@
 'use client'
-import React, {ChangeEvent, FormEvent, forwardRef} from 'react';
+import React, {ChangeEvent, forwardRef} from 'react';
 import styles from './TextArea.module.scss';
 import {FieldError} from "react-hook-form";
 
@@ -23,7 +23,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
         children,
         placeholder,
         classNames,
-        onChange,
+        // onChange,
         rows = 30,
         cols = 10,
         id,

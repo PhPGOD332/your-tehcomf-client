@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent, forwardRef, useEffect} from 'react';
+import React, {ChangeEvent, forwardRef} from 'react';
 import styles from './MaskedInput.module.scss';
 import {InputMask} from "@react-input/mask";
 import {FieldError} from "react-hook-form";
@@ -32,7 +32,7 @@ const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
         showMask = false,
         id,
         name,
-        onChange,
+        // onChange,
         error,
         ...props
     }: MaskedInputProps, ref) => {

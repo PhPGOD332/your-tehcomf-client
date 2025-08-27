@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent, forwardRef} from 'react';
+import React, {FormEvent, forwardRef} from 'react';
 import styles from './TextInput.module.scss';
 import {FieldError} from "react-hook-form";
 
