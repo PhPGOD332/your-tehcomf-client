@@ -10,6 +10,19 @@ export const pagesData: IPages = {
         type: "website",
         url: CLIENT_URL
     },
+    privacyPolicy: {
+        name: 'privacy_policy',
+        title: 'Политика конфиденциальности',
+        description: 'ОПИСАНИЕ',
+        keywords: 'КЛЮЧЕВЫЕ СЛОВА',
+        type: "website",
+        url: `${CLIENT_URL}/privacy_policy`
+    }
+}
+
+export const pagesLinks = {
+    main: "/",
+    privacyPolicy: 'privacy_policy'
 }
 
 interface IPage {

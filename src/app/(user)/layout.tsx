@@ -12,7 +12,7 @@ export default function RootLayout({
     return (
         <>
             <head>
-
+                <title></title>
             </head>
             <body className={'white'}>
                 <Header />

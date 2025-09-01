@@ -1,0 +1,189 @@
+@use '/src/shared/styles/vars';
+
+.docContainer {
+  position: relative;
+  gap: vars.rem(20);
+  padding: 0 vars.rem(16);
+  padding-top: vars.rem(150);
+  scroll-behavior: smooth;
+
+  @media (max-width: vars.$max-1000) {
+    padding-left: vars.rem(16);
+    padding-right: vars.rem(16);
+  }
+
+  .docOuterWrapper {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    height: 100%;
+
+    @media (max-width: vars.$max-1000) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .docNavWrapper {
+    position: fixed;
+    height: calc(100% - 220px);
+    max-height: 100%;
+    width: 25%;
+    z-index: 5;
+
+    @media (max-width: vars.$max-1000) {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: vars.rem(105);
+      background-color: vars.$white;
+      border-top: 1px solid vars.$light-gray;
+      border-top-right-radius: vars.rem(30);
+      border-top-left-radius: vars.rem(30);
+    }
+  }
+
+  .docNavBlock {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    gap: vars.rem(32);
+    text-align: start;
+    //height: 100%;
+    width: 100%;
+    top: vars.rem(120);
+    bottom: vars.rem(150);
+
+    @media (max-width: vars.$max-1000) {
+      position: relative;
+      flex-direction: row;
+      top: 0;
+      bottom: 0;
+      gap: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    h1 {
+      font-size: vars.rem(50);
+      font-weight: 500;
+
+      @media (max-width: vars.$max-1000) {
+        display: none;
+      }
+    }
+
+    .docNav {
+      display: flex;
+      flex-direction: column;
+      gap: vars.rem(16);
+
+      @media (max-width: vars.$max-1000) {
+        display: none;
+      }
+    }
+
+    .docNavMobile {
+      display: none;
+
+      @media (max-width: vars.$max-1000) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+      }
+
+      @media (max-width: vars.$max-500) {
+        justify-content: center;
+        gap: vars.rem(38);
+      }
+    }
+
+    .docNavItem {
+      font-size: vars.rem(19);
+      font-weight: 400;
+      color: vars.$link;
+      transition: 0.2s;
+      cursor: pointer;
+
+      @media (max-width: vars.$max-1000) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: vars.rem(4);
+      }
+
+      @media (max-width: vars.$max-500) {
+        height: vars.rem(43);
+        font-size: vars.rem(14);
+      }
+
+      &:hover {
+        color: vars.$dark-gray;
+      }
+
+      &:active {
+        color: vars.$green;
+
+        path {
+          fill: vars.$green;
+        }
+      }
+    }
+  }
+
+  .docWrapper {
+    .docBlock {
+      margin-bottom: vars.rem(68);
+    }
+
+    h2 {
+      font-size: vars.rem(31);
+      font-weight: 400;
+      margin-bottom: vars.rem(32);
+    }
+
+    h3 {
+      margin-top: vars.rem(48);
+      margin-bottom: vars.rem(16);
+      font-size: vars.rem(19);
+      font-weight: 500;
+    }
+
+    h4 {
+      margin-top: vars.rem(48);
+      margin-bottom: vars.rem(16);
+      font-size: vars.rem(19);
+      font-weight: 300;
+    }
+
+    p {
+      font-size: vars.rem(16);
+      font-weight: 300;
+      line-height: 140%;
+      margin-bottom: vars.rem(16);
+    }
+
+    ul {
+      font-weight: 300;
+      line-height: 140%;
+      margin-bottom: vars.rem(16);
+      list-style-type: disc;
+
+      > li {
+        margin-left: vars.rem(14);
+      }
+    }
+
+    a {
+      font-weight: 500;
+      transition: 0.2s;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

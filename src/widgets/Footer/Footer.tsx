@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Footer.module.scss';
 import Link from "next/link";
 import Contacts from "@/widgets/Contacts/Contacts";
+import {pagesLinks} from "@/shared/constants";
 
 export interface FooterProps {
     isContact?: boolean;
@@ -118,7 +119,7 @@ const Footer = (
                         </div>
                         <div className={styles.footerCopyright}>
                             <span>Copyright © 2025 Мебельная фабрика Технологии комфорта</span>
-                            <span>Используем cookies для корректной работы сайта, персонализации пользователей и других целей, предусмотренных <Link href={'#'} className={styles.politicsLink}>политикой обработки персональных данных</Link>.</span>
+                            <span>Используем cookies для корректной работы сайта, персонализации пользователей и других целей, предусмотренных <Link href={pagesLinks.privacyPolicy} className={styles.politicsLink}>политикой обработки персональных данных</Link>.</span>
                         </div>
                         <Link href={'#'} className={styles.footerLogo}>
                             <svg width="72" height="72" viewBox="0 0 72 72" fill="none"

@@ -11,6 +11,7 @@ import {useForm} from "react-hook-form";
 import {TFormInputs} from "@/types/TFormInputs";
 import ClaimService from "@/services/ClaimService";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
+import {pagesLinks} from "@/shared/constants";
 
 export interface PopupProps {
     isOpen: boolean;
@@ -215,7 +216,7 @@ const PopupForm = (
                             ></TextArea>
                         </div>
                         <div className={styles.submitBlock}>
-                    <span className={styles.politicsSpan}>Я согласен(на) на <Link className={`${styles.link}`} href={'#'}>обработку персональных данных</Link></span>
+                    <span className={styles.politicsSpan}>Я согласен(на) на <Link className={`${styles.link}`} href={pagesLinks.privacyPolicy}>обработку персональных данных</Link></span>
                             <DragAndDropButton
                                 formSubmit={handleSubmit(submitHandler)}
                                 isResetButton={true}
@@ -308,7 +309,7 @@ const PopupForm = (
                         ></TextArea>
                     </div>
                     <div className={styles.submitBlock}>
-                    <span className={styles.politicsSpan}>Я согласен(на) на <Link className={`${styles.link}`} href={'#'}>обработку персональных данных</Link></span>
+                    <span className={styles.politicsSpan}>Я согласен(на) на <Link className={`${styles.link}`} href={pagesLinks.privacyPolicy}>обработку персональных данных</Link></span>
                         <DragAndDropButton
                             formSubmit={handleSubmit(submitHandler)}
                             isResetButton={true}

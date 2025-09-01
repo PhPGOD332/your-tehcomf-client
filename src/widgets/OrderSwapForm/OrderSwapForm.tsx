@@ -11,6 +11,8 @@ import {ClaimDto} from "@/types/dtos/Claim.dto";
 import ClaimService from "@/services/ClaimService";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {TFormInputs} from "@/types/TFormInputs";
+import Link from "next/link";
+import {pagesLinks} from "@/shared/constants";
 
 interface SwapFormProps {
     isReset: boolean;
@@ -159,7 +161,7 @@ const OrderSwapForm = (
                     ></TextArea>
                 </div>
                 <div className={styles.submitBlock}>
-                    <span className={styles.personalText}>Я согласен(на) на <a href="#" className='underline'>обработку персональных данных</a></span>
+                    <span className={styles.personalText}>Я согласен(на) на <Link href={pagesLinks.privacyPolicy} className='underline'>обработку персональных данных</Link></span>
                     <DragAndDropButton
                         isResetButton={true}
                         formSubmit={handleSubmit(formSubmit)}
