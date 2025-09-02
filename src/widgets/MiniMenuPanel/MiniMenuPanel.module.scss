@@ -21,6 +21,7 @@
       padding: vars.rem(16);
       height: vars.rem(80);
       //width: calc(100% - 102px);
+      //width: auto;
 
       .navItem {
         display: flex;
@@ -30,18 +31,48 @@
         width: vars.rem(48);
         height: vars.rem(48);
         cursor: pointer;
+        transition: 0.3s;
+        border-radius: vars.rem(14);
+
+        &_active {
+          background-color: vars.$green;
+          width: fit-content;
+          padding: vars.rem(12) vars.rem(16);
+
+          .navItemSpan {
+            opacity: 1 !important;
+            width: 100% !important;
+            color: vars.$white;
+          }
+
+          .navItemIcon {
+
+            circle {
+              fill: vars.$white;
+            }
+
+            path {
+              fill: vars.$white
+            }
+          }
+        }
 
         .navItemSpan {
           font-size: vars.rem(14);
           font-weight: 600;
           color: vars.$white;
           opacity: 0;
-          visibility: hidden;
+          //visibility: hidden;
+          width: 0;
+          transition: 0.3s;
         }
 
-        .navItemIcon {
-          width: vars.rem(24);
-          height: vars.rem(24);
+        .navItemIconBlock {
+          .navItemIcon {
+            display: block;
+            width: vars.rem(24);
+            height: vars.rem(24);
+          }
         }
       }
     }
