@@ -61,7 +61,7 @@ const OrderSwapForm = (
         const timeout = setTimeout(async () => {
             const claimDto: ClaimDto = new ClaimDto({
                 ...data,
-                date: new Date().toISOString()
+                date: new Date()
             });
 
             if (isReset) {

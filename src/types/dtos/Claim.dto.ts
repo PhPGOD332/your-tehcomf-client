@@ -3,7 +3,7 @@ export class ClaimDto {
     firstName: string;
     mobilePhone: string;
     note: string;
-    date: string;
+    date: Date;
     callDesign: boolean;
     discussProject: boolean;
 
@@ -12,7 +12,7 @@ export class ClaimDto {
         firstName: string;
         mobilePhone: string;
         note: string;
-        date: string;
+        date: Date;
         callDesign?: boolean;
         discussProject?: boolean;
     }) {

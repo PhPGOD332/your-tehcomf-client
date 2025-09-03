@@ -2,7 +2,7 @@ export interface TFormInputs {
     firstName: string;
     mobilePhone: string;
     note: string;
-    date: string;
+    date: Date;
     callDesign: boolean;
     discussProject: boolean;
 }
