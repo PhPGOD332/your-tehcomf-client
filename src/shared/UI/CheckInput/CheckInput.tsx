@@ -27,7 +27,7 @@ const CheckInput = forwardRef<HTMLInputElement, CheckProps>((
     const checkHandler = (e: React.MouseEvent<HTMLInputElement>) => {
         e.stopPropagation();
         if (!customIsChecked || !setCustomIsChecked)
-            setIsChecked(!isChecked);
+            setIsChecked(false);
         if (changeHandle) {
             changeHandle(labelRef || null);
         }
