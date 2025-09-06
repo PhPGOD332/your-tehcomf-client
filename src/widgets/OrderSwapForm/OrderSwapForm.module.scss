@@ -18,14 +18,21 @@
   background-color: vars.$white;
   padding: vars.rem(32);
   border-radius: vars.rem(40);
+  height: 100%;
 
   @media (max-width: vars.$max-500) {
     background-color: vars.$dark-gray;
-    height: vars.rem(544);
     border-radius: vars.rem(20);
   }
 
+  span {
+    display: inline-block;
+  }
+
   .formPreview {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     text-align: start;
     position: relative;
     transition: opacity 0.3s ease;
@@ -83,47 +90,51 @@
         }
     }
 
-    .previewList {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: vars.rem(17);
-      list-style: none;
-      margin-bottom: vars.rem(32);
-      z-index: 1;
-
-      > li {
+    .previewButtonBlock {
+      .previewList {
+        position: relative;
         display: flex;
-        align-items: center;
-        gap: vars.rem(8);
+        flex-direction: column;
+        gap: vars.rem(17);
+        list-style: none;
+        margin-bottom: vars.rem(32);
+        z-index: 1;
 
-        .previewSpan {
-          font-weight: 500;
+        > li {
+          display: flex;
+          align-items: center;
+          gap: vars.rem(8);
+
+          .previewSpan {
+            font-weight: 500;
+          }
+
+          @media (max-width: vars.$max-500) {
+            color: vars.$white;
+          }
+        }
+
+        .checkImage {
+          width: vars.rem(24);
+          height: vars.rem(24);
+        }
+      }
+
+      .orderButton {
+        position: relative;
+        padding: vars.rem(17.5) vars.rem(58);
+        z-index: 1;
+        align-self: flex-start;
+        margin-top: auto;
+
+        > span {
+          font-size: vars.rem(19);
         }
 
         @media (max-width: vars.$max-500) {
-          color: vars.$white;
+          width: 100%;
+          padding: vars.rem(12.5) vars.rem(50);
         }
-      }
-
-      .checkImage {
-        width: vars.rem(24);
-        height: vars.rem(24);
-      }
-    }
-
-    .orderButton {
-      position: relative;
-      padding: vars.rem(17.5) vars.rem(58);
-      z-index: 1;
-
-      > span {
-        font-size: vars.rem(19);
-      }
-
-      @media (max-width: vars.$max-500) {
-        width: 100%;
-        padding: vars.rem(12.5) vars.rem(50);
       }
     }
   }

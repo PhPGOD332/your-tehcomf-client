@@ -115,9 +115,14 @@ const CatalogNav = ({ title }: CatalogProps) => {
     const sliderChangeHandler = (newPos: number) => {
         if (!sliderRef.current) return;
 
-        console.log(newPos)
+        // console.log(newPos)
 
         sliderRef.current?.swiper.slideTo(newPos);
+
+        setTimeout(() => {
+            sliderRef.current?.swiper.slides[newPos].classList.add(styles.catalogItem_iconHidden);
+        }, 2000)
+
         setSliderPos(newPos);
     }
 

@@ -95,27 +95,29 @@ const OrderSwapForm = (
                     width={256}
                     height={256}
                 />
-                <ul className={styles.previewList}>
-                    {formCheckItems ? formCheckItems.map((checkItem, num) =>
-                        <li key={num}>
-                            <Image
-                                src='/icons/check-green.svg'
-                                alt={''}
-                                className={styles.checkImage}
-                                width={24}
-                                height={24}
-                            />
-                            {/*<img src="/icons/check-green.svg" alt="" className={styles.checkImage}/>*/}
-                            <span className={styles.previewSpan}>{checkItem}</span>
-                        </li>
-                    ) : ''}
-                </ul>
-                <GreenButton
-                    classNames={`${styles.orderButton}`}
-                    onClick={() => showForm()}
-                >
-                    Заказать проект
-                </GreenButton>
+                <div className={styles.previewButtonBlock}>
+                    <ul className={styles.previewList}>
+                        {formCheckItems ? formCheckItems.map((checkItem, num) =>
+                            <li key={num}>
+                                <Image
+                                    src='/icons/check-green.svg'
+                                    alt={''}
+                                    className={styles.checkImage}
+                                    width={24}
+                                    height={24}
+                                />
+                                {/*<img src="/icons/check-green.svg" alt="" className={styles.checkImage}/>*/}
+                                <span className={styles.previewSpan}>{checkItem}</span>
+                            </li>
+                        ) : ''}
+                    </ul>
+                    <GreenButton
+                        classNames={`${styles.orderButton}`}
+                        onClick={() => showForm()}
+                    >
+                        Заказать проект
+                    </GreenButton>
+                </div>
             </div>
             <form
                 className={`${styles.formMain} ${styles.hidden}`}

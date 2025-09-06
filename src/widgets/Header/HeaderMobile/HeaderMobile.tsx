@@ -5,6 +5,7 @@ import PopupForm from "@/widgets/PopupForm/PopupForm";
 import Link from "next/link";
 import {HeaderProps} from "@/widgets/Header/Header";
 import MiniMenuPanel from "@/widgets/MiniMenuPanel/MiniMenuPanel";
+import {pagesLinks} from "@/shared/constants";
 
 const HeaderMobile = (
     {
@@ -121,7 +122,7 @@ const HeaderMobile = (
                         </svg>
                     </div>
                 </div>
-                <Link href='https://tehcomf.ru' className={styles.logoBlock} ref={logoRef}>
+                <Link href={pagesLinks.main} className={styles.logoBlock} ref={logoRef}>
                     <svg width="60" height="60" viewBox="0 0 72 72" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path

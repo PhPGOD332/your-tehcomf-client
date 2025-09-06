@@ -211,6 +211,12 @@
       //max-width: calc(100vw - 32px);
       height: vars.rem(484);
 
+      &_iconHidden {
+        .catalogItemIcon {
+          opacity: 0;
+        }
+      }
+
       .catalogItemLinkImage {
         display: flex;
         justify-content: center;
@@ -219,15 +225,6 @@
         height: 100%;
         width: 100%;
         user-select: none;
-
-        .catalogItemIcon {
-          width: vars.rem(64);
-          height: vars.rem(64);
-          position: absolute;
-          top: calc(50% - 32px);
-          right: calc(50% - 32px);
-          z-index: 4;
-        }
 
         .cardBg {
           width: auto;
@@ -251,14 +248,6 @@
         background: linear-gradient(0deg, vars.$white -10% , vars.$green 100%);
         object-fit: cover;
 
-        .catalogItemIcon {
-          width: vars.rem(64);
-          height: vars.rem(64);
-          position: absolute;
-          top: calc(50% - 32px);
-          right: calc(50% - 32px);
-        }
-
         .cardIcon {
           position: absolute;
           bottom: vars.rem(-38);
@@ -267,6 +256,16 @@
           object-fit: cover;
         }
       }
+    }
+
+    .catalogItemIcon {
+      width: vars.rem(64);
+      height: vars.rem(64);
+      position: absolute;
+      top: calc(50% - 32px);
+      right: calc(50% - 32px);
+      z-index: 4;
+      transition: 0.3s;
     }
   }
 }

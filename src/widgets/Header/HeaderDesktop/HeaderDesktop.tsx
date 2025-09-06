@@ -5,6 +5,7 @@ import GreenButton from "@/shared/UI/GreenButton/GreenButton";
 import PopupForm from "@/widgets/PopupForm/PopupForm";
 import SearchPopup from "@/widgets/SearchPopup/SearchPopup";
 import {HeaderProps} from "@/widgets/Header/Header";
+import {pagesLinks} from "@/shared/constants";
 
 const HeaderDesktop = (
     {
@@ -130,7 +131,7 @@ const HeaderDesktop = (
                 <span ref={noticeRef} className={styles.notice}>Скопировано</span>
                 {/*<div className="container">*/}
                 <div className={styles.navSide}>
-                    <a href='https://tehcomf.ru' className={styles.logoBlock}>
+                    <a href={pagesLinks.main} className={styles.logoBlock}>
                         <svg width="72" height="72" viewBox="0 0 72 72" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path

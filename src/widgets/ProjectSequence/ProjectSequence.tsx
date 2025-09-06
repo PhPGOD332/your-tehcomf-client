@@ -57,7 +57,7 @@ const ProjectSequence = () => {
                 <ol className={styles.sequenceList} ref={sequenceListRef}>
                     {sequenceItems.map((stage, num) =>
                         <li
-                            className={styles.sequenceLiItem}
+                            className={`${styles.sequenceLiItem} ${num === 0 ? styles.sequenceLiItem_active : ''}`}
                             key={num}
                             onClick={(e) => clickMobileItemHandler(e)}
                         >
