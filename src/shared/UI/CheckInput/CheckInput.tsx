@@ -1,5 +1,8 @@
-import React, {forwardRef, RefObject, useEffect, useState} from 'react';
+'use client'
+import React, {ChangeEvent, ForwardedRef, forwardRef, RefObject, useEffect, useId, useState} from 'react';
 import styles from './CheckInput.module.scss';
+import {Control, FieldError, FieldPath, useController, UseControllerProps} from "react-hook-form";
+import {TFormInputs} from "@/types/TFormInputs";
 
 interface CheckProps {
     caption: string;
@@ -9,6 +12,10 @@ interface CheckProps {
     customIsChecked?: boolean;
     setCustomIsChecked?: (checked: boolean) => void;
     classNames?: string;
+    error?: FieldError;
+    control?: Control<TFormInputs>;
+    name: FieldPath<TFormInputs>;
+    props?: UseControllerProps;
 }
 
 const CheckInput = forwardRef<HTMLInputElement, CheckProps>((
@@ -20,38 +27,56 @@ const CheckInput = forwardRef<HTMLInputElement, CheckProps>((
         customIsChecked,
         setCustomIsChecked,
         classNames,
-        ...props
-    }: CheckProps, ref) => {
-    const [isChecked, setIsChecked] = useState(customIsChecked ?? firstIsChecked);
+        // error,
+        control,
+        name,
+        props
+    }: CheckProps,
+    ref: ForwardedRef<HTMLInputElement>) => {
 
-    const checkHandler = (e: React.MouseEvent<HTMLInputElement>) => {
-        e.stopPropagation();
-        if (!customIsChecked || !setCustomIsChecked)
-            setIsChecked(!isChecked);
-        if (changeHandle) {
-            changeHandle(labelRef || null);
+    const {
+        field: { onChange }
+    } = useController({
+        control,
+        name
+    });
+    const [isChecked, setIsChecked] = useState(firstIsChecked ?? false);
+    const id = useId();
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        onChange(e.target.checked);
+
+        if (customIsChecked && setCustomIsChecked) {
+            setCustomIsChecked(e.target.checked);
+        } else {
+            setIsChecked(e.target.checked);
         }
+
+        if (changeHandle)
+            changeHandle(labelRef ?? null);
     }
 
     useEffect(() => {
-        if (setCustomIsChecked) {
-            setIsChecked(customIsChecked ?? false);
-        }
+        onChange(customIsChecked);
+        setIsChecked(customIsChecked ?? false);
     }, [customIsChecked]);
 
     return (
         <label
             className={`${isChecked ? styles.checkLabel_checked : styles.checkLabel} ${classNames ?? ''}`}
             ref={labelRef}
+            htmlFor={id}
         >
             <span className={styles.checkSpan}>{caption}</span>
             <input
                 type="checkbox"
                 className={styles.checkInput}
                 checked={isChecked}
-                onClick={(e) => checkHandler(e)}
+                // onClick={(e) => checkHandler(e)}
+                onChange={(e) => handleChange(e)}
                 ref={ref}
                 {...props}
+                id={id}
             />
             <div className={`${isChecked ? styles.checkIcon_checked : styles.checkIcon}`}>
                 {isChecked

@@ -1,5 +1,9 @@
 @use '@/shared/styles/vars' as vars;
 
+.checkBlock {
+
+}
+
 .checkLabel {
   display: flex;
   background-color: vars.$light-gray;
