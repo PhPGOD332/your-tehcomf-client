@@ -44,7 +44,7 @@
       bottom: 46%;
     }
 
-    @media (max-height: vars.$max-800) {
+    @media (max-height: vars.$max-800) and (max-width: vars.$max-1000) {
       bottom: 56%;
     }
   }
@@ -100,7 +100,7 @@
       z-index: 6;
     }
 
-    @media (max-height: vars.$max-800) {
+    @media (max-height: vars.$max-800) and (max-width: vars.$max-1000) {
       height: 55%;
     }
 
