@@ -1,26 +1,32 @@
 import React from 'react';
 import styles from './Footer.module.scss';
 import Link from "next/link";
-import Contacts from "@/widgets/Contacts/Contacts";
+import Contacts from "@/widgets/Footer/Contacts/Contacts";
 import {pagesLinks} from "@/shared/constants";
+import ContactsForm from "@/widgets/Footer/ContactsForm/ContactsForm";
 
 export interface FooterProps {
     isContact?: boolean;
+    isFormContact?: boolean;
 }
 
 const Footer = (
     {
-        isContact
+        isContact,
+        isFormContact
     }: FooterProps) => {
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.innerWrapper}>
-                <div className="container">
+        <div className={styles.wrapper} style={{backgroundColor: isFormContact ? '#29292B' : '#FAFAFA'}}>
+            <div className={`${styles.innerWrapper} ${isFormContact && styles.innerWrapper_dark}`}>
+                <div className={`${isFormContact ? '' : 'container'}`}>
                     {isContact &&
                         <Contacts />
                     }
-                    <hr className={styles.line}/>
-                    <div className={styles.footer}>
+                    {isFormContact &&
+                        <ContactsForm />
+                    }
+                    <hr className={`${styles.line} ${isFormContact && styles.line_contact}`}/>
+                    <div className={`${styles.footer} ${isFormContact && styles.footer_withBorderRadius}`}>
                         <div className={styles.footerNav}>
                             <ul className={styles.navList}>
                                 <li className={styles.navUndLi}>

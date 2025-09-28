@@ -4,6 +4,10 @@
   display: flex;
   justify-content: center;
   background-color: vars.$light-gray;
+
+  @media (max-width: vars.$max-1000) {
+    background-color: vars.$white !important;
+  }
 }
 
 .innerWrapper {
@@ -14,13 +18,25 @@
   margin: 0 vars.rem(20);
 
   @media (max-width: vars.$max-1000) {
-    background-color: transparent;
+    background-color: transparent !important;
     margin: 0;
+  }
+
+  &_dark {
+    background-color: vars.$dark-gray;
   }
   
   .line {
     border: vars.rem(1) solid rgba(vars.$gray, 0.15);
     border-radius: vars.rem(5);
+
+    &_contact {
+      display: none;
+
+      @media (max-width: vars.$max-1000) {
+        display: block;
+      }
+    }
 
     @media (max-width: vars.$max-1000) {
       margin: vars.rem(40) vars.rem(16);
@@ -38,6 +54,16 @@
   @media (max-width: vars.$max-1100) {
     //padding: 0 vars.rem(16);
     padding-bottom: vars.rem(160);
+  }
+
+  @media (max-width: vars.$max-1000) {
+    padding-top: 0;
+  }
+
+  &_withBorderRadius {
+    border-top-left-radius: vars.rem(60);
+    border-top-right-radius: vars.rem(60);
+    background-color: vars.$white;
   }
 
   .footerNav {

@@ -3,6 +3,7 @@ import React from "react";
 import HeaderMobile from "@/widgets/Header/HeaderMobile/HeaderMobile";
 import HeaderDesktop from "@/widgets/Header/HeaderDesktop/HeaderDesktop";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
+import {pagesLinks} from "@/shared/constants";
 
 export interface HeaderProps {
     navItems: INavItem[];
@@ -98,7 +99,7 @@ const Header = () => {
         },
         {
             caption: 'Контакты',
-            href: ''
+            href: pagesLinks.contacts
         },
     ]
 

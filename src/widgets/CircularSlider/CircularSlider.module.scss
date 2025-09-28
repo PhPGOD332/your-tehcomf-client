@@ -1,0 +1,44 @@
+@use '@/shared/styles/vars' as vars;
+
+.circularSlider {
+  height: vars.rem(400);
+
+  @media (max-width: vars.$max-800) {
+    display: none !important;
+  }
+
+  .sliderWrapper {
+    display: flex;
+    align-items: center;
+    //gap: vars.rem(100);
+  }
+
+  .sliderSlide {
+    position: relative;
+    background-color: vars.$black;
+    width: vars.rem(390) !important;
+    height: vars.rem(225);
+    border-radius: vars.rem(40);
+    overflow: hidden;
+    transition: 0.3s;
+    scale: 0.5;
+    opacity: 0.5;
+
+    .slideImage {
+
+    }
+  }
+
+  .activeSlide {
+    scale: 1.1;
+    opacity: 1;
+  }
+
+  .prevSlide {
+    scale: 0.5;
+  }
+
+  .nextSlide {
+    scale: 0.5;
+  }
+}

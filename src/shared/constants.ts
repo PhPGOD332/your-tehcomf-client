@@ -10,6 +10,14 @@ export const pagesData: IPages = {
         type: "website",
         url: CLIENT_URL
     },
+    contacts: {
+        name: 'contacts',
+        title: 'Контакты',
+        description: 'ОПИСАНИЕ',
+        keywords: 'КЛЮЧЕВЫЕ СЛОВА',
+        type: "website",
+        url: `${CLIENT_URL}/contacts/`
+    },
     privacyPolicy: {
         name: 'privacy_policy',
         title: 'Политика конфиденциальности',
@@ -22,6 +30,7 @@ export const pagesData: IPages = {
 
 export const pagesLinks = {
     main: "/",
+    contacts: 'contacts',
     privacyPolicy: 'privacy_policy'
 }
 

@@ -1,166 +1,235 @@
 @use '@/shared/styles/vars' as vars;
 
-.hidden {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
+.transfer {
+  display: none;
+
+  @media (max-width: vars.$max-800) {
+    display: block;
+  }
 }
 
-.visible {
-  opacity: 1;
-  visibility: visible;
-  position: relative;
-}
+.contacts {
+  margin-top: vars.rem(50);
+  margin-bottom: vars.rem(50);
 
-.wrapper {
-  @media (max-width: vars.$max-1000) {
+  @media (max-width: vars.$max-1250) {
     padding: 0 vars.rem(16);
-  }
-}
-
-.contactsBlock {
-  display: flex;
-  justify-content: space-between;
-  gap: vars.rem(20);
-  padding: vars.rem(68) 0;
-
-  @media (max-width: vars.$max-1300) {
-    padding: vars.rem(68) vars.rem(16);
-  }
-
-  @media (max-width: vars.$max-1000) {
-    background-color: vars.$green;
-    padding: vars.rem(32) vars.rem(16);
-    border-radius: vars.rem(20);
   }
 
   @media (max-width: vars.$max-800) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    margin-top: 0;
   }
 
-  .captionSide {
-    display: flex;
-    flex-direction: column;
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: vars.rem(20);
 
-    .questionSpan {
-      font-size: vars.rem(19);
-      font-weight: 500;
-      color: vars.$gray;
-
-      @media (max-width: vars.$max-1000) {
-        color: vars.$light-gray;
-      }
-    }
-
-    .title {
-      @media (max-width: vars.$max-1000) {
-        color: vars.$white !important;
-      }
-    }
-  }
-
-  .contactsSide {
-    display: flex;
-    align-items: center;
-    gap: vars.rem(24);
-
-    @media (max-width: vars.$max-800) {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      width: 100%;
-    }
-
-    .contact {
-      position: relative;
+    @media (max-width: vars.$max-1000) {
       display: flex;
-      align-items: center;
-      background-color: vars.$light-gray;
-      border-radius: vars.rem(40);
-      padding: vars.rem(8) vars.rem(17) vars.rem(8) vars.rem(8);
-      user-select: none;
-      cursor: pointer;
-      gap: vars.rem(12);
-      height: vars.rem(60);
-      transition: 0.2s;
+      flex-direction: column;
+      gap: 0;
+    }
 
-      @media (max-width: vars.$max-800) {
+    .mapBlock {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        margin-bottom: vars.rem(28);
+
+        @media (max-width: vars.$max-1000) {
+          text-align: center;
+          border-bottom: vars.rem(2) solid #DEDEDE;
+          padding-bottom: vars.rem(16);
+          margin: 0;
+        }
+      }
+
+      .map {
+        height: 100%;
+
+        > div {
+          height: 100%;
+        }
+
+        iframe {
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+
+        @media (max-width: vars.$max-800) {
+          display: none;
+        }
+      }
+    }
+
+    .tableBlock {
+
+      .contactsTable {
         width: 100%;
-        justify-content: center;
-      }
 
-      &:hover {
-        background-color: vars.$gray;
+        .tableRow {
+          border-bottom: vars.rem(2) solid #DEDEDE;
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          gap: vars.rem(10);
+          padding: vars.rem(24) vars.rem(0) vars.rem(12) vars.rem(0);
 
-        .contactPreview {
-          opacity: 0;
-          visibility: hidden;
-          position: absolute;
-        }
-
-        .contactPostview {
-          opacity: 1;
-          visibility: visible;
-          position: relative;
-
-          .caption {
-            color: vars.$light-gray;
+          @media (max-width: vars.$max-800) {
+            &:nth-last-child(n+3) {
+              border-bottom: vars.rem(2) solid #DEDEDE;
+            }
           }
 
-          .contactIcon > svg > path {
-            transition: 0.2s;
-            fill: vars.$light-gray;
+          @media (max-width: vars.$max-800) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: vars.rem(16) 0;
+            gap: vars.rem(4);
+            border: none;
           }
         }
-      }
 
-      .contactImage {
-        @media (max-width: vars.$max-800) {
-          position: absolute;
-          left: vars.rem(8);
+        .tableRowOneCol {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: vars.rem(20);
+          padding: vars.rem(5) 0;
         }
-      }
 
-      .contactPreview {
-        display: flex;
-        align-items: center;
-        gap: vars.rem(12);
-        font-weight: 400;
+        .tableTextContent {
+          text-align: right;
 
-        @media (max-width: vars.$max-800) {
-          width: 100%;
-          margin-left: vars.rem(50);
-          justify-content: space-between;
+          @media (max-width: vars.$max-800) {
+            text-align: left;
+          }
         }
-      }
 
-      .contactPostview {
-        display: flex;
-        align-items: center;
-        gap: vars.rem(12);
-        font-weight: 400;
-
-        @media (max-width: vars.$max-800) {
-          width: 100%;
-          margin-left: vars.rem(50);
-          justify-content: space-between;
+        .tableTextNote {
+          font-size: vars.rem(19);
+          font-weight: 400;
         }
-      }
 
-      .caption {
-        font-size: vars.rem(19);
-        font-weight: 500;
-        color: vars.$gray;
+        .tableSubTitle {
+          font-size: vars.rem(19);
+          font-weight: 500;
+          color: vars.$gray;
+        }
 
-        @media (max-width: vars.$max-800) {
+        .tableMainText {
+          font-size: vars.rem(19);
+          font-weight: 300;
           color: vars.$black;
         }
-      }
 
-      .contactIcon {
+        .tableSubText {
+          font-size: vars.rem(16);
+          font-weight: 300;
+          color: vars.$gray;
+          //margin-top: vars.rem(8);
+        }
 
+        .phoneRow {
+          //height: vars.rem(70);
+          grid-template-columns: 0 1fr;
+          text-align: right;
+          padding-bottom: vars.rem(35);
+          padding-top: vars.rem(12);
+
+          @media (max-width: vars.$max-1000) {
+            align-items: center;
+          }
+
+          @media (max-width: vars.$max-800) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: vars.rem(16) 0;
+            gap: vars.rem(4);
+          }
+
+          .tableSubTitle {
+            display: none;
+
+            @media (max-width: vars.$max-1000) {
+              display: flex;
+            }
+          }
+
+          .phone {
+            font-size: vars.rem(31);
+            font-weight: 500;
+            text-align: right;
+            vertical-align: center;
+
+            @media (max-width: vars.$max-800) {
+              font-size: vars.rem(19);
+              font-weight: 300;
+            }
+          }
+        }
+
+        .mapRow {
+          display: none;
+          height: vars.rem(455);
+
+          @media (max-width: vars.$max-1000) {
+            display: flex;
+            border: none;
+          }
+
+          .mapCol {
+            width: 100%;
+
+            > div {
+              height: 100%;
+            }
+
+            iframe {
+              width: 100%;
+              height: 100%;
+              border: none;
+              border-radius: vars.rem(20);
+            }
+          }
+        }
+
+        .titleRow {
+          display: none;
+
+          @media (max-width: vars.$max-800) {
+            display: flex;
+          }
+
+          .titleCol {
+            width: 100%;
+            text-align: center;
+          }
+        }
+
+        .metroBlock {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: vars.rem(5);
+          margin-top: vars.rem(8);
+
+          @media (max-width: vars.$max-800) {
+            justify-content: flex-start;
+            margin-top: vars.rem(4);
+          }
+        }
+
+        .tableNote {
+
+
+          @media (max-width: vars.$max-800) {
+            display: none;
+          }
+        }
       }
     }
   }

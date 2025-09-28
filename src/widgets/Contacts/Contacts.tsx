@@ -1,74 +1,173 @@
+'use client'
 import React from 'react';
 import styles from './Contacts.module.scss';
 import SubTitle from "@/shared/UI/SubTitle/SubTitle";
-import Image, {StaticImageData} from "next/image";
-import TeamImage from '@/data/images/contacts/team.png';
-import WomanImage from '@/data/images/contacts/woman.png';
-
-type TImage = StaticImageData;
-
-const ContactTeamImage: TImage = TeamImage;
-const ContactWomanImage: TImage = WomanImage;
 
 const Contacts = () => {
-
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.contactsBlock}>
-                <div className={styles.captionSide}>
-                    <span className={styles.questionSpan}>Остались вопросы?</span>
-                    <SubTitle classNames={styles.title}>Свяжитесь с нами</SubTitle>
-                </div>
-                <div className={styles.contactsSide}>
-                    <div className={styles.contact}>
-                        <Image
-                            className={styles.contactImage}
-                            src={ContactTeamImage}
-                            alt={''}
-                        />
-                        <div className={styles.contactPreview}>
-                            <span className={styles.caption}>Позвонить нам</span>
-                            <div className={styles.contactIcon}>
-                                <svg width="27" height="28" viewBox="0 0 28 28" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M19.8101 16.6964C19.4311 16.4743 18.9654 16.479 18.5883 16.703L16.6787 17.8407C16.2513 18.0955 15.7174 18.0656 15.3254 17.7595C14.6478 17.2303 13.5567 16.3399 12.6075 15.3907C11.6583 14.4415 10.7679 13.3504 10.2387 12.6728C9.93261 12.2808 9.90274 11.747 10.1575 11.3195L11.2953 9.40991C11.5202 9.03284 11.5221 8.56338 11.2999 8.18444L8.49807 3.39831C8.22647 2.93538 7.68701 2.70764 7.16527 2.83551C6.65847 2.95871 6.00047 3.25924 5.31074 3.94991C3.15101 6.10964 2.00394 9.75244 10.1258 17.8743C18.2477 25.9962 21.8895 24.85 24.0502 22.6894C24.7418 21.9978 25.0414 21.3388 25.1655 20.8311C25.2915 20.3103 25.0675 19.7746 24.6055 19.5039C23.4519 18.8291 20.9637 17.3722 19.8101 16.6964Z"
-                                        fill="#58595B"/>
-                                </svg>
+        <div className={styles.contacts}>
+            <div className={'container'}>
+                <div className={styles.wrapper}>
+                    <div className={styles.mapBlock}>
+                        <SubTitle classNames={styles.title}>Контакты</SubTitle>
+                        <div className={styles.map}>
+                            <div style={{position: "relative", overflow: "hidden"}}><a
+                                href="https://yandex.ru/maps/org/kukhni_milana/8560001252/?utm_medium=mapframe&utm_source=maps"
+
+                                style={
+                                    {
+                                        color: "#eee",
+                                        fontSize: "12px",
+                                        position: "absolute",
+                                        top: "0px",
+                                    }
+                                }>Кухни
+                                Милана</a><a
+                                href="https://yandex.ru/maps/213/moscow/category/kitchen_furniture/184107873/?utm_medium=mapframe&utm_source=maps"
+                                style={
+                                    {
+                                        color: "#eee",
+                                        fontSize: "12px",
+                                        position: "absolute",
+                                        top: "14px",
+                                    }
+                                }>Мебель для
+                                кухни в Москве</a><a
+                                href="https://yandex.ru/maps/213/moscow/category/furniture_store/184107871/?utm_medium=mapframe&utm_source=maps"
+                                style={
+                                    {
+                                        color: "#eee",
+                                        fontSize: "12px",
+                                        position: "absolute",
+                                        top: "28px",
+                                    }
+                                }>Магазин мебели
+                                в Москве</a>
+                                <iframe
+                                    src="https://yandex.ru/map-widget/v1/?azimuth=1.7132151937576336&ll=37.716604%2C55.747647&mode=search&oid=8560001252&ol=biz&tilt=0.25666606646975454&z=17.6"
+                                    width="560" height="400" allowFullScreen={true}
+                                    style={{position: "relative"}}></iframe>
                             </div>
-                        </div>
-                        <div className={`${styles.contactPostview} ${styles.hidden}`}>
-                            <span className={styles.caption}>+7 (495) 988-55-28</span>
                         </div>
                     </div>
-                    <div className={styles.contact}>
-                        <Image
-                            className={styles.contactImage}
-                            src={ContactWomanImage}
-                            alt={''}
-                        />
-                        <div className={styles.contactPreview}>
-                            <span className={styles.caption}>Написать менеджеру</span>
-                            <div className={styles.contactIcon}>
-                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M23.0488 4.9375C20.5087 2.40625 17.1219 1 13.547 1C6.11498 1 0.0940752 7 0.0940752 14.4062C0.0940752 16.75 0.752613 19.0937 1.88153 21.0625L0 28L7.14983 26.125C9.12544 27.1562 11.2892 27.7188 13.547 27.7188C20.9791 27.7188 27 21.7188 27 14.3125C26.9059 10.8438 25.5888 7.46875 23.0488 4.9375ZM20.0383 19.1875C19.7561 19.9375 18.439 20.6875 17.7805 20.7812C17.216 20.875 16.4634 20.875 15.7108 20.6875C15.2404 20.5 14.5819 20.3125 13.8293 19.9375C10.4425 18.5312 8.27875 15.1562 8.09059 14.875C7.90244 14.6875 6.67944 13.0937 6.67944 11.4062C6.67944 9.71875 7.52613 8.96875 7.80836 8.59375C8.09059 8.21875 8.4669 8.21875 8.74913 8.21875C8.93728 8.21875 9.21951 8.21875 9.40766 8.21875C9.59581 8.21875 9.87805 8.125 10.1603 8.78125C10.4425 9.4375 11.101 11.125 11.1951 11.2188C11.2892 11.4062 11.2892 11.5938 11.1951 11.7812C11.101 11.9688 11.007 12.1562 10.8188 12.3437C10.6307 12.5312 10.4425 12.8125 10.3484 12.9062C10.1603 13.0937 9.97212 13.2812 10.1603 13.5625C10.3484 13.9375 11.007 14.9687 12.0418 15.9062C13.3589 17.0312 14.3937 17.4062 14.77 17.5938C15.1463 17.7812 15.3345 17.6875 15.5226 17.5C15.7108 17.3125 16.3693 16.5625 16.5575 16.1875C16.7456 15.8125 17.0279 15.9062 17.3101 16C17.5923 16.0938 19.2857 16.9375 19.5679 17.125C19.9443 17.3125 20.1324 17.4062 20.2265 17.5C20.3206 17.7812 20.3206 18.4375 20.0383 19.1875Z"
-                                        fill="#58595B"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div className={`${styles.contactPostview} ${styles.hidden}`}>
-                            <span className={styles.caption}>Написать менеджеру</span>
-                            <div className={styles.contactIcon}>
-                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M23.0488 4.9375C20.5087 2.40625 17.1219 1 13.547 1C6.11498 1 0.0940752 7 0.0940752 14.4062C0.0940752 16.75 0.752613 19.0937 1.88153 21.0625L0 28L7.14983 26.125C9.12544 27.1562 11.2892 27.7188 13.547 27.7188C20.9791 27.7188 27 21.7188 27 14.3125C26.9059 10.8438 25.5888 7.46875 23.0488 4.9375ZM20.0383 19.1875C19.7561 19.9375 18.439 20.6875 17.7805 20.7812C17.216 20.875 16.4634 20.875 15.7108 20.6875C15.2404 20.5 14.5819 20.3125 13.8293 19.9375C10.4425 18.5312 8.27875 15.1562 8.09059 14.875C7.90244 14.6875 6.67944 13.0937 6.67944 11.4062C6.67944 9.71875 7.52613 8.96875 7.80836 8.59375C8.09059 8.21875 8.4669 8.21875 8.74913 8.21875C8.93728 8.21875 9.21951 8.21875 9.40766 8.21875C9.59581 8.21875 9.87805 8.125 10.1603 8.78125C10.4425 9.4375 11.101 11.125 11.1951 11.2188C11.2892 11.4062 11.2892 11.5938 11.1951 11.7812C11.101 11.9688 11.007 12.1562 10.8188 12.3437C10.6307 12.5312 10.4425 12.8125 10.3484 12.9062C10.1603 13.0937 9.97212 13.2812 10.1603 13.5625C10.3484 13.9375 11.007 14.9687 12.0418 15.9062C13.3589 17.0312 14.3937 17.4062 14.77 17.5938C15.1463 17.7812 15.3345 17.6875 15.5226 17.5C15.7108 17.3125 16.3693 16.5625 16.5575 16.1875C16.7456 15.8125 17.0279 15.9062 17.3101 16C17.5923 16.0938 19.2857 16.9375 19.5679 17.125C19.9443 17.3125 20.1324 17.4062 20.2265 17.5C20.3206 17.7812 20.3206 18.4375 20.0383 19.1875Z"
-                                        fill="#58595B"/>
-                                </svg>
-                            </div>
-                        </div>
+                    <div className={styles.tableBlock}>
+                        <table className={styles.contactsTable}>
+                            <tbody>
+                            <tr className={`${styles.tableRow} ${styles.phoneRow}`}>
+                                <td>
+                                    <span className={styles.tableSubTitle}>Телефон</span>
+                                </td>
+                                <td>
+                                    <span className={styles.phone}>+7 (495) 988-55-28</span>
+                                </td>
+                            </tr>
+                            <tr className={styles.tableRow}>
+                                <td className={styles.tableSubTitle}>Адрес офиса</td>
+                                <td className={styles.tableTextContent}>
+                                    <span
+                                        className={styles.tableMainText}>г. Москва, ул. Новоостаповская, д. 6Б</span><br/>
+                                    <div className={styles.metroBlock}>
+                                        <svg width="18" height="12" viewBox="0 0 18 12" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <g clipPath="url(#clip0_1824_10572)">
+                                                <path
+                                                    d="M16.7979 10.3236L12.7187 0L9.26819 6.03492L5.83164 0L1.73851 10.3236H0.537109V11.8882H6.71173V10.3236H5.78973L6.68379 7.7532L9.26819 12L11.8526 7.7532L12.7467 10.3236H11.8247V11.8882H17.9993V10.3236H16.7979Z"
+                                                    fill="#FF0013"/>
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_1824_10572">
+                                                    <rect width="17.4622" height="12" fill="white"
+                                                          transform="translate(0.537109)"/>
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                        <span className={styles.tableSubText}>Дубровка, Волгоградский проспект</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr className={styles.tableRow}>
+                                    <td className={styles.tableSubTitle}>Адрес производства</td>
+                                    <td className={styles.tableTextContent}>
+                                            <span
+                                                className={styles.tableMainText}>г. Ульяновск, <br className={styles.transfer}/>42 Инженерный проезд, д. 6</span>
+                                    </td>
+                                </tr>
+                                <tr className={styles.tableRow}>
+                                    <td className={styles.tableSubTitle}>E-mail</td>
+                                    <td className={styles.tableTextContent}>
+                                        <span className={styles.tableMainText}>info@youkuhnya.ru</span>
+                                    </td>
+                                </tr>
+                                <tr className={styles.mapRow}>
+                                    <td className={styles.mapCol}>
+                                        <div style={{position: "relative", overflow: "hidden"}}><a
+                                            href="https://yandex.ru/maps/org/kukhni_milana/8560001252/?utm_medium=mapframe&utm_source=maps"
+                                            style={
+                                                {
+                                                    color: "#eee",
+                                                    fontSize: "12px",
+                                                    position: "absolute",
+                                                    top: "0px",
+                                                }
+                                            }>Кухни
+                                            Милана</a><a
+                                            href="https://yandex.ru/maps/213/moscow/category/kitchen_furniture/184107873/?utm_medium=mapframe&utm_source=maps"
+                                            style={
+                                                {
+                                                    color: "#eee",
+                                                    fontSize: "12px",
+                                                    position: "absolute",
+                                                    top: "14px",
+                                                }
+                                            }>Мебель для
+                                            кухни в Москве</a><a
+                                            href="https://yandex.ru/maps/213/moscow/category/furniture_store/184107871/?utm_medium=mapframe&utm_source=maps"
+                                            style={
+                                                {
+                                                    color: "#eee",
+                                                    fontSize: "12px",
+                                                    position: "absolute",
+                                                    top: "28px",
+                                                }
+                                            }>Магазин мебели
+                                            в Москве</a>
+                                            <iframe
+                                                src="https://yandex.ru/map-widget/v1/?azimuth=1.7132151937576336&ll=37.716604%2C55.747647&mode=search&oid=8560001252&ol=biz&tilt=0.25666606646975454&z=17.6"
+                                                width="560" height="400" allowFullScreen={true}
+                                                style={{position: "relative"}}></iframe>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr className={`${styles.tableRow} ${styles.titleRow}`}>
+                                    <td className={styles.titleCol}>
+                                        <SubTitle>Реквизиты</SubTitle>
+                                    </td>
+                                </tr>
+                                <tr className={styles.tableRow}>
+                                    <td className={styles.tableSubTitle}>Юридическое лицо</td>
+                                    <td className={styles.tableTextContent}>
+                                        <span className={styles.tableMainText}>ООО «ТК»</span>
+                                    </td>
+                                </tr>
+                                <tr className={styles.tableRow}>
+                                    <td className={styles.tableSubTitle}>ИНН</td>
+                                    <td className={styles.tableTextContent}>
+                                        <span className={styles.tableMainText}>9701160947</span>
+                                    </td>
+                                </tr>
+                                <tr className={styles.tableRow}>
+                                    <td className={styles.tableSubTitle}>ОГРН</td>
+                                    <td className={styles.tableTextContent}>
+                                        <span className={styles.tableMainText}>1207700295824</span>
+                                    </td>
+                                </tr>
+                                <tr className={`${styles.tableRowOneCol} ${styles.tableNote}`}>
+                                    <td className={styles.tableTextNote}>
+                                        Свяжитесь с нами любым удобным способом — мы с радостью поможем подобрать идеальную мебель, ответим на все вопросы и предложим лучшие условия покупки!
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

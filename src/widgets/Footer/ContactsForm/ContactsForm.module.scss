@@ -1,0 +1,105 @@
+@use '@/shared/styles/vars' as vars;
+
+.transfer {
+  display: none;
+
+  @media (max-width: vars.$max-800) {
+    display: block;
+  }
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+}
+
+.wrapper {
+  background-color: vars.$dark-gray;
+
+  @media (max-width: vars.$max-1000) {
+    //padding: 0 vars.rem(16);
+    background-color: vars.$white;
+  }
+}
+
+.innerWrapper {
+  gap: vars.rem(100);
+  padding: vars.rem(60) vars.rem(80);
+  border-top-left-radius: vars.rem(60);
+  border-top-right-radius: vars.rem(60);
+
+  @media (max-width: vars.$max-1250) {
+    padding: vars.rem(60) 0;
+  }
+
+  @media (max-width: vars.$max-1000) {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .title {
+    position: absolute;
+    width: 40%;
+
+    @media (max-width: vars.$max-1000) {
+      text-align: center;
+      width: 100%;
+      padding-top: vars.rem(0);
+      color: vars.$black !important;
+    }
+  }
+
+  .contactsBlock {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+
+    //display: flex;
+    //flex-direction: column;
+    //align-items: flex-start;
+    //justify-content: space-between;
+
+    @media (max-width: vars.$max-1000) {
+      display: flex;
+      flex-direction: column-reverse;
+      margin-top: vars.rem(100);
+    }
+
+    .contacts {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: vars.rem(24);
+      width: fit-content;
+
+      @media (max-width: vars.$max-1000) {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 vars.rem(16);
+        margin-top: vars.rem(20);
+      }
+
+      @media (max-width: vars.$max-800) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+
+  .formBlock {
+    border-radius: vars.rem(40);
+    background-color: vars.$white;
+    padding: vars.rem(32);
+
+    @media (max-width: vars.$max-1000) {
+      padding: vars.rem(40) vars.rem(16);
+      box-shadow: 0 vars.rem(-10) vars.rem(15) vars.rem(10) rgba(vars.$dark-shadow, 0.1);
+    }
+  }
+}

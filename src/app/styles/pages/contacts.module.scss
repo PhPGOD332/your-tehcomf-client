@@ -1,0 +1,28 @@
+@use '@/shared/styles/vars' as vars;
+
+.main {
+  margin-top: vars.rem(140);
+}
+
+.previewBlock {
+  position: relative;
+  width: 100%;
+  height: vars.rem(434);
+  border-radius: vars.rem(20);
+  overflow: hidden;
+  clip-path: content-box;
+
+  @media (max-width: vars.$max-1250) {
+    width: calc(100% - 32px);
+    margin: 0 auto;
+  }
+
+  @media (max-width: vars.$max-800) {
+    display: none;
+  }
+
+  > img {
+    position: absolute;
+    object-fit: cover;
+  }
+}
