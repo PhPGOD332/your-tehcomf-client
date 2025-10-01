@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './MiniMenuPanel.module.scss';
 import GreenButton from "@/shared/UI/GreenButton/GreenButton";
+import {useRouter} from "next/navigation";
+import {pagesLinks} from "@/shared/constants";
 
 export interface MiniManuPanelProps {
     isPopup?: boolean;
@@ -11,6 +13,7 @@ const MiniMenuPanel = (
     {
         setIsOpenPopup
     }: MiniManuPanelProps) => {
+    const router = useRouter();
 
     const itemClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const navItem = e.currentTarget;
@@ -27,6 +30,16 @@ const MiniMenuPanel = (
         }
 
         navItem.classList.add(styles.navItem_active);
+
+        setTimeout(() => {
+            if (!navItem.getAttribute('data-link')) return;
+
+            router.push(navItem.getAttribute('data-link') ?? '');
+
+            setTimeout(() => {
+                navItem.classList.remove(styles.navItem_active);
+            }, 500);
+        }, 500);
     }
 
     return (
@@ -76,6 +89,7 @@ const MiniMenuPanel = (
                     <div
                         className={styles.navItem}
                         onClick={(e) => itemClickHandler(e)}
+                        data-link={pagesLinks.contacts}
                     >
                         <span className={styles.navItemSpan}>Контакты</span>
                         <div className={styles.navItemIconBlock}>
