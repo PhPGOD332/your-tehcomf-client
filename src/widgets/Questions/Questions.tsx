@@ -2,7 +2,6 @@
 import React, {useState} from 'react';
 import styles from './Questions.module.scss';
 import SubTitle, {TitleColors} from "@/shared/UI/SubTitle/SubTitle";
-import {IQuestion} from "@/types/IQuestion";
 import {IQuestionCategory} from "@/types/IQuestionCategory";
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
@@ -10,19 +9,18 @@ import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 export interface QuestionsProps {
     title?: string;
     mobileTitle?: string;
-    questions: IQuestion[];
-    questionsCategories: IQuestionCategory[];
+    categories: IQuestionCategory[];
 }
 
 const Questions = (
     {
         title,
         mobileTitle,
-        questions,
-        questionsCategories
+        categories,
     }: QuestionsProps) => {
 
-    const [questionsView, setQuestionsView] = useState<IQuestion[]>(questions.filter(question => question.categoryId === questionsCategories[0].id))
+    const [questionsCategoriesView, ] = useState<IQuestionCategory[]>(categories ?? [])
+    const [currentCategoryId, setCurrentCategoryId] = useState<number>(categories[0].id);
     const isMobile = useMediaQuery('(max-width: 1000px)');
 
     const questionMarkerHandler = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -55,8 +53,10 @@ const Questions = (
     }
 
     const selectCategoryHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-        const categoryId = e?.currentTarget.getAttribute('data-id') as unknown;
-        setQuestionsView(questions.filter(question => question.categoryId == categoryId as number));
+        const categoryId = Number(e?.currentTarget.getAttribute('data-id'));
+        // console.log(questionsCategoriesView.find(category => console.log(category.id === currentCategoryId)));
+
+        setCurrentCategoryId(categoryId);
 
         const category = e.currentTarget?.parentElement;
 
@@ -76,15 +76,15 @@ const Questions = (
                     <div className={styles.categorySide}>
                         <SubTitle classNames={styles.questionsTitle} color={TitleColors.BLACK}>{isMobile ? mobileTitle ?? 'FAQ' : title || 'Часто задаваемые вопросы'}</SubTitle>
                         <div className={styles.questionsCategories}>
-                            {questionsCategories.map((category, num) =>
+                            {questionsCategoriesView.map((category, num) =>
                                 <div className={`${styles.category} ${num === 0 ? styles.category_selected : ''}`} key={category.id} data-id={category.id} onClick={(e) => selectCategoryHandler(e)}>
-                                    <span className={styles.categoryCaption}>{category.name}</span>
+                                    <span className={styles.categoryCaption}>{category.category}</span>
                                 </div>
                             )}
                         </div>
                     </div>
                     <div className={styles.questionsSide}>
-                        {questionsView
+                        {questionsCategoriesView.find(category => category.id === currentCategoryId)?.questions
                             .map((question) =>
                                 <details
                                     className={styles.questionItem}
@@ -105,9 +105,9 @@ const Questions = (
 
                                         </div>
                                     </summary>
-                                    <p className={styles.questionAnswer}>{question.answer}</p>
+                                    <p className={styles.questionAnswer}>{question.questionDescription}</p>
                                 </details>
-                            )}
+                            ) ?? ''}
                     </div>
                 </div>
             </div>

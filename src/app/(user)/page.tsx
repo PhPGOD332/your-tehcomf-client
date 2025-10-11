@@ -10,10 +10,9 @@ import ReviewsInfo from "@/widgets/ReviewsInfo/ReviewsInfo";
 import OrderForms from "@/widgets/OrderForms/OrderForms";
 import ExamplesSlider from "@/widgets/ExamplesSlider/ExamplesSlider";
 import Questions from "@/widgets/Questions/Questions";
-import {IQuestion} from "@/types/IQuestion";
-import {IQuestionCategory} from "@/types/IQuestionCategory";
 import Footer from "@/widgets/Footer/Footer";
 import React from "react";
+import QuestionsService from "@/services/QuestionsService";
 
 export const metadata: Metadata = {
   metadataBase: new URL(pagesData.main.url),
@@ -88,49 +87,54 @@ const examplesSlides: PhotoSliderSlides = [
     },
 ];
 
-const categories: IQuestionCategory[] = [
-    {
-        id: 1,
-        name: 'Категория 1'
-    },
-    {
-        id: 2,
-        name: 'Категория 2'
-    },
-    {
-        id: 3,
-        name: 'Категория 3'
-    }
-]
+const getCategories = async () => {
+    return await QuestionsService.getQuestionsByCategories();
+}
 
-const questions: IQuestion[] = [
-    {
-        id: 1,
-        question: 'Вопрос 1',
-        answer: 'Ответ 1',
-        categoryId: 1
-    },
-    {
-        id: 2,
-        question: 'Вопрос 1',
-        answer: 'Ответ 1',
-        categoryId: 2
-    },
-    {
-        id: 3,
-        question: 'Вопрос 1',
-        answer: 'Ответ 1',
-        categoryId: 3
-    },
-    {
-        id: 4,
-        question: 'Вопрос 2',
-        answer: 'Ответ 2',
-        categoryId: 2
-    }
-];
+// const categories: IQuestionCategory[] = [
+//     {
+//         id: 1,
+//         name: 'Категория 1'
+//     },
+//     {
+//         id: 2,
+//         name: 'Категория 2'
+//     },
+//     {
+//         id: 3,
+//         name: 'Категория 3'
+//     }
+// ]
+//
+// const questions: IQuestion[] = [
+//     {
+//         id: 1,
+//         question: 'Вопрос 1',
+//         answer: 'Ответ 1',
+//         categoryId: 1
+//     },
+//     {
+//         id: 2,
+//         question: 'Вопрос 1',
+//         answer: 'Ответ 1',
+//         categoryId: 2
+//     },
+//     {
+//         id: 3,
+//         question: 'Вопрос 1',
+//         answer: 'Ответ 1',
+//         categoryId: 3
+//     },
+//     {
+//         id: 4,
+//         question: 'Вопрос 2',
+//         answer: 'Ответ 2',
+//         categoryId: 2
+//     }
+// ];
 
-export default function Home() {
+export default async function Home() {
+  const categories = await getCategories();
 
   return (
     <>
@@ -147,8 +151,7 @@ export default function Home() {
         <ReviewsInfo />
         <OrderForms />
         <Questions
-            questions={questions}
-            questionsCategories={categories}
+            categories={categories}
         />
         <Footer isContact={true}/>
       </main>

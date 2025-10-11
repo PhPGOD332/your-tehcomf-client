@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {InternalAxiosRequestConfig} from "axios";
 import {AuthResponse} from "@/types/response/AuthResponse";
 
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL || "";
@@ -7,11 +7,20 @@ const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 const $api = axios.create({
     withCredentials: true,
     baseURL: `${NEXT_PUBLIC_API_URL}/api`,
+    // headers: {
+    //     Authorization: `Bearer ${localStorage.getItem("token")}`
+    // }
 });
 
 // Настройка куки
-$api.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+$api.interceptors.request.use((config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
+    // if (typeof config !== 'undefined') {
+    // if (!authorization) {
+        //     return;
+        // }
+    // config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+    // }
+    // console.log(config)
     return config;
 });
 
@@ -22,17 +31,23 @@ $api.interceptors.response.use(
     async (error) => {
         const originalRequest = error.config;
         if (
+            error.response &&
             error.response.status == 401 &&
             error.config &&
             !error.config._isRetry
         ) {
             originalRequest._isRetry = true;
             try {
-                const response = await axios.get<AuthResponse>(
+                await axios.get<AuthResponse>(
                     `${NEXT_PUBLIC_API_URL}/refresh`,
                     { withCredentials: true },
                 );
-                localStorage.setItem("token", response.data.accessToken);
+
+                // console.log(response)
+
+                // if (error)
+                //     localStorage.setItem("token", response.data.accessToken);
+
                 return $api.request(originalRequest);
             } catch (e) {
                 console.log("НЕ АВТОРИЗОВАН: " + e);

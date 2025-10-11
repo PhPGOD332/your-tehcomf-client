@@ -1,0 +1,1 @@
+export type isNumber<T> = T extends number ? true : false;

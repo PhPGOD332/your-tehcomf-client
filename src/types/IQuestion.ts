@@ -1,6 +1,8 @@
+import {IQuestionCategory} from "@/types/IQuestionCategory";
+
 export interface IQuestion {
     id: number;
     question: string;
-    answer: string;
-    categoryId: number;
+    questionDescription: string;
+    category?: IQuestionCategory;
 }

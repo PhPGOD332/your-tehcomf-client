@@ -1,4 +1,7 @@
+import {IQuestion} from "@/types/IQuestion";
+
 export interface IQuestionCategory {
     id: number;
-    name: string;
+    category: string;
+    questions: IQuestion[];
 }
