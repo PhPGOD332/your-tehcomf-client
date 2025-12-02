@@ -21,6 +21,7 @@ const PortfolioCard = React.memo((
             <div className={styles.imageBlock}>
                 {work.mainImage ?
                     <Image
+                        loader={() => work.mainImage.image}
                         src={work.mainImage.image}
                         alt={work.mainImage.imageAlt ?? ''}
                         fill={true}
