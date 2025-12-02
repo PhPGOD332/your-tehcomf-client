@@ -1,0 +1,20 @@
+@use '@/shared/styles/vars' as vars;
+
+.portfolioPage {
+
+}
+
+.titleBlock {
+  text-align: center;
+  margin-top: vars.rem(130);
+  margin-bottom: vars.rem(42);
+
+  .title {
+    margin-bottom: vars.rem(16);
+  }
+
+  .subTitle {
+    color: vars.$gray !important;
+    margin-bottom: vars.rem(32);
+  }
+}

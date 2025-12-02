@@ -1,0 +1,211 @@
+@use '@/shared/styles/vars' as vars;
+
+.popupWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(vars.$white, 0.5);
+  z-index: 100;
+  transition: 0s;
+
+  &_hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.popupContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: vars.rem(36) vars.rem(40);
+  background-color: vars.$white;
+  border-radius: vars.rem(40);
+  width: vars.rem(480);
+  box-shadow: vars.rem(3) vars.rem(10) vars.rem(22) 0 vars.$shadow;
+  //bottom: vars.rem(-665);
+  transform: translateY(vars.rem(0));
+
+  &_hidden {}
+
+  .mobileDragBlock {
+    display: none;
+  }
+
+  .filtersBlock {
+    width: 100%;
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: vars.rem(12);
+
+      .title {
+        font-size: vars.rem(19);
+        font-weight: 500;
+      }
+
+      .clearBtn {
+        font-size: vars.rem(14);
+        font-weight: 500;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+    }
+
+    .filters {
+      display: flex;
+      flex-direction: column;
+      gap: vars.rem(24);
+
+      .categories {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: vars.rem(2) solid rgba(vars.$gray, 0.5);
+        padding: vars.rem(15) 0;
+
+        .category {
+          background-color: transparent;
+          border: none;
+          font-weight: 500;
+          cursor: pointer;
+
+          &_active {
+            transition: 0.3s;
+            color: vars.$green;
+          }
+        }
+      }
+
+      .filtersList {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: vars.rem(50);
+
+        .filter {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          padding: vars.rem(12) vars.rem(5);
+          transition: background-color 0.3s;
+          border-radius: vars.rem(10);
+          cursor: pointer;
+
+          &:hover {
+            background-color: vars.$light-gray;
+          }
+
+          .caption {
+            font-size: vars.rem(19);
+            font-weight: 300;
+          }
+
+          .checkIcon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: vars.rem(28);
+            height: vars.rem(28);
+            border-radius: 50%;
+            border: vars.rem(2.1) solid vars.$gray;
+            background-color: transparent;
+            transition: 0.3s;
+
+            &_active {
+              background-color: vars.$green;
+              border: none;
+            }
+          }
+        }
+      }
+
+      .applyBtnBlock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .applyBtn {
+          width: 80%;
+
+          &_inactive {
+            background-color: vars.$inactive;
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: vars.$max-1000) {
+    //@keyframes slideHideContent {
+    //  0% {
+    //    bottom: -1vh;
+    //  }
+    //  100% {
+    //    bottom: -70vh;
+    //  }
+    //}
+
+    position: fixed;
+
+    padding-top: vars.rem(16);
+    padding-bottom: vars.rem(50);
+    width: 100vw;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: bottom 0.2s ease;
+    z-index: 5;
+    left: 0;
+
+    &_hidden {
+      //transition: bottom 0.2s ease-in-out;
+      //bottom: -90vh;
+      //opacity: 0;
+      //visibility: hidden;
+    }
+
+    .mobileDragBlock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      border-top-right-radius: vars.rem(40);
+      border-top-left-radius: vars.rem(40);
+      height: vars.rem(20);
+      margin-bottom: vars.rem(16);
+
+      &:before {
+        content: '';
+        //position: absolute;
+        width: vars.rem(36);
+        height: vars.rem(2);
+        background-color: vars.$gray;
+        border-radius: vars.rem(10);
+      }
+    }
+
+    .filtersBlock {
+
+      .filters {
+
+        .filtersList {
+          margin-bottom: 0;
+
+          .filter {
+            padding: vars.rem(10) 0;
+          }
+        }
+      }
+    }
+  }
+}

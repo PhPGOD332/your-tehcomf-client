@@ -65,7 +65,7 @@ const Header = () => {
         },
         {
             caption: 'Портфолио',
-            href: ''
+            href: pagesLinks.portfolio
         },
         {
             caption: 'Покупателям',

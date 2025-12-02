@@ -39,7 +39,7 @@ const Footer = (
                             </ul>
                             <ul className={styles.navList}>
                                 <li className={styles.navUndLi}>
-                                    <Link href={'#'} className={styles.navLink}>Портфолио</Link>
+                                    <Link href={pagesLinks.contacts} className={styles.navLink}>Портфолио</Link>
                                 </li>
                                 <li className={styles.navSubList}>
                                     <Link href={'#'} className={styles.navLink}>Отзывы</Link>

@@ -4,7 +4,7 @@ import {AxiosResponse} from "axios";
 
 export default class QuestionsService {
     static async getQuestionsByCategories(): Promise<IQuestionCategory[]> {
-        const response: AxiosResponse<IQuestionCategory[]> = await $api.get('/questions/categoriesWithQuestions');
+        const response: AxiosResponse<IQuestionCategory[]> = await $api.get('/questions/categoriesWithQuestions').catch(error => error);
         return response.data;
     }
 }

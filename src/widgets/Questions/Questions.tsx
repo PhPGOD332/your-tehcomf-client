@@ -20,7 +20,7 @@ const Questions = (
     }: QuestionsProps) => {
 
     const [questionsCategoriesView, ] = useState<IQuestionCategory[]>(categories ?? [])
-    const [currentCategoryId, setCurrentCategoryId] = useState<number>(categories[0].id);
+    const [currentCategoryId, setCurrentCategoryId] = useState<number>(categories ? categories[0].id : 0);
     const isMobile = useMediaQuery('(max-width: 1000px)');
 
     const questionMarkerHandler = (e: React.MouseEvent<HTMLDivElement>) => {

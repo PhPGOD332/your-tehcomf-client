@@ -1,0 +1,32 @@
+@use '@/shared/styles/vars' as vars;
+
+.selectWrapper {
+  display: inline-block;
+  position: relative;
+  height: vars.rem(47);
+
+  .arrow {
+    display: inline-block;
+    position: absolute;
+    right: vars.rem(20);
+    top: vars.rem(10);
+    cursor: pointer;
+  }
+}
+
+.select {
+  height: 100%;
+  width: 100%;
+  background-color: vars.$light-gray;
+  border-radius: vars.rem(20);
+  border: none;
+  cursor: pointer;
+  padding: vars.rem(12) vars.rem(20);
+  appearance: none;
+  font-size: vars.rem(19);
+  font-weight: 400;
+
+  .option {
+    cursor: pointer;
+  }
+}

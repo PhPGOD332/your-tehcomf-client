@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     keywords: pagesData.contacts.keywords
 }
 
-const sliderPhotos: IFillImage[]  = [
+const sliderPhotos: IFillImage[] = [
     {
         src: imagesArray[0].src,
         fill: true
