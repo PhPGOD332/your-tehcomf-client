@@ -36,7 +36,7 @@ const PortfolioView = (
 ) => {
     const [currentCount, setCurrentCount] = useState<number>(12);
     const step = 6;
-    const [allWorks, setAllWorks] = useState<IWork[]>(works);
+    const [allWorks, ] = useState<IWork[]>(works);
     const [currentWorks, setCurrentWorks] = useState<IWork[]>(works.filter((work, num) => num <= currentCount));
     const [filters, setFilters] = useState<IFilters>({
         color: null,
@@ -74,7 +74,7 @@ const PortfolioView = (
 
         let isFiltered = false;
 
-        for (const [name, filter] of Object.entries(filters)) {
+        for (const [, filter] of Object.entries(filters)) {
             if (filter) {
                 if (filter === filters.style) {
                     if (!isFiltered) {

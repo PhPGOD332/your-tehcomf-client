@@ -57,4 +57,6 @@ const PortfolioCard = React.memo((
     );
 });
 
+PortfolioCard.displayName = 'PortfolioCard';
+
 export default PortfolioCard;

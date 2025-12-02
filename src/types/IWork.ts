@@ -1,6 +1,4 @@
 import {IColor} from "@/types/IColor";
-import {IStyle} from "@/types/IStyle";
-import {IType} from "@/types/IType";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
 import {IImage} from "@/types/IImage";
 import {IFilterStyle} from "@/types/PortfolioFilters/IFilterStyle";

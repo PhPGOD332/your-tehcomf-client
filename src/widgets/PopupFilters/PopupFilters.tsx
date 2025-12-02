@@ -35,7 +35,7 @@ interface IViewFilters {
 }
 
 const isFilterFound = (filterName: string, filtersList: IFilters): boolean => {
-    for (const [_, filter] of Object.entries(filtersList)) {
+    for (const [, filter] of Object.entries(filtersList)) {
         if (filter && filterName === filter.name) {
             return true;
         }
@@ -195,7 +195,8 @@ const PopupFilters = (
     }
 
     const clearFilters = () => {
-        clearFiltersHandle && clearFiltersHandle();
+        if (clearFiltersHandle)
+            clearFiltersHandle();
         setIsOpen(false);
     }
 

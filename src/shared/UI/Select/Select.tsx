@@ -24,12 +24,9 @@ const Select = (
     const [value, setValue] = useState<string>(caption ?? options[0].name);
     const selectRef = useRef<HTMLSelectElement | null>(null);
 
-    const handleSelectClick = (e: React.MouseEvent<HTMLSelectElement>) => {
-        console.log(e.target)
-    }
-
     useEffect(() => {
-        changeHandle && changeHandle(value);
+        if (changeHandle)
+            changeHandle(value);
     }, [value]);
 
     return (
@@ -45,7 +42,7 @@ const Select = (
                     <option
                         key={key}
                         value={option.name}
-                        onClick={(e) => setValue(option.name)}
+                        onClick={() => setValue(option.name)}
                         className={styles.option}
                     >{option.caption}</option>
                 )
