@@ -11,7 +11,7 @@ export class PortfolioService {
         return works ?
             works.map((work) => {
                 if (work.name && work.mainImage) {
-                    work.mainImage.image = `${process.env.NEXT_PUBLIC_API_URL}/images/portfolio/${work.name}/${work.mainImage.image}`;
+                    work.mainImage.image = `${process.env.NEXT_PUBLIC_API_URL}/images/${work.mainImage.image}`;
 
                     // if (work.images && work.images.length > 0) {
                     //     work.images.map(image => {
