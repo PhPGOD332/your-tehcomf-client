@@ -10,7 +10,7 @@ import {IFilterBudget} from "@/types/PortfolioFilters/IFilterBudget";
 import {PortfolioFiltersService} from "@/services/PortfolioFiltersService";
 import {IFilterColor} from "@/types/PortfolioFilters/IFilterColor";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
-import {IFilterStyle} from "@/types/PortfolioFilters/IFilterStyle";
+import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 
 export const metadata: Metadata = {
     metadataBase: new URL(pagesData.portfolio.url),
@@ -27,8 +27,8 @@ const getTypes = async (): Promise<IFilterType[]> => {
     return await PortfolioFiltersService.getFilterTypes() ?? [];
 }
 
-const getStyles = async (): Promise<IFilterStyle[]> => {
-    return await PortfolioFiltersService.getFilterStyles() ?? [];
+const getStyles = async (): Promise<IFilterLayout[]> => {
+    return await PortfolioFiltersService.getFilterLayouts() ?? [];
 }
 
 const getBudgets = async (): Promise<IFilterBudget[]> => {
@@ -53,7 +53,7 @@ const Page = async () => {
                     title={'Портфолио'}
                     subTitle={'Создаём мебель, которой гордимся'}
                     colors={colors}
-                    stylingItems={stylingItems}
+                    layouts={stylingItems}
                     types={types}
                     budgets={budgets}
                     works={works}

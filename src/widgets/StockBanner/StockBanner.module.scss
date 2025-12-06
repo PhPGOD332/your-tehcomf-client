@@ -1,0 +1,61 @@
+@use '@/shared/styles/vars' as vars;
+
+.banner {
+  position: relative;
+  //display: grid;
+  //grid-template-columns: repeat(2, 1fr);
+  border-radius: vars.rem(20);
+  overflow: hidden;
+
+  &_green {
+    background: linear-gradient(180deg, vars.$green 0%, vars.$light-green 100%);
+  }
+
+  &_blue {
+    background: linear-gradient(180deg, vars.$bg-blue 0%, vars.$bg-light-blue 100%);
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: vars.rem(18);
+    padding: vars.rem(28) vars.rem(24);
+    z-index: 1;
+    height: 100%;
+
+    .caption {
+      font-size: vars.rem(31);
+      font-weight: 500;
+      color: vars.$white;
+      z-index: 1;
+    }
+
+    .bannerBtn {
+      font-size: vars.rem(19);
+      font-weight: 500;
+      color: vars.$white;
+      border: vars.rem(3) solid vars.$white;
+      border-radius: vars.rem(40);
+      background-color: transparent;
+      padding: vars.rem(12.5) vars.rem(70);
+      cursor: pointer;
+      z-index: 1;
+    }
+  }
+
+  .imageBlock {
+    position: absolute;
+    right: vars.rem(15);
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .image {
+      width: auto;
+    }
+  }
+}

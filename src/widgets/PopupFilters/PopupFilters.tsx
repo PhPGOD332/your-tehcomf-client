@@ -5,7 +5,7 @@ import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 import {TFilter, IFilters, TNameCategory} from "@/types/IFilters";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
 import {IFilterColor} from "@/types/PortfolioFilters/IFilterColor";
-import {IFilterStyle} from "@/types/PortfolioFilters/IFilterStyle";
+import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 import {IFilterBudget} from "@/types/PortfolioFilters/IFilterBudget";
 import GreenButton from "@/shared/UI/GreenButton/GreenButton";
 
@@ -14,7 +14,7 @@ export interface PopupProps {
     setIsOpen: (isOpen: boolean) => void;
     types: IFilterType[];
     colors: IFilterColor[];
-    stylingItems: IFilterStyle[];
+    stylingItems: IFilterLayout[];
     budgets: IFilterBudget[];
     filters: IFilters;
     filtersApplyHandler: (
@@ -31,7 +31,7 @@ type TCategory = {
 
 interface IViewFilters {
     activeCategory: TCategory | null;
-    filters: IFilterType[] | IFilterBudget[] | IFilterStyle[] | IFilterColor[];
+    filters: IFilterType[] | IFilterBudget[] | IFilterLayout[] | IFilterColor[];
 }
 
 const isFilterFound = (filterName: string, filtersList: IFilters): boolean => {
@@ -76,6 +76,7 @@ const PopupFilters = (
     const isMobile = useMediaQuery('(max-width: 1000px)');
     const [popupPosition, setPopupPosition] = useState(0);
     const [popupStartPos, setPopupStartPos] = useState(0);
+    const [popupHeight, setPopupHeight] = useState(0);
 
     const [currentFilters, setCurrentFilters] = useState<IFilters>(filters);
 
@@ -89,7 +90,7 @@ const PopupFilters = (
             caption: 'Бюджет'
         },
         {
-            name: 'style',
+            name: 'layout',
             caption: 'Стиль'
         },
         {
@@ -124,19 +125,43 @@ const PopupFilters = (
         const currY = touch.clientY - popupStartPos;
 
         if (currY > 0) {
-            setPopupPosition(-popupContentRef.current?.offsetHeight + currY);
+            setPopupPosition(-popupHeight + currY);
         }
     }
 
     const touchEndHandle = () => {
         if (!popupContentRef.current) return;
 
-        if (popupPosition > -(popupContentRef.current?.offsetHeight / 2)) {
+        if (popupPosition > -(popupHeight / 2)) {
             setIsOpen(false);
         } else {
-            setPopupPosition(-popupContentRef.current?.offsetHeight || 0);
+            setPopupPosition(-popupHeight || 0);
         }
     }
+
+    useEffect(() => {
+        setPopupPosition(-popupHeight);
+    }, [popupHeight]);
+
+    useEffect(() => {
+        if (popupPosition !== 0) {
+            if (!popupContentRef.current)
+                return;
+
+            const resizeObserver = new ResizeObserver(() => {
+                if (popupContentRef.current && popupContentRef.current?.offsetHeight !== popupHeight) {
+                    if ("offsetHeight" in popupContentRef.current)
+                        setPopupHeight(popupContentRef.current.offsetHeight);
+                }
+            });
+
+            resizeObserver.observe(popupContentRef.current as Element);
+
+            return function cleanup() {
+                resizeObserver.disconnect();
+            }
+        }
+    }, [popupPosition, popupHeight]);
 
     useEffect(() => {
         if (!popupContentRef.current) return;
@@ -151,6 +176,8 @@ const PopupFilters = (
     }, [isOpen]);
 
     const categoryClickHandler = (category: TCategory) => {
+        let checkCategories: never;
+
         switch (category.name) {
             case "type":
                 setViewFilters({activeCategory: category, filters: types});
@@ -158,25 +185,29 @@ const PopupFilters = (
             case "budget":
                 setViewFilters({activeCategory: category, filters: budgets});
                 return;
-            case "style":
+            case "layout":
                 setViewFilters({activeCategory: category, filters: stylingItems});
                 return;
             case "color":
                 setViewFilters({activeCategory: category, filters: colors});
                 return;
             default:
+                checkCategories = category.name;
                 setViewFilters({activeCategory: null, filters: []});
+                return checkCategories;
         }
     }
 
     const changeCurrentFilters = (filter: TFilter) => {
+        let checkFilters: never;
+
         switch (filter.type) {
             case "type":
                 setCurrentFilters({...currentFilters, type: filter});
 
                 return;
-            case "style":
-                setCurrentFilters({...currentFilters, style: filter});
+            case "layout":
+                setCurrentFilters({...currentFilters, layout: filter});
                 return;
             case "budget":
                 setCurrentFilters({...currentFilters, budget: filter});
@@ -185,7 +216,8 @@ const PopupFilters = (
                 setCurrentFilters({...currentFilters, color: filter});
                 return;
             default:
-                return;
+                checkFilters = filter;
+                return checkFilters;
         }
     }
 
@@ -285,8 +317,10 @@ const PopupFilters = (
                     ref={popupContentRef}
                     style={{
                         transform: `translateY(${popupPosition}px)`,
+                        // bottom: `${popupPosition}px`,
                         transition: '0.1s',
-                        bottom: '-90%'
+                        // bottom: '-100%'
+                        top: '100%'
                     }}
                 >
                     <div

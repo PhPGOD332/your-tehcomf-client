@@ -10,14 +10,21 @@ import PortfolioCard from "@/widgets/PortfolioCard/PortfolioCard";
 import GreenButton from "@/shared/UI/GreenButton/GreenButton";
 import {IFilterBudget} from "@/types/PortfolioFilters/IFilterBudget";
 import {IFilterColor} from "@/types/PortfolioFilters/IFilterColor";
-import {IFilterStyle} from "@/types/PortfolioFilters/IFilterStyle";
+import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
+import StockBanner from "@/widgets/StockBanner/StockBanner";
+import greenStock from '@/data/images/stocks_banners/guys.png';
+import blueStock from '@/data/images/stocks_banners/tg.png';
+import {TImage} from "@/types/IImage";
+
+const greenStockImage: TImage = greenStock;
+const blueStockImage: TImage = blueStock;
 
 interface PortfolioProps {
     title: string;
     subTitle: string;
     colors: IFilterColor[];
-    stylingItems: IFilterStyle[];
+    layouts: IFilterLayout[];
     types: IFilterType[];
     budgets: IFilterBudget[];
     works: IWork[];
@@ -28,7 +35,7 @@ const PortfolioView = (
         title,
         subTitle,
         colors,
-        stylingItems,
+        layouts,
         types,
         budgets,
         works = []
@@ -40,7 +47,7 @@ const PortfolioView = (
     const [currentWorks, setCurrentWorks] = useState<IWork[]>(works.filter((work, num) => num <= currentCount));
     const [filters, setFilters] = useState<IFilters>({
         color: null,
-        style: null,
+        layout: null,
         type: null,
         budget: null
     });
@@ -63,7 +70,7 @@ const PortfolioView = (
         let newWorks: IWork[] = [];
 
         if (
-            filters.style === null
+            filters.layout === null
             && filters.type === null
             && filters.color === null
             && filters.budget === null
@@ -76,13 +83,13 @@ const PortfolioView = (
 
         for (const [, filter] of Object.entries(filters)) {
             if (filter) {
-                if (filter === filters.style) {
+                if (filter === filters.layout) {
                     if (!isFiltered) {
-                        newWorks = [...allWorks.filter(work => work.style.id === filters.style?.id)];
+                        newWorks = [...allWorks.filter(work => work.layout.id === filters.layout?.id)];
 
                         isFiltered = true;
                     } else {
-                        newWorks = [...newWorks.filter(work => work.style.id === filters.style?.id)];
+                        newWorks = [...newWorks.filter(work => work.layout.id === filters.layout?.id)];
                     }
                 }
 
@@ -105,18 +112,47 @@ const PortfolioView = (
                         newWorks = [...newWorks.filter(work => work.facadeColors.some(color => filters.color && color.name === filters.color.name))];
                     }
                 }
+
+                if (filter === filters.budget) {
+                    if (!isFiltered) {
+                        newWorks = [...allWorks.filter(work => {
+                            if (filter.minValue && filter.maxValue)
+                                return work.price >= filter.minValue && work.price <= filter.maxValue;
+
+                            if (filter.minValue && !filter.maxValue)
+                                return work.price >= filter.minValue;
+
+                            if (!filter.minValue && filter.maxValue)
+                                return work.price <= filter.maxValue;
+                        })]
+                    } else {
+                        newWorks = [...newWorks.filter(work => {
+                            if (filter.minValue && filter.maxValue)
+                                return work.price >= filter.minValue && work.price <= filter.maxValue;
+
+                            if (filter.minValue && !filter.maxValue)
+                                return work.price >= filter.minValue;
+
+                            if (!filter.minValue && filter.maxValue)
+                                return work.price <= filter.maxValue;
+                        })]
+                    }
+                }
             }
         }
-
         setCurrentWorks(newWorks);
     }, [filters]);
 
-    useEffect(() => {
-        setCurrentCount(currentWorks.length);
-    }, [currentWorks]);
-
     const moreClickHandle = () => {
         setCurrentCount(currentCount + step);
+    }
+
+    const completeStockAction = () => {
+
+    }
+
+    const subscribeStockAction = () => {
+
     }
 
     return (
@@ -128,14 +164,14 @@ const PortfolioView = (
                     <PortfolioFilter
                         colors={colors}
                         countItems={currentWorks ? currentWorks.length : 0}
-                        stylingItems={stylingItems}
+                        layouts={layouts}
                         types={types}
                         budgets={budgets}
                         currentFilters={filters}
                         filtersApplyHandler={filtersApplyHandler}
                     />
                 </div>
-                <div className={styles.portfolioBlock}>
+                <div className={`${styles.portfolioBlock} ${!currentWorks || currentWorks.length === 0 ? styles.portfolioBlock_empty : ''}`}>
                     { currentWorks && currentWorks.length > 0 ?
                         currentWorks.map((work, num) =>
                             <PortfolioCard
@@ -144,7 +180,9 @@ const PortfolioView = (
                             />
                         )
                         :
-                        ''
+                        <div className={styles.emptyBlock}>
+                            <MiniTitle classNames={styles.emptySpan}>Упс.. Ничего не найдено</MiniTitle>
+                        </div>
                     }
                 </div>
                 {currentWorks && currentWorks.length > currentCount ?
@@ -154,6 +192,27 @@ const PortfolioView = (
                     :
                     ''
                 }
+                <div className={styles.stocks}>
+                    <StockBanner
+                        caption={'Скидка 10% <br> всем новосёлам'}
+                        buttonText={'Применить'}
+                        clickAction={completeStockAction}
+                        color={'green'}
+                        image={greenStockImage}
+                        imageWidth={228}
+                        imageHeight={228}
+                        imageStyles={{bottom: '-30px'}}
+                    />
+                    <StockBanner
+                        caption={'Скидка 2% подписчикам <br> нашего ТГ канала'}
+                        buttonText={'Подписаться'}
+                        clickAction={subscribeStockAction}
+                        color={'blue'}
+                        image={blueStockImage}
+                        imageWidth={160}
+                        imageHeight={160}
+                    />
+                </div>
             </div>
         </div>
     );

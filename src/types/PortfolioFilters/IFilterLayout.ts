@@ -1,6 +1,6 @@
-export interface IFilterStyle {
+export interface IFilterLayout {
     id: number;
     name: string;
     caption: string;
-    type: "style";
+    type: "layout";
 }

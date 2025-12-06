@@ -4,12 +4,12 @@ import styles from './Select.module.scss';
 import {IFilterBudget} from "@/types/PortfolioFilters/IFilterBudget";
 import {IFilterColor} from "@/types/PortfolioFilters/IFilterColor";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
-import {IFilterStyle} from "@/types/PortfolioFilters/IFilterStyle";
+import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 
 interface SelectProps {
     width: number;
     caption: string;
-    options: IFilterColor[] | IFilterType[] | IFilterStyle[] | IFilterBudget[];
+    options: IFilterColor[] | IFilterType[] | IFilterLayout[] | IFilterBudget[];
     changeHandle: (optionName: string) => void;
 }
 

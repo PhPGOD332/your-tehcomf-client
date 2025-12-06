@@ -29,6 +29,8 @@ const SwitchButton = (
     }: ButtonProps) => {
 
     const getStyle = (color: SwitchButtonColors) => {
+        let checkColors: never;
+
         if (isSwitch) {
             switch (color) {
                 case SwitchButtonColors.GRAY:
@@ -36,7 +38,9 @@ const SwitchButton = (
                 case SwitchButtonColors.GREEN:
                     return styles.switchContact_green;
                 default:
-                    return styles.contact;
+                    checkColors = color;
+                    return checkColors;
+                    // return styles.contact;
             }
         } else {
             switch (color) {
@@ -45,7 +49,9 @@ const SwitchButton = (
                 case SwitchButtonColors.GREEN:
                     return styles.notSwitchContact_green;
                 default:
-                    return styles.contact;
+                    checkColors = color;
+                    return checkColors
+                    // return styles.contact;
             }
         }
     }

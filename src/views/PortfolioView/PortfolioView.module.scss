@@ -43,6 +43,26 @@
   grid-template-columns: repeat(4, 1fr);
   gap: vars.rem(20);
 
+  &_empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .emptyBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    height: 40vh;
+
+    .emptySpan {
+      font-size: vars.rem(31);
+      font-weight: 500;
+    }
+  }
+
   @media (max-width: vars.$max-1400) {
     display: flex;
     flex-wrap: wrap;
@@ -61,4 +81,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.stocks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: vars.rem(20);
+  margin-top: vars.rem(74);
+
+  @media (max-width: vars.$max-1300) {
+    padding: 0 vars.rem(16);
+  }
 }

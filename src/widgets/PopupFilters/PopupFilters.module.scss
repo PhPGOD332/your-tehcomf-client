@@ -29,7 +29,7 @@
   width: vars.rem(480);
   box-shadow: vars.rem(3) vars.rem(10) vars.rem(22) 0 vars.$shadow;
   //bottom: vars.rem(-665);
-  transform: translateY(vars.rem(0));
+
 
   &_hidden {}
 
@@ -157,7 +157,7 @@
     //}
 
     position: fixed;
-
+    transform: translateY(vars.rem(0));
     padding-top: vars.rem(16);
     padding-bottom: vars.rem(50);
     width: 100vw;
@@ -166,6 +166,7 @@
     transition: bottom 0.2s ease;
     z-index: 5;
     left: 0;
+    //bottom: -100%;
 
     &_hidden {
       //transition: bottom 0.2s ease-in-out;

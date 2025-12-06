@@ -2,12 +2,14 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from './DragAndDropButton.module.scss';
 
+type TButtonStyle = 'FORM' | 'LIGHT';
+
 interface DraggableButtonProps {
     id?: string;
     formSubmit?: () => void;
     isResetButton: boolean;
     resetTimeout: number;
-    buttonStyle: string;
+    buttonStyle: TButtonStyle;
     beforeDragCaption?: string;
     afterDragCaption?: string;
     afterDropCaption?: string;
@@ -35,14 +37,17 @@ const
     const checkRef = useRef<SVGSVGElement | null>(null);
     const arrowRef = useRef<SVGSVGElement | null>(null);
 
-    const getStyle = (style: string) => {
+    const getStyle = (style: TButtonStyle) => {
+        let checkStyle: never;
+
         switch (style) {
             case 'FORM':
                 return styles.draggableFormButton;
             case 'LIGHT':
                 return styles.draggableLightButton;
             default:
-                return '';
+                checkStyle = style;
+                return checkStyle;
         }
     }
 

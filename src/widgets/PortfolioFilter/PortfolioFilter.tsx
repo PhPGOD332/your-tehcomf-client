@@ -5,7 +5,7 @@ import Select from "@/shared/UI/Select/Select";
 import {IFilters} from "@/types/IFilters";
 import {IFilterBudget} from "@/types/PortfolioFilters/IFilterBudget";
 import {IFilterColor} from "@/types/PortfolioFilters/IFilterColor";
-import {IFilterStyle} from "@/types/PortfolioFilters/IFilterStyle";
+import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
 import PopupFilters from "@/widgets/PopupFilters/PopupFilters";
 
@@ -13,7 +13,7 @@ interface FilterProps {
     countItems: number;
     types: IFilterType[];
     colors: IFilterColor[];
-    stylingItems: IFilterStyle[];
+    layouts: IFilterLayout[];
     budgets: IFilterBudget[];
     currentFilters: IFilters;
     filtersApplyHandler: (
@@ -26,7 +26,7 @@ const PortfolioFilter = (
         countItems,
         types,
         colors,
-        stylingItems,
+        layouts,
         budgets,
         currentFilters,
         filtersApplyHandler
@@ -41,10 +41,10 @@ const PortfolioFilter = (
         });
     }
 
-    const stylesChangeHandler = (styleName: string) => {
+    const stylesChangeHandler = (layoutName: string) => {
         filtersApplyHandler({
             ...currentFilters,
-            style: stylingItems ? stylingItems.find(style => style.name === styleName) ?? null : null
+            layout: layouts ? layouts.find(layout => layout.name === layoutName) ?? null : null
         });
     }
 
@@ -64,11 +64,11 @@ const PortfolioFilter = (
 
     const clearFiltersHandle = () => {
         filtersApplyHandler({
-            style: null,
+            layout: null,
             type: null,
             color: null,
             budget: null
-        })
+        });
     }
 
     return (
@@ -128,7 +128,7 @@ const PortfolioFilter = (
                 <Select
                     width={208}
                     caption={'Стиль'}
-                    options={stylingItems}
+                    options={layouts}
                     changeHandle={stylesChangeHandler}
                 />
                 <Select
@@ -145,7 +145,7 @@ const PortfolioFilter = (
                 filtersApplyHandler={filtersApplyHandler}
                 types={types}
                 colors={colors}
-                stylingItems={stylingItems}
+                stylingItems={layouts}
                 budgets={budgets}
                 clearFiltersHandle={clearFiltersHandle}
             />

@@ -1,15 +1,15 @@
 import {IFilterBudget} from "@/types/PortfolioFilters/IFilterBudget";
 import {IFilterColor} from "@/types/PortfolioFilters/IFilterColor";
-import {IFilterStyle} from "@/types/PortfolioFilters/IFilterStyle";
+import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
 
 export interface IFilters {
     color: IFilterColor | null;
-    style: IFilterStyle | null;
+    layout: IFilterLayout | null;
     type: IFilterType | null;
     budget: IFilterBudget | null;
 }
 
-export type TFilter = IFilterColor | IFilterStyle | IFilterType | IFilterBudget;
+export type TFilter = IFilterColor | IFilterLayout | IFilterType | IFilterBudget;
 
-export type TNameCategory = "color" | "style" | "type" | "budget";
+export type TNameCategory = "color" | "layout" | "type" | "budget";

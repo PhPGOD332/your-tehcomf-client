@@ -1,7 +1,7 @@
 import $api from "@/http";
 import {IFilterBudget} from "@/types/PortfolioFilters/IFilterBudget";
 import {IFilterColor} from "@/types/PortfolioFilters/IFilterColor";
-import {IFilterStyle} from "@/types/PortfolioFilters/IFilterStyle";
+import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
 
 export class PortfolioFiltersService {
@@ -10,8 +10,8 @@ export class PortfolioFiltersService {
         return response.data;
     }
 
-    static async getFilterStyles(): Promise<IFilterStyle[]> {
-        const response = await $api.get('/filter-styles').catch(error => error);
+    static async getFilterLayouts(): Promise<IFilterLayout[]> {
+        const response = await $api.get('/filter-layouts').catch(error => error);
         return response.data;
     }
 

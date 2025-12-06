@@ -1,7 +1,7 @@
 import {IColor} from "@/types/IColor";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
 import {IImage} from "@/types/IImage";
-import {IFilterStyle} from "@/types/PortfolioFilters/IFilterStyle";
+import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 
 export interface IWork {
     id: number;
@@ -10,7 +10,8 @@ export interface IWork {
     mainImage: IImage;
     // images: string[];
     // colors: IColor[];
-    style: IFilterStyle;
+    style: string;
+    layout: IFilterLayout;
     type: IFilterType;
     sizesRoom: string;
     sizesFurniture: string;
@@ -21,4 +22,5 @@ export interface IWork {
     facadeColors: IColor[];
     tableTopColor: IColor;
     furnitureAccessories: string;
+    price: number;
 }

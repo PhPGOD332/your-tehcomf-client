@@ -50,8 +50,8 @@ const PortfolioCard = React.memo((
                     <MiniTitle classNames={styles.cardTitle}>{work.title ?? ''}</MiniTitle>
                 </div>
                 <div className={styles.categories}>
-                    <span className={`${styles.category} ${styles.firstCategory}`}>Минимализм</span>
-                    <span className={`${styles.category}`}>{work.style.caption ?? ''}</span>
+                    <span className={`${styles.category} ${styles.firstCategory}`}>{work.style}</span>
+                    <span className={`${styles.category}`}>{work.layout.caption ?? ''}</span>
                 </div>
             </div>
         </Link>
