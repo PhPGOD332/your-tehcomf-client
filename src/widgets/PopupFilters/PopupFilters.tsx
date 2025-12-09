@@ -204,7 +204,6 @@ const PopupFilters = (
         switch (filter.type) {
             case "type":
                 setCurrentFilters({...currentFilters, type: filter});
-
                 return;
             case "layout":
                 setCurrentFilters({...currentFilters, layout: filter});

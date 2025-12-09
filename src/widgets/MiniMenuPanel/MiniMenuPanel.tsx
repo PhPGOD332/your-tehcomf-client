@@ -1,7 +1,8 @@
-import React from 'react';
+'use client'
+import React, {useEffect, useState} from 'react';
 import styles from './MiniMenuPanel.module.scss';
 import GreenButton from "@/shared/UI/GreenButton/GreenButton";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import {pagesLinks} from "@/shared/constants";
 
 export interface MiniManuPanelProps {
@@ -14,6 +15,18 @@ const MiniMenuPanel = (
         setIsOpenPopup
     }: MiniManuPanelProps) => {
     const router = useRouter();
+    const pathname = usePathname();
+    console.log(pathname === '/' + pagesLinks.contacts)
+
+    const [currentPathname, setCurrentPathname] = useState('');
+
+    useEffect(() => {
+        if (pathname.startsWith('/' + pagesLinks.portfolio)) {
+            setCurrentPathname('/' + pagesLinks.portfolio);
+        } else {
+            setCurrentPathname(pathname);
+        }
+    }, [pathname]);
 
     const itemClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
         const navItem = e.currentTarget;
@@ -67,8 +80,9 @@ const MiniMenuPanel = (
                         </div>
                     </div>
                     <div
-                        className={styles.navItem}
+                        className={`${styles.navItem} ${currentPathname === '/' + pagesLinks.portfolio ? styles.navItem_active : ''}`}
                         onClick={(e) => itemClickHandler(e)}
+                        data-link={pagesLinks.portfolio}
                     >
                         <span className={styles.navItemSpan}>Портфолио</span>
                         <div className={styles.navItemIconBlock}>
@@ -87,7 +101,7 @@ const MiniMenuPanel = (
                         </div>
                     </div>
                     <div
-                        className={styles.navItem}
+                        className={`${styles.navItem} ${pathname === '/' + pagesLinks.contacts ? styles.navItem_active : ''}`}
                         onClick={(e) => itemClickHandler(e)}
                         data-link={pagesLinks.contacts}
                     >

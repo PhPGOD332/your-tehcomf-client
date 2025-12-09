@@ -15,7 +15,7 @@
     .navBlock {
       display: flex;
       align-items: center;
-      gap: vars.rem(15);
+      gap: vars.rem(0);
       background-color: #D2D3D4;
       border-radius: vars.rem(24);
       padding: vars.rem(16);
@@ -40,6 +40,7 @@
           padding: vars.rem(12) vars.rem(16);
 
           .navItemSpan {
+            display: inline-block !important;
             opacity: 1 !important;
             width: 100% !important;
             color: vars.$white;
@@ -58,6 +59,7 @@
         }
 
         .navItemSpan {
+          display: none;
           font-size: vars.rem(14);
           font-weight: 600;
           color: vars.$white;
