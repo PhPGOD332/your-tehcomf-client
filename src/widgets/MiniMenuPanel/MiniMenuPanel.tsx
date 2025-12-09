@@ -2,10 +2,11 @@
 import React, {useEffect, useState} from 'react';
 import styles from './MiniMenuPanel.module.scss';
 import GreenButton from "@/shared/UI/GreenButton/GreenButton";
-import {usePathname, useRouter} from "next/navigation";
-import {pagesLinks} from "@/shared/constants";
+import { usePathname } from "next/navigation";
+import { pagesLinks } from "@/shared/constants";
+import Link from "next/link";
 
-export interface MiniManuPanelProps {
+export interface MiniMenuPanelProps {
     isPopup?: boolean;
     setIsOpenPopup: (val: boolean) => void;
 }
@@ -13,12 +14,10 @@ export interface MiniManuPanelProps {
 const MiniMenuPanel = (
     {
         setIsOpenPopup
-    }: MiniManuPanelProps) => {
-    const router = useRouter();
+    }: MiniMenuPanelProps) => {
     const pathname = usePathname();
-    console.log(pathname === '/' + pagesLinks.contacts)
 
-    const [currentPathname, setCurrentPathname] = useState('');
+    const [currentPathname, setCurrentPathname] = useState(pathname);
 
     useEffect(() => {
         if (pathname.startsWith('/' + pagesLinks.portfolio)) {
@@ -28,40 +27,13 @@ const MiniMenuPanel = (
         }
     }, [pathname]);
 
-    const itemClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-        const navItem = e.currentTarget;
-        const navItemParent = navItem.parentElement;
-
-        if (!navItem || !navItemParent) return;
-
-        for (let i = 0; i <= navItem.parentElement.children.length - 1; i++) {
-            const parentChild = navItemParent.children.item(i);
-
-            if (!parentChild) return;
-
-            parentChild.classList.remove(styles.navItem_active);
-        }
-
-        navItem.classList.add(styles.navItem_active);
-
-        setTimeout(() => {
-            if (!navItem.getAttribute('data-link')) return;
-
-            router.push(navItem.getAttribute('data-link') ?? '');
-
-            setTimeout(() => {
-                navItem.classList.remove(styles.navItem_active);
-            }, 500);
-        }, 500);
-    }
-
     return (
         <div className={styles.panelBlock}>
             <div className={styles.panelWrapper}>
                 <div className={styles.navBlock}>
-                    <div
+                    <Link
+                        href={'#'}
                         className={styles.navItem}
-                        onClick={(e) => itemClickHandler(e)}
                     >
                         <span className={styles.navItemSpan}>Каталог</span>
                         <div className={styles.navItemIconBlock}>
@@ -78,11 +50,10 @@ const MiniMenuPanel = (
                                 <circle cx="18.7008" cy="18.7006" r="2.29927" fill="#29292B"/>
                             </svg>
                         </div>
-                    </div>
-                    <div
+                    </Link>
+                    <Link
+                        href={pagesLinks.portfolio}
                         className={`${styles.navItem} ${currentPathname === '/' + pagesLinks.portfolio ? styles.navItem_active : ''}`}
-                        onClick={(e) => itemClickHandler(e)}
-                        data-link={pagesLinks.portfolio}
                     >
                         <span className={styles.navItemSpan}>Портфолио</span>
                         <div className={styles.navItemIconBlock}>
@@ -99,11 +70,10 @@ const MiniMenuPanel = (
                                     fill="#58595B"/>
                             </svg>
                         </div>
-                    </div>
-                    <div
-                        className={`${styles.navItem} ${pathname === '/' + pagesLinks.contacts ? styles.navItem_active : ''}`}
-                        onClick={(e) => itemClickHandler(e)}
-                        data-link={pagesLinks.contacts}
+                    </Link>
+                    <Link
+                        href={pagesLinks.contacts}
+                        className={`${styles.navItem} ${currentPathname === '/' + pagesLinks.contacts ? styles.navItem_active : ''}`}
                     >
                         <span className={styles.navItemSpan}>Контакты</span>
                         <div className={styles.navItemIconBlock}>
@@ -114,7 +84,7 @@ const MiniMenuPanel = (
                                     fill="#58595B"/>
                             </svg>
                         </div>
-                    </div>
+                    </Link>
                 </div>
                 <GreenButton
                     isMobileSmall={true}

@@ -11,5 +11,6 @@ export interface IFilters {
 }
 
 export type TFilter = IFilterColor | IFilterLayout | IFilterType | IFilterBudget;
+export type TFiltersList = IFilterColor[] | IFilterLayout[] | IFilterType[] | IFilterBudget[];
 
 export type TNameCategory = "color" | "layout" | "type" | "budget";

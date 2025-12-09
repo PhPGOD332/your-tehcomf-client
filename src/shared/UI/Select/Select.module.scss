@@ -3,19 +3,111 @@
 .selectWrapper {
   display: inline-block;
   position: relative;
-  height: vars.rem(47);
+  //height: vars.rem(47);
 
-  .arrow {
-    display: inline-block;
+  //.selectListWrapper {
+  //  opacity: 0;
+  //  visibility: hidden;
+  //}
+
+  &_inactive {
+
+    .selectListWrapper {
+      transition: 0.3s;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &_active {
+    .select {
+      .caption {
+        transition: 0.3s;
+        color: vars.$green;
+      }
+
+      .arrow {
+        transition: 0.3s;
+        transform: rotate(180deg);
+
+        > svg {
+          > path {
+            transition: 0.3s;
+            stroke: vars.$green;
+          }
+        }
+      }
+    }
+
+    .selectListWrapper {
+      transition: 0.3s;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .selectListWrapper {
     position: absolute;
-    right: vars.rem(20);
-    top: vars.rem(10);
-    cursor: pointer;
+    padding: vars.rem(12) vars.rem(20);
+    background-color: vars.$light-gray;
+    border-radius: vars.rem(20);
+    margin-top: vars.rem(8);
+    z-index: 5;
+
+    .selectList {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: vars.rem(12);
+      width: 100%;
+
+      .selectOption {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: vars.rem(10);
+        width: 100%;
+        cursor: pointer;
+        transition: 0.3s;
+
+        //padding: vars.rem(5);
+
+        //&:hover {
+        //  background-color: vars.$green;
+        //  color: vars.$white;
+        //}
+
+        .checkIcon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: vars.rem(28);
+          height: vars.rem(28);
+          border-radius: 50%;
+          border: vars.rem(2.1) solid vars.$gray;
+          background-color: transparent;
+          transition: 0.3s;
+
+          &_active {
+            background-color: vars.$green;
+            border: none;
+          }
+        }
+
+        .optionCaption {
+          font-size: vars.rem(19);
+          font-weight: 300;
+          text-align: right;
+        }
+      }
+    }
   }
 }
 
 .select {
-  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   background-color: vars.$light-gray;
   border-radius: vars.rem(20);
@@ -23,8 +115,37 @@
   cursor: pointer;
   padding: vars.rem(12) vars.rem(20);
   appearance: none;
-  font-size: vars.rem(19);
-  font-weight: 400;
+  transition: 0.3s;
+
+  &_active {
+    .caption {
+      color: vars.$green;
+    }
+
+    .arrow {
+      transition: 0.3s;
+
+      > svg {
+        > path {
+          transition: 0.3s;
+          stroke: vars.$green;
+        }
+      }
+    }
+  }
+
+  .caption {
+    font-size: vars.rem(19);
+    font-weight: 400;
+    transition: 0.3s;
+  }
+
+  .arrow {
+    display: inline-block;
+    position: absolute;
+    right: vars.rem(20);
+    cursor: pointer;
+  }
 
   .option {
     cursor: pointer;
