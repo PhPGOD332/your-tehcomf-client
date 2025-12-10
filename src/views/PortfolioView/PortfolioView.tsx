@@ -14,10 +14,18 @@ import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
 import StockBanner from "@/widgets/StockBanner/StockBanner";
 import greenStock from '@/data/images/stocks_banners/guys.png';
+import greenMobileStock from '@/data/images/stocks_banners/guys_mobile.png';
 import blueStock from '@/data/images/stocks_banners/tg.png';
 import {TImage} from "@/types/IImage";
+import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {Autoplay} from "swiper/modules";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/scss/pagination';
 
 const greenStockImage: TImage = greenStock;
+const greenMobileStockImage: TImage = greenMobileStock;
 const blueStockImage: TImage = blueStock;
 
 interface PortfolioProps {
@@ -41,6 +49,7 @@ const PortfolioView = (
         works = []
     }: PortfolioProps
 ) => {
+    const isMobile = useMediaQuery('(max-width: 1150px)');
     const [currentCount, setCurrentCount] = useState<number>(12);
     const step = 6;
     const [allWorks, ] = useState<IWork[]>(works);
@@ -192,26 +201,74 @@ const PortfolioView = (
                     :
                     ''
                 }
-                <div className={styles.stocks}>
-                    <StockBanner
-                        caption={'Скидка 10% <br> всем новосёлам'}
-                        buttonText={'Применить'}
-                        clickAction={completeStockAction}
-                        color={'green'}
-                        image={greenStockImage}
-                        imageWidth={228}
-                        imageHeight={228}
-                        imageStyles={{bottom: '-30px'}}
-                    />
-                    <StockBanner
-                        caption={'Скидка 2% подписчикам <br> нашего ТГ канала'}
-                        buttonText={'Подписаться'}
-                        clickAction={subscribeStockAction}
-                        color={'blue'}
-                        image={blueStockImage}
-                        imageWidth={160}
-                        imageHeight={160}
-                    />
+                <div className={styles.stocksWrapper}>
+                    {isMobile ?
+                        <Swiper
+                            className={styles.stocksSwiper}
+                            modules={[Autoplay]}
+                            spaceBetween={20}
+                            slidesPerView={'auto'}
+                            effect={"slide"}
+                            preventInteractionOnTransition={true}
+                            noSwiping={true}
+                            noSwipingClass={'no-swiping'}
+                        >
+                            <SwiperSlide
+                                className={styles.stockSlide}
+                            >
+                                <StockBanner
+                                    caption={'Скидка 10% <br> всем новосёлам'}
+                                    buttonText={'Применить'}
+                                    clickAction={completeStockAction}
+                                    color={'green'}
+                                    image={greenStockImage}
+                                    imageWidth={228}
+                                    imageHeight={228}
+                                    imageStyles={{bottom: '-30px'}}
+                                    mobileImage={greenMobileStockImage}
+                                    mobileImageWidth={260}
+                                    mobileImageHeight={260}
+                                />
+                            </SwiperSlide>
+                            <SwiperSlide
+                                className={styles.stockSlide}
+                            >
+                                <StockBanner
+                                    caption={'Скидка 2% подписчикам <br> нашего ТГ канала'}
+                                    mobileCaption={'Скидка 2% <br> подписчикам <br> ТГ канала'}
+                                    buttonText={'Подписаться'}
+                                    clickAction={subscribeStockAction}
+                                    color={'blue'}
+                                    image={blueStockImage}
+                                    imageWidth={160}
+                                    imageHeight={160}
+
+                                />
+                            </SwiperSlide>
+                        </Swiper>
+                        :
+                        <div className={styles.stocks}>
+                            <StockBanner
+                                caption={'Скидка 10% <br> всем новосёлам'}
+                                buttonText={'Применить'}
+                                clickAction={completeStockAction}
+                                color={'green'}
+                                image={greenStockImage}
+                                imageWidth={228}
+                                imageHeight={228}
+                                imageStyles={{bottom: '-30px'}}
+                            />
+                            <StockBanner
+                                caption={'Скидка 2% подписчикам <br> нашего ТГ канала'}
+                                buttonText={'Подписаться'}
+                                clickAction={subscribeStockAction}
+                                color={'blue'}
+                                image={blueStockImage}
+                                imageWidth={160}
+                                imageHeight={160}
+                            />
+                        </div>
+                    }
                 </div>
             </div>
         </div>

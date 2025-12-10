@@ -58,4 +58,28 @@
       width: auto;
     }
   }
+
+  @media(max-width: vars.$max-600) {
+    height: 100%;
+
+    .wrapper {
+      height: 100%;
+      align-items: center;
+      gap: vars.rem(16);
+
+      .caption {
+        text-align: center;
+      }
+
+      .imageBlock {
+        position: relative;
+      }
+
+      .bannerBtn {
+        border: none;
+        background-color: vars.$white;
+        color: vars.$black;
+      }
+    }
+  }
 }

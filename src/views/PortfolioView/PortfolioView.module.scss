@@ -83,13 +83,32 @@
   align-items: center;
 }
 
-.stocks {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: vars.rem(20);
+.stocksWrapper {
   margin-top: vars.rem(74);
 
-  @media (max-width: vars.$max-1300) {
-    padding: 0 vars.rem(16);
+  .stocks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: vars.rem(20);
+
+    @media (max-width: vars.$max-1300) {
+      padding: 0 vars.rem(16);
+    }
+  }
+
+  .stocksSwiper {
+    display: none;
+    height: fit-content;
+
+    .stockSlide {
+      width: 90% !important;
+      height: auto;
+    }
+
+    @media (max-width: vars.$max-1150) {
+      display: block;
+      max-width: 100%;
+      padding: 0 vars.rem(16);
+    }
   }
 }
