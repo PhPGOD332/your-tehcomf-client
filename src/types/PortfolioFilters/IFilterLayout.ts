@@ -3,4 +3,5 @@ export interface IFilterLayout {
     name: string;
     caption: string;
     type: "layout";
+    order: number;
 }

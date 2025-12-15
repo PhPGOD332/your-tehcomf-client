@@ -5,4 +5,5 @@ export interface IFilterBudget {
     maxValue: number;
     caption: string;
     type: "budget";
+    order: number;
 }

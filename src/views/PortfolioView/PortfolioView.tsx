@@ -23,6 +23,8 @@ import {Autoplay} from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/scss/pagination';
+import PopupForm from "@/widgets/PopupForm/PopupForm";
+import {useRouter} from "next/navigation";
 
 const greenStockImage: TImage = greenStock;
 const greenMobileStockImage: TImage = greenMobileStock;
@@ -50,6 +52,7 @@ const PortfolioView = (
     }: PortfolioProps
 ) => {
     const isMobile = useMediaQuery('(max-width: 1150px)');
+    const router = useRouter();
     const [currentCount, setCurrentCount] = useState<number>(12);
     const step = 6;
     const [allWorks, ] = useState<IWork[]>(works);
@@ -60,6 +63,7 @@ const PortfolioView = (
         type: null,
         budget: null
     });
+    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
 
     const getCountedWorks = (works: IWork[]) => {
         return works.filter((work, num) => num <= currentCount)
@@ -157,11 +161,11 @@ const PortfolioView = (
     }
 
     const completeStockAction = () => {
-
+        setIsPopupOpen(true);
     }
 
     const subscribeStockAction = () => {
-
+        router.replace('https://t.me/youkuhnya');
     }
 
     return (
@@ -271,6 +275,11 @@ const PortfolioView = (
                     }
                 </div>
             </div>
+            <PopupForm
+                isOpen={isPopupOpen}
+                setIsOpen={setIsPopupOpen}
+                noteText={'Я новосел, хочу скидку 10%!'}
+            />
         </div>
     );
 };

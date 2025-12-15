@@ -3,4 +3,5 @@ export interface IFilterType {
     name: string;
     caption: string;
     type: "type";
+    order: number;
 }

@@ -15,6 +15,7 @@ interface TextareaProps {
     name?: string;
     isResizable?: boolean;
     error?: FieldError;
+    text?: string;
 }
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
@@ -30,6 +31,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
         name,
         isResizable = false,
         error,
+        text,
         ...props
     }: TextareaProps, ref) => {
 
@@ -58,6 +60,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
                 // onInput={(e) => inputHandler(e)}
                 style={{resize: isResizable ? "both" : "none"}}
                 ref={ref}
+                value={text ?? ''}
                 {...props}
             >{children || undefined}</textarea>
             <span className={styles.errorSpan}>{error ? error.message : ''}</span>

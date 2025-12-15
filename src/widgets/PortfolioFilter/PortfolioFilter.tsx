@@ -127,7 +127,7 @@ const PortfolioFilter = (
                 </div>
                 <Select
                     width={208}
-                    caption={'Стиль'}
+                    caption={'Планировка'}
                     options={layouts}
                     changeHandle={stylesChangeHandler}
                 />

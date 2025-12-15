@@ -40,10 +40,10 @@ const getAllWorks = async (): Promise<IWork[]> => {
 }
 
 const Page = async () => {
-    const colors = (await getColors()).sort((color1, color2) => color1.id - color2.id);
-    const types = (await getTypes()).sort((type1, type2) => type1.id - type2.id);
-    const stylingItems = (await getStyles()).sort((style1, style2) => style1.id - style2.id);
-    const budgets = (await getBudgets()).sort((budget1, budget2) => budget1.id - budget2.id);
+    const colors = (await getColors()).sort((color1, color2) => color1.order - color2.order);
+    const types = (await getTypes()).sort((type1, type2) => type1.order - type2.order);
+    const stylingItems = (await getStyles()).sort((style1, style2) => style1.order - style2.order);
+    const budgets = (await getBudgets()).sort((budget1, budget2) => budget1.order - budget2.order);
     const works = PortfolioService.mutateWorksImagesPaths(await getAllWorks());
 
     return (

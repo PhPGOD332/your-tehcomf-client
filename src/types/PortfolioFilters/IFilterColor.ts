@@ -3,4 +3,5 @@ export interface IFilterColor {
     name: string;
     caption: string;
     type: "color";
+    order: number;
 }

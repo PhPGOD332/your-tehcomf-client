@@ -17,7 +17,7 @@ const PortfolioCard = React.memo((
 ) => {
 
     return (
-        <Link href={pagesLinks.portfolio} className={styles.card}>
+        <Link href={`${pagesLinks.portfolio}/${work.name}`} className={styles.card}>
             <div className={styles.imageBlock}>
                 {work.mainImage ?
                     <Image

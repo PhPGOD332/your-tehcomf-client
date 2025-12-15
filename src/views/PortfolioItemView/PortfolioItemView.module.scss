@@ -1,0 +1,73 @@
+@use '@/shared/styles/vars' as vars;
+
+.portfolioItemView {
+  margin-bottom: vars.rem(74);
+
+  @media (max-width: vars.$max-1400) {
+    //width: calc(100% - 32px);
+    padding: 0 vars.rem(16);
+    padding: 0;
+  }
+
+  .navPanel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: vars.rem(130);
+
+    .navBar {
+      display: flex;
+      align-items: center;
+      font-size: vars.rem(13);
+      font-weight: 400;
+      color: vars.$black;
+      gap: vars.rem(20);
+
+      .prevLink {
+        color: vars.$gray;
+        transition: 0.3s;
+
+        &:hover {
+          color: vars.$black;
+        }
+      }
+
+      .navSpan {
+        color: vars.$black;
+      }
+
+      .shareLink {
+        display: flex;
+        align-items: center;
+        gap: vars.rem(8);
+        color: vars.$black;
+      }
+    }
+
+    @media (max-width: vars.$max-1000) {
+
+
+    }
+  }
+
+  .titleBlock {
+    text-align: center;
+    margin-top: vars.rem(28);
+    margin-bottom: vars.rem(42);
+
+    .title {
+      margin-bottom: vars.rem(16);
+
+      @media (max-width: vars.$max-1000) {
+        margin-bottom: vars.rem(5);
+      }
+    }
+  }
+
+  .propertiesBlock {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: vars.rem(20);
+  }
+}

@@ -91,7 +91,7 @@ const PopupFilters = (
         },
         {
             name: 'layout',
-            caption: 'Стиль'
+            caption: 'Планировка'
         },
         {
             name: 'color',

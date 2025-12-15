@@ -16,6 +16,7 @@ import {pagesLinks} from "@/shared/constants";
 export interface PopupProps {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
+    noteText?: string;
     isPopup?: boolean;
 }
 
@@ -23,6 +24,7 @@ const PopupForm = (
     {
         isOpen,
         setIsOpen,
+        noteText
     }: PopupProps) => {
     const {
         register,
@@ -206,6 +208,7 @@ const PopupForm = (
                                 placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
                                 label='Примечание'
                                 rows={3}
+                                text={noteText ?? ''}
                                 {...register("note", {
                                     required: {
                                         value: true,
