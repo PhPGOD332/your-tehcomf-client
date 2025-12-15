@@ -304,6 +304,7 @@ const PopupForm = (
                             placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
                             label='Примечание'
                             rows={3}
+                            text={noteText ?? ''}
                             {...register("note", {
                                 required: {
                                     value: true,
