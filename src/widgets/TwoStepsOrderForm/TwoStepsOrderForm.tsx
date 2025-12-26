@@ -4,8 +4,8 @@ import styles from './TwoStepsOrderForm.module.scss';
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
 import TextInput from "@/shared/UI/TextInput/TextInput";
 import MaskedInput from "@/shared/UI/MaskedInput/MaskedInput";
-import { useForm } from "react-hook-form";
-import { TLimitedFormInputs } from "@/types/TFormInputs";
+import {useForm} from "react-hook-form";
+import {TLimitedFormInputs} from "@/types/TFormInputs";
 import {ClaimDto} from "@/types/dtos/Claim.dto";
 import ClaimService from "@/services/ClaimService";
 import Link from "next/link";
@@ -15,7 +15,7 @@ import {TImage} from "@/types/IImage";
 import image from '@/data/images/portfolio/form.png';
 import DragAndDropButton from "@/shared/UI/DragAndDropButton/DragAndDropButton";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
-import SubTitle from "@/shared/UI/SubTitle/SubTitle";
+import SubTitle, {TitleColors} from "@/shared/UI/SubTitle/SubTitle";
 
 const formImage: TImage = image;
 
@@ -39,7 +39,6 @@ const TwoStepsOrderForm = (
         handleSubmit,
         formState: { errors },
         resetField,
-        control
     } = useForm<TLimitedFormInputs>({mode: "onChange", reValidateMode: "onChange"});
 
     const isMobile = useMediaQuery('(max-width: 800px)');
@@ -48,12 +47,12 @@ const TwoStepsOrderForm = (
     const submitHandler = async (data: ClaimDto) => {
         if (step === 'second') {
             const timeout = setTimeout(async () => {
-                // const claimDto: ClaimDto = new ClaimDto({
-                //     ...data,
-                //     date: new Date()
-                // });
-                //
-                // await ClaimService.addClaim(claimDto);
+                const claimDto: ClaimDto = new ClaimDto({
+                    ...data,
+                    date: new Date()
+                });
+
+                await ClaimService.addClaim(claimDto);
 
                 // console.log(newClaim);
 
@@ -81,7 +80,7 @@ const TwoStepsOrderForm = (
                 return styles.mobileFormWrapper_blackWhite;
             default:
                 checkType = type;
-                return '';
+                return checkType;
         }
     }
 
@@ -91,7 +90,7 @@ const TwoStepsOrderForm = (
                 <div className={styles.titleBlock}>
                     <SubTitle
                         classNames={styles.title}
-                        color='white'
+                        color={TitleColors.WHITE}
                     >Понравился проект?</SubTitle>
                     <span className={styles.titleCaption}>Рассчитаем такой же по вашим размерам. Бесплатно!</span>
                 </div>
@@ -112,7 +111,7 @@ const TwoStepsOrderForm = (
                         <MaskedInput
                             classNames={styles.input}
                             mask='+7 (___) ___-__-__'
-                            replacement={{_: /[1-9]/}}
+                            replacement={{_: /[0-9]/}}
                             placeholder='Ваш телефон'
                             {...register("mobilePhone", {
                                 required: "Введите ваш телефон",
@@ -162,7 +161,7 @@ const TwoStepsOrderForm = (
                             <MaskedInput
                                 classNames={styles.input}
                                 mask='+7 (___) ___-__-__'
-                                replacement={{_: /[1-9]/}}
+                                replacement={{_: /[0-9]/}}
                                 placeholder='Ваш телефон'
                                 {...register("mobilePhone", {
                                     required: "Введите ваш телефон",

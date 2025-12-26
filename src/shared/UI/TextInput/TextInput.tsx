@@ -21,7 +21,7 @@ interface TextInputProps {
     id?: string;
     name?: string;
     error?: FieldError;
-    isPlaceholderError: boolean;
+    isPlaceholderError?: boolean;
 }
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
@@ -33,7 +33,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
         id,
         name,
         error,
-        isPlaceholderError = false,
+        isPlaceholderError,
         ...props
     }: TextInputProps, ref) => {
 

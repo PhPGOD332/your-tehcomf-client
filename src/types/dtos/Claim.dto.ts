@@ -4,8 +4,8 @@ export class ClaimDto {
     mobilePhone: string;
     note?: string;
     date: Date;
-    callDesign: boolean;
-    discussProject: boolean;
+    callDesign?: boolean;
+    discussProject?: boolean;
 
     constructor(props: {
         id?: number;

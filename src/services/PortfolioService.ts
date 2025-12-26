@@ -21,8 +21,6 @@ export class PortfolioService {
     }
 
     static mutateWorkImagePaths = (work: IWork): IWork => {
-        if (!work) return;
-
         if (work.name && work.images && work.images.length > 0) {
             // work.mainImage.src = `${process.env.NEXT_PUBLIC_API_URL}/images/${work.mainImage.src}`;
 

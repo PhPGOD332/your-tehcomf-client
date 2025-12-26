@@ -10,6 +10,7 @@ export interface TFormInputs {
 export interface TLimitedFormInputs {
     firstName: string;
     mobilePhone: string;
+    date: Date;
 }
 
 export enum TFormInputsNames {

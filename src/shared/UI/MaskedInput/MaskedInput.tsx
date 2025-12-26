@@ -19,7 +19,7 @@ interface MaskedInputProps {
     id?: string;
     name?: string;
     error?: FieldError;
-    isPlaceholderError: boolean;
+    isPlaceholderError?: boolean;
 }
 
 const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
@@ -30,12 +30,12 @@ const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
         value,
         placeholder,
         classNames,
-        showMask = false,
+        showMask,
         id,
         name,
         // onChange,
         error,
-        isPlaceholderError = false,
+        isPlaceholderError,
         ...props
     }: MaskedInputProps, ref) => {
 

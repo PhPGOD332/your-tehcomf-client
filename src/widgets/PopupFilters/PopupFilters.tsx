@@ -191,6 +191,8 @@ const PopupFilters = (
             case "color":
                 setViewFilters({activeCategory: category, filters: colors});
                 return;
+            case 'style':
+                return;
             default:
                 checkCategories = category.name;
                 setViewFilters({activeCategory: null, filters: []});

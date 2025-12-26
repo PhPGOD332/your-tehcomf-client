@@ -7,7 +7,6 @@ import Link from "next/link";
 import { pagesLinks } from "@/shared/constants";
 // import { EffectCreative } from 'swiper/modules';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/scss/pagination';
@@ -34,8 +33,7 @@ const PortfolioItemView = (
     }: PortfolioItemProps
 ) => {
     const isMobile = useMediaQuery('(max-width: 800px)');
-    const [swiper, setSwiper] = useState<SwiperType | null>(null);
-    const [active, setActive] = useState(1);
+    const [, setActive] = useState(1);
 
     // const canPrev =
 
@@ -92,7 +90,6 @@ const PortfolioItemView = (
 
                 </div>
                 <Swiper
-                    onSwiper={setSwiper}
                     grabCursor={true}
                     className={styles.imageSlider}
                     // modules={[EffectCredevative]}

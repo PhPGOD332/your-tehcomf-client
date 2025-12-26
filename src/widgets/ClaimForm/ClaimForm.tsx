@@ -65,7 +65,7 @@ const ClaimForm = (
                 <MaskedInput
                     label='Телефон'
                     mask='+7 (___) ___-__-__'
-                    replacement={{_: /[1-9]/}}
+                    replacement={{_: /[0-9]/}}
                     placeholder='+7 (000) 000-00-00'
                     {...register('mobilePhone', {
                         required: "Введите ваш телефон",
