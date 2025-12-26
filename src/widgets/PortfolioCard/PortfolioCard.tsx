@@ -19,7 +19,7 @@ const PortfolioCard = React.memo((
     return (
         <Link href={`${pagesLinks.portfolio}/${work.name}`} className={styles.card}>
             <div className={styles.imageBlock}>
-                {work.images[0] ?
+                {work && work.images && work.images.length > 0 ?
                     <Image
                         loader={() => work.images[0].src}
                         src={work.images[0].src}
