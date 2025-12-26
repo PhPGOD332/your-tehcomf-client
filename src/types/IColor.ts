@@ -3,4 +3,5 @@ export interface IColor {
     name: string;
     caption: string;
     hexCode: string;
+    captionCode: string;
 }

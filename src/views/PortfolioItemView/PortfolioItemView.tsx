@@ -1,27 +1,51 @@
-import React from 'react';
+'use client'
+import React, {useState} from 'react';
 import styles from './PortfolioItemView.module.scss';
 import SubTitle from "@/shared/UI/SubTitle/SubTitle";
 import {IWork} from "@/types/IWork";
 import Link from "next/link";
-import {pagesLinks} from "@/shared/constants";
+import { pagesLinks } from "@/shared/constants";
+// import { EffectCreative } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperType } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/scss/pagination';
+import 'swiper/css/effect-creative';
+import Image from "next/image";
+import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
+import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
+import TwoStepsOrderForm from "@/widgets/TwoStepsOrderForm/TwoStepsOrderForm";
+import PortfolioCard from "@/widgets/PortfolioCard/PortfolioCard";
+
 interface PortfolioItemProps {
     title?: string;
     subTitle?: string;
     work: IWork;
+    similarWorks: IWork[];
 }
+
+const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 
 const PortfolioItemView = (
     {
-        work
+        work,
+        similarWorks
     }: PortfolioItemProps
 ) => {
+    const isMobile = useMediaQuery('(max-width: 800px)');
+    const [swiper, setSwiper] = useState<SwiperType | null>(null);
+    const [active, setActive] = useState(1);
+
+    // const canPrev =
+
     return (
         <div className={styles.portfolioItemView}>
             <div className="container">
                 <div className={styles.navPanel}>
-                    <div className={styles.navBar}>
+                    <div className={`${styles.navBar} ${styles.navInfo}`}>
                         <Link
-                            href={'/' + pagesLinks.portfolio}
+                            href={pagesLinks.portfolio}
                             className={styles.prevLink}
                         >
                             Портфолио
@@ -35,8 +59,15 @@ const PortfolioItemView = (
                             </svg>
                         </span>
                         <span className={styles.navSpan}>
-                            {work.title}
+                            {work && work.title ?
+                                work.title
+                                :
+                                ''
+                            }
                         </span>
+                    </div>
+                    <div className={`${styles.navBar} ${styles.mobileNavBar}`}>
+                        <Link href={pagesLinks.portfolio}>Назад</Link>
                     </div>
                     <div className={styles.navBar}>
                         <Link href={'#'} className={styles.shareLink}>
@@ -51,11 +82,180 @@ const PortfolioItemView = (
                     </div>
                 </div>
                 <div className={styles.titleBlock}>
-                    <SubTitle classNames={styles.title}>{work.title}</SubTitle>
+                    <SubTitle classNames={styles.title}>
+                        {work && work.title ?
+                            work.title
+                            :
+                            ''
+                        }
+                    </SubTitle>
 
                 </div>
-                <div className={styles.propertiesBlock}>
+                <Swiper
+                    onSwiper={setSwiper}
+                    grabCursor={true}
+                    className={styles.imageSlider}
+                    // modules={[EffectCredevative]}
+                    // effect={'creative'}
+                    speed={300}
+                    slidesPerView={2}
+                    initialSlide={isMobile ? 0 : work && work.images ? work.images.length - 1 : 0}
+                    loop={true}
+                    // centeredSlides={true}
+                    resizeObserver
+                    // creativeEffect={{
+                    //     prev: {
+                    //         shadow: true,
+                    //         translate: ['-100%', 0, 0],
+                    //         opacity: 0,
+                    //         scale: 1
+                    //     },
+                    //     next: {
+                    //         translate: ['85%', 0, 0],
+                    //         scale: 1
+                    //     },
+                    // }}
+                    spaceBetween={20}
+                    wrapperClass={styles.sliderWrapper}
+                    slideActiveClass={styles.activeSlide}
+                    slidePrevClass={styles.prevSlide}
+                    slideNextClass={styles.nextSlide}
+                    onSlideChange={(swiper) => {
+                        if (!work || !work.images || work.images.length === 0) return;
 
+                        const maxIndex = work.images.length - 1;
+                        if (work.images.length <= 1) return setActive(0);
+
+                        if (isMobile) {
+                            setActive(clamp(swiper.activeIndex, 0, maxIndex));
+                        } else {
+                            setActive(clamp(swiper.activeIndex + 1, 1, maxIndex));
+                        }
+                    }}
+                >
+                    {work && work.images && work.images.length > 0 ?
+                        work.images.map((image, num) =>
+                            <SwiperSlide
+                                className={styles.imageSlide}
+                                key={num}
+                            >
+                                <div className={styles.imageBlock}>
+                                    <Image
+                                        src={image.src}
+                                        alt={image.imageAlt ?? ''}
+                                        fill={true}
+                                        className={styles.image}
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        )
+                        :
+                        ''
+                    }
+                    <SwiperNavigation/>
+                </Swiper>
+                <div className={styles.propertiesBlock}>
+                    <div className={styles.catalog}>
+
+                    </div>
+                    <table className={styles.propertiesTable}>
+                        <tbody>
+                        <tr className={styles.tableRow}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Стиль</span>
+                            </td>
+                            <td>
+                                <span className={`${styles.tableTextContent}`}>{work.style ? work.style.caption : '-'}</span>
+                            </td>
+                        </tr>
+                        <tr className={styles.tableRow}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Размеры помещения</span>
+                            </td>
+                            <td>
+                                <span className={`${styles.tableTextContent}`}>{work.sizesRoom ?? '-'}</span>
+                            </td>
+                        </tr>
+                        <tr className={styles.tableRow}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Размеры мебели</span>
+                            </td>
+                            <td>
+                                <span className={`${styles.tableTextContent}`}>{work.sizesFurniture ?? '-'}</span>
+                            </td>
+                        </tr>
+                        <tr className={styles.tableRow}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Планировка</span>
+                            </td>
+                            <td>
+                                <span className={`${styles.tableTextContent}`}>{work.layout.caption ?? '-'}</span>
+                            </td>
+                        </tr>
+                        <tr className={styles.tableRow}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Материалы</span>
+                            </td>
+                            <td>
+                                <span className={`${styles.tableTextContent}`}>{work.facadeMaterial ?? '-'}</span>
+                            </td>
+                        </tr>
+                        <tr className={`${styles.tableRow} ${styles.tableRowColor}`}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Цвет столешницы</span>
+                            </td>
+                            <td className={styles.colorColumn}>
+                                <div className={styles.colorSquare}
+                                     style={{
+                                         backgroundColor: work.tableTopColor.hexCode ?? 'transparent',
+                                         border: work.tableTopColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
+                                     }}></div>
+                                <span className={`${styles.tableTextContent}`}>{work.tableTopColor.captionCode ?? '-'}</span>
+                            </td>
+                        </tr>
+                        <tr className={`${styles.tableRow} ${styles.tableRowColor}`}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Цвет каркаса</span>
+                            </td>
+                            <td className={styles.colorColumn}>
+                                <div className={styles.colorSquare}
+                                     style={{
+                                         backgroundColor: work.bodyColor.hexCode ?? 'transparent',
+                                         border: work.bodyColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
+                                     }}></div>
+                                <span className={`${styles.tableTextContent}`}>{work.bodyColor.captionCode ?? '-'}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div className={styles.descriptionBlock}>
+                    <div className={styles.descriptionTitleBlock}>
+                        <SubTitle>Описание проекта</SubTitle>
+                    </div>
+                    <article
+                        className={styles.descriptionContent}
+                        dangerouslySetInnerHTML={{__html: work.description}}
+                    >
+                    </article>
+                </div>
+                <TwoStepsOrderForm
+                    firstStepCaption={'Понравился проект? Сделаем!'}
+                    secondStepCaption={'Уже почти...'}
+                    mobileType={'green'}
+                />
+                <div className={styles.similarWorksBlock}>
+                    <div className={styles.similarTitleBlock}>
+                        <SubTitle>Похожие проекты</SubTitle>
+                    </div>
+                    <div className={styles.similarWorks}>
+                        {similarWorks.map((similarWork, num) =>
+                            <PortfolioCard
+                                key={num}
+                                work={similarWork}
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

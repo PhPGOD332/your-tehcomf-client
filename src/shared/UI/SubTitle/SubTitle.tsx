@@ -13,19 +13,19 @@ export interface TitleProps {
     htmlContent?: string;
 }
 
-const SubTitle = ({children, htmlContent, color = TitleColors.BLACK, classNames}: TitleProps) => {
+const SubTitle = ({children, htmlContent, color, classNames}: TitleProps) => {
     return (
         <>
             {htmlContent ?
                 <h2
-                    style={{color: color}}
+                    style={{color: color ?? TitleColors.BLACK}}
                     className={`${styles.subTitle} ${classNames ?? ''}`}
                     dangerouslySetInnerHTML={{__html: htmlContent ?? ''}}
                 >
                 </h2>
                 :
                 <h2
-                    style={{color: color}}
+                    style={{color: color ?? TitleColors.BLACK}}
                     className={`${styles.subTitle} ${classNames ?? ''}`}
                 >
                     {children}

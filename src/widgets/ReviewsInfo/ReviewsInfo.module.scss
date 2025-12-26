@@ -92,11 +92,11 @@
 
 .reviewsMobile {
   max-width: 100%;
-  padding: 0 vars.rem(16);
-  display: none;
+  padding: 0 vars.rem(16) !important;
+  display: none !important;
 
   @media (max-width: vars.$max-1300) {
-    display: block;
+    display: block !important;
   }
 
   .reviewsWrapper {

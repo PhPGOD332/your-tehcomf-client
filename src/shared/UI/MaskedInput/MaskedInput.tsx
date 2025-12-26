@@ -19,6 +19,7 @@ interface MaskedInputProps {
     id?: string;
     name?: string;
     error?: FieldError;
+    isPlaceholderError: boolean;
 }
 
 const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
@@ -34,6 +35,7 @@ const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
         name,
         // onChange,
         error,
+        isPlaceholderError = false,
         ...props
     }: MaskedInputProps, ref) => {
 
@@ -53,7 +55,7 @@ const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
     // }, [error]);
 
     return (
-        <label htmlFor="" className={`${styles.maskedLabel} ${error ? styles.maskedLabel_error : ''}`}>
+        <label htmlFor="" className={`${styles.maskedLabel} ${error && isPlaceholderError ? styles.maskedLabel_placeholderError : error ? styles.maskedLabel_error : ''}`}>
             {label}
             <InputMask
                 mask={mask}
@@ -69,7 +71,11 @@ const MaskedInput = forwardRef<HTMLInputElement, MaskedInputProps>((
                 ref={ref}
                 {...props}
             />
-            <span className={styles.errorSpan}>{error ? error.message : ''}</span>
+            {!isPlaceholderError ?
+                <span className={styles.errorSpan}>{error ? error.message : ''}</span>
+                :
+                ''
+            }
         </label>
     );
 });

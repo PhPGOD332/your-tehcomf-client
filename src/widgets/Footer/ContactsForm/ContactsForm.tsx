@@ -10,13 +10,23 @@ import SwitchButton, {SwitchButtonColors} from "@/shared/UI/SwitchButton/SwitchB
 const ContactWomanImage: TImage = WomanImage;
 const ContactTeamImage: TImage = TeamImage;
 
-const ContactsForm = () => {
+interface FormProps {
+    isOnlyContacts?: boolean
+}
+
+const ContactsForm = (
+    {
+        isOnlyContacts
+    }: FormProps
+) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.innerWrapper}>
-                <SubTitle classNames={styles.title} color={TitleColors.WHITE}>Мебель мечты – <br className={styles.transfer}/> на расстоянии
-                    клика!</SubTitle>
-                <div className={styles.contactsBlock}>
+                {!isOnlyContacts &&
+	                <SubTitle classNames={styles.title} color={TitleColors.WHITE}>Мебель мечты – <br className={styles.transfer}/> на расстоянии
+		                клика!</SubTitle>
+                }
+                <div className={`${styles.contactsBlock} ${isOnlyContacts && styles.contactsBlock_only}`}>
                     <div className={styles.contacts}>
                         <SwitchButton
                             color={SwitchButtonColors.GRAY}
@@ -48,9 +58,11 @@ const ContactsForm = () => {
                             previewText={'Написать менеджеру'}
                         />
                     </div>
-                    <div className={styles.formBlock}>
-                        <ClaimForm isReset={true}/>
-                    </div>
+                    {!isOnlyContacts &&
+		                <div className={styles.formBlock}>
+			                <ClaimForm isReset={true}/>
+		                </div>
+                    }
                 </div>
             </div>
         </div>

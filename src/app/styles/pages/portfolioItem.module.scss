@@ -3,3 +3,12 @@
 .portfolioWorkPage {
 
 }
+
+.footerWrapper {
+  display: none;
+  width: 100%;
+
+  @media (max-width: vars.$max-1000) {
+    display: flex;
+  }
+}

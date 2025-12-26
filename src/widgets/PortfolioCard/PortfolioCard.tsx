@@ -19,11 +19,11 @@ const PortfolioCard = React.memo((
     return (
         <Link href={`${pagesLinks.portfolio}/${work.name}`} className={styles.card}>
             <div className={styles.imageBlock}>
-                {work.mainImage ?
+                {work.images[0] ?
                     <Image
-                        loader={() => work.mainImage.image}
-                        src={work.mainImage.image}
-                        alt={work.mainImage.imageAlt ?? ''}
+                        loader={() => work.images[0].src}
+                        src={work.images[0].src}
+                        alt={work.images[0].imageAlt ?? ''}
                         fill={true}
                         className={styles.image}
                     />
@@ -50,7 +50,7 @@ const PortfolioCard = React.memo((
                     <MiniTitle classNames={styles.cardTitle}>{work.title ?? ''}</MiniTitle>
                 </div>
                 <div className={styles.categories}>
-                    <span className={`${styles.category} ${styles.firstCategory}`}>{work.style}</span>
+                    <span className={`${styles.category} ${styles.firstCategory}`}>{work.style.caption}</span>
                     <span className={`${styles.category}`}>{work.layout.caption ?? ''}</span>
                 </div>
             </div>

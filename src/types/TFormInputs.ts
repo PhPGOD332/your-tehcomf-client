@@ -6,6 +6,12 @@ export interface TFormInputs {
     callDesign: boolean;
     discussProject: boolean;
 }
+
+export interface TLimitedFormInputs {
+    firstName: string;
+    mobilePhone: string;
+}
+
 export enum TFormInputsNames {
     firstName = 'firstName',
     mobilePhone = 'mobilePhone',

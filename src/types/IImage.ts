@@ -1,7 +1,7 @@
 import {StaticImageData} from "next/image";
 
 export interface IImage {
-    image: string;
+    src: string;
     imageAlt?: string;
     width?: number;
     height?: number;

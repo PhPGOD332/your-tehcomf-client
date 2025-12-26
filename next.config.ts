@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'tehcomf.ru',
         pathname: '/images/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        pathname: '/images/**',
       }
     ]
   }

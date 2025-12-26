@@ -38,9 +38,9 @@ export const pagesData: IPages = {
 
 export const pagesLinks = {
     main: "/",
-    contacts: 'contacts',
-    portfolio: 'portfolio',
-    privacyPolicy: 'privacy_policy'
+    contacts: '/contacts',
+    portfolio: '/portfolio',
+    privacyPolicy: '/privacy_policy'
 }
 
 interface IPage {

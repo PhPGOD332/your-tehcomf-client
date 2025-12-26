@@ -4,6 +4,8 @@ import { pagesData } from "@/shared/constants";
 import { PortfolioService } from "@/services/PortfolioService";
 import styles from '@/app/styles/pages/portfolioItem.module.scss';
 import PortfolioItemView from "@/views/PortfolioItemView/PortfolioItemView";
+import Footer from "@/widgets/Footer/Footer";
+import {IWork} from "@/types/IWork";
 
 interface PortfolioItemProps {
     params: Promise<{name: string}>;
@@ -24,13 +26,52 @@ const Page = async (
     const { name } = await params;
     const work = PortfolioService.mutateWorkImagePaths(await PortfolioService.getWork(name));
 
+    const filterWorks = (works: IWork[]): IWork[] => {
+        const setWorks = new Set<IWork>();
+
+        works.filter(work => {
+            let isFound = false;
+            setWorks.forEach(setWork => {
+                if (work.name === setWork.name) {
+                    isFound = true;
+                }
+            });
+
+            if (isFound) {
+                return false;
+            }
+
+            setWorks.add(work);
+            return true;
+        })
+
+        return [...setWorks];
+    }
+
+    const similarWorksWithStyles = PortfolioService.mutateWorksImagesPaths(
+        await PortfolioService.getWorksByFilter('style', work.style.name, work.name) ?? []
+    );
+
+    const similarWorksWithTypes = PortfolioService.mutateWorksImagesPaths(
+        await PortfolioService.getWorksByFilter('type', work.type.name, work.name) ?? []
+    );
+
+    const similarWorks = filterWorks([...similarWorksWithStyles, ...similarWorksWithTypes]);
+
     return (
         <>
             <main className={styles.portfolioWorkPage}>
                 <PortfolioItemView
                     work={work}
+                    similarWorks={similarWorks}
                 />
             </main>
+            <div className={styles.footerWrapper}>
+                <Footer
+                    isFormContact={true}
+                    isFormContactOnlyContacts={true}
+                />
+            </div>
         </>
     );
 };

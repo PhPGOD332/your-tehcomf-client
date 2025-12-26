@@ -8,13 +8,16 @@ import ContactsForm from "@/widgets/Footer/ContactsForm/ContactsForm";
 export interface FooterProps {
     isContact?: boolean;
     isFormContact?: boolean;
+    isFormContactOnlyContacts?: boolean;
 }
 
 const Footer = (
     {
         isContact,
-        isFormContact
+        isFormContact,
+        isFormContactOnlyContacts
     }: FooterProps) => {
+
     return (
         <div className={styles.wrapper} style={{backgroundColor: isFormContact ? '#29292B' : '#FAFAFA'}}>
             <div className={`${styles.innerWrapper} ${isFormContact && styles.innerWrapper_dark}`}>
@@ -23,7 +26,9 @@ const Footer = (
                         <Contacts />
                     }
                     {isFormContact &&
-                        <ContactsForm />
+                        <ContactsForm
+                            isOnlyContacts={isFormContactOnlyContacts ?? false}
+                        />
                     }
                     <hr className={`${styles.line} ${isFormContact && styles.line_contact}`}/>
                     <div className={`${styles.footer} ${isFormContact && styles.footer_withBorderRadius}`}>

@@ -24,13 +24,17 @@
       .caption {
         transition: 0.3s;
         color: vars.$green;
+        overflow: hidden;
+        white-space: nowrap;
       }
 
       .arrow {
-        transition: 0.3s;
-        transform: rotate(180deg);
+        height: 100%;
 
         > svg {
+          transition: 0.3s;
+          transform: rotate(180deg);
+
           > path {
             transition: 0.3s;
             stroke: vars.$green;
@@ -81,6 +85,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          min-width: vars.rem(28);
           width: vars.rem(28);
           height: vars.rem(28);
           border-radius: 50%;
@@ -98,6 +103,7 @@
           font-size: vars.rem(19);
           font-weight: 300;
           text-align: right;
+          white-space: nowrap;
         }
       }
     }
@@ -138,13 +144,25 @@
     font-size: vars.rem(19);
     font-weight: 400;
     transition: 0.3s;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .arrow {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     right: vars.rem(20);
     cursor: pointer;
+    height: 100%;
+    background-color: vars.$light-gray;
+    padding-left: vars.rem(10);
+
+    > svg {
+      transition: 0.3s;
+      transform: rotate(0deg);
+    }
   }
 
   .option {

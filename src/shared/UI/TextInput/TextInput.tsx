@@ -21,6 +21,7 @@ interface TextInputProps {
     id?: string;
     name?: string;
     error?: FieldError;
+    isPlaceholderError: boolean;
 }
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
@@ -32,6 +33,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
         id,
         name,
         error,
+        isPlaceholderError = false,
         ...props
     }: TextInputProps, ref) => {
 
@@ -46,11 +48,11 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
     }
 
     return (
-        <label htmlFor="" className={`${styles.inputLabel} ${error ? styles.inputLabel_error : ''}`}>
+        <label htmlFor="" className={`${styles.inputLabel} ${error && isPlaceholderError ? styles.inputLabel_placeholderError : error ? styles.inputLabel_error : ''}`}>
             {label}
             <input
                 type={type}
-                placeholder={placeholder}
+                placeholder={isPlaceholderError && error ? error.message : placeholder}
                 className={`${classNames ? styles.textInput + ' ' + classNames : styles.textInput}`}
                 id={id}
                 name={name}
@@ -59,7 +61,11 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
                 ref={ref}
                 {...props}
             />
-            <span className={styles.errorSpan}>{error ? error.message : ''}</span>
+            {!isPlaceholderError ?
+                <span className={styles.errorSpan}>{error ? error.message : ''}</span>
+                :
+                ''
+            }
         </label>
     );
 });

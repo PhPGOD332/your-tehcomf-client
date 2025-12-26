@@ -34,6 +34,33 @@
     }
   }
 
+  &_placeholderError {
+    .textInput {
+      transition: 0.3s;
+      color: vars.$red;
+
+      &::placeholder {
+        transition: color 0.3s !important;
+        color: vars.$red !important;
+      }
+    }
+
+    &:hover {
+      .textInput {
+        color: rgba(vars.$red, 0.5);
+
+        &::placeholder {
+          transition: 0.3s !important;
+          color: rgba(vars.$red, 0.5) !important;
+        }
+      }
+
+      .errorSpan {
+        display: none;
+      }
+    }
+  }
+
   .textInput {
     font-size: vars.rem(16);
     font-weight: 600;

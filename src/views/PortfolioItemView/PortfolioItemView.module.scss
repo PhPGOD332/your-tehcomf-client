@@ -9,6 +9,10 @@
     padding: 0;
   }
 
+  @media (max-width: vars.$max-1000) {
+    margin-bottom: vars.rem(50);
+  }
+
   .navPanel {
     display: flex;
     justify-content: space-between;
@@ -43,11 +47,28 @@
         gap: vars.rem(8);
         color: vars.$black;
       }
+
+      @media (max-width: vars.$max-800) {
+        font-weight: 500;
+      }
     }
 
-    @media (max-width: vars.$max-1000) {
+    .navInfo {
+      @media (max-width: vars.$max-800) {
+        display: none;
+      }
+    }
 
+    .mobileNavBar {
+      display: none;
 
+      @media (max-width: vars.$max-800) {
+        display: block;
+      }
+    }
+
+    @media (max-width: vars.$max-1300) {
+      padding: 0 vars.rem(16);
     }
   }
 
@@ -65,9 +86,384 @@
     }
   }
 
+  .imageSlider {
+    //margin-right: vars.rem(-20);
+    margin-bottom: vars.rem(45);
+
+    .sliderWrapper {
+      display: flex;
+      justify-content: flex-start;
+      //gap: vars.rem(20);
+      width: 100%;
+      //width: 100vw ;
+    }
+
+    .imageSlide {
+      //height: vars.rem(512);
+      border-radius: vars.rem(20);
+      overflow: hidden;
+      //opacity: 0;
+      //aspect-ratio: 16 / 10;
+      opacity: 0;
+      transition: opacity, width 0.3s !important;
+
+      .imageBlock {
+        height: vars.rem(512);
+        border-radius: vars.rem(20);
+
+        .image {
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+    }
+
+    .prevSlide {
+
+      opacity: 0;
+      transition: opacity 0.3s !important;
+      //width: vars.rem(454) !important;
+    }
+
+    .nextSlide {
+      width: calc(62% + 10px) !important;
+      opacity: 1;
+      //width: 61% !important;
+      //transition: width 0.3s !important;
+    }
+
+    .activeSlide {
+      width: calc(36% - 5px) !important;
+      height: auto !important;
+      opacity: 1;
+      //width: 37% !important;
+      //transition: width 0.3s !important;
+
+      .imageBlock {
+        .image {
+          object-fit: cover;
+          //width: 100%;
+          height: 100% !important;
+        }
+      }
+    }
+
+    @media (max-width: vars.$max-1300) {
+      padding: 0 vars.rem(16);
+    }
+
+    @media (max-width: vars.$max-1100) {
+      .activeSlide {
+        width: calc(50% - 10px) !important;
+      }
+
+      .nextSlide {
+        width: calc(50% - 10px) !important;
+      }
+    }
+
+    @media (max-width: vars.$max-800) {
+      height: vars.rem(405) !important;
+
+      .prevSlide {
+        transition: opacity 1s;
+        opacity: 0;
+      }
+
+      .activeSlide {
+        width: 100% !important;
+        transition: opacity 1s;
+        opacity: 1;
+
+        .imageBlock {
+          .image {
+            object-fit: cover;
+            //width: 100%;
+            height: 100% !important;
+          }
+        }
+      }
+
+      .nextSlide {
+        width: auto !important;
+        transition: opacity 1s;
+        opacity: 0;
+      }
+    }
+  }
+
   .propertiesBlock {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 35% 65%;
     gap: vars.rem(20);
+    margin-bottom: vars.rem(52);
+
+    .catalog {
+
+    }
+
+    .propertiesTable {
+      width: 100%;
+      margin-right: vars.rem(20);
+
+      .tableRow {
+        border-bottom: vars.rem(2) solid #DEDEDE;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: vars.rem(10);
+        padding: vars.rem(24) vars.rem(0) vars.rem(12) vars.rem(0);
+
+        @media (max-width: vars.$max-800) {
+          display: flex;
+          flex-direction: column;
+          gap: vars.rem(6);
+          padding: vars.rem(16) vars.rem(0);
+          border: none;
+          border-top: vars.rem(2) solid #DEDEDE;
+        }
+      }
+
+      .tableRowColor {
+
+        .titleColumn {
+          align-items: center;
+        }
+
+        .colorColumn {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          gap: vars.rem(16);
+
+          .colorSquare {
+            width: vars.rem(52);
+            height: vars.rem(52);
+
+            @media (max-width: vars.$max-800) {
+              display: none;
+            }
+          }
+
+          .tableTextContent {
+            width: fit-content;
+          }
+
+          @media (max-width: vars.$max-800) {
+            justify-content: flex-start;
+          }
+        }
+      }
+
+      .titleColumn {
+        display: flex;
+        align-items: flex-end;
+      }
+
+      .tableSubTitle {
+        font-size: vars.rem(19);
+        font-weight: 500;
+        color: vars.$gray;
+      }
+
+      .tableTextContent {
+        display: inline-block;
+        width: 100%;
+        text-align: right;
+        font-size: vars.rem(19);
+        font-weight: 300;
+
+        @media (max-width: vars.$max-800) {
+          text-align: left;
+        }
+      }
+    }
+
+    @media (max-width: vars.$max-1300) {
+      padding: 0 vars.rem(16);
+    }
+
+    @media (max-width: vars.$max-1000) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .descriptionBlock {
+    margin-bottom: vars.rem(80);
+
+    .descriptionTitleBlock {
+      text-align: center;
+      margin-bottom: vars.rem(28);
+    }
+
+    .descriptionContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: vars.rem(50);
+
+      figure {
+        margin: 0 !important;
+      }
+
+      img {
+        width: 100%;
+        max-height: vars.rem(212) !important;
+        margin: 0 !important;
+        object-fit: cover;
+      }
+
+      p {
+        font-size: vars.rem(19);
+        font-weight: 300;
+      }
+
+      table {
+        tbody {
+          display: flex;
+          flex-direction: column;
+          gap: vars.rem(52);
+        }
+
+        tr {
+          display: flex;
+          align-items: center;
+          gap: vars.rem(20);
+
+          td {
+            border: none !important;
+
+            &:has(img) {
+              display: flex;
+              gap: vars.rem(20);
+              width: auto !important;
+              height: auto !important;
+
+              p {
+                display: none;
+              }
+
+              figure {
+                flex-grow: 1;
+                border-radius: vars.rem(20);
+                overflow: hidden;
+                min-width: vars.rem(295);
+              }
+            }
+
+            &:has(p) {
+              &:not(:has(img)) {
+                flex-grow: 1;
+
+                p:not(:last-of-type) {
+                  margin-bottom: vars.rem(12);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: vars.$max-1300) {
+      padding: 0 vars.rem(16);
+    }
+
+    @media (max-width: vars.$max-1100) {
+      table {
+
+        tbody {
+          gap: vars.rem(20) !important;
+
+          tr {
+            flex-direction: column;
+
+            td {
+              width: 100% !important;
+
+              &:has(img) {
+                justify-content: space-around;
+                order: 1;
+                min-width: 100% !important;
+                min-height: 100% !important;
+
+                figure {
+                  flex-grow: 1;
+
+                  img {
+                    min-height: vars.rem(400) !important;
+                  }
+                }
+              }
+
+              &:has(p) {
+                &:not(:has(img)) {
+                  order: 0;
+
+                  span {
+                    word-wrap: normal;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: vars.$max-700) {
+      table {
+
+        tbody {
+
+          tr {
+
+            td {
+              width: 100% !important;
+
+              &:has(img) {
+                flex-direction: column;
+                justify-content: space-between;
+                order: 1;
+
+                figure {
+                  flex-grow: 1;
+
+                  img {
+                    min-height: vars.rem(300) !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .similarWorksBlock {
+    .similarTitleBlock {
+      text-align: center;
+      margin-bottom: vars.rem(32);
+    }
+
+    .similarWorks {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: vars.rem(20);
+
+      @media (max-width: vars.$max-1400) {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: vars.$max-1300) {
+        padding: 0 vars.rem(16);
+      }
+
+      @media (max-width: vars.$max-650) {
+        gap: vars.rem(40);
+      }
+    }
   }
 }

@@ -1,8 +1,8 @@
 'use client'
 import React from 'react';
-import {Autoplay, EffectCoverflow, Pagination} from "swiper/modules";
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
 import styles from "./ExamplesSlider.module.scss";
-import {Swiper, SwiperSlide} from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/scss/pagination';
@@ -10,7 +10,7 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/modules/effect-coverflow.min.css';
 import Image from "next/image";
 import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
-import SubTitle, {TitleColors} from "@/shared/UI/SubTitle/SubTitle";
+import SubTitle, { TitleColors } from "@/shared/UI/SubTitle/SubTitle";
 import Link from "next/link";
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
 
@@ -80,7 +80,10 @@ const ExamplesSlider = ({ slides, title }: PhotoSliderProps) => {
                 }}
             >
                 {slides.map((slide, num) =>
-                    <SwiperSlide className={styles.swiperSlide} key={num}>
+                    <SwiperSlide
+                        className={styles.swiperSlide}
+                        key={num}
+                    >
                         <div className={styles.swiperSlideContent}>
                             <Image
                                 src={slide.photo}

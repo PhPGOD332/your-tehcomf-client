@@ -37,6 +37,10 @@
     position: relative;
     transition: opacity 0.3s ease;
 
+    @media (max-width: vars.$max-1300) {
+      justify-content: space-between;
+    }
+
     @media (max-width: vars.$max-500) {
       height: 100%;
       display: flex;
