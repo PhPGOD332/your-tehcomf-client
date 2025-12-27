@@ -17,11 +17,13 @@ const MiniMenuPanel = (
     }: MiniMenuPanelProps) => {
     const pathname = usePathname();
 
+    console.log(pathname.startsWith(pagesLinks.portfolio))
+
     const [currentPathname, setCurrentPathname] = useState(pathname);
 
     useEffect(() => {
-        if (pathname.startsWith('/' + pagesLinks.portfolio)) {
-            setCurrentPathname('/' + pagesLinks.portfolio);
+        if (pathname.startsWith(pagesLinks.portfolio)) {
+            setCurrentPathname(pagesLinks.portfolio);
         } else {
             setCurrentPathname(pathname);
         }
@@ -53,7 +55,7 @@ const MiniMenuPanel = (
                     </Link>
                     <Link
                         href={pagesLinks.portfolio}
-                        className={`${styles.navItem} ${currentPathname === '/' + pagesLinks.portfolio ? styles.navItem_active : ''}`}
+                        className={`${styles.navItem} ${currentPathname === pagesLinks.portfolio ? styles.navItem_active : ''}`}
                     >
                         <span className={styles.navItemSpan}>Портфолио</span>
                         <div className={styles.navItemIconBlock}>
@@ -73,7 +75,7 @@ const MiniMenuPanel = (
                     </Link>
                     <Link
                         href={pagesLinks.contacts}
-                        className={`${styles.navItem} ${currentPathname === '/' + pagesLinks.contacts ? styles.navItem_active : ''}`}
+                        className={`${styles.navItem} ${currentPathname === pagesLinks.contacts ? styles.navItem_active : ''}`}
                     >
                         <span className={styles.navItemSpan}>Контакты</span>
                         <div className={styles.navItemIconBlock}>
