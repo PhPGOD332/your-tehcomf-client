@@ -453,7 +453,7 @@
       gap: vars.rem(20);
 
       @media (max-width: vars.$max-1400) {
-        display: flex;
+        grid-template-columns: repeat(3, 1fr);
         flex-wrap: wrap;
       }
 
@@ -461,7 +461,12 @@
         padding: 0 vars.rem(16);
       }
 
+      @media (max-width: vars.$max-1000) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       @media (max-width: vars.$max-650) {
+        display: flex;
         gap: vars.rem(40);
       }
     }
