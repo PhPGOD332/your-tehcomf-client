@@ -15,10 +15,6 @@ import ImageBasket from '@/data/images/catalog/basket.webp';
 import Image, {StaticImageData} from "next/image";
 import {Swiper, SwiperRef, SwiperSlide} from "swiper/react";
 import {Autoplay, EffectFade, Pagination} from "swiper/modules";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/scss/pagination';
-import 'swiper/css/effect-fade';
 import Link from "next/link";
 
 export interface CatalogProps {

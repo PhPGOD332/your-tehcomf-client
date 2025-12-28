@@ -10,11 +10,6 @@ import AnatoliyImage from '@/data/images/reviews/Anatoliy.jpg';
 // import OlgaImage from '@/data/images/reviews/Olga.png';
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, EffectCoverflow, Pagination} from "swiper/modules";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/scss/pagination';
-import 'swiper/css/effect-coverflow';
-import 'swiper/modules/effect-coverflow.min.css';
 
 interface IReview {
     name: string;

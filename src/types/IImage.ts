@@ -5,6 +5,7 @@ export interface IImage {
     imageAlt?: string;
     width?: number;
     height?: number;
+    order?: number;
 }
 
 export interface IFillImage {

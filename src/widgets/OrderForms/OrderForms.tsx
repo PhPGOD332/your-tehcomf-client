@@ -5,11 +5,6 @@ import SubTitle, {TitleColors} from "@/shared/UI/SubTitle/SubTitle";
 import OrderSwapForm from "@/widgets/OrderSwapForm/OrderSwapForm";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/scss/pagination';
-import 'swiper/css/effect-coverflow';
-import 'swiper/modules/effect-coverflow.min.css';
 
 interface IFormInfo {
     isReset: boolean;

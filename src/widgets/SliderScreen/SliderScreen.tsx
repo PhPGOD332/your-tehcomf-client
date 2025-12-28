@@ -2,10 +2,6 @@
 import React, {useEffect} from 'react';
 import {Autoplay, EffectFade, Pagination} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/scss/pagination';
-import 'swiper/css/effect-fade';
 import styles from "./SliderScreen.module.scss";
 import Image from "next/image";
 import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
@@ -109,11 +105,6 @@ const SliderScreen = (
                     delay: 10000,
                 }}
                 effect={"fade"}
-                breakpoints={{
-                    1000: {
-
-                    }
-                }}
             >
                 {slides.map((slide, num) =>
                     <SwiperSlide className={styles.swiperSlide} key={num} onTouchStart={(e) => e.stopPropagation()}>
