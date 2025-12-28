@@ -3,6 +3,7 @@ import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
 import {IImage} from "@/types/IImage";
 import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 import {IFilterStyle} from "@/types/PortfolioFilters/IFilterStyle";
+import {IFilterColor} from "@/types/PortfolioFilters/IFilterColor";
 
 export interface IWork {
     id: number;
@@ -14,6 +15,7 @@ export interface IWork {
     style: IFilterStyle;
     layout: IFilterLayout;
     type: IFilterType;
+    color: IFilterColor;
     sizesRoom: string;
     sizesFurniture: string;
     housingMaterial: string;

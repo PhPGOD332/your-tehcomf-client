@@ -115,11 +115,11 @@ const PortfolioView = (
 
                 if (filter === filters.color) {
                     if (!isFiltered) {
-                        newWorks = [...allWorks.filter(work => work.facadeColors.some(color => filters.color && color.name === filters.color.name))];
+                        newWorks = [...allWorks.filter(work => work.color.id === filters.color?.id)];
 
                         isFiltered = true;
                     } else {
-                        newWorks = [...newWorks.filter(work => work.facadeColors.some(color => filters.color && color.name === filters.color.name))];
+                        newWorks = [...newWorks.filter(work => work.color.id === filters.color?.id)];
                     }
                 }
 
