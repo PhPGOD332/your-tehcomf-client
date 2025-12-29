@@ -64,6 +64,27 @@
 
     &_only {
 
+      &_desktop {
+        margin: 0;
+
+        .contacts {
+          margin-top: 0 !important;
+        }
+      }
+
+      &_mobile {
+        display: none;
+
+        @media (max-width: vars.$max-1000) {
+          display: flex;
+          margin: 0;
+
+          .contacts {
+            margin-top: 0 !important;
+          }
+        }
+      }
+
       @media (max-width: vars.$max-1000) {
         margin: 0;
 

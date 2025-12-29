@@ -66,12 +66,10 @@ const Page = async (
                     similarWorks={similarWorks}
                 />
             </main>
-            <div className={styles.footerWrapper}>
-                <Footer
-                    isFormContact={true}
-                    isFormContactOnlyContacts={true}
-                />
-            </div>
+            <Footer
+                isFormContact={true}
+                isFormContactOnlyContacts={{ desktop: false, mobile: true }}
+            />
         </>
     );
 };

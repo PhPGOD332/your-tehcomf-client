@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import styles from './ContactsForm.module.scss';
 import SubTitle, {TitleColors} from "@/shared/UI/SubTitle/SubTitle";
@@ -6,12 +7,14 @@ import TeamImage from "@/data/images/contacts/team.png";
 import ClaimForm from "@/widgets/ClaimForm/ClaimForm";
 import {TImage} from "@/types/IImage";
 import SwitchButton, {SwitchButtonColors} from "@/shared/UI/SwitchButton/SwitchButton";
+import {IBooleanOptions} from "@/widgets/Footer/Footer";
+import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 
 const ContactWomanImage: TImage = WomanImage;
 const ContactTeamImage: TImage = TeamImage;
 
 interface FormProps {
-    isOnlyContacts?: boolean
+    isOnlyContacts?: IBooleanOptions
 }
 
 const ContactsForm = (
@@ -19,14 +22,19 @@ const ContactsForm = (
         isOnlyContacts
     }: FormProps
 ) => {
+    const isMobile = useMediaQuery('(max-width: 1000px)');
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.innerWrapper}>
-                {!isOnlyContacts &&
+                {(!isOnlyContacts?.desktop && !isMobile)
+                    || (!isOnlyContacts?.mobile && isMobile) ?
 	                <SubTitle classNames={styles.title} color={TitleColors.WHITE}>Мебель мечты – <br className={styles.transfer}/> на расстоянии
 		                клика!</SubTitle>
+                    :
+                    ''
                 }
-                <div className={`${styles.contactsBlock} ${isOnlyContacts && styles.contactsBlock_only}`}>
+                <div className={`${styles.contactsBlock} ${isOnlyContacts?.desktop && !isMobile && styles.contactsBlock_only_desktop} ${isOnlyContacts?.mobile && isMobile && styles.contactsBlock_only_mobile}`}>
                     <div className={styles.contacts}>
                         <SwitchButton
                             color={SwitchButtonColors.GRAY}
@@ -58,10 +66,13 @@ const ContactsForm = (
                             previewText={'Написать менеджеру'}
                         />
                     </div>
-                    {!isOnlyContacts &&
-		                <div className={styles.formBlock}>
-			                <ClaimForm isReset={true}/>
-		                </div>
+                    {(!isOnlyContacts?.desktop && !isMobile)
+                        || (!isOnlyContacts?.mobile && isMobile) ?
+                        <div className={styles.formBlock}>
+                            <ClaimForm isReset={true}/>
+                        </div>
+                        :
+                        ''
                     }
                 </div>
             </div>

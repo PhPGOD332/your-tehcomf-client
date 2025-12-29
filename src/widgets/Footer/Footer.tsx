@@ -5,10 +5,15 @@ import Contacts from "@/widgets/Footer/Contacts/Contacts";
 import {pagesLinks} from "@/shared/constants";
 import ContactsForm from "@/widgets/Footer/ContactsForm/ContactsForm";
 
+export interface IBooleanOptions {
+    desktop: boolean;
+    mobile: boolean;
+}
+
 export interface FooterProps {
     isContact?: boolean;
     isFormContact?: boolean;
-    isFormContactOnlyContacts?: boolean;
+    isFormContactOnlyContacts?: IBooleanOptions;
 }
 
 const Footer = (
@@ -27,7 +32,7 @@ const Footer = (
                     }
                     {isFormContact &&
                         <ContactsForm
-                            isOnlyContacts={isFormContactOnlyContacts ?? false}
+                            isOnlyContacts={isFormContactOnlyContacts ?? { desktop: true, mobile: true }}
                         />
                     }
                     <hr className={`${styles.line} ${isFormContact && styles.line_contact}`}/>
