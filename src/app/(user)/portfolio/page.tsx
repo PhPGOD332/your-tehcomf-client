@@ -59,7 +59,10 @@ const Page = async () => {
                     works={works}
                 />
             </main>
-            <Footer isFormContact={true}/>
+            <Footer
+                isFormContact={true}
+                isFormContactOnlyContacts={{ desktop: false, mobile: false }}
+            />
         </>
     );
 };
