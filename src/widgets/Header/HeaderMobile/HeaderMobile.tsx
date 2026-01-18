@@ -86,6 +86,12 @@ const HeaderMobile = (
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const closeHeaderHandler = () => {
+        setIsNavActive(false);
+        navButtonRef.current?.classList.remove(styles.navButton_active);
+        navModalRef.current?.classList.remove(styles.navModal_active);
+    }
+
     return (
         <>
             <header className={`${styles.mobileHeader} ${!isNavActive ? (scrollPos !== 0 ? styles.mobileHeader_white : styles.mobileHeader_transparent) : styles.mobileHeader_white}`}>
@@ -122,7 +128,12 @@ const HeaderMobile = (
                         </svg>
                     </div>
                 </div>
-                <Link href={pagesLinks.main} className={styles.logoBlock} ref={logoRef}>
+                <Link
+                    href={pagesLinks.main}
+                    className={styles.logoBlock}
+                    ref={logoRef}
+                    onClick={() => closeHeaderHandler()}
+                >
                     <svg width="60" height="60" viewBox="0 0 72 72" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -171,6 +182,7 @@ const HeaderMobile = (
                                     href={navItem.href ?? ''}
                                     className={styles.navItem}
                                     data-full={navItem.isFull}
+                                    onClick={() => closeHeaderHandler()}
                                 >{navItem.caption}</Link>
                                 {!!navItem.subItems
                                     ?
@@ -198,6 +210,7 @@ const HeaderMobile = (
                                             <Link
                                                 href={subNavItem.href}
                                                 className={styles.subNavItem}
+                                                onClick={() => closeHeaderHandler()}
                                             >{subNavItem.caption}</Link>
                                         </li>
                                     )}
