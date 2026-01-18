@@ -9,6 +9,7 @@ export interface IWork {
     id: number;
     name: string;
     title: string;
+    subtitle: string;
     // mainImage: IImage;
     images: IImage[];
     // colors: IColor[];

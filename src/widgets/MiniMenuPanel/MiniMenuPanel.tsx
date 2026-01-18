@@ -17,8 +17,6 @@ const MiniMenuPanel = (
     }: MiniMenuPanelProps) => {
     const pathname = usePathname();
 
-    console.log(pathname.startsWith(pagesLinks.portfolio))
-
     const [currentPathname, setCurrentPathname] = useState(pathname);
 
     useEffect(() => {

@@ -1,7 +1,7 @@
 @use '@/shared/styles/vars' as vars;
 
 .wrapper {
-  display: flex;
+  display: grid;
   justify-content: space-between;
   align-items: center;
   gap: vars.rem(20);
@@ -9,6 +9,7 @@
   flex-wrap: wrap;
 
   @media (max-width: vars.$max-1250) {
+    display: flex;
     justify-content: center;
     padding: vars.rem(80) vars.rem(16);
   }
@@ -22,8 +23,11 @@
   display: flex;
   align-items: center;
   gap: vars.rem(16);
-  max-width: vars.rem(295);
   padding: vars.rem(13) vars.rem(14) vars.rem(13) 0;
+
+  @media (max-width: vars.$max-1250) {
+    max-width: vars.rem(295);
+  }
 
   @media (max-width: vars.$max-650) {
     flex-direction: column;
@@ -32,6 +36,11 @@
   }
 
   .advantageImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: vars.rem(30);
+    background-color: vars.$green;
     min-width: vars.rem(72);
     height: vars.rem(72);
   }

@@ -1,0 +1,78 @@
+@use '@/shared/styles/vars' as vars;
+
+.main {
+  margin-top: vars.rem(140);
+  padding: 0 vars.rem(55);
+
+  .wrapper {
+    position: relative;
+    width: vars.rem(1334);
+    margin: 0 auto;
+
+    .title {
+      text-align: center;
+      margin-bottom: vars.rem(55);
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1.12fr 1fr;
+      row-gap: vars.rem(119);
+      column-gap: vars.rem(225);
+
+      .textEl {
+        padding: vars.rem(24) vars.rem(30);
+        background-color: vars.$white;
+        border-radius: vars.rem(20);
+        z-index: 2;
+        box-shadow: vars.rem(8) vars.rem(18) vars.rem(20) 0 rgba(vars.$white-shadow, .15);
+        height: fit-content;
+
+        .text {
+          color: vars.$black;
+          font-size: vars.rem(19);
+          font-weight: 400;
+          line-height: 140%;
+
+          .green {
+            color: vars.$green;
+            font-weight: 600;
+          }
+        }
+
+        &_firstEl {
+          margin-right: vars.rem(70);
+          margin-top: vars.rem(44);
+
+        }
+
+        &_secondEl {
+          margin-right: vars.rem(55);
+        }
+
+        &_thirdEl {
+          margin-top: vars.rem(44);
+          margin-left: vars.rem(49);
+        }
+
+        &_fourthEl {
+          margin-left: vars.rem(28);
+        }
+      }
+    }
+
+    .imageWrapper {
+      position: absolute;
+      top: calc(50% - 300px);
+      right: calc(50% - 300px);
+      width: vars.rem(603);
+      height: vars.rem(603);
+      z-index: 1;
+      opacity: .8;
+
+      .bgImage {
+        max-width: 100%;
+      }
+    }
+  }
+}

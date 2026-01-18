@@ -3,7 +3,8 @@ import styles from './SubTitle.module.scss';
 
 export enum TitleColors {
     BLACK = 'black',
-    WHITE = 'white'
+    WHITE = 'white',
+    GRAY = 'gray'
 }
 
 export interface TitleProps {
@@ -14,19 +15,33 @@ export interface TitleProps {
 }
 
 const SubTitle = ({children, htmlContent, color, classNames}: TitleProps) => {
+    const getColorStyle = (color: TitleColors): string => {
+        let checkColor: never;
+
+        switch (color) {
+            case TitleColors.WHITE:
+                return styles.black;
+            case TitleColors.BLACK:
+                return styles.black;
+            case TitleColors.GRAY:
+                return styles.gray;
+            default:
+                checkColor = color;
+                return checkColor;
+        }
+    }
+
     return (
         <>
             {htmlContent ?
                 <h2
-                    style={{color: color ?? TitleColors.BLACK}}
-                    className={`${styles.subTitle} ${classNames ?? ''}`}
+                    className={`${styles.subTitle} ${color ? getColorStyle(color) : getColorStyle(TitleColors.BLACK)} ${classNames ?? ''}`}
                     dangerouslySetInnerHTML={{__html: htmlContent ?? ''}}
                 >
                 </h2>
                 :
                 <h2
-                    style={{color: color ?? TitleColors.BLACK}}
-                    className={`${styles.subTitle} ${classNames ?? ''}`}
+                    className={`${styles.subTitle} ${color ? getColorStyle(color) : getColorStyle(TitleColors.BLACK)} ${classNames ?? ''}`}
                 >
                     {children}
                 </h2>

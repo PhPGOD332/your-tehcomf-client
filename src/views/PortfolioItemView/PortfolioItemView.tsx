@@ -1,17 +1,18 @@
 'use client'
 import React, {useState} from 'react';
 import styles from './PortfolioItemView.module.scss';
-import SubTitle from "@/shared/UI/SubTitle/SubTitle";
+import SubTitle, {TitleColors} from "@/shared/UI/SubTitle/SubTitle";
 import {IWork} from "@/types/IWork";
 import Link from "next/link";
-import { pagesLinks } from "@/shared/constants";
+import {pagesLinks} from "@/shared/constants";
 // import { EffectCreative } from 'swiper/modules';
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
 import Image from "next/image";
 import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 import TwoStepsOrderForm from "@/widgets/TwoStepsOrderForm/TwoStepsOrderForm";
 import PortfolioCard from "@/widgets/PortfolioCard/PortfolioCard";
+import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
 
 interface PortfolioItemProps {
     title?: string;
@@ -83,7 +84,13 @@ const PortfolioItemView = (
                             ''
                         }
                     </SubTitle>
-
+                    <MiniTitle classNames={styles.subtitle} color={TitleColors.GRAY}>
+                        {work && work.subtitle ?
+                            work.subtitle
+                            :
+                            ''
+                        }
+                    </MiniTitle>
                 </div>
                 <Swiper
                     grabCursor={true}

@@ -125,6 +125,7 @@ const SliderScreen = (
                 <SwiperNavigation
                     isMobilePanel={true}
                     mobilePanelHandler={handleMoreClick}
+                    mobileClassNames={styles.mobileNavigation}
                 />
             </Swiper>
         </div>

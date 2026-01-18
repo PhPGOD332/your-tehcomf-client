@@ -77,11 +77,24 @@
     margin-top: vars.rem(28);
     margin-bottom: vars.rem(42);
 
+    @media (max-width: vars.$max-1000) {
+      margin-bottom: vars.rem(12);
+    }
+
     .title {
       margin-bottom: vars.rem(16);
 
       @media (max-width: vars.$max-1000) {
-        margin-bottom: vars.rem(5);
+        margin-bottom: vars.rem(0);
+      }
+    }
+
+    .subtitle {
+      margin-bottom: vars.rem(24);
+      color: vars.$gray;
+
+      @media (max-width: vars.$max-1000) {
+        font-size: vars.rem(19);
       }
     }
   }

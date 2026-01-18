@@ -26,6 +26,14 @@ export const pagesData: IPages = {
         type: 'website',
         url: `${CLIENT_URL}/portfolio/`
     },
+    about: {
+        name: 'about',
+        title: 'О компании',
+        description: 'ОПИСАНИЕ',
+        keywords: 'КЛЮЧЕВЫЕ СЛОВА',
+        type: 'website',
+        url: `${CLIENT_URL}/about`
+    },
     privacyPolicy: {
         name: 'privacy_policy',
         title: 'Политика конфиденциальности',
@@ -40,7 +48,8 @@ export const pagesLinks = {
     main: "/",
     contacts: '/contacts',
     portfolio: '/portfolio',
-    privacyPolicy: '/privacy_policy'
+    privacyPolicy: '/privacy_policy',
+    aboutCompany: '/about'
 }
 
 interface IPage {

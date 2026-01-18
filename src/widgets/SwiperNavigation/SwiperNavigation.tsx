@@ -7,12 +7,16 @@ import DragAndDropButton from "@/shared/UI/DragAndDropButton/DragAndDropButton";
 interface SwiperNavigationProps {
     isMobilePanel?: boolean;
     mobilePanelHandler?: () => void;
+    desktopClassNames?: string;
+    mobileClassNames?: string;
 }
 
 const SwiperNavigation = (
     {
         isMobilePanel = false,
-        mobilePanelHandler = () => null
+        mobilePanelHandler = () => null,
+        desktopClassNames,
+        mobileClassNames
     }: SwiperNavigationProps) => {
     const swiper = useSwiper();
     const isMobile = useMediaQuery('(max-width: 1000px)');
@@ -21,7 +25,7 @@ const SwiperNavigation = (
         <>
             {isMobile && isMobilePanel
                 ?
-                    <div className={styles.navigationMobileBlock}>
+                    <div className={`${styles.navigationMobileBlock} ${mobileClassNames ?? ''}`}>
                         <button
                             className={styles.navigationPrevEl}
                             onClick={() => swiper.slidePrev()}
@@ -47,7 +51,7 @@ const SwiperNavigation = (
                         />
                     </div>
                 :
-                <div className={styles.navigationBlock}>
+                <div className={`${styles.navigationBlock} ${desktopClassNames ?? ''}`}>
                     <div className={styles.navigationPrevEl} onClick={() => swiper.slidePrev()}>
                         <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18 2L7.70711 12.2929C7.31658 12.6834 7.31658 13.3166 7.70711 13.7071L18 24"
