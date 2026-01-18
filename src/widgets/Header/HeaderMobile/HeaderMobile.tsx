@@ -90,6 +90,7 @@ const HeaderMobile = (
         setIsNavActive(false);
         navButtonRef.current?.classList.remove(styles.navButton_active);
         navModalRef.current?.classList.remove(styles.navModal_active);
+        document.body.classList.remove('overflowStartYHidden');
     }
 
     return (
