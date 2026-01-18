@@ -51,3 +51,10 @@ $max-600: em(600);
 $max-500: em(500);
 $max-400: em(400);
 $max-320: em(320);
+
+
+$safe-area-bottom: env(safe-area-bottom);
+
+@mixin safe-area-bottom($offset: rem(0), $property: padding-bottom) {
+  #{$property}: calc(#{$safe-area-bottom} + #{$offset});
+}
