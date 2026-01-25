@@ -86,7 +86,7 @@ const Page = () => {
             <Contacts />
             <ProductionInfo />
             <CircularSlider photos={sliderPhotos} />
-            <Footer isFormContact={true}/>
+            <Footer isFormContact={true} isFormContactOnlyContacts={{desktop: false, mobile: false}}/>
         </div>
     );
 };
