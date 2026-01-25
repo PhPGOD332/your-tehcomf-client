@@ -8,7 +8,7 @@ const MiniTitle = ({children, htmlContent, color, classNames}: TitleProps) => {
 
         switch (color) {
             case TitleColors.WHITE:
-                return styles.black;
+                return styles.white;
             case TitleColors.BLACK:
                 return styles.black;
             case TitleColors.GRAY:
