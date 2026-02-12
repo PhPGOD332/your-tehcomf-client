@@ -158,12 +158,18 @@
     }
 
     .popup {
+      display: none;
       padding: 0;
+
+      @media (max-width: vars.$max-1000) {
+        display: flex;
+      }
 
       .popupContent {
         display: flex;
         flex-direction: column;
         gap: vars.rem(60);
+        width: 100%;
 
         .popupTextBlock {
           .popupText {
