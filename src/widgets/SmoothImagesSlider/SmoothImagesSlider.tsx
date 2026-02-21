@@ -30,7 +30,7 @@ const SmoothImagesSlider = (
                 return `${styles.horizontalPagination_right}`;
             default:
                 checkVal = orientation;
-                return '';
+                return checkVal;
         }
     }
 

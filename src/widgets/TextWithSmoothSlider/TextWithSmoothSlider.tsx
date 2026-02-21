@@ -1,7 +1,7 @@
 'use client'
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import styles from './TextWithSmoothSlider.module.scss';
-import {IImage} from "@/types/IImage";
+import { IImage } from "@/types/IImage";
 import Image from "next/image";
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
 import SmoothImagesSlider from "@/widgets/SmoothImagesSlider/SmoothImagesSlider";
@@ -39,7 +39,7 @@ const TextWithSmoothSlider = (
                 return styles.content_rightOrientation;
             default:
                 checkVal = orientation;
-                return '';
+                return checkVal;
         }
     }
 

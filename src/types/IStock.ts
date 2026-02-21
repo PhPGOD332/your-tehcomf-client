@@ -1,5 +1,5 @@
-import {CSSProperties, JSX} from "react";
-import {StaticImageData} from "next/image";
+import { CSSProperties } from "react";
+import { StaticImageData } from "next/image";
 
 export type TBgColor = 'blue' | 'green' | 'pink' | 'peach';
 

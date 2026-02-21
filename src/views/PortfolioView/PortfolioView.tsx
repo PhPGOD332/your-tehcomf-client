@@ -12,14 +12,10 @@ import {IFilterBudget} from "@/types/PortfolioFilters/IFilterBudget";
 import {IFilterColor} from "@/types/PortfolioFilters/IFilterColor";
 import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
-import StockBanner from "@/widgets/StockBanner/StockBanner";
 import greenStock from '@/data/images/stocks_banners/guys.png';
 import greenMobileStock from '@/data/images/stocks_banners/guys_mobile.png';
 import blueStock from '@/data/images/stocks_banners/tg.png';
 import {TImage} from "@/types/IImage";
-import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Autoplay} from "swiper/modules";
 import PopupForm from "@/widgets/PopupForm/PopupForm";
 import {useRouter} from "next/navigation";
 import {IStock} from "@/types/IStock";
@@ -50,7 +46,6 @@ const PortfolioView = (
         works = []
     }: PortfolioProps
 ) => {
-    const isMobile = useMediaQuery('(max-width: 1150px)');
     const router = useRouter();
     const [currentCount, setCurrentCount] = useState<number>(12);
     const step = 6;

@@ -6,7 +6,6 @@ import {pagesLinks} from "@/shared/constants";
 import ContactsForm from "@/widgets/Footer/ContactsForm/ContactsForm";
 import {IStock} from "@/types/IStock";
 import StockBanners from "@/widgets/StockBanners/StockBanners";
-import SubTitle from "@/shared/UI/SubTitle/SubTitle";
 import InNumbers from "@/widgets/InNumbers/InNumbers";
 
 export interface IBooleanOptions {
