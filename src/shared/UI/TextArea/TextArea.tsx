@@ -1,7 +1,7 @@
 'use client'
-import React, {ChangeEvent, forwardRef} from 'react';
+import React, { ChangeEvent, forwardRef } from 'react';
 import styles from './TextArea.module.scss';
-import {FieldError} from "react-hook-form";
+import { FieldError } from "react-hook-form";
 
 interface TextareaProps {
     label?: string;
@@ -15,7 +15,6 @@ interface TextareaProps {
     name?: string;
     isResizable?: boolean;
     error?: FieldError;
-    text?: string;
 }
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
@@ -24,14 +23,12 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
         children,
         placeholder,
         classNames,
-        // onChange,
         rows = 30,
         cols = 10,
         id,
         name,
         isResizable = false,
         error,
-        text,
         ...props
     }: TextareaProps, ref) => {
 
@@ -57,10 +54,8 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextareaProps>((
                 placeholder={placeholder}
                 className={`${classNames ? styles.textarea + ' ' + classNames : styles.textarea}`}
                 onChange={(e) => inputHandler(e)}
-                // onInput={(e) => inputHandler(e)}
                 style={{resize: isResizable ? "both" : "none"}}
                 ref={ref}
-                value={text ?? ''}
                 {...props}
             >{children || undefined}</textarea>
             <span className={styles.errorSpan}>{error ? error.message : ''}</span>

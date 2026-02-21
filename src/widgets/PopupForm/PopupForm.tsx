@@ -208,17 +208,12 @@ const PopupForm = (
                                 placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
                                 label='Примечание'
                                 rows={3}
-                                text={noteText ?? ''}
                                 {...register("note", {
                                     required: {
                                         value: true,
                                         message: "Введите пожелания"
                                     },
-                                    // minLength: {
-                                    //     value: 5,
-                                    //     message: "Введите пожелания"
-                                    // },
-                                    // onChange: () =>
+                                    value: noteText ?? ''
                                 })}
                                 error={errors.note}
                             ></TextArea>
@@ -304,17 +299,12 @@ const PopupForm = (
                             placeholder='Ваши пожелания или любая информация, которой хотите поделиться'
                             label='Примечание'
                             rows={3}
-                            text={noteText ?? ''}
                             {...register("note", {
                                 required: {
                                     value: true,
                                     message: "Введите пожелания"
                                 },
-                                // minLength: {
-                                //     value: 5,
-                                //     message: "Введите пожелания"
-                                // },
-                                // onChange: () =>
+                                value: noteText ?? ''
                             })}
                             error={errors.note}
                         ></TextArea>
