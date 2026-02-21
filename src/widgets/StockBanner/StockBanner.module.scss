@@ -15,6 +15,14 @@
     background: linear-gradient(180deg, vars.$bg-blue 0%, vars.$bg-light-blue 100%);
   }
 
+  &_pink {
+    background: linear-gradient(180deg, vars.$bg-pink 0%, vars.$bg-light-pink 100%);
+  }
+
+  &_peach {
+    background: linear-gradient(180deg, vars.$bg-peach 0%, vars.$bg-light-peach 100%);
+  }
+
   .wrapper {
     display: flex;
     flex-direction: column;

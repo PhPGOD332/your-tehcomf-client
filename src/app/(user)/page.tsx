@@ -158,7 +158,7 @@ export default async function Home() {
                 <Questions
                     categories={categories}
                 />
-                <Footer isContact={true}/>
+                <Footer isContact={true} />
             </main>
         </>
     );

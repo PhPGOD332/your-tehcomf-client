@@ -4,6 +4,10 @@ import Link from "next/link";
 import Contacts from "@/widgets/Footer/Contacts/Contacts";
 import {pagesLinks} from "@/shared/constants";
 import ContactsForm from "@/widgets/Footer/ContactsForm/ContactsForm";
+import {IStock} from "@/types/IStock";
+import StockBanners from "@/widgets/StockBanners/StockBanners";
+import SubTitle from "@/shared/UI/SubTitle/SubTitle";
+import InNumbers from "@/widgets/InNumbers/InNumbers";
 
 export interface IBooleanOptions {
     desktop: boolean;
@@ -12,28 +16,43 @@ export interface IBooleanOptions {
 
 export interface FooterProps {
     isContact?: boolean;
+    isContactOnlyContacts?: IBooleanOptions;
     isFormContact?: boolean;
     isFormContactOnlyContacts?: IBooleanOptions;
+    stocks?: IStock[];
+    isInNumbers?: boolean;
 }
 
 const Footer = (
     {
         isContact,
+        isContactOnlyContacts,
         isFormContact,
-        isFormContactOnlyContacts
+        isFormContactOnlyContacts,
+        stocks,
+        isInNumbers
     }: FooterProps) => {
 
     return (
-        <div className={styles.wrapper} style={{backgroundColor: isFormContact ? '#29292B' : '#FAFAFA'}}>
-            <div className={`${styles.innerWrapper} ${isFormContact && styles.innerWrapper_dark}`}>
+        <div className={styles.wrapper} style={{backgroundColor: isFormContact && !stocks ? '#29292B' : '#FAFAFA'}}>
+            <div className={`${styles.innerWrapper} ${isFormContact && !stocks && styles.innerWrapper_dark}`}>
                 <div className={`${isFormContact ? '' : 'container'}`}>
                     {isContact &&
-                        <Contacts />
+			            <Contacts
+                            isOnlyContacts={isContactOnlyContacts ?? {desktop: false, mobile: false}}
+                        />
                     }
                     {isFormContact &&
-                        <ContactsForm
-                            isOnlyContacts={isFormContactOnlyContacts ?? { desktop: true, mobile: true }}
-                        />
+			            <ContactsForm
+				            isOnlyContacts={isFormContactOnlyContacts ?? {desktop: false, mobile: false}}
+                            classNames={stocks && styles.contactForm_radius}
+			            />
+                    }
+                    {stocks &&
+	                    <StockBanners stocks={stocks} title={'Этапы работы'} />
+                    }
+                    {isInNumbers &&
+                        <InNumbers />
                     }
                     <hr className={`${styles.line} ${isFormContact && styles.line_contact}`}/>
                     <div className={`${styles.footer} ${isFormContact && styles.footer_withBorderRadius}`}>
@@ -135,7 +154,8 @@ const Footer = (
                         </div>
                         <div className={styles.footerCopyright}>
                             <span>Copyright © 2025 Мебельная фабрика Технологии комфорта</span>
-                            <span>Используем cookies для корректной работы сайта, персонализации пользователей и других целей, предусмотренных <Link href={pagesLinks.privacyPolicy} className={styles.politicsLink}>политикой обработки персональных данных</Link>.</span>
+                            <span>Используем cookies для корректной работы сайта, персонализации пользователей и других целей, предусмотренных <Link
+                                href={pagesLinks.privacyPolicy} className={styles.politicsLink}>политикой обработки персональных данных</Link>.</span>
                         </div>
                         <Link href={'#'} className={styles.footerLogo}>
                             <svg width="72" height="72" viewBox="0 0 72 72" fill="none"

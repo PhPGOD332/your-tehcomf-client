@@ -8,18 +8,10 @@ import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
 import SubTitle, { TitleColors } from "@/shared/UI/SubTitle/SubTitle";
 import Link from "next/link";
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
-
-interface PhotoSlide {
-    photo: string;
-    photoAlt?: string;
-    title: string;
-    text?: string;
-}
-
-export type PhotoSliderSlides = PhotoSlide[];
+import {TPhotoSliderSlides} from "@/types/IPhotoSlides";
 
 interface PhotoSliderProps {
-    slides: PhotoSliderSlides;
+    slides: TPhotoSliderSlides;
     title: string;
     isNavigation?: boolean;
     isPagination?: boolean;

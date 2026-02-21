@@ -22,6 +22,8 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
 import PopupForm from "@/widgets/PopupForm/PopupForm";
 import {useRouter} from "next/navigation";
+import {IStock} from "@/types/IStock";
+import StockBanners from "@/widgets/StockBanners/StockBanners";
 
 const greenStockImage: TImage = greenStock;
 const greenMobileStockImage: TImage = greenMobileStock;
@@ -157,13 +159,31 @@ const PortfolioView = (
         setCurrentCount(currentCount + step);
     }
 
-    const completeStockAction = () => {
-        setIsPopupOpen(true);
-    }
-
-    const subscribeStockAction = () => {
-        router.replace('https://t.me/youkuhnya');
-    }
+    const stocks: IStock[] = [
+        {
+            caption: 'Скидка 10% <br> всем новосёлам',
+            buttonText: 'Применить',
+            clickAction: () => setIsPopupOpen(true),
+            color: 'green',
+            image: greenStockImage,
+            imageWidth: 228,
+            imageHeight: 228,
+            imageStyles: {bottom: '-30px'},
+            mobileImage: greenMobileStockImage,
+            mobileImageWidth: 260,
+            mobileImageHeight: 260
+        },
+        {
+            caption: 'Скидка 2% подписчикам <br> нашего ТГ канала',
+            mobileCaption: 'Скидка 2% <br> подписчикам <br> ТГ канала',
+            buttonText: 'Подписаться',
+            clickAction: () => router.replace('https://t.me/youkuhnya'),
+            color: 'blue',
+            image: blueStockImage,
+            imageWidth: 160,
+            imageHeight: 160
+        }
+    ];
 
     return (
         <div className={styles.portfolioView}>
@@ -202,75 +222,7 @@ const PortfolioView = (
                     :
                     ''
                 }
-                <div className={styles.stocksWrapper}>
-                    {isMobile ?
-                        <Swiper
-                            className={styles.stocksSwiper}
-                            modules={[Autoplay]}
-                            spaceBetween={20}
-                            slidesPerView={'auto'}
-                            effect={"slide"}
-                            preventInteractionOnTransition={true}
-                            noSwiping={true}
-                            noSwipingClass={'no-swiping'}
-                        >
-                            <SwiperSlide
-                                className={styles.stockSlide}
-                            >
-                                <StockBanner
-                                    caption={'Скидка 10% <br> всем новосёлам'}
-                                    buttonText={'Применить'}
-                                    clickAction={completeStockAction}
-                                    color={'green'}
-                                    image={greenStockImage}
-                                    imageWidth={228}
-                                    imageHeight={228}
-                                    imageStyles={{bottom: '-30px'}}
-                                    mobileImage={greenMobileStockImage}
-                                    mobileImageWidth={260}
-                                    mobileImageHeight={260}
-                                />
-                            </SwiperSlide>
-                            <SwiperSlide
-                                className={styles.stockSlide}
-                            >
-                                <StockBanner
-                                    caption={'Скидка 2% подписчикам <br> нашего ТГ канала'}
-                                    mobileCaption={'Скидка 2% <br> подписчикам <br> ТГ канала'}
-                                    buttonText={'Подписаться'}
-                                    clickAction={subscribeStockAction}
-                                    color={'blue'}
-                                    image={blueStockImage}
-                                    imageWidth={160}
-                                    imageHeight={160}
-
-                                />
-                            </SwiperSlide>
-                        </Swiper>
-                        :
-                        <div className={styles.stocks}>
-                            <StockBanner
-                                caption={'Скидка 10% <br> всем новосёлам'}
-                                buttonText={'Применить'}
-                                clickAction={completeStockAction}
-                                color={'green'}
-                                image={greenStockImage}
-                                imageWidth={228}
-                                imageHeight={228}
-                                imageStyles={{bottom: '-30px'}}
-                            />
-                            <StockBanner
-                                caption={'Скидка 2% подписчикам <br> нашего ТГ канала'}
-                                buttonText={'Подписаться'}
-                                clickAction={subscribeStockAction}
-                                color={'blue'}
-                                image={blueStockImage}
-                                imageWidth={160}
-                                imageHeight={160}
-                            />
-                        </div>
-                    }
-                </div>
+                <StockBanners stocks={stocks} title={''} />
             </div>
             <PopupForm
                 isOpen={isPopupOpen}

@@ -1,0 +1,124 @@
+@use '@/shared/styles/vars' as vars;
+
+.swiper {
+  height: vars.rem(426);
+  width: 100%;
+  border-radius: vars.rem(20);
+}
+
+.swiperWrapper {
+
+}
+
+.horizontalPagination {
+  position: relative;
+
+  &_left {
+    display: flex;
+    align-items: center;
+    gap: vars.rem(6);
+    background-color: vars.$white;
+    border-top-right-radius: vars.rem(20);
+    padding: vars.rem(16) vars.rem(28);
+    position: absolute;
+    left: 0 !important;
+    right: auto !important;
+    bottom: 0 !important;
+    height: vars.rem(44) !important;
+    width: vars.rem(124) !important;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: vars.rem(-30);
+      left: vars.rem(-5);
+      width: vars.rem(40);
+      height: vars.rem(40);
+      background-color: vars.$white;
+      //clip-path: ellipse(50% 50% at 10% 90%);
+      mask: radial-gradient(circle at 80% 10%, transparent 55%, black 40%);
+      border-radius: 50%;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: vars.rem(-29.5);
+      bottom: vars.rem(-11);
+      width: vars.rem(40);
+      height: vars.rem(40);
+      background-color: vars.$white;
+      //clip-path: ellipse(50% 50% at 10% 90%);
+      mask: radial-gradient(circle at 85% 15%, transparent 50%, black 40%);
+      border-radius: 50%;
+    }
+  }
+
+  &_right {
+    display: flex;
+    align-items: center;
+    gap: vars.rem(6);
+    background-color: vars.$white;
+    border-top-left-radius: vars.rem(20);
+    padding: vars.rem(16) vars.rem(28);
+    position: absolute;
+    right: 0 !important;
+    left: auto !important;
+    bottom: 0 !important;
+    height: vars.rem(44) !important;
+    width: vars.rem(124) !important;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: vars.rem(-31);
+      right: vars.rem(-7);
+      width: vars.rem(40);
+      height: vars.rem(40);
+      background-color: vars.$white;
+      //clip-path: ellipse(50% 50% at 10% 90%);
+      mask: radial-gradient(circle at 10% 10%, transparent 55%, black 40%);
+      border-radius: 50%;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: vars.rem(-29.5);
+      bottom: vars.rem(-11);
+      width: vars.rem(40);
+      height: vars.rem(40);
+      background-color: vars.$white;
+      //clip-path: ellipse(50% 50% at 10% 90%);
+      mask: radial-gradient(circle at 15% 15%, transparent 50%, black 40%);
+      border-radius: 50%;
+    }
+  }
+}
+
+.paginationBullet {
+  width: vars.rem(8);
+  height: vars.rem(8);
+  border-radius: vars.rem(2);
+  background-color: vars.$light-gray;
+  transition: width .2s, height .2s, background-color .2s;
+}
+
+.paginationBulletActive {
+  width: vars.rem(12);
+  height: vars.rem(12);
+  border-radius: vars.rem(3);
+  background-color: vars.$green;
+  transition: width .2s, height .2s, background-color .2s;
+}
+
+.swiperSlide {
+  .swiperSlideContent {
+    width: 100%;
+
+    .swiperImage {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}

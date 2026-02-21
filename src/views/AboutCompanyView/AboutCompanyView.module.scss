@@ -1,0 +1,27 @@
+@use '@/shared/styles/vars' as vars;
+
+.main {
+}
+
+.slidersBlock {
+  overflow: hidden;
+
+  .title {
+    text-align: center;
+  }
+}
+
+.contactForm_radius {
+  border-radius: vars.rem(60) !important;
+  width: 100vw;
+  margin-top: vars.rem(108);
+
+  @media (max-width: vars.$max-1250) {
+    padding: 0 vars.rem(16);
+  }
+
+  @media (max-width: vars.$max-1000) {
+    padding: 0;
+    margin-top: vars.rem(48);
+  }
+}

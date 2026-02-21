@@ -26,6 +26,25 @@
   &_dark {
     background-color: vars.$dark-gray;
   }
+
+  &_withFullRadius {
+    border-radius: vars.rem(60);
+  }
+
+  .contactForm_radius {
+    border-radius: vars.rem(60) !important;
+    width: 100vw;
+    margin-top: vars.rem(108);
+
+    @media (max-width: vars.$max-1250) {
+      padding: 0 vars.rem(16);
+    }
+
+    @media (max-width: vars.$max-1000) {
+      padding: 0;
+      margin-top: vars.rem(48);
+    }
+  }
   
   .line {
     border: vars.rem(1) solid rgba(vars.$gray, 0.15);

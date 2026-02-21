@@ -25,11 +25,14 @@
 
 .innerWrapper {
   gap: vars.rem(100);
-  padding: vars.rem(60) vars.rem(80);
+  padding: vars.rem(60) 0;
   border-top-left-radius: vars.rem(60);
   border-top-right-radius: vars.rem(60);
+  width: vars.rem(1240);
+  margin: 0 auto;
 
   @media (max-width: vars.$max-1250) {
+    width: auto;
     padding: vars.rem(60) 0;
   }
 

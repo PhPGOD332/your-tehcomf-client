@@ -1,7 +1,7 @@
 import React from 'react';
 import {Metadata} from "next";
 import {pagesData} from "@/shared/constants";
-import AboutCompany from "@/widgets/AboutCompany/AboutCompany";
+import AboutCompanyView from "@/views/AboutCompanyView/AboutCompanyView";
 
 export const metadata: Metadata = {
     metadataBase: new URL(pagesData.about.url),
@@ -11,9 +11,10 @@ export const metadata: Metadata = {
 }
 
 const Page = () => {
+
     return (
         <>
-            <AboutCompany />
+            <AboutCompanyView />
         </>
     );
 };

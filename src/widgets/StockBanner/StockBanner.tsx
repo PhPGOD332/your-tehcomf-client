@@ -2,8 +2,7 @@ import React, {CSSProperties} from 'react';
 import styles from './StockBanner.module.scss';
 import Image, {StaticImageData} from "next/image";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
-
-type TBgColor = 'blue' | 'green';
+import {TBgColor} from "@/types/IStock";
 
 interface BannerProps {
     caption: string;
@@ -52,6 +51,10 @@ const StockBanner = (
                 return styles.banner_green;
             case "blue":
                 return styles.banner_blue;
+            case "pink":
+                return styles.banner_pink;
+            case "peach":
+                return styles.banner_peach;
             default:
                 checkColors = color;
                 return checkColors;
@@ -74,17 +77,17 @@ const StockBanner = (
                             width={mobileImageWidth}
                             height={mobileImageHeight}
                         />
-                        :
-                        image ?
-                            <Image
-                                className={styles.image}
-                                src={image.src}
-                                alt={imageAlt ?? ''}
-                                width={imageWidth}
-                                height={imageHeight}
-                            />
-                        :
-                        ''
+                    :
+                    image ?
+                        <Image
+                            className={styles.image}
+                            src={image.src}
+                            alt={imageAlt ?? ''}
+                            width={imageWidth}
+                            height={imageHeight}
+                        />
+                    :
+                    ''
                     }
                 </div>
                 <button

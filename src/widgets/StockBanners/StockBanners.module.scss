@@ -1,0 +1,74 @@
+@use '@/shared/styles/vars' as vars;
+
+.stocksWrapper {
+  margin-top: vars.rem(74);
+  margin-bottom: vars.rem(100);
+
+  @media (max-width: vars.$max-1150) {
+    margin-bottom: vars.rem(72);
+  }
+
+  .stocksTitle {
+    text-align: center;
+    margin-bottom: vars.rem(56);
+
+    @media (max-width: vars.$max-1150) {
+      margin-bottom: vars.rem(28);
+    }
+  }
+
+  .stocks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: vars.rem(20);
+
+    @media (max-width: vars.$max-1300) {
+      padding: 0 vars.rem(16);
+    }
+  }
+
+  .stocksSwiper {
+    display: none;
+    height: fit-content;
+
+    .stockSlide {
+      width: 90% !important;
+      height: auto;
+    }
+
+    @media (max-width: vars.$max-1150) {
+      display: block;
+      max-width: 100%;
+      padding: 0 vars.rem(16);
+    }
+  }
+}
+
+.stocks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: vars.rem(20);
+  width: vars.rem(1240);
+  margin: 0 auto;
+
+  @media (max-width: vars.$max-1300) {
+    width: 100%;
+    padding: 0 vars.rem(16);
+  }
+}
+
+.stocksSwiper {
+  display: none;
+  height: fit-content;
+
+  .stockSlide {
+    width: 90% !important;
+    height: auto;
+  }
+
+  @media (max-width: vars.$max-1150) {
+    display: block;
+    max-width: 100%;
+    padding: 0 vars.rem(16);
+  }
+}

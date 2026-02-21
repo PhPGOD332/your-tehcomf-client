@@ -1,25 +1,44 @@
+'use client'
 import React from 'react';
 import styles from './Contacts.module.scss';
 import SubTitle from "@/shared/UI/SubTitle/SubTitle";
 import Image, {StaticImageData} from "next/image";
 import TeamImage from '@/data/images/contacts/team.png';
 import WomanImage from '@/data/images/contacts/woman.png';
+import {IBooleanOptions} from "@/widgets/Footer/Footer";
+import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 
 type TImage = StaticImageData;
 
 const ContactTeamImage: TImage = TeamImage;
 const ContactWomanImage: TImage = WomanImage;
 
-const Contacts = () => {
+interface ContactsProps {
+    isOnlyContacts?: IBooleanOptions,
+    classNames?: string;
+}
+
+const Contacts = (
+    {
+        isOnlyContacts,
+        classNames
+    }: ContactsProps
+) => {
+    const isMobile = useMediaQuery('(max-width: 1000px)');
 
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.contactsBlock}>
-                <div className={styles.captionSide}>
-                    <span className={styles.questionSpan}>Остались вопросы?</span>
-                    <SubTitle classNames={styles.title}>Свяжитесь с нами</SubTitle>
-                </div>
-                <div className={styles.contactsSide}>
+        <div className={`${styles.wrapper} ${classNames ?? ''}`}>
+            <div className={`${styles.contactsBlock} ${isOnlyContacts?.desktop || isOnlyContacts?.mobile && styles.contactsBlock_withoutStyle}`}>
+                {isOnlyContacts && (!isOnlyContacts?.desktop && !isMobile)
+                || (!isOnlyContacts?.mobile && isMobile) ?
+                    <div className={styles.captionSide}>
+                        <span className={styles.questionSpan}>Остались вопросы?</span>
+                        <SubTitle classNames={styles.title}>Свяжитесь с нами</SubTitle>
+                    </div>
+                    :
+                    ''
+                }
+                <div className={`${styles.contactsSide} ${styles.contactsSide_onlyContacts}`}>
                     <div className={styles.contact}>
                         <Image
                             className={styles.contactImage}

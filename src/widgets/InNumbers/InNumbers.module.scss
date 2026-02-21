@@ -1,0 +1,415 @@
+@use '@/shared/styles/vars' as vars;
+
+.wrapper {
+  margin-bottom: vars.rem(98);
+
+  @media (max-width: vars.$max-1000) {
+    margin-bottom: vars.rem(72);
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: vars.rem(28);
+  }
+}
+
+.items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.67fr;
+  grid-template-rows: 301px 168px;
+  row-gap: vars.rem(20);
+  column-gap: vars.rem(23);
+
+  @media (max-width: vars.$max-1300) {
+    padding: 0 vars.rem(16);
+  }
+
+  @media (max-width: vars.$max-1150) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, vars.rem(173));
+    gap: vars.rem(12);
+
+    .item {
+      .categoryCaption {
+        font-size: vars.rem(16) !important;
+        text-transform: uppercase;
+      }
+
+      &_kitchensBlock {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+
+        .digitsBlock {
+
+          .digit {
+            font-size: vars.rem(48) !important;
+          }
+        }
+
+        .additCaption {
+          font-size: vars.rem(16) !important;
+        }
+      }
+
+      &_apartmentsBlock {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+
+        .digitsBlock {
+
+          .digit {
+            font-size: vars.rem(40) !important;
+          }
+        }
+
+        .additCaption {
+          font-size: vars.rem(16) !important;
+        }
+      }
+
+      &_designersBlock {
+        grid-column: 1/3 !important;
+        grid-row: 3 !important;
+        justify-content: space-between !important;
+
+        .captionWithBg {
+          position: absolute;
+          right: vars.rem(51);
+          margin: 0 !important;
+          margin-top: auto !important;
+          margin-bottom: auto !important;
+          top: 0;
+          bottom: 0;
+          height: fit-content;
+        }
+
+        .digitsBlock {
+
+          .digit {
+            font-size: vars.rem(60) !important;
+          }
+        }
+
+        .bg {
+          width: vars.rem(150) !important;
+          height: vars.rem(150) !important;
+          right: 0 !important;
+          left: auto !important;
+
+          .bgImage {
+            width: 100% !important;
+            height: 100%;
+          }
+        }
+      }
+
+      &_headsetsBlock {
+        grid-column: 1/3 !important;
+        grid-row: 2 !important;
+      }
+    }
+  }
+
+  @media (max-width: vars.$max-1000) {
+    .item {
+
+      .categoryCaption {
+        font-size: vars.rem(14) !important;
+        text-transform: uppercase;
+      }
+
+      &_kitchensBlock {
+        .digitsBlock {
+          .digit {
+          }
+        }
+
+        .additCaption {
+          font-size: vars.rem(14) !important;
+        }
+      }
+
+      &_apartmentsBlock {
+        .digitsBlock {
+          gap: vars.rem(20) !important;
+
+          .roundImages {
+            .roundImage {
+              width: vars.rem(40) !important;
+              height: vars.rem(40) !important;
+              border: vars.rem(1.88) solid vars.$white !important;
+
+              &:nth-child(2) {
+                margin-left: vars.rem(-12.5) !important;
+              }
+
+              &:nth-child(3) {
+                margin-left: vars.rem(-12.5) !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: vars.$max-700) {
+    .item {
+      &_headsetsBlock {
+        flex-direction: column !important;
+        gap: vars.rem(10);
+
+        .digitsBlock {
+          flex-direction: column;
+          gap: 0 !important;
+          justify-content: space-between !important;
+          width: 100%;
+
+          .captionWithBg {
+            align-self: flex-start;
+          }
+
+          .digit {
+            align-self: flex-end;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: vars.$max-600) {
+    .item {
+      padding: vars.rem(16) !important;
+
+      .captionWithBg {
+        font-size: vars.rem(14) !important;
+        padding: vars.rem(4) vars.rem(12) !important;
+      }
+
+      &_apartmentsBlock {
+        gap: vars.rem(5) !important;
+
+        .digitsBlock {
+          flex-direction: column;
+          align-items: flex-start !important;
+          justify-content: space-between;
+          gap: vars.rem(10) !important;
+
+          .digit {
+            order: 1;
+          }
+
+          .roundImages {
+            order: 0;
+          }
+        }
+
+        .additCaption {
+          display: none;
+        }
+      }
+
+      &_headsetsBlock {
+        .bg {
+
+          .bgImage {
+            //clip-path: polygon(0 0, 50% 0, 50% 30%, 0 30%);
+            width: 240% !important;
+            top: 0 !important;
+            left: 0;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: vars.$max-390) {
+    .item {
+      &_designersBlock {
+
+        .captionWithBg {
+          right: vars.rem(20);
+          margin-top: vars.rem(50) !important;
+        }
+      }
+    }
+  }
+
+  .item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: vars.rem(20);
+    padding: vars.rem(32) vars.rem(32);
+    overflow: hidden;
+
+    &_lightGreen {
+      background-color: vars.$bg-light-green;
+    }
+
+    &_green {
+      background-color: vars.$green;
+    }
+
+    .captionWithBg {
+      display: inline-block;
+      background-color: vars.$white;
+      padding: vars.rem(8) vars.rem(16);
+      font-size: vars.rem(19);
+      font-weight: 600;
+      border-radius: vars.rem(60);
+      z-index: 1;
+
+      &_green {
+        color: vars.$green;
+      }
+    }
+
+    .categoryCaption {
+      font-size: vars.rem(19);
+      font-weight: 500;
+      z-index: 1;
+    }
+
+    .digitsBlock {
+      z-index: 1;
+
+      .digit {
+        font-size: vars.rem(70);
+        font-weight: 600;
+
+        &_black {
+          color: vars.$black;
+        }
+
+        &_white {
+          color: vars.$white;
+        }
+      }
+
+      .roundImages {
+        display: flex;
+
+        .roundImage {
+          position: relative;
+          width: vars.rem(64);
+          height: vars.rem(64);
+          border-radius: 50%;
+          border: vars.rem(3) solid vars.$white;
+          overflow: hidden;
+
+          &:nth-child(2) {
+            margin-left: vars.rem(-20);
+          }
+
+          &:nth-child(3) {
+            margin-left: vars.rem(-20);
+          }
+
+          .image {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .additCaption {
+      font-size: vars.rem(31);
+      font-weight: 500;
+
+      &_green {
+        color: vars.$green;
+      }
+    }
+
+    .bg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      overflow: hidden;
+      z-index: 0;
+
+      .bgImage {
+        position: absolute;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &_kitchensBlock {
+      grid-column: 1;
+      grid-row: 1;
+
+      .categoryCaption {
+        color: vars.$black;
+      }
+
+      .digitsBlock {
+
+        .digit {
+          font-size: vars.rem(100);
+        }
+      }
+    }
+
+    &_apartmentsBlock {
+      grid-column: 2;
+      grid-row: 1;
+
+      .categoryCaption {
+        color: vars.$black;
+        margin-bottom: vars.rem(11);
+      }
+
+      .digitsBlock {
+        display: flex;
+        align-items: center;
+        gap: vars.rem(42);
+      }
+    }
+
+    &_designersBlock {
+      justify-content: flex-end;
+      grid-column: 3;
+      grid-row: 1/3;
+
+      .captionWithBg {
+        margin-bottom: vars.rem(121);
+        width: fit-content;
+      }
+
+      .categoryCaption {
+        color: vars.$white;
+      }
+
+      .bg {
+        opacity: 1;
+      }
+    }
+
+    &_headsetsBlock {
+      flex-direction: row;
+      padding: vars.rem(21) vars.rem(25);
+      grid-column: 1/3;
+      grid-row: 2;
+
+      .categoryCaption {
+        color: vars.$white;
+      }
+
+      .digitsBlock {
+        display: flex;
+        align-items: center;
+        gap: vars.rem(36);
+        align-self: center;
+      }
+    }
+  }
+}
