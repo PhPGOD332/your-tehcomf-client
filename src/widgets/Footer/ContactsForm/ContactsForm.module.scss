@@ -24,6 +24,7 @@
 }
 
 .innerWrapper {
+  position: relative;
   gap: vars.rem(100);
   padding: vars.rem(60) 0;
   border-top-left-radius: vars.rem(60);
