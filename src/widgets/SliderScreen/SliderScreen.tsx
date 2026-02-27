@@ -47,9 +47,9 @@ const SliderScreen = (
             top: 0,
             behavior: "instant"
         });
-        if (document.body.clientWidth <= 1000) {
-            document.body.classList.add('overflowStartYHidden');
-        }
+        // if (document.body.clientWidth <= 1000) {
+        //     document.body.classList.add('overflowStartYHidden');
+        // }
         // setIsScreenSlide(false);
     }, []);
 

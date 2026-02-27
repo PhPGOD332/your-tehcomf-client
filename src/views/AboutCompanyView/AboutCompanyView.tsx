@@ -105,8 +105,8 @@ const AboutCompanyView = () => {
                     <TextWithSmoothSlider
                         title={'Где производим?'}
                         text={
-                            <span>Мы производим и поставляем кухни и мебель на заказ на собственном производстве в Ульяновской области, в розницу для физических лиц и оптом для магазинов и торговых сетей. <br/><br/>
-                        <b>Адрес:</b> г. Ульяновск, 42 Инженерный проезд, д. 6</span>}
+                            <span>Мы производим и поставляем кухни и мебель на заказ на собственном производстве в Московской области, в розницу для физических лиц и оптом для магазинов и торговых сетей. <br/><br/>
+                        <b>Адрес:</b> г. Зеленоград, Московская область</span>}
                         sliderItems={sliderItems1}
                         sliderOrientation={'right'}
                         isMap={true}
@@ -119,13 +119,14 @@ const AboutCompanyView = () => {
                             центры <b>Homag</b> (включая 5-осевой станок BAZ 5 axis для
                             гнутых фасадов), мембранно-вакуумный пресс <b>Bürkle</b> для
                             безупречной облицовки ПВХ-пленкой, сверлильно-присадочные
-                            центры <b>Weeke</b>, а также форматно-раскроечные станки <b>Holzma</b>
-                            и кромкооблицовочные линии <b>IMA</b>. Это позволяет
+                            центры <b>Weeke</b>, а также форматно-раскроечные станки <b>Holzma</b> и
+                            кромкооблицовочные линии <b>IMA</b>. Это позволяет
                             гарантировать точность до 0,1 мм, высокую скорость обработки
                             и безупречное качество каждой детали.</span>}
                         sliderItems={sliderItems2}
                         sliderOrientation={'left'}
                         brands={secondBrands}
+                        brandsDirection={'right'}
                     />
                     <TextWithSmoothSlider
                         title={'Из чего изготавливаем корпус?'}
@@ -141,6 +142,7 @@ const AboutCompanyView = () => {
                         sliderItems={sliderItems3}
                         sliderOrientation={'right'}
                         brands={thirdBrands}
+                        brandsDirection={'left'}
                     />
                     <TextWithSmoothSlider
                         title={'Из чего изготавливаем фасад?'}
@@ -157,6 +159,7 @@ const AboutCompanyView = () => {
                         sliderItems={sliderItems4}
                         sliderOrientation={'left'}
                         brands={fourthBrands}
+                        brandsDirection={'right'}
                     />
                     <TextWithSmoothSlider
                         title={'Из чего изготавливаем столешницы?'}
@@ -175,16 +178,13 @@ const AboutCompanyView = () => {
                         sliderItems={sliderItems5}
                         sliderOrientation={'right'}
                         brands={fifthBrands}
+                        brandsDirection={'left'}
                     />
                     <TextWithSmoothSlider
                         title={'Какое наполнение у кухонь?'}
                         text={
                             <span>Мы работаем с ведущими производителями бытовой техники
-                            и электроники, такими как <b>Gorenje</b>, <b>Krona</b>, <b>Liebherr</b>,
-                            <b>Hotpoint</b>, <b>Elica</b>, <b>Elikor</b>, <b>Faber</b>,
-                            <b>Candy</b>, <b>Beko</b>, <b>Maunfeld</b>,
-                            <b>Zigmund & Shtain</b>, <b>Haier</b>, <b>Kuppersbusch</b>,
-                            <b>Graude</b>, <b>SMEG</b>, <b>Asko</b> и <b>Korting</b>. <br/><br/>
+                            и электроники, такими как <b>Gorenje</b>, <b>Krona</b>, <b>Liebherr</b>, <b>Hotpoint</b>, <b>Elica</b>, <b>Elikor</b>, <b>Faber</b>, <b>Candy</b>, <b>Beko</b>, <b>Maunfeld</b>, <b>Zigmund & Shtain</b>, <b>Haier</b>, <b>Kuppersbusch</b>, <b>Graude</b>, <b>SMEG</b>, <b>Asko</b> и <b>Korting</b>. <br/><br/>
                             Мы оснащаем свою мебель современными и практичными
                             механизмами и фурнитурой от ведущих производителей,
                             таких фирм как <b>Hettich</b> (Германия), <b>Blum</b> (Австрия)
@@ -195,6 +195,7 @@ const AboutCompanyView = () => {
                         sliderItems={sliderItems6}
                         sliderOrientation={'left'}
                         brands={sixthBrands}
+                        brandsDirection={'right'}
                     />
                 </div>
                 <ContactsForm

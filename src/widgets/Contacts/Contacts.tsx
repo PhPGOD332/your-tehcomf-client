@@ -12,8 +12,7 @@ const Contacts = () => {
                         <SubTitle classNames={styles.title}>Контакты</SubTitle>
                         <div className={styles.map}>
                             <div style={{position: "relative", overflow: "hidden"}}><a
-                                href="https://yandex.ru/maps/org/kukhni_milana/8560001252/?utm_medium=mapframe&utm_source=maps"
-
+                                href="https://yandex.ru/maps/org/tvoya_kukhnya/192446974752/?utm_medium=mapframe&utm_source=maps"
                                 style={
                                     {
                                         color: "#eee",
@@ -21,8 +20,8 @@ const Contacts = () => {
                                         position: "absolute",
                                         top: "0px",
                                     }
-                                }>Кухни
-                                Милана</a><a
+                                }>Твоя
+                                кухня</a><a
                                 href="https://yandex.ru/maps/213/moscow/category/kitchen_furniture/184107873/?utm_medium=mapframe&utm_source=maps"
                                 style={
                                     {
@@ -33,7 +32,7 @@ const Contacts = () => {
                                     }
                                 }>Мебель для
                                 кухни в Москве</a><a
-                                href="https://yandex.ru/maps/213/moscow/category/furniture_store/184107871/?utm_medium=mapframe&utm_source=maps"
+                                href="https://yandex.ru/maps/213/moscow/category/cabinet_furniture/184107869/?utm_medium=mapframe&utm_source=maps"
                                 style={
                                     {
                                         color: "#eee",
@@ -41,11 +40,11 @@ const Contacts = () => {
                                         position: "absolute",
                                         top: "28px",
                                     }
-                                }>Магазин мебели
-                                в Москве</a>
+                                }>Корпусная
+                                мебель в Москве</a>
                                 <iframe
-                                    src="https://yandex.ru/map-widget/v1/?azimuth=1.7132151937576336&ll=37.716604%2C55.747647&mode=search&oid=8560001252&ol=biz&tilt=0.25666606646975454&z=17.6"
-                                    width="560" height="400" allowFullScreen={true}
+                                    src="https://yandex.ru/map-widget/v1/?ll=37.671597%2C55.720210&mode=search&oid=192446974752&ol=biz&utm_medium=mapframe&utm_source=maps&z=17.06"
+                                    width={560} height={400} allowFullScreen={true}
                                     style={{position: "relative"}}></iframe>
                             </div>
                         </div>
@@ -65,7 +64,7 @@ const Contacts = () => {
                                 <td className={styles.tableSubTitle}>Адрес офиса</td>
                                 <td className={styles.tableTextContent}>
                                     <span
-                                        className={styles.tableMainText}>г. Москва, ул. Новоостаповская, д. 6Б</span><br/>
+                                        className={styles.tableMainText}>г. Зеленоград, Московская область</span><br/>
                                     <div className={styles.metroBlock}>
                                         <svg width="18" height="12" viewBox="0 0 18 12" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +85,7 @@ const Contacts = () => {
                                 </td>
                             </tr>
                             <tr className={styles.tableRow}>
-                                    <td className={styles.tableSubTitle}>Адрес производства</td>
+                                <td className={styles.tableSubTitle}>Адрес производства</td>
                                     <td className={styles.tableTextContent}>
                                             <span
                                                 className={styles.tableMainText}>г. Ульяновск, <br className={styles.transfer}/>42 Инженерный проезд, д. 6</span>
@@ -95,13 +94,13 @@ const Contacts = () => {
                                 <tr className={styles.tableRow}>
                                     <td className={styles.tableSubTitle}>E-mail</td>
                                     <td className={styles.tableTextContent}>
-                                        <span className={styles.tableMainText}>info@youkuhnya.ru</span>
+                                        <span className={styles.tableMainText}>info@tehcomf.ru</span>
                                     </td>
                                 </tr>
                                 <tr className={styles.mapRow}>
                                     <td className={styles.mapCol}>
                                         <div style={{position: "relative", overflow: "hidden"}}><a
-                                            href="https://yandex.ru/maps/org/kukhni_milana/8560001252/?utm_medium=mapframe&utm_source=maps"
+                                            href="https://yandex.ru/maps/org/tvoya_kukhnya/192446974752/?utm_medium=mapframe&utm_source=maps"
                                             style={
                                                 {
                                                     color: "#eee",
@@ -109,8 +108,8 @@ const Contacts = () => {
                                                     position: "absolute",
                                                     top: "0px",
                                                 }
-                                            }>Кухни
-                                            Милана</a><a
+                                            }>Твоя
+                                            кухня</a><a
                                             href="https://yandex.ru/maps/213/moscow/category/kitchen_furniture/184107873/?utm_medium=mapframe&utm_source=maps"
                                             style={
                                                 {
@@ -121,7 +120,7 @@ const Contacts = () => {
                                                 }
                                             }>Мебель для
                                             кухни в Москве</a><a
-                                            href="https://yandex.ru/maps/213/moscow/category/furniture_store/184107871/?utm_medium=mapframe&utm_source=maps"
+                                            href="https://yandex.ru/maps/213/moscow/category/cabinet_furniture/184107869/?utm_medium=mapframe&utm_source=maps"
                                             style={
                                                 {
                                                     color: "#eee",
@@ -129,28 +128,28 @@ const Contacts = () => {
                                                     position: "absolute",
                                                     top: "28px",
                                                 }
-                                            }>Магазин мебели
-                                            в Москве</a>
+                                            }>Корпусная
+                                            мебель в Москве</a>
                                             <iframe
-                                                src="https://yandex.ru/map-widget/v1/?azimuth=1.7132151937576336&ll=37.716604%2C55.747647&mode=search&oid=8560001252&ol=biz&tilt=0.25666606646975454&z=17.6"
-                                                width="560" height="400" allowFullScreen={true}
+                                                src="https://yandex.ru/map-widget/v1/?ll=37.671597%2C55.720210&mode=search&oid=192446974752&ol=biz&utm_medium=mapframe&utm_source=maps&z=17.06"
+                                                width={560} height={400} allowFullScreen={true}
                                                 style={{position: "relative"}}></iframe>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr className={`${styles.tableRow} ${styles.titleRow}`}>
-                                    <td className={styles.titleCol}>
-                                        <SubTitle>Реквизиты</SubTitle>
-                                    </td>
-                                </tr>
-                                <tr className={styles.tableRow}>
-                                    <td className={styles.tableSubTitle}>Юридическое лицо</td>
-                                    <td className={styles.tableTextContent}>
-                                        <span className={styles.tableMainText}>ООО «ТК»</span>
-                                    </td>
-                                </tr>
-                                <tr className={styles.tableRow}>
-                                    <td className={styles.tableSubTitle}>ИНН</td>
+                            <tr className={`${styles.tableRow} ${styles.titleRow}`}>
+                                <td className={styles.titleCol}>
+                                    <SubTitle>Реквизиты</SubTitle>
+                                </td>
+                            </tr>
+                            <tr className={styles.tableRow}>
+                                <td className={styles.tableSubTitle}>Юридическое лицо</td>
+                                <td className={styles.tableTextContent}>
+                                    <span className={styles.tableMainText}>ООО «ТК»</span>
+                                </td>
+                            </tr>
+                            <tr className={styles.tableRow}>
+                                <td className={styles.tableSubTitle}>ИНН</td>
                                     <td className={styles.tableTextContent}>
                                         <span className={styles.tableMainText}>9701160947</span>
                                     </td>
