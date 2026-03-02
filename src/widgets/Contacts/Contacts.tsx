@@ -12,17 +12,7 @@ const Contacts = () => {
                         <SubTitle classNames={styles.title}>Контакты</SubTitle>
                         <div className={styles.map}>
                             <div style={{position: "relative", overflow: "hidden"}}><a
-                                href="https://yandex.ru/maps/org/tvoya_kukhnya/192446974752/?utm_medium=mapframe&utm_source=maps"
-                                style={
-                                    {
-                                        color: "#eee",
-                                        fontSize: "12px",
-                                        position: "absolute",
-                                        top: "0px",
-                                    }
-                                }>Твоя
-                                кухня</a><a
-                                href="https://yandex.ru/maps/213/moscow/category/kitchen_furniture/184107873/?utm_medium=mapframe&utm_source=maps"
+                                href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps"
                                 style={
                                     {
                                         color: "#eee",
@@ -30,9 +20,8 @@ const Contacts = () => {
                                         position: "absolute",
                                         top: "14px",
                                     }
-                                }>Мебель для
-                                кухни в Москве</a><a
-                                href="https://yandex.ru/maps/213/moscow/category/cabinet_furniture/184107869/?utm_medium=mapframe&utm_source=maps"
+                                }>Москва</a><a
+                                href="https://yandex.ru/maps/213/moscow/house/sharikopodshipnikovskaya_ulitsa_4k4a/Z04YcABhTEwAQFtvfXtzcX5iZA==/?from=mapframe&ll=37.671597%2C55.720210&utm_medium=mapframe&utm_source=maps&z=17.06"
                                 style={
                                     {
                                         color: "#eee",
@@ -40,10 +29,10 @@ const Contacts = () => {
                                         position: "absolute",
                                         top: "28px",
                                     }
-                                }>Корпусная
-                                мебель в Москве</a>
+                                }>Шарикоподшипниковская
+                                улица, 4к4А — Яндекс Карты</a>
                                 <iframe
-                                    src="https://yandex.ru/map-widget/v1/?ll=37.671597%2C55.720210&mode=search&oid=192446974752&ol=biz&utm_medium=mapframe&utm_source=maps&z=17.06"
+                                    src="https://yandex.ru/map-widget/v1/?from=mapframe&ll=37.671597%2C55.720210&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgoxNjIyODcxMzE5ElnQoNC-0YHRgdC40Y8sINCc0L7RgdC60LLQsCwg0KjQsNGA0LjQutC-0L_QvtC00YjQuNC_0L3QuNC60L7QstGB0LrQsNGPINGD0LvQuNGG0LAsIDTQujTQkCIKDbavFkIVf-FeQg%2C%2C&z=17.06"
                                     width={560} height={400} allowFullScreen={true}
                                     style={{position: "relative"}}></iframe>
                             </div>
@@ -64,7 +53,8 @@ const Contacts = () => {
                                 <td className={styles.tableSubTitle}>Адрес офиса</td>
                                 <td className={styles.tableTextContent}>
                                     <span
-                                        className={styles.tableMainText}>г. Зеленоград, Московская область</span><br/>
+                                        className={styles.tableMainText}>Москва, <br className={styles.transfer}/> Шарикоподшипниковская улица, 4, <br
+                                        className={styles.transfer}/> корп. 4А</span><br/>
                                     <div className={styles.metroBlock}>
                                         <svg width="18" height="12" viewBox="0 0 18 12" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -88,7 +78,7 @@ const Contacts = () => {
                                 <td className={styles.tableSubTitle}>Адрес производства</td>
                                     <td className={styles.tableTextContent}>
                                             <span
-                                                className={styles.tableMainText}>г. Ульяновск, <br className={styles.transfer}/>42 Инженерный проезд, д. 6</span>
+                                                className={styles.tableMainText}>г. Зеленоград, Московская область</span>
                                     </td>
                                 </tr>
                                 <tr className={styles.tableRow}>
@@ -100,17 +90,7 @@ const Contacts = () => {
                                 <tr className={styles.mapRow}>
                                     <td className={styles.mapCol}>
                                         <div style={{position: "relative", overflow: "hidden"}}><a
-                                            href="https://yandex.ru/maps/org/tvoya_kukhnya/192446974752/?utm_medium=mapframe&utm_source=maps"
-                                            style={
-                                                {
-                                                    color: "#eee",
-                                                    fontSize: "12px",
-                                                    position: "absolute",
-                                                    top: "0px",
-                                                }
-                                            }>Твоя
-                                            кухня</a><a
-                                            href="https://yandex.ru/maps/213/moscow/category/kitchen_furniture/184107873/?utm_medium=mapframe&utm_source=maps"
+                                            href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps"
                                             style={
                                                 {
                                                     color: "#eee",
@@ -118,9 +98,8 @@ const Contacts = () => {
                                                     position: "absolute",
                                                     top: "14px",
                                                 }
-                                            }>Мебель для
-                                            кухни в Москве</a><a
-                                            href="https://yandex.ru/maps/213/moscow/category/cabinet_furniture/184107869/?utm_medium=mapframe&utm_source=maps"
+                                            }>Москва</a><a
+                                            href="https://yandex.ru/maps/213/moscow/house/sharikopodshipnikovskaya_ulitsa_4k4a/Z04YcABhTEwAQFtvfXtzcX5iZA==/?from=mapframe&ll=37.671597%2C55.720210&utm_medium=mapframe&utm_source=maps&z=17.06"
                                             style={
                                                 {
                                                     color: "#eee",
@@ -128,10 +107,10 @@ const Contacts = () => {
                                                     position: "absolute",
                                                     top: "28px",
                                                 }
-                                            }>Корпусная
-                                            мебель в Москве</a>
+                                            }>Шарикоподшипниковская
+                                            улица, 4к4А — Яндекс Карты</a>
                                             <iframe
-                                                src="https://yandex.ru/map-widget/v1/?ll=37.671597%2C55.720210&mode=search&oid=192446974752&ol=biz&utm_medium=mapframe&utm_source=maps&z=17.06"
+                                                src="https://yandex.ru/map-widget/v1/?from=mapframe&ll=37.671597%2C55.720210&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgoxNjIyODcxMzE5ElnQoNC-0YHRgdC40Y8sINCc0L7RgdC60LLQsCwg0KjQsNGA0LjQutC-0L_QvtC00YjQuNC_0L3QuNC60L7QstGB0LrQsNGPINGD0LvQuNGG0LAsIDTQujTQkCIKDbavFkIVf-FeQg%2C%2C&z=17.06"
                                                 width={560} height={400} allowFullScreen={true}
                                                 style={{position: "relative"}}></iframe>
                                         </div>
@@ -150,7 +129,7 @@ const Contacts = () => {
                             </tr>
                             <tr className={styles.tableRow}>
                                 <td className={styles.tableSubTitle}>ИНН</td>
-                                    <td className={styles.tableTextContent}>
+                                <td className={styles.tableTextContent}>
                                         <span className={styles.tableMainText}>9701160947</span>
                                     </td>
                                 </tr>
