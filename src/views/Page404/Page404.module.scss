@@ -1,0 +1,70 @@
+@use '@/shared/styles/vars' as vars;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: vars.rem(20);
+  height: 100vh;
+
+  @media (max-width: vars.$max-1400) {
+    padding: vars.rem(0) vars.rem(16);
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  @media (max-width: vars.$max-1000) {
+    height: 80vh;
+  }
+}
+
+.caption {
+  font-size: vars.rem(50);
+  font-weight: 500;
+  color: vars.$black;
+
+  .transfer {
+    display: none;
+  }
+
+  @media (max-width: vars.$max-1000) {
+    font-size: vars.rem(30);
+
+    .transfer {
+      display: flex;
+    }
+  }
+}
+
+.title {
+  font-size: vars.rem(250);
+  color: vars.$green;
+
+  @media (max-width: vars.$max-1000) {
+    font-size: vars.rem(150);
+  }
+}
+
+.link {
+  font-size: vars.rem(25);
+  background-color: vars.$light-gray;
+  padding: vars.rem(20) vars.rem(40);
+  border-radius: vars.rem(10);
+  transition: 0.3s;
+
+  @media (max-width: vars.$max-1000) {
+    font-size: vars.rem(18);
+
+    &:active {
+      background-color: vars.$green;
+      color: vars.$white;
+    }
+  }
+
+  &:hover {
+    background-color: vars.$green;
+    color: vars.$white;
+  }
+}
