@@ -177,6 +177,21 @@
           transition: 0.3s;
           fill: vars.$green;
         }
+
+        .socialLinkBg {
+          background-color: vars.$green;
+        }
+      }
+
+      .socialLinkBg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: vars.rem(56);
+        height: vars.rem(56);
+        border-radius: 50%;
+        background-color: vars.$link;
+        transition: 0.3s;
       }
     }
   }

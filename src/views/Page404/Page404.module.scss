@@ -1,12 +1,11 @@
 @use '@/shared/styles/vars' as vars;
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: vars.rem(20);
   height: 100vh;
+  width: 100%;
 
   @media (max-width: vars.$max-1400) {
     padding: vars.rem(0) vars.rem(16);
@@ -16,55 +15,156 @@
   }
 
   @media (max-width: vars.$max-1000) {
-    height: 80vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.25fr 1fr;
+    height: 100vh;
+
+    .emptyCol {
+      order: 1;
+    }
+
+    .content {
+      order: 0;
+      align-items: center !important;
+    }
+  }
+
+  .bgBlock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+
+    @media (max-width: vars.$max-1000) {
+      display: none;
+    }
+
+    .image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .bgMobileBlock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+    display: none;
+
+    @media (max-width: vars.$max-1000) {
+      display: flex;
+    }
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .col {
+    z-index: 1;
+    margin: auto 0;
+  }
+
+  .emptyCol {}
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
 .caption {
-  font-size: vars.rem(50);
+  font-size: vars.rem(19);
   font-weight: 500;
-  color: vars.$black;
-
-  .transfer {
-    display: none;
-  }
+  color: vars.$white;
+  margin-bottom: vars.rem(28);
+  text-align: start;
+  line-height: 140%;
 
   @media (max-width: vars.$max-1000) {
-    font-size: vars.rem(30);
+    text-align: center;
 
     .transfer {
+      display: none !important;
+    }
+  }
+
+  &_desktop {
+    @media (max-width: vars.$max-1000) {
+      display: none;
+    }
+  }
+
+  &_mobile {
+    display: none;
+    text-align: center;
+
+    @media (max-width: vars.$max-1000) {
       display: flex;
     }
   }
+
+  .transfer {
+    display: flex;
+  }
 }
 
-.title {
-  font-size: vars.rem(250);
-  color: vars.$green;
+.code {
+  font-size: vars.rem(200);
+  color: vars.$white;
+  letter-spacing: vars.rem(10);
+  font-weight: 600;
+  margin-bottom: vars.rem(16);
 
   @media (max-width: vars.$max-1000) {
     font-size: vars.rem(150);
+    margin-bottom: vars.rem(-20);
+  }
+}
+
+.miniTitle {
+  font-weight: 500 !important;
+  margin-bottom: vars.rem(16);
+
+  @media (max-width: vars.$max-1000) {
+    margin-bottom: vars.rem(8);
   }
 }
 
 .link {
-  font-size: vars.rem(25);
-  background-color: vars.$light-gray;
-  padding: vars.rem(20) vars.rem(40);
-  border-radius: vars.rem(10);
+  display: flex;
+  align-items: center;
+  gap: vars.rem(10);
   transition: 0.3s;
+  color: vars.$white;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
 
   @media (max-width: vars.$max-1000) {
     font-size: vars.rem(18);
+    color: vars.$light-blue;
+    background-color: vars.$white;
+    border-radius: vars.rem(20);
+    padding: vars.rem(12) vars.rem(16);
 
-    &:active {
-      background-color: vars.$green;
-      color: vars.$white;
+    > svg {
+      > path {
+        fill: vars.$light-blue
+      }
     }
-  }
-
-  &:hover {
-    background-color: vars.$green;
-    color: vars.$white;
   }
 }

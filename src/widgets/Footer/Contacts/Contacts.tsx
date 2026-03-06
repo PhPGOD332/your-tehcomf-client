@@ -7,6 +7,7 @@ import TeamImage from '@/data/images/contacts/team.png';
 import WomanImage from '@/data/images/contacts/woman.png';
 import {IBooleanOptions} from "@/widgets/Footer/Footer";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
+import Link from "next/link";
 
 type TImage = StaticImageData;
 
@@ -60,7 +61,7 @@ const Contacts = (
                             <span className={styles.caption}>+7 (495) 988-55-28</span>
                         </div>
                     </div>
-                    <div className={styles.contact}>
+                    <Link href={'https://max.ru/u/f9LHodD0cOIRh5Lz_sziSBOk_tZHto4PxQIapM0Nl6NTm0Bs1Zd69OQCE7Q'} className={styles.contact}>
                         <Image
                             className={styles.contactImage}
                             src={ContactWomanImage}
@@ -77,18 +78,13 @@ const Contacts = (
                                 </svg>
                             </div>
                         </div>
-                        <div className={`${styles.contactPostview} ${styles.hidden}`}>
+                        <Link href={'https://max.ru/u/f9LHodD0cOIRh5Lz_sziSBOk_tZHto4PxQIapM0Nl6NTm0Bs1Zd69OQCE7Q'} className={`${styles.contactPostview} ${styles.hidden}`}>
                             <span className={styles.caption}>Написать менеджеру</span>
                             <div className={styles.contactIcon}>
-                                <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M23.0488 4.9375C20.5087 2.40625 17.1219 1 13.547 1C6.11498 1 0.0940752 7 0.0940752 14.4062C0.0940752 16.75 0.752613 19.0937 1.88153 21.0625L0 28L7.14983 26.125C9.12544 27.1562 11.2892 27.7188 13.547 27.7188C20.9791 27.7188 27 21.7188 27 14.3125C26.9059 10.8438 25.5888 7.46875 23.0488 4.9375ZM20.0383 19.1875C19.7561 19.9375 18.439 20.6875 17.7805 20.7812C17.216 20.875 16.4634 20.875 15.7108 20.6875C15.2404 20.5 14.5819 20.3125 13.8293 19.9375C10.4425 18.5312 8.27875 15.1562 8.09059 14.875C7.90244 14.6875 6.67944 13.0937 6.67944 11.4062C6.67944 9.71875 7.52613 8.96875 7.80836 8.59375C8.09059 8.21875 8.4669 8.21875 8.74913 8.21875C8.93728 8.21875 9.21951 8.21875 9.40766 8.21875C9.59581 8.21875 9.87805 8.125 10.1603 8.78125C10.4425 9.4375 11.101 11.125 11.1951 11.2188C11.2892 11.4062 11.2892 11.5938 11.1951 11.7812C11.101 11.9688 11.007 12.1562 10.8188 12.3437C10.6307 12.5312 10.4425 12.8125 10.3484 12.9062C10.1603 13.0937 9.97212 13.2812 10.1603 13.5625C10.3484 13.9375 11.007 14.9687 12.0418 15.9062C13.3589 17.0312 14.3937 17.4062 14.77 17.5938C15.1463 17.7812 15.3345 17.6875 15.5226 17.5C15.7108 17.3125 16.3693 16.5625 16.5575 16.1875C16.7456 15.8125 17.0279 15.9062 17.3101 16C17.5923 16.0938 19.2857 16.9375 19.5679 17.125C19.9443 17.3125 20.1324 17.4062 20.2265 17.5C20.3206 17.7812 20.3206 18.4375 20.0383 19.1875Z"
-                                        fill="#58595B"/>
-                                </svg>
+                                <Image src="https://maxicons.ru/icons/Max_logo.svg" alt="MAX" width={32} height={32} />
                             </div>
-                        </div>
-                    </div>
+                        </Link>
+                    </Link>
                 </div>
             </div>
         </div>

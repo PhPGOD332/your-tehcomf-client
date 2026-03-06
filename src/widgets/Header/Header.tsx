@@ -22,7 +22,7 @@ export interface INavItem {
 }
 
 const Header = () => {
-    const isMobile = useMediaQuery('(max-width: 1000px)');
+    const isMobile = useMediaQuery('(max-width: 1050px)');
 
     const navItems: INavItem[] = [
         {
@@ -100,6 +100,10 @@ const Header = () => {
         {
             caption: 'Контакты',
             href: pagesLinks.contacts
+        },
+        {
+            caption: 'О компании',
+            href: pagesLinks.aboutCompany
         },
     ]
 

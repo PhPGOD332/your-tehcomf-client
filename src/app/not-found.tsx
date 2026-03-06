@@ -1,7 +1,5 @@
 import "./styles";
-import Footer from "@/widgets/Footer/Footer";
 import {Metadata, Viewport} from "next";
-import Header from "@/widgets/Header/Header";
 import Page404 from "@/views/Page404/Page404";
 
 export const metadata: Metadata = {
@@ -18,11 +16,11 @@ export const viewport: Viewport = {
 const NotFound = () => {
   return (
       <body className={'white'}>
-        <Header />
+        {/*<Header />*/}
         <main>
             <Page404/>
         </main>
-        <Footer isContact={true} />
+        {/*<Footer isContact={true} />*/}
       </body>
   );
 };

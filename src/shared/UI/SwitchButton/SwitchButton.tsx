@@ -2,6 +2,7 @@ import React, {JSX} from 'react';
 import styles from './SwitchButton.module.scss';
 import Image from "next/image";
 import {TImage} from "@/types/IImage";
+import Link from "next/link";
 
 export enum SwitchButtonColors {
     GRAY, GREEN,
@@ -15,6 +16,7 @@ interface ButtonProps {
     previewText?: string;
     postViewText?: string;
     isOnlyMobileImage?: boolean;
+    href?: string;
 }
 
 const SwitchButton = (
@@ -25,7 +27,8 @@ const SwitchButton = (
         isSwitch,
         previewText,
         postViewText,
-        isOnlyMobileImage
+        isOnlyMobileImage,
+        href
     }: ButtonProps) => {
 
     const getStyle = (color: SwitchButtonColors) => {
@@ -57,6 +60,37 @@ const SwitchButton = (
     }
 
     return (
+        href ?
+        <Link href={href ?? ''} className={`${styles.contact} ${getStyle(color)}`}>
+            <div className={styles.contactPreview}>
+                <div className={styles.previewImage}>
+                    {image
+                        ?
+                        <Image
+                            className={`${styles.contactImage} ${isOnlyMobileImage && styles.contactImage_onlyMobile}`}
+                            src={image.src}
+                            alt={''}
+                            width={44}
+                            height={44}
+                        />
+                        :
+                        ''
+                    }
+                    <span className={styles.caption}
+                          style={{fontSize: image ? '19px' : '22px'}}>{previewText}</span>
+                </div>
+                <div className={styles.contactIcon}>
+                    {icon ?? ''}
+                </div>
+            </div>
+            {isSwitch
+                &&
+                <div className={`${styles.contactPostview} ${styles.hidden}`}>
+                    <span className={styles.caption}>{postViewText}</span>
+                </div>
+            }
+        </Link>
+        :
         <div className={`${styles.contact} ${getStyle(color)}`}>
             <div className={styles.contactPreview}>
                 <div className={styles.previewImage}>
@@ -72,7 +106,8 @@ const SwitchButton = (
                         :
                         ''
                     }
-                    <span className={styles.caption} style={{fontSize: image ? '19px' : '22px'}}>{previewText}</span>
+                    <span className={styles.caption}
+                          style={{fontSize: image ? '19px' : '22px'}}>{previewText}</span>
                 </div>
                 <div className={styles.contactIcon}>
                     {icon ?? ''}
@@ -80,9 +115,9 @@ const SwitchButton = (
             </div>
             {isSwitch
                 &&
-		        <div className={`${styles.contactPostview} ${styles.hidden}`}>
-			        <span className={styles.caption}>{postViewText}</span>
-		        </div>
+                <div className={`${styles.contactPostview} ${styles.hidden}`}>
+                    <span className={styles.caption}>{postViewText}</span>
+                </div>
             }
         </div>
     );

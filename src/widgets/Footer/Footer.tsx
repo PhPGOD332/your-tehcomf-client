@@ -7,6 +7,7 @@ import ContactsForm from "@/widgets/Footer/ContactsForm/ContactsForm";
 import {IStock} from "@/types/IStock";
 import StockBanners from "@/widgets/StockBanners/StockBanners";
 import InNumbers from "@/widgets/InNumbers/InNumbers";
+import Image from "next/image";
 
 export interface IBooleanOptions {
     desktop: boolean;
@@ -114,14 +115,10 @@ const Footer = (
                             </ul>
                         </div>
                         <div className={styles.footerSocials}>
-                            <Link href={'#'} className={styles.socialLink}>
-                                <svg width="57" height="56" viewBox="0 0 57 56" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="0.260742" width="56" height="56" rx="28" fill="#8A8B8C"/>
-                                    <path
-                                        d="M39.3583 16.8871C36.5924 14.1309 32.9046 12.5996 29.012 12.5996C20.9193 12.5996 14.3632 19.1329 14.3632 27.1975C14.3632 29.7496 15.0803 32.3017 16.3095 34.4454L14.2607 41.9996L22.0461 39.9579C24.1973 41.0809 26.5534 41.6934 29.012 41.6934C37.1046 41.6934 43.6607 35.16 43.6607 27.0954C43.5583 23.3184 42.1242 19.6434 39.3583 16.8871ZM36.0803 32.4038C35.7729 33.2204 34.3388 34.0371 33.6217 34.1392C33.0071 34.2413 32.1876 34.2413 31.3681 34.0371C30.8559 33.8329 30.1388 33.6288 29.3193 33.2204C25.6315 31.6892 23.2754 28.0142 23.0705 27.7079C22.8656 27.5038 21.5339 25.7684 21.5339 23.9309C21.5339 22.0934 22.4559 21.2767 22.7632 20.8684C23.0705 20.46 23.4803 20.46 23.7876 20.46C23.9924 20.46 24.2998 20.46 24.5046 20.46C24.7095 20.46 25.0168 20.3579 25.3242 21.0725C25.6315 21.7871 26.3485 23.6246 26.451 23.7267C26.5534 23.9309 26.5534 24.135 26.451 24.3392C26.3485 24.5434 26.2461 24.7475 26.0412 24.9517C25.8363 25.1559 25.6315 25.4621 25.529 25.5642C25.3242 25.7684 25.1193 25.9725 25.3242 26.2788C25.529 26.6871 26.2461 27.81 27.3729 28.8309C28.8071 30.0559 29.9339 30.4642 30.3437 30.6684C30.7534 30.8725 30.9583 30.7704 31.1632 30.5663C31.3681 30.3621 32.0851 29.5454 32.29 29.1371C32.4949 28.7288 32.8022 28.8309 33.1095 28.9329C33.4168 29.035 35.2607 29.9538 35.5681 30.1579C35.9778 30.3621 36.1827 30.4642 36.2851 30.5663C36.3876 30.8725 36.3876 31.5871 36.0803 32.4038Z"
-                                        fill="#FAFAFA"/>
-                                </svg>
+                            <Link href={'https://max.ru/join/is89AQCget0P25BWYijEziDtijZw0ThWbIgg01b0X6o'} className={styles.socialLink}>
+                                <div className={styles.socialLinkBg}>
+                                    <Image src="https://maxicons.ru/icons/Max_logo.svg" alt="MAX" width={32} height={32} />
+                                </div>
                             </Link>
                             <Link href={'#'} className={styles.socialLink}>
                                 <svg width="57" height="56" viewBox="0 0 57 56" fill="none"

@@ -82,7 +82,7 @@
   z-index: 5;
   backdrop-filter: blur(vars.rem(7));
 
-  @media (max-width: vars.$max-1000) {
+  @media (max-width: vars.$max-1050) {
     display: none;
   }
 

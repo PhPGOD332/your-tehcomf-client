@@ -9,6 +9,7 @@ import SubTitle, { TitleColors } from "@/shared/UI/SubTitle/SubTitle";
 import Link from "next/link";
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
 import {TPhotoSliderSlides} from "@/types/IPhotoSlides";
+import {pagesLinks} from "@/shared/constants";
 
 interface PhotoSliderProps {
     slides: TPhotoSliderSlides;
@@ -21,7 +22,7 @@ const ExamplesSlider = ({ slides, title }: PhotoSliderProps) => {
     return (
         <div className={styles.screen}>
             <SubTitle classNames={styles.title}>{title}</SubTitle>
-            <Link href={'#'} className={styles.linkDetail}>смотреть всё</Link>
+            <Link href={pagesLinks.portfolio} className={styles.linkDetail}>смотреть всё</Link>
             <Swiper
                 className={styles.swiper}
                 modules={[Pagination, Autoplay, EffectCoverflow]}
