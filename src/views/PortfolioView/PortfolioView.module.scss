@@ -86,6 +86,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: vars.rem(64);
+
+  .moreBtn {
+    font-size: vars.rem(19);
+    padding: vars.rem(20) vars.rem(60);
+    font-weight: 500;
+  }
 }
 
 .stocksWrapper {

@@ -47,7 +47,7 @@ const PortfolioCard = React.memo((
             <div className={styles.description}>
                 <div className={styles.tags}>
                     {[work.tableTopColor, work.bodyColor, ...work.facadeColors]
-                        .filter((color, num, self) => num === self.findIndex((c) => c.hexCode === color.hexCode))
+                        .filter((color, num, self) => num === self.findIndex((c) => c && color && c.hexCode === color.hexCode))
                         .filter((color, num) => num < 3)
                         .map((color, num) =>
                             <div

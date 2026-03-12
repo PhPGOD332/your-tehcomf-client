@@ -47,10 +47,10 @@ const PortfolioView = (
     }: PortfolioProps
 ) => {
     const router = useRouter();
-    const [currentCount, setCurrentCount] = useState<number>(12);
+    const [currentCount, setCurrentCount] = useState<number>(11);
     const step = 6;
     const [allWorks, ] = useState<IWork[]>(works);
-    const [currentWorks, setCurrentWorks] = useState<IWork[]>(works.filter((work, num) => num <= currentCount));
+    const [currentWorks, setCurrentWorks] = useState<IWork[]>([]);
     const [filters, setFilters] = useState<IFilters>({
         color: null,
         layout: null,
@@ -150,6 +150,10 @@ const PortfolioView = (
         setCurrentWorks(newWorks);
     }, [filters]);
 
+    useEffect(() => {
+        setCurrentWorks(works.filter((work, num) => num - 1 <= currentCount));
+    }, [currentCount]);
+
     const moreClickHandle = () => {
         setCurrentCount(currentCount + step);
     }
@@ -210,9 +214,9 @@ const PortfolioView = (
                         </div>
                     }
                 </div>
-                {currentWorks && currentWorks.length > currentCount ?
+                {works && works.length > currentCount - 1 ?
                     <div className={styles.moreBtnBlock}>
-                        <GreenButton onClick={moreClickHandle}>Показать еще</GreenButton>
+                        <GreenButton classNames={styles.moreBtn} onClick={moreClickHandle}>Показать еще</GreenButton>
                     </div>
                     :
                     ''
