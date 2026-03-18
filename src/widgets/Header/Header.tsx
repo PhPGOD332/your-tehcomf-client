@@ -67,43 +67,43 @@ const Header = () => {
             caption: 'Портфолио',
             href: pagesLinks.portfolio
         },
+        // {
+        //     caption: 'Покупателям',
+        //     subItems: [
+        //         {
+        //             caption: 'Личный кабинет',
+        //             href: ''
+        //         },
+        //         {
+        //             caption: 'FAQ',
+        //             href: ''
+        //         }
+        //     ]
+        // },
+        // {
+        //     caption: 'Партнерам',
+        //     subItems: [
+        //         {
+        //             caption: 'Дизайнерам',
+        //             href: ''
+        //         },
+        //         {
+        //             caption: 'Подрядчикам',
+        //             href: ''
+        //         },
+        //         {
+        //             caption: 'B2B',
+        //             href: ''
+        //         }
+        //     ]
+        // },
         {
-            caption: 'Покупателям',
-            subItems: [
-                {
-                    caption: 'Личный кабинет',
-                    href: ''
-                },
-                {
-                    caption: 'FAQ',
-                    href: ''
-                }
-            ]
-        },
-        {
-            caption: 'Партнерам',
-            subItems: [
-                {
-                    caption: 'Дизайнерам',
-                    href: ''
-                },
-                {
-                    caption: 'Подрядчикам',
-                    href: ''
-                },
-                {
-                    caption: 'B2B',
-                    href: ''
-                }
-            ]
+            caption: 'О компании',
+            href: pagesLinks.aboutCompany
         },
         {
             caption: 'Контакты',
             href: pagesLinks.contacts
-        },
-        {
-            caption: 'О компании',
-            href: pagesLinks.aboutCompany
         },
     ]
 

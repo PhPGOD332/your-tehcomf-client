@@ -135,6 +135,7 @@
       align-items: center;
       width: 100%;
       padding: vars.rem(32) 0;
+      gap: vars.rem(15);
 
       &::-webkit-details-marker {
         display: none;
@@ -161,7 +162,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: vars.rem(32);
+        min-width: vars.rem(32);
         height: vars.rem(32);
         border-radius: 50%;
         background-color: vars.$white;

@@ -84,35 +84,35 @@ const Footer = (
                                     <Link href={'#'} className={styles.navLink}>Гарантия</Link>
                                 </li>
                             </ul>
-                            <ul className={styles.navList}>
-                                <li className={styles.navUndLi}>
-                                    <Link href={'#'} className={styles.navLink}>Покупателям</Link>
-                                </li>
-                                <li className={styles.navSubList}>
-                                    <Link href={'#'} className={styles.navLink}>FAQ</Link>
-                                    <Link href={'#'} className={styles.navLink}>Личный кабинет</Link>
-                                </li>
-                            </ul>
-                            <ul className={styles.navList}>
-                                <li className={styles.navUndLi}>
-                                    <Link href={'#'} className={styles.navLink}>Партнерам</Link>
-                                </li>
-                                <li className={styles.navSubList}>
-                                    <Link href={'#'} className={styles.navLink}>Дизайнерам</Link>
-                                    <Link href={'#'} className={styles.navLink}>Подрядчикам</Link>
-                                    <Link href={'#'} className={styles.navLink}>B2B</Link>
-                                </li>
-                            </ul>
-                            <ul className={styles.navList}>
-                                <li className={styles.navUndLi}>
-                                    <Link href={'#'} className={styles.navLink}>Услуги</Link>
-                                </li>
-                                <li className={styles.navSubList}>
-                                    <Link href={'#'} className={styles.navLink}>Заказать проект</Link>
-                                    <Link href={'#'} className={styles.navLink}>Вызвать дизайнера</Link>
-                                    <Link href={'#'} className={styles.navLink}>Доставка и сборка</Link>
-                                </li>
-                            </ul>
+                            {/*<ul className={styles.navList}>*/}
+                            {/*    <li className={styles.navUndLi}>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>Покупателям</Link>*/}
+                            {/*    </li>*/}
+                            {/*    <li className={styles.navSubList}>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>FAQ</Link>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>Личный кабинет</Link>*/}
+                            {/*    </li>*/}
+                            {/*</ul>*/}
+                            {/*<ul className={styles.navList}>*/}
+                            {/*    <li className={styles.navUndLi}>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>Партнерам</Link>*/}
+                            {/*    </li>*/}
+                            {/*    <li className={styles.navSubList}>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>Дизайнерам</Link>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>Подрядчикам</Link>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>B2B</Link>*/}
+                            {/*    </li>*/}
+                            {/*</ul>*/}
+                            {/*<ul className={styles.navList}>*/}
+                            {/*    <li className={styles.navUndLi}>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>Услуги</Link>*/}
+                            {/*    </li>*/}
+                            {/*    <li className={styles.navSubList}>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>Заказать проект</Link>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>Вызвать дизайнера</Link>*/}
+                            {/*        <Link href={'#'} className={styles.navLink}>Доставка и сборка</Link>*/}
+                            {/*    </li>*/}
+                            {/*</ul>*/}
                         </div>
                         <div className={styles.footerSocials}>
                             <Link href={'https://max.ru/join/is89AQCget0P25BWYijEziDtijZw0ThWbIgg01b0X6o'} className={styles.socialLink}>

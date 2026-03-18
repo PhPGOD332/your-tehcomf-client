@@ -105,7 +105,7 @@ const Questions = (
 
                                         </div>
                                     </summary>
-                                    <p className={styles.questionAnswer}>{question.questionDescription}</p>
+                                    <p className={styles.questionAnswer} dangerouslySetInnerHTML={{__html: question.questionDescription}}></p>
                                 </details>
                             ) ?? ''}
                     </div>

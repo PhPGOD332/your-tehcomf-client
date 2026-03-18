@@ -89,9 +89,9 @@
   .footerNav {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: vars.rem(20);
+    gap: vars.rem(40);
     width: 100%;
     max-width: vars.rem(1240);
     margin-bottom: vars.rem(90);
