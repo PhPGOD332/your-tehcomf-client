@@ -14,7 +14,7 @@
 
   .docOuterWrapper {
     display: grid;
-    grid-template-columns: 40% 1fr;
+    grid-template-columns: 35% 1fr;
     height: 100%;
 
     @media (max-width: vars.$max-1000) {
@@ -135,8 +135,15 @@
   }
 
   .docWrapper {
+    margin-bottom: vars.rem(100);
+
     .docBlock {
-      margin-bottom: vars.rem(68);
+      //margin-bottom: vars.rem(68);
+    }
+
+    .preText {
+      text-align: left;
+      margin-top: vars.rem(30);
     }
 
     h2 {
@@ -167,14 +174,58 @@
       margin-bottom: vars.rem(16);
     }
 
-    ul {
+    strong {
+      font-weight: 600;
+    }
+
+    ul, ol {
       font-weight: 300;
       line-height: 140%;
       margin-bottom: vars.rem(16);
+
+      > li {
+        margin-left: vars.rem(14);
+      }
+    }
+
+    ul {
       list-style-type: disc;
 
       > li {
         margin-left: vars.rem(14);
+      }
+    }
+
+    ol {
+      > li {
+        margin-left: vars.rem(16);
+      }
+    }
+
+    table {
+      border-spacing: unset;
+      border: vars.rem(1) solid vars.$gray;
+      max-width: 100%;
+      margin-bottom: vars.rem(30);
+
+      th {
+        border: vars.rem(1) solid vars.$gray;
+        padding: vars.em(3) vars.rem(5);
+        vertical-align: center;
+        position: relative;
+        font-size: vars.rem(11);
+        font-weight: normal;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      td {
+        font-size: vars.rem(11);
+        font-weight: 500;
+        width: auto;
+        border: vars.rem(1) solid vars.$gray;
+        padding: vars.rem(3) vars.rem(5);
+        word-wrap: anywhere;
       }
     }
 

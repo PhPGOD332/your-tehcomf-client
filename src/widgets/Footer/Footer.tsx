@@ -153,6 +153,14 @@ const Footer = (
                             <span>Используем cookies для корректной работы сайта, персонализации пользователей и других целей, предусмотренных <Link
                                 href={pagesLinks.privacyPolicy} className={styles.politicsLink}>политикой обработки персональных данных</Link>.</span>
                         </div>
+                        <div className={styles.footerDocs}>
+                            <Link href={`${pagesLinks.privacyPolicy}/#politics`} className={styles.link}>Политика <br/> конфиденциальности</Link>
+                            <Link href={`${pagesLinks.privacyPolicy}/#privacy`} className={styles.link}>Согласие на обработку <br/> персональных данных</Link>
+                            <Link href={`${pagesLinks.privacyPolicy}/#using`} className={styles.link}>Положение <br/> о пользовании сайтом</Link>
+                            <Link href={`${pagesLinks.privacyPolicy}/#techs`} className={styles.link}>Технические требования <br/> к помещению</Link>
+                            <Link href={`${pagesLinks.privacyPolicy}/#storage-and-care`} className={styles.link}>Правила <br/> хранения и ухода</Link>
+                            <Link href={`${pagesLinks.privacyPolicy}/#price-additional`} className={styles.link}>Прайс <br/> на дополнительные <br/> услуги по сборке</Link>
+                        </div>
                         <Link href={'#'} className={styles.footerLogo}>
                             <svg width="72" height="72" viewBox="0 0 72 72" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
