@@ -15,6 +15,7 @@
   .docOuterWrapper {
     display: grid;
     grid-template-columns: 35% 1fr;
+    gap: vars.rem(20);
     height: 100%;
 
     @media (max-width: vars.$max-1000) {
@@ -29,6 +30,7 @@
     max-height: 100%;
     width: 25%;
     z-index: 5;
+    top: vars.rem(120);
 
     @media (max-width: vars.$max-1000) {
       bottom: 0;
@@ -40,6 +42,7 @@
       border-top: 1px solid vars.$light-gray;
       border-top-right-radius: vars.rem(30);
       border-top-left-radius: vars.rem(30);
+      top: auto;
     }
   }
 
@@ -139,6 +142,7 @@
 
     .docBlock {
       //margin-bottom: vars.rem(68);
+      height: 100%;
     }
 
     .preText {

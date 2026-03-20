@@ -157,6 +157,7 @@ const Footer = (
                             <Link href={`${pagesLinks.privacyPolicy}/#politics`} className={styles.link}>Политика <br/> конфиденциальности</Link>
                             <Link href={`${pagesLinks.privacyPolicy}/#privacy`} className={styles.link}>Согласие на обработку <br/> персональных данных</Link>
                             <Link href={`${pagesLinks.privacyPolicy}/#using`} className={styles.link}>Положение <br/> о пользовании сайтом</Link>
+                            <Link href={`${pagesLinks.privacyPolicy}/#cookies`} className={styles.link}>Положение использования <br/> файлов Cookie</Link>
                             <Link href={`${pagesLinks.privacyPolicy}/#techs`} className={styles.link}>Технические требования <br/> к помещению</Link>
                             <Link href={`${pagesLinks.privacyPolicy}/#storage-and-care`} className={styles.link}>Правила <br/> хранения и ухода</Link>
                             <Link href={`${pagesLinks.privacyPolicy}/#price-additional`} className={styles.link}>Прайс <br/> на дополнительные <br/> услуги по сборке</Link>

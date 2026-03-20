@@ -227,9 +227,10 @@
     .link {
       font-size: vars.rem(14);
       transition: 0.2s;
+      color: rgba(88, 89, 91, 0.4);
 
       &:hover {
-        color: vars.$green;
+        color: vars.$gray;
       }
     }
   }
