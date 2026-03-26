@@ -26,7 +26,6 @@ const Page = () => {
                             <Link href={'#storage-and-care'} className={styles.docNavItem}>Правила хранения и ухода</Link>
                             <Link href={'#price-additional'} className={styles.docNavItem}>Прайс на дополнительные услуги по сборке</Link>
                             <Link href={'#cookies'} className={styles.docNavItem}>Положение использования файлов Cookie</Link>
-                            <Link href={'#'} className={styles.docNavItem}>Другое</Link>
                         </div>
                         <div className={styles.docNavMobile}>
                             <Link href={'#politics'} className={styles.docNavItem} data-id={'politics'}>
@@ -2869,7 +2868,7 @@ const Page = () => {
                         <p className={styles.preText}>Дата вступления в силу: «19» марта 2026 г.</p>
 
                         <h3>1. Общие положения</h3>
-                        <p>1.1. Настоящее Положение регулирует порядок обработки файлов cookie на сайте youkuhnya.ru
+                        <p>1.1. Настоящее Положение регулирует порядок обработки файлов cookie на сайте tehcomf.ru
                             (далее — «Сайт»). Используя Сайт, вы подтверждаете свое согласие с использованием cookie в
                             соответствии с настоящим Положением. Файлы cookie представляют собой небольшие текстовые
                             файлы, сохраняемые на вашем устройстве (компьютере, мобильном телефоне, планшете) при
@@ -3000,7 +2999,7 @@ const Page = () => {
                         <p>Обращаться с вопросами и предложениями относительно обработки cookie можно:</p>
                         <ul>
                             <li>Телефон горячей линии: +7 (495) 988-55-28</li>
-                            <li>Электронная почта: info@youkuhnya.ru</li>
+                            <li>Электронная почта: info@tehcomf.ru</li>
                             <li>Юридический адрес: 105082, г. Москва, Спартаковский пер., д.2,
                                 стр. 1, этаж 2-н.п.19
                             </li>
