@@ -22,7 +22,7 @@ const productionItems: IProduction[] = [
           src: productionImage1.src,
           fill: true
         },
-        title: 'С 1988 года',
+        title: 'С 1998 года',
         text: 'Мы производим и поставляем кухни и мебель на заказ на собственном производстве в Московской области'
     },
     {

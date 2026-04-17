@@ -130,6 +130,7 @@ const SliderImagesHover = (
                             src={image.src}
                             alt={image.imageAlt ?? ''}
                             fill={true}
+                            unoptimized={true}
                             className={styles.image}
                         />
                     </SwiperSlide>

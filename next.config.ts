@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         protocol: 'http',
         hostname: 'localhost',
         pathname: '/images/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 's3.regru.cloud',
+        pathname: '/tehcomf-s3/**',
       }
     ]
   }

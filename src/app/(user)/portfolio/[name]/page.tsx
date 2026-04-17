@@ -24,7 +24,7 @@ const Page = async (
     }: PortfolioItemProps
 ) => {
     const { name } = await params;
-    const work = PortfolioService.mutateWorkImagePaths(await PortfolioService.getWork(name));
+    const work = await PortfolioService.getWork(name);
 
     const filterWorks = (works: IWork[]): IWork[] => {
         const setWorks = new Set<IWork>();
@@ -48,13 +48,9 @@ const Page = async (
         return [...setWorks];
     }
 
-    const similarWorksWithStyles = PortfolioService.mutateWorksImagesPaths(
-        await PortfolioService.getWorksByFilter('style', work.style.name, work.name) ?? []
-    );
+    const similarWorksWithStyles = await PortfolioService.getWorksByFilter('style', work.style.name, work.name) ?? [];
 
-    const similarWorksWithTypes = PortfolioService.mutateWorksImagesPaths(
-        await PortfolioService.getWorksByFilter('type', work.type.name, work.name) ?? []
-    );
+    const similarWorksWithTypes = await PortfolioService.getWorksByFilter('type', work.type.name, work.name) ?? [];
 
     const similarWorks = filterWorks([...similarWorksWithStyles, ...similarWorksWithTypes]);
 

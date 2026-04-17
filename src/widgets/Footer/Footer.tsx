@@ -149,9 +149,9 @@ const Footer = (
                             </Link>
                         </div>
                         <div className={styles.footerCopyright}>
-                            <span>Copyright © 2025 Мебельная фабрика Технологии комфорта</span>
-                            <span>Используем cookies для корректной работы сайта, персонализации пользователей и других целей, предусмотренных <Link
-                                href={pagesLinks.privacyPolicy} className={styles.politicsLink}>политикой обработки персональных данных</Link>.</span>
+                            <span>Copyright © 2026 Мебельная фабрика Технологии комфорта. <span>Используем cookies для корректной работы сайта, персонализации пользователей и других целей, предусмотренных <Link
+                                href={pagesLinks.privacyPolicy} className={styles.politicsLink}>политикой обработки персональных данных</Link>.</span></span>
+                        
                         </div>
                         <div className={styles.footerDocs}>
                             <Link href={`${pagesLinks.privacyPolicy}/#politics`} className={styles.link}>Политика <br/> конфиденциальности</Link>

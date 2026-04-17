@@ -44,7 +44,7 @@ const Page = async () => {
     const types = (await getTypes()).sort((type1, type2) => type1.order - type2.order);
     const stylingItems = (await getStyles()).sort((style1, style2) => style1.order - style2.order);
     const budgets = (await getBudgets()).sort((budget1, budget2) => budget1.order - budget2.order);
-    const works = PortfolioService.mutateWorksImagesPaths(await getAllWorks());
+    const works = await getAllWorks();
 
     return (
         <>
