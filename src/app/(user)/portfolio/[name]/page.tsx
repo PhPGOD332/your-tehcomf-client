@@ -18,6 +18,8 @@ export const metadata: Metadata = {
     keywords: pagesData.portfolio.keywords
 }
 
+export const revalidate = 30;
+
 const Page = async (
     {
         params

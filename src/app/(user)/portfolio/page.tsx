@@ -39,6 +39,8 @@ const getAllWorks = async (): Promise<IWork[]> => {
     return await PortfolioService.getAllWorks();
 }
 
+export const revalidate = 30;
+
 const Page = async () => {
     const colors = (await getColors()).sort((color1, color2) => color1.order - color2.order);
     const types = (await getTypes()).sort((type1, type2) => type1.order - type2.order);
