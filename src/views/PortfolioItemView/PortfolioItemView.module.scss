@@ -324,6 +324,7 @@
         max-height: vars.rem(212) !important;
         margin: 0 !important;
         // object-fit: cover;
+        border-radius: vars.rem(20);
       }
 
       p {
@@ -359,7 +360,7 @@
               figure {
                 flex-grow: 1;
                 border-radius: vars.rem(20);
-                overflow: hidden;
+                // overflow: hidden;
                 min-width: vars.rem(295);
               }
             }
