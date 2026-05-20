@@ -82,13 +82,11 @@
 
     .swiperImage {
       position: absolute;
-      min-width: 100%;
-      max-height: 100%;
-      //object-fit: cover;
       z-index: -1;
+      object-fit: cover;
 
-      @media (max-width: vars.$max-500) {
-        max-height: fit-content;
+      @media (max-width: vars.$max-1000) {
+        height: 100% !important;
       }
     }
   }
