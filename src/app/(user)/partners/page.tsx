@@ -4,6 +4,9 @@ import { pagesData } from '@/shared/constants';
 import Footer from '@/widgets/Footer/Footer';
 import LinkScreen from '@/widgets/LinkScreen/LinkScreen';
 import Advantages, { type IAdvantageEl } from '@/widgets/Advantages/Advantages';
+import PartnersPortfolio, {
+	type PartnersPortfolioWork,
+} from '@/widgets/PartnersPortfolio/PartnersPortfolio';
 
 export const metadata: Metadata = {
 	metadataBase: new URL(pagesData.partners.url),
@@ -83,6 +86,49 @@ const advantages: IAdvantageEl[] = [
 	},
 ];
 
+const portfolioWorks: PartnersPortfolioWork[] = [
+	{
+		photo: '/sliders/examples/yellow.jpg',
+		photoAlt: 'Квартира в Москва-сити',
+		title: 'Квартира в Москва-сити',
+		area: '180 м²',
+		date: 'Апрель — Май 2026',
+		text: 'Полная меблировка квартиры под ключ в элитном ЖК',
+	},
+	{
+		photo: '/sliders/examples/green.jpg',
+		photoAlt: 'Квартира в ЖК',
+		title: 'Квартира в современном ЖК',
+		area: '140 м²',
+		date: 'Март — Апрель 2026',
+		text: 'Корпусная мебель по индивидуальному дизайн-проекту',
+	},
+	{
+		photo: '/sliders/examples/black.jpg',
+		photoAlt: 'Квартира на Патриках',
+		title: 'Квартира на Патриках',
+		area: '165 м²',
+		date: 'Январь — Март 2026',
+		text: 'Комплексная меблировка жилого пространства',
+	},
+	{
+		photo: '/sliders/examples/blue.jpg',
+		photoAlt: 'Квартира в Москва-сити',
+		title: 'Квартира в Москва-сити',
+		area: '125 м²',
+		date: 'Апрель — Май 2026',
+		text: 'Полная меблировка квартиры под ключ',
+	},
+	{
+		photo: '/sliders/examples/turquoise.jpg',
+		photoAlt: 'Современная квартира',
+		title: 'Современная квартира',
+		area: '120 м²',
+		date: 'Ноябрь — Декабрь 2025',
+		text: 'Мебель по индивидуальным размерам',
+	},
+];
+
 const Page = () => {
 	return (
 		<>
@@ -94,6 +140,7 @@ const Page = () => {
 					text='Помогаем ремонтным бюро и дизайнерам реализовывать интерьерные проекты от отдельных изделий до комплексных объектов'
 				/>
 				<Advantages elements={advantages} />
+				<PartnersPortfolio works={portfolioWorks} />
 
 				<Footer isContact={true} />
 			</main>

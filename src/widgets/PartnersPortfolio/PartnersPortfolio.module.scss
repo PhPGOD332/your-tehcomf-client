@@ -1,0 +1,223 @@
+@use '@/shared/styles/vars' as vars;
+
+.section {
+	overflow: hidden;
+	padding: vars.rem(32) 0 vars.rem(100);
+	background-color: vars.$white;
+}
+
+.container {
+	max-width: vars.rem(1240);
+	margin: 0 auto;
+}
+
+.title {
+	margin-bottom: vars.rem(40);
+	font-size: vars.rem(50);
+	font-weight: 500;
+	line-height: 140%;
+}
+
+.swiper {
+	overflow: visible;
+}
+
+.slide {
+	width: vars.rem(820);
+}
+
+.desktopCard {
+	position: relative;
+	display: block;
+	height: vars.rem(470);
+	overflow: hidden;
+	border-radius: vars.rem(20);
+	color: vars.$white;
+}
+
+.image {
+	object-fit: cover;
+	transition: transform 0.35s ease;
+}
+
+.overlay {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: linear-gradient(
+		180deg,
+		rgba(vars.$black, 0.55) 0%,
+		transparent 35%,
+		rgba(vars.$black, 0.55) 100%
+	);
+}
+
+.desktopTop {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 2;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: vars.rem(5);
+	padding: vars.rem(20);
+}
+
+.desktopHeading {
+	display: flex;
+	align-items: flex-end;
+	gap: vars.rem(10);
+	min-width: 0;
+}
+
+.desktopCardTitle {
+	font-size: vars.rem(30);
+	font-weight: 600;
+	line-height: 130%;
+}
+
+.desktopDivider {
+	font-size: vars.rem(30);
+	font-weight: 200;
+	line-height: 130%;
+}
+.desktopArea {
+	font-size: vars.rem(30);
+	font-weight: 500;
+	line-height: 130%;
+}
+
+.date {
+	flex-shrink: 0;
+	font-size: vars.rem(19);
+	font-weight: 500;
+	line-height: 140%;
+}
+
+.desktopText {
+	position: absolute;
+	right: vars.rem(24);
+	bottom: vars.rem(24);
+	left: vars.rem(24);
+	z-index: 2;
+	max-width: vars.rem(350);
+	font-size: vars.rem(19);
+	font-weight: 500;
+	line-height: 140%;
+}
+
+.desktopCard:hover .image {
+	transform: scale(1.02);
+}
+
+.navigation {
+	position: absolute;
+	right: 0;
+	bottom: calc(100% + vars.rem(28));
+	z-index: 3;
+	display: flex;
+	gap: vars.rem(4);
+}
+
+.navigationButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: vars.rem(44);
+	height: vars.rem(44);
+	padding: 0;
+	border: 0;
+	background-color: transparent;
+	color: vars.$dark-gray;
+	cursor: pointer;
+	transition: color 0.2s ease;
+
+	&:hover {
+		color: vars.$green;
+	}
+}
+
+.mobileList {
+	display: none;
+}
+
+@media (max-width: vars.$max-1300) and (min-width: calc(vars.$max-1000 + 0.01em)) {
+	.container {
+		padding: 0 vars.rem(32);
+	}
+
+	.slide {
+		width: vars.rem(600);
+	}
+
+	.desktopTop {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+@media (max-width: vars.$max-1000) {
+	.section {
+		padding: vars.rem(32) vars.rem(16) vars.rem(60);
+	}
+
+	.title {
+		margin-bottom: vars.rem(20);
+		font-size: vars.rem(31);
+	}
+
+	.desktopSlider {
+		display: none;
+	}
+
+	.mobileList {
+		display: flex;
+		flex-direction: column;
+		gap: vars.rem(40);
+	}
+
+	.mobileCard {
+		display: block;
+		color: vars.$dark-gray;
+	}
+
+	.mobileImageWrapper {
+		position: relative;
+		height: vars.rem(400);
+		margin-bottom: vars.rem(40);
+		overflow: hidden;
+		border-radius: vars.rem(20);
+		background-color: vars.$light-gray;
+	}
+
+	.mobileMeta {
+		display: flex;
+		align-items: center;
+		gap: vars.rem(10);
+		margin-bottom: vars.rem(20);
+		font-size: vars.rem(14);
+		font-weight: 400;
+		line-height: 140%;
+		text-transform: uppercase;
+	}
+
+	.mobileMetaDivider {
+		color: vars.$gray;
+	}
+
+	.mobileCardTitle {
+		margin-bottom: vars.rem(20);
+		font-size: vars.rem(30);
+		font-weight: 500;
+		line-height: 130%;
+	}
+
+	.mobileText {
+		font-size: vars.rem(19);
+		font-weight: 400;
+		line-height: 140%;
+		color: vars.$gray;
+	}
+}

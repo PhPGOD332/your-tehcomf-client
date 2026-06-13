@@ -1,186 +1,318 @@
 import React from 'react';
 import styles from './Footer.module.scss';
-import Link from "next/link";
-import Contacts from "@/widgets/Footer/Contacts/Contacts";
-import {pagesLinks} from "@/shared/constants";
-import ContactsForm from "@/widgets/Footer/ContactsForm/ContactsForm";
-import {IStock} from "@/types/IStock";
-import StockBanners from "@/widgets/StockBanners/StockBanners";
-import InNumbers from "@/widgets/InNumbers/InNumbers";
-import Image from "next/image";
+import Link from 'next/link';
+import Contacts from '@/widgets/Footer/Contacts/Contacts';
+import { pagesLinks } from '@/shared/constants';
+import ContactsForm from '@/widgets/Footer/ContactsForm/ContactsForm';
+import { IStock } from '@/types/IStock';
+import StockBanners from '@/widgets/StockBanners/StockBanners';
+import InNumbers from '@/widgets/InNumbers/InNumbers';
+import Image from 'next/image';
 
 export interface IBooleanOptions {
-    desktop: boolean;
-    mobile: boolean;
+	desktop: boolean;
+	mobile: boolean;
 }
 
 export interface FooterProps {
-    isContact?: boolean;
-    isContactOnlyContacts?: IBooleanOptions;
-    isFormContact?: boolean;
-    isFormContactOnlyContacts?: IBooleanOptions;
-    stocks?: IStock[];
-    isInNumbers?: boolean;
+	isContact?: boolean;
+	isContactOnlyContacts?: IBooleanOptions;
+	isFormContact?: boolean;
+	isFormContactOnlyContacts?: IBooleanOptions;
+	stocks?: IStock[];
+	isInNumbers?: boolean;
 }
 
-const Footer = (
-    {
-        isContact,
-        isContactOnlyContacts,
-        isFormContact,
-        isFormContactOnlyContacts,
-        stocks,
-        isInNumbers
-    }: FooterProps) => {
-
-    return (
-        <div className={styles.wrapper} style={{backgroundColor: isFormContact && !stocks ? '#29292B' : '#FAFAFA'}}>
-            <div className={`${styles.innerWrapper} ${isFormContact && !stocks && styles.innerWrapper_dark}`}>
-                <div className={`${isFormContact ? '' : 'container'}`}>
-                    {isContact &&
-			            <Contacts
-                            isOnlyContacts={isContactOnlyContacts ?? {desktop: false, mobile: false}}
-                        />
-                    }
-                    {isFormContact &&
-			            <ContactsForm
-				            isOnlyContacts={isFormContactOnlyContacts ?? {desktop: false, mobile: false}}
-                            classNames={stocks && styles.contactForm_radius}
-			            />
-                    }
-                    {stocks &&
-	                    <StockBanners stocks={stocks} title={'Этапы работы'} />
-                    }
-                    {isInNumbers &&
-                        <InNumbers />
-                    }
-                    <hr className={`${styles.line} ${isFormContact && styles.line_contact}`}/>
-                    <div className={`${styles.footer} ${isFormContact && styles.footer_withBorderRadius}`}>
-                        <div className={styles.footerNav}>
-                            <ul className={styles.navList}>
-                                <li className={styles.navUndLi}>
-                                    <Link href={'#'} className={styles.navLink}>Каталог</Link>
-                                </li>
-                                <li className={styles.navSubList}>
-                                    <Link href={'#'} className={styles.navLink}>На заказ</Link>
-                                    <Link href={'#'} className={styles.navLink}>Типовые решения</Link>
-                                </li>
-                            </ul>
-                            <ul className={styles.navList}>
-                                <li className={styles.navUndLi}>
-                                    <Link href={pagesLinks.portfolio} className={styles.navLink}>Портфолио</Link>
-                                </li>
-                                <li className={styles.navSubList}>
-                                    <Link href={'#'} className={styles.navLink}>Отзывы</Link>
-                                </li>
-                            </ul>
-                            <ul className={styles.navList}>
-                                <li className={styles.navUndLi}>
-                                    <Link href={'#'} className={styles.navLink}>О компании</Link>
-                                </li>
-                                <li className={styles.navSubList}>
-                                    <Link href={'#'} className={styles.navLink}>Производство</Link>
-                                    <Link href={'#'} className={styles.navLink}>Блог</Link>
-                                    <Link href={'#'} className={styles.navLink}>Гарантия</Link>
-                                </li>
-                            </ul>
-                            {/*<ul className={styles.navList}>*/}
-                            {/*    <li className={styles.navUndLi}>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>Покупателям</Link>*/}
-                            {/*    </li>*/}
-                            {/*    <li className={styles.navSubList}>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>FAQ</Link>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>Личный кабинет</Link>*/}
-                            {/*    </li>*/}
-                            {/*</ul>*/}
-                            {/*<ul className={styles.navList}>*/}
-                            {/*    <li className={styles.navUndLi}>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>Партнерам</Link>*/}
-                            {/*    </li>*/}
-                            {/*    <li className={styles.navSubList}>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>Дизайнерам</Link>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>Подрядчикам</Link>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>B2B</Link>*/}
-                            {/*    </li>*/}
-                            {/*</ul>*/}
-                            {/*<ul className={styles.navList}>*/}
-                            {/*    <li className={styles.navUndLi}>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>Услуги</Link>*/}
-                            {/*    </li>*/}
-                            {/*    <li className={styles.navSubList}>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>Заказать проект</Link>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>Вызвать дизайнера</Link>*/}
-                            {/*        <Link href={'#'} className={styles.navLink}>Доставка и сборка</Link>*/}
-                            {/*    </li>*/}
-                            {/*</ul>*/}
-                        </div>
-                        <div className={styles.footerSocials}>
-                            <Link href={'https://max.ru/join/is89AQCget0P25BWYijEziDtijZw0ThWbIgg01b0X6o'} className={styles.socialLink}>
-                                <div className={styles.socialLinkBg}>
-                                    <Image src="https://maxicons.ru/icons/Max_logo.svg" alt="MAX" width={32} height={32} />
-                                </div>
-                            </Link>
-                            <Link href={'#'} className={styles.socialLink}>
-                                <svg width="57" height="56" viewBox="0 0 57 56" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="0.260742" width="56" height="56" rx="28" fill="#8A8B8C"/>
-                                    <path
-                                        d="M39.4608 17.6429L35.2532 39.609C35.2532 39.609 34.6645 41.132 33.0473 40.4016L23.3392 32.6934L23.2942 32.6707C24.6056 31.4514 34.7742 21.9835 35.2186 21.5544C35.9066 20.8897 35.4795 20.494 34.6807 20.9961L19.6603 30.874L13.8655 28.8549C13.8655 28.8549 12.9536 28.519 12.8659 27.7886C12.777 27.0569 13.8955 26.6613 13.8955 26.6613L37.5192 17.0643C37.5192 17.0643 39.4608 16.1809 39.4608 17.6429Z"
-                                        fill="#FAFAFA"/>
-                                </svg>
-                            </Link>
-                            <Link href={'#'} className={styles.socialLink}>
-                                <svg width="57" height="56" viewBox="0 0 57 56" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="0.260742" width="56" height="56" rx="28" fill="#8A8B8C"/>
-                                    <path
-                                        d="M29.6364 39.2738C19.1132 39.2738 13.1109 31.9165 12.8608 19.6738H18.132C18.3052 28.6596 22.1913 32.4658 25.2693 33.2506V19.6738H30.2327V27.4236C33.2723 27.09 36.4658 23.5585 37.5432 19.6738H42.5066C42.1006 21.6885 41.2914 23.5961 40.1295 25.2773C38.9676 26.9585 37.4781 28.3771 35.754 29.4444C37.6785 30.4196 39.3782 31.7999 40.7412 33.4943C42.1041 35.1886 43.0992 37.1585 43.6608 39.2738H38.1973C37.6931 37.4365 36.6684 35.7918 35.2516 34.5458C33.8348 33.2998 32.0889 32.508 30.2327 32.2696V39.2738H29.6364Z"
-                                        fill="#FAFAFA"/>
-                                </svg>
-                            </Link>
-                            <Link href={'#'} className={styles.socialLink}>
-                                <svg width="57" height="56" viewBox="0 0 57 56" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="0.260742" width="56" height="56" rx="28" fill="#8A8B8C"/>
-                                    <path
-                                        d="M33.2435 28.3502C33.2435 30.9046 31.1654 32.9827 28.611 32.9827C26.0564 32.9827 23.9784 30.9046 23.9784 28.3502C23.9784 25.7957 26.0564 23.7177 28.611 23.7177C31.1654 23.7177 33.2435 25.7957 33.2435 28.3502ZM28.611 12.9502C20.1198 12.9502 13.2109 19.859 13.2109 28.3502C13.2109 36.8413 20.1198 43.7502 28.611 43.7502C31.7218 43.7502 34.7219 42.8242 37.286 41.0715L37.3302 41.0407L35.255 38.6287L35.2204 38.6518C33.2463 39.9213 30.9604 40.5932 28.611 40.5932C21.86 40.5932 16.3679 35.1011 16.3679 28.3502C16.3679 21.5992 21.86 16.1072 28.611 16.1072C35.3619 16.1072 40.8539 21.5992 40.8539 28.3502C40.8539 29.2251 40.7567 30.1106 40.5651 30.9816C40.1783 32.5707 39.0656 33.0578 38.2302 32.9933C37.3899 32.9249 36.4071 32.3263 36.4005 30.8613V29.7448V28.3502C36.4005 24.0545 32.9065 20.5607 28.611 20.5607C24.3153 20.5607 20.8214 24.0545 20.8214 28.3502C20.8214 32.6459 24.3153 36.1397 28.611 36.1397C30.6977 36.1397 32.6544 35.3235 34.1299 33.8403C34.9875 35.1752 36.386 36.0126 37.977 36.1397C38.1137 36.1512 38.2533 36.157 38.3919 36.157C39.5113 36.157 40.6219 35.7826 41.5171 35.1021C42.4401 34.4014 43.1292 33.3879 43.5104 32.1703C43.571 31.974 43.6827 31.5235 43.6836 31.5206L43.6865 31.5043C43.9108 30.5273 44.0109 29.5533 44.0109 28.3502C44.0109 19.859 37.1021 12.9502 28.611 12.9502Z"
-                                        fill="#FAFAFA"/>
-                                </svg>
-                            </Link>
-                        </div>
-                        <div className={styles.footerCopyright}>
-                            <span>Copyright © 2026 Мебельная фабрика Технологии комфорта. <span>Используем cookies для корректной работы сайта, персонализации пользователей и других целей, предусмотренных <Link
-                                href={pagesLinks.privacyPolicy} className={styles.politicsLink}>политикой обработки персональных данных</Link>.</span></span>
-                        
-                        </div>
-                        <div className={styles.footerDocs}>
-                            <Link href={`${pagesLinks.privacyPolicy}/#politics`} className={styles.link}>Политика <br/> конфиденциальности</Link>
-                            <Link href={`${pagesLinks.privacyPolicy}/#privacy`} className={styles.link}>Согласие на обработку <br/> персональных данных</Link>
-                            <Link href={`${pagesLinks.privacyPolicy}/#using`} className={styles.link}>Положение <br/> о пользовании сайтом</Link>
-                            <Link href={`${pagesLinks.privacyPolicy}/#cookies`} className={styles.link}>Положение использования <br/> файлов Cookie</Link>
-                            <Link href={`${pagesLinks.privacyPolicy}/#techs`} className={styles.link}>Технические требования <br/> к помещению</Link>
-                            <Link href={`${pagesLinks.privacyPolicy}/#storage-and-care`} className={styles.link}>Правила <br/> хранения и ухода</Link>
-                            <Link href={`${pagesLinks.privacyPolicy}/#price-additional`} className={styles.link}>Прайс <br/> на дополнительные <br/> услуги по сборке</Link>
-                        </div>
-                        <Link href={'#'} className={styles.footerLogo}>
-                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M25.1714 19.0226C25.1714 18.6914 25.2722 18.4178 25.4738 18.173C25.6754 17.9426 25.9778 17.813 26.381 17.813H28.541C28.7282 17.7842 28.8578 17.7554 28.9442 17.7554C29.0882 17.7554 29.2178 17.7698 29.333 17.813H31.3058C31.5938 17.813 31.8962 17.9282 32.1986 18.1442C32.501 18.3602 32.645 18.6482 32.645 19.0226V35.8994L65.0594 3.45624C65.405 3.11064 65.765 3.11064 66.125 3.45624C66.485 3.81624 66.485 4.19064 66.125 4.55064L36.533 34.157L64.1378 65.8658C64.7858 66.557 64.685 66.9602 63.9794 66.9602H55.685C55.2242 66.9602 54.9938 66.6866 54.4898 66.1106L31.3058 39.4418L29.7506 40.997V57.8594C29.7506 58.3922 29.4914 58.6514 28.9586 58.6514C28.4546 58.6514 28.1954 58.3922 28.1954 57.8594V42.5522L25.1858 45.5618V19.0226H25.1714Z"
-                                    fill="#58595B"/>
-                                <path
-                                    d="M65.477 59.3858V13.5075H65.4626V11.6931C65.4626 11.2611 65.117 10.9155 64.685 10.9155C64.253 10.9155 63.9074 11.2611 63.9074 11.6931V13.5219V14.8467V59.1411C63.9074 60.3363 63.5618 61.4307 62.9858 62.3811L64.1522 63.7202C64.973 62.4818 65.477 60.9842 65.477 59.3858Z"
-                                    fill="#00A651"/>
-                                <path
-                                    d="M53.6832 67.0032L52.3152 65.4192H26.1072C22.6368 65.4192 19.8144 62.5968 19.8144 59.1264V49.8096L22.536 47.088V15.1776H32.688C33.12 15.1776 33.4656 15.0336 33.696 14.76C33.9264 14.472 34.056 14.1408 34.056 13.7376V8.91358C34.0128 8.51038 33.8544 8.20798 33.5808 8.00638C33.2928 7.80478 33.0048 7.70398 32.688 7.70398H4.80965C4.44965 7.70398 4.11845 7.81918 3.84485 8.06398C3.55685 8.29438 3.42725 8.58238 3.42725 8.91358V13.7232C3.42725 14.1552 3.57125 14.5152 3.84485 14.7744C4.13285 15.0336 4.44965 15.1776 4.80965 15.1776H15.0768V54.5184L18.216 51.408L18.2304 57.8592C18.2304 57.9024 18.2304 57.9312 18.2304 57.96V59.3856C18.2304 63.6192 21.672 67.0608 25.9056 67.0608H53.712C53.6976 67.032 53.6832 67.0176 53.6832 67.0032Z"
-                                    fill="#00A651"/>
-                            </svg>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+const Footer = ({
+	isContact,
+	isContactOnlyContacts,
+	isFormContact,
+	isFormContactOnlyContacts,
+	stocks,
+	isInNumbers,
+}: FooterProps) => {
+	return (
+		<div
+			className={styles.wrapper}
+			style={{
+				backgroundColor: isFormContact && !stocks ? '#29292B' : '#FAFAFA',
+			}}
+		>
+			<div
+				className={`${styles.innerWrapper} ${isFormContact && !stocks && styles.innerWrapper_dark}`}
+			>
+				<div className={`${isFormContact ? '' : 'container'}`}>
+					{isContact && (
+						<Contacts
+							isOnlyContacts={
+								isContactOnlyContacts ?? { desktop: false, mobile: false }
+							}
+						/>
+					)}
+					{isFormContact && (
+						<ContactsForm
+							isOnlyContacts={
+								isFormContactOnlyContacts ?? { desktop: false, mobile: false }
+							}
+							classNames={stocks && styles.contactForm_radius}
+						/>
+					)}
+					{stocks && <StockBanners stocks={stocks} title={'Этапы работы'} />}
+					{isInNumbers && <InNumbers />}
+					<hr
+						className={`${styles.line} ${isFormContact && styles.line_contact}`}
+					/>
+					<div
+						className={`${styles.footer} ${isFormContact && styles.footer_withBorderRadius}`}
+					>
+						<div className={styles.footerNav}>
+							<ul className={styles.navList}>
+								<li className={styles.navUndLi}>
+									<Link href={'#'} className={styles.navLink}>
+										Каталог
+									</Link>
+								</li>
+								<li className={styles.navSubList}>
+									<Link href={'#'} className={styles.navLink}>
+										На заказ
+									</Link>
+									<Link href={'#'} className={styles.navLink}>
+										Типовые решения
+									</Link>
+								</li>
+							</ul>
+							<ul className={styles.navList}>
+								<li className={styles.navUndLi}>
+									<Link href={pagesLinks.portfolio} className={styles.navLink}>
+										Портфолио
+									</Link>
+								</li>
+								<li className={styles.navUndLi}>
+									<Link href={pagesLinks.partners} className={styles.navLink}>
+										Партнерам
+									</Link>
+								</li>
+								<li className={styles.navSubList}>
+									<Link href={'#'} className={styles.navLink}>
+										Отзывы
+									</Link>
+								</li>
+							</ul>
+							<ul className={styles.navList}>
+								<li className={styles.navUndLi}>
+									<Link href={'#'} className={styles.navLink}>
+										О компании
+									</Link>
+								</li>
+								<li className={styles.navSubList}>
+									<Link href={'#'} className={styles.navLink}>
+										Производство
+									</Link>
+									<Link href={'#'} className={styles.navLink}>
+										Блог
+									</Link>
+									<Link href={'#'} className={styles.navLink}>
+										Гарантия
+									</Link>
+								</li>
+							</ul>
+							{/*<ul className={styles.navList}>*/}
+							{/*    <li className={styles.navUndLi}>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>Покупателям</Link>*/}
+							{/*    </li>*/}
+							{/*    <li className={styles.navSubList}>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>FAQ</Link>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>Личный кабинет</Link>*/}
+							{/*    </li>*/}
+							{/*</ul>*/}
+							{/*<ul className={styles.navList}>*/}
+							{/*    <li className={styles.navUndLi}>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>Партнерам</Link>*/}
+							{/*    </li>*/}
+							{/*    <li className={styles.navSubList}>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>Дизайнерам</Link>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>Подрядчикам</Link>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>B2B</Link>*/}
+							{/*    </li>*/}
+							{/*</ul>*/}
+							{/*<ul className={styles.navList}>*/}
+							{/*    <li className={styles.navUndLi}>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>Услуги</Link>*/}
+							{/*    </li>*/}
+							{/*    <li className={styles.navSubList}>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>Заказать проект</Link>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>Вызвать дизайнера</Link>*/}
+							{/*        <Link href={'#'} className={styles.navLink}>Доставка и сборка</Link>*/}
+							{/*    </li>*/}
+							{/*</ul>*/}
+						</div>
+						<div className={styles.footerSocials}>
+							<Link
+								href={
+									'https://max.ru/join/is89AQCget0P25BWYijEziDtijZw0ThWbIgg01b0X6o'
+								}
+								className={styles.socialLink}
+							>
+								<div className={styles.socialLinkBg}>
+									<Image
+										src='https://maxicons.ru/icons/Max_logo.svg'
+										alt='MAX'
+										width={32}
+										height={32}
+									/>
+								</div>
+							</Link>
+							<Link href={'#'} className={styles.socialLink}>
+								<svg
+									width='57'
+									height='56'
+									viewBox='0 0 57 56'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<rect
+										x='0.260742'
+										width='56'
+										height='56'
+										rx='28'
+										fill='#8A8B8C'
+									/>
+									<path
+										d='M39.4608 17.6429L35.2532 39.609C35.2532 39.609 34.6645 41.132 33.0473 40.4016L23.3392 32.6934L23.2942 32.6707C24.6056 31.4514 34.7742 21.9835 35.2186 21.5544C35.9066 20.8897 35.4795 20.494 34.6807 20.9961L19.6603 30.874L13.8655 28.8549C13.8655 28.8549 12.9536 28.519 12.8659 27.7886C12.777 27.0569 13.8955 26.6613 13.8955 26.6613L37.5192 17.0643C37.5192 17.0643 39.4608 16.1809 39.4608 17.6429Z'
+										fill='#FAFAFA'
+									/>
+								</svg>
+							</Link>
+							<Link href={'#'} className={styles.socialLink}>
+								<svg
+									width='57'
+									height='56'
+									viewBox='0 0 57 56'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<rect
+										x='0.260742'
+										width='56'
+										height='56'
+										rx='28'
+										fill='#8A8B8C'
+									/>
+									<path
+										d='M29.6364 39.2738C19.1132 39.2738 13.1109 31.9165 12.8608 19.6738H18.132C18.3052 28.6596 22.1913 32.4658 25.2693 33.2506V19.6738H30.2327V27.4236C33.2723 27.09 36.4658 23.5585 37.5432 19.6738H42.5066C42.1006 21.6885 41.2914 23.5961 40.1295 25.2773C38.9676 26.9585 37.4781 28.3771 35.754 29.4444C37.6785 30.4196 39.3782 31.7999 40.7412 33.4943C42.1041 35.1886 43.0992 37.1585 43.6608 39.2738H38.1973C37.6931 37.4365 36.6684 35.7918 35.2516 34.5458C33.8348 33.2998 32.0889 32.508 30.2327 32.2696V39.2738H29.6364Z'
+										fill='#FAFAFA'
+									/>
+								</svg>
+							</Link>
+							<Link href={'#'} className={styles.socialLink}>
+								<svg
+									width='57'
+									height='56'
+									viewBox='0 0 57 56'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<rect
+										x='0.260742'
+										width='56'
+										height='56'
+										rx='28'
+										fill='#8A8B8C'
+									/>
+									<path
+										d='M33.2435 28.3502C33.2435 30.9046 31.1654 32.9827 28.611 32.9827C26.0564 32.9827 23.9784 30.9046 23.9784 28.3502C23.9784 25.7957 26.0564 23.7177 28.611 23.7177C31.1654 23.7177 33.2435 25.7957 33.2435 28.3502ZM28.611 12.9502C20.1198 12.9502 13.2109 19.859 13.2109 28.3502C13.2109 36.8413 20.1198 43.7502 28.611 43.7502C31.7218 43.7502 34.7219 42.8242 37.286 41.0715L37.3302 41.0407L35.255 38.6287L35.2204 38.6518C33.2463 39.9213 30.9604 40.5932 28.611 40.5932C21.86 40.5932 16.3679 35.1011 16.3679 28.3502C16.3679 21.5992 21.86 16.1072 28.611 16.1072C35.3619 16.1072 40.8539 21.5992 40.8539 28.3502C40.8539 29.2251 40.7567 30.1106 40.5651 30.9816C40.1783 32.5707 39.0656 33.0578 38.2302 32.9933C37.3899 32.9249 36.4071 32.3263 36.4005 30.8613V29.7448V28.3502C36.4005 24.0545 32.9065 20.5607 28.611 20.5607C24.3153 20.5607 20.8214 24.0545 20.8214 28.3502C20.8214 32.6459 24.3153 36.1397 28.611 36.1397C30.6977 36.1397 32.6544 35.3235 34.1299 33.8403C34.9875 35.1752 36.386 36.0126 37.977 36.1397C38.1137 36.1512 38.2533 36.157 38.3919 36.157C39.5113 36.157 40.6219 35.7826 41.5171 35.1021C42.4401 34.4014 43.1292 33.3879 43.5104 32.1703C43.571 31.974 43.6827 31.5235 43.6836 31.5206L43.6865 31.5043C43.9108 30.5273 44.0109 29.5533 44.0109 28.3502C44.0109 19.859 37.1021 12.9502 28.611 12.9502Z'
+										fill='#FAFAFA'
+									/>
+								</svg>
+							</Link>
+						</div>
+						<div className={styles.footerCopyright}>
+							<span>
+								Copyright © 2026 Мебельная фабрика Технологии комфорта.{' '}
+								<span>
+									Используем cookies для корректной работы сайта, персонализации
+									пользователей и других целей, предусмотренных{' '}
+									<Link
+										href={pagesLinks.privacyPolicy}
+										className={styles.politicsLink}
+									>
+										политикой обработки персональных данных
+									</Link>
+									.
+								</span>
+							</span>
+						</div>
+						<div className={styles.footerDocs}>
+							<Link
+								href={`${pagesLinks.privacyPolicy}/#politics`}
+								className={styles.link}
+							>
+								Политика <br /> конфиденциальности
+							</Link>
+							<Link
+								href={`${pagesLinks.privacyPolicy}/#privacy`}
+								className={styles.link}
+							>
+								Согласие на обработку <br /> персональных данных
+							</Link>
+							<Link
+								href={`${pagesLinks.privacyPolicy}/#using`}
+								className={styles.link}
+							>
+								Положение <br /> о пользовании сайтом
+							</Link>
+							<Link
+								href={`${pagesLinks.privacyPolicy}/#cookies`}
+								className={styles.link}
+							>
+								Положение использования <br /> файлов Cookie
+							</Link>
+							<Link
+								href={`${pagesLinks.privacyPolicy}/#techs`}
+								className={styles.link}
+							>
+								Технические требования <br /> к помещению
+							</Link>
+							<Link
+								href={`${pagesLinks.privacyPolicy}/#storage-and-care`}
+								className={styles.link}
+							>
+								Правила <br /> хранения и ухода
+							</Link>
+							<Link
+								href={`${pagesLinks.privacyPolicy}/#price-additional`}
+								className={styles.link}
+							>
+								Прайс <br /> на дополнительные <br /> услуги по сборке
+							</Link>
+						</div>
+						<Link href={'#'} className={styles.footerLogo}>
+							<svg
+								width='72'
+								height='72'
+								viewBox='0 0 72 72'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+							>
+								<path
+									d='M25.1714 19.0226C25.1714 18.6914 25.2722 18.4178 25.4738 18.173C25.6754 17.9426 25.9778 17.813 26.381 17.813H28.541C28.7282 17.7842 28.8578 17.7554 28.9442 17.7554C29.0882 17.7554 29.2178 17.7698 29.333 17.813H31.3058C31.5938 17.813 31.8962 17.9282 32.1986 18.1442C32.501 18.3602 32.645 18.6482 32.645 19.0226V35.8994L65.0594 3.45624C65.405 3.11064 65.765 3.11064 66.125 3.45624C66.485 3.81624 66.485 4.19064 66.125 4.55064L36.533 34.157L64.1378 65.8658C64.7858 66.557 64.685 66.9602 63.9794 66.9602H55.685C55.2242 66.9602 54.9938 66.6866 54.4898 66.1106L31.3058 39.4418L29.7506 40.997V57.8594C29.7506 58.3922 29.4914 58.6514 28.9586 58.6514C28.4546 58.6514 28.1954 58.3922 28.1954 57.8594V42.5522L25.1858 45.5618V19.0226H25.1714Z'
+									fill='#58595B'
+								/>
+								<path
+									d='M65.477 59.3858V13.5075H65.4626V11.6931C65.4626 11.2611 65.117 10.9155 64.685 10.9155C64.253 10.9155 63.9074 11.2611 63.9074 11.6931V13.5219V14.8467V59.1411C63.9074 60.3363 63.5618 61.4307 62.9858 62.3811L64.1522 63.7202C64.973 62.4818 65.477 60.9842 65.477 59.3858Z'
+									fill='#00A651'
+								/>
+								<path
+									d='M53.6832 67.0032L52.3152 65.4192H26.1072C22.6368 65.4192 19.8144 62.5968 19.8144 59.1264V49.8096L22.536 47.088V15.1776H32.688C33.12 15.1776 33.4656 15.0336 33.696 14.76C33.9264 14.472 34.056 14.1408 34.056 13.7376V8.91358C34.0128 8.51038 33.8544 8.20798 33.5808 8.00638C33.2928 7.80478 33.0048 7.70398 32.688 7.70398H4.80965C4.44965 7.70398 4.11845 7.81918 3.84485 8.06398C3.55685 8.29438 3.42725 8.58238 3.42725 8.91358V13.7232C3.42725 14.1552 3.57125 14.5152 3.84485 14.7744C4.13285 15.0336 4.44965 15.1776 4.80965 15.1776H15.0768V54.5184L18.216 51.408L18.2304 57.8592C18.2304 57.9024 18.2304 57.9312 18.2304 57.96V59.3856C18.2304 63.6192 21.672 67.0608 25.9056 67.0608H53.712C53.6976 67.032 53.6832 67.0176 53.6832 67.0032Z'
+									fill='#00A651'
+								/>
+							</svg>
+						</Link>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Footer;
