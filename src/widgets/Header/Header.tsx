@@ -102,6 +102,10 @@ const Header = () => {
             href: pagesLinks.aboutCompany
         },
         {
+            caption: 'Партнерам',
+            href: pagesLinks.partners
+        },
+        {
             caption: 'Контакты',
             href: pagesLinks.contacts
         },

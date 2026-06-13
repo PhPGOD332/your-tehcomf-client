@@ -41,6 +41,14 @@ export const pagesData: IPages = {
         keywords: 'КЛЮЧЕВЫЕ СЛОВА',
         type: "website",
         url: `${CLIENT_URL}/privacy_policy`
+    },
+    partners: {
+        name: 'partners',
+        title: 'Партнерам',
+        description: 'ОПИСАНИЕ',
+        keywords: 'КЛЮЧЕВЫЕ СЛОВА',
+        type: "website",
+        url: `${CLIENT_URL}/partners`
     }
 }
 
@@ -49,7 +57,8 @@ export const pagesLinks = {
     contacts: '/contacts',
     portfolio: '/portfolio',
     privacyPolicy: '/privacy_policy',
-    aboutCompany: '/about'
+    aboutCompany: '/about',
+    partners: '/partners'
 }
 
 interface IPage {
