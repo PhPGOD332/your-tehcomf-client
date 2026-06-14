@@ -7,6 +7,13 @@ import Advantages, { type IAdvantageEl } from '@/widgets/Advantages/Advantages';
 import PartnersPortfolio, {
 	type PartnersPortfolioWork,
 } from '@/widgets/PartnersPortfolio/PartnersPortfolio';
+import PartnersBenefits, {
+	type PartnersBenefit,
+} from '@/widgets/PartnersBenefits/PartnersBenefits';
+import modelImage from '@/data/images/stocks_banners/model.png';
+import moneyImage from '@/data/images/stocks_banners/money.png';
+import buildersImage from '@/data/images/stocks_banners/builders.png';
+import calendarImage from '@/data/images/stocks_banners/calendar.png';
 
 export const metadata: Metadata = {
 	metadataBase: new URL(pagesData.partners.url),
@@ -141,6 +148,41 @@ const portfolioWorks: PartnersPortfolioWork[] = [
 	},
 ];
 
+const partnerBenefits: PartnersBenefit[] = [
+	{
+		title: 'Учитываем каждый нюанс и&nbsp;м²',
+		description:
+			'Внимательно изучаем проект и спецификацию, чтобы учесть особенности помещения и реализовать задуманное без компромиссов.',
+		image: buildersImage,
+		imageAlt: 'Специалисты мебельного производства',
+		color: 'green',
+	},
+	{
+		title: 'Расчет стоимости день в&nbsp;день',
+		description:
+			'Оперативно рассчитываем стоимость проекта и предоставляем понятное коммерческое предложение.',
+		image: calendarImage,
+		imageAlt: 'Расчет стоимости проекта',
+		color: 'blue',
+	},
+	{
+		title: 'Детальная смета по каждому изделию',
+		description:
+			'Предоставляем подробную смету по каждому изделию, материалам, фурнитуре и этапам производства.',
+		image: modelImage,
+		imageAlt: 'Детальная смета проекта',
+		color: 'pink',
+	},
+	{
+		title: 'Прогрессивное вознаграждение от&nbsp;10%',
+		description:
+			'Чем больше совместных проектов, тем выше процент партнерского вознаграждения.',
+		image: moneyImage,
+		imageAlt: 'Партнерское вознаграждение',
+		color: 'peach',
+	},
+];
+
 const Page = () => {
 	return (
 		<>
@@ -154,6 +196,7 @@ const Page = () => {
 				/>
 				<Advantages elements={advantages} />
 				<PartnersPortfolio works={portfolioWorks} />
+				<PartnersBenefits benefits={partnerBenefits} />
 
 				<Footer isContact={true} />
 			</main>
