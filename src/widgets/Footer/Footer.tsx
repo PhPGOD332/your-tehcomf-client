@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ReactNode } from 'react';
 import styles from './Footer.module.scss';
 import Link from 'next/link';
 import Contacts from '@/widgets/Footer/Contacts/Contacts';
@@ -21,6 +21,7 @@ export interface FooterProps {
 	isFormContactOnlyContacts?: IBooleanOptions;
 	stocks?: IStock[];
 	isInNumbers?: boolean;
+	contactFormTitle?: ReactNode;
 }
 
 const Footer = ({
@@ -30,6 +31,7 @@ const Footer = ({
 	isFormContactOnlyContacts,
 	stocks,
 	isInNumbers,
+	contactFormTitle,
 }: FooterProps) => {
 	return (
 		<div
@@ -54,6 +56,7 @@ const Footer = ({
 							isOnlyContacts={
 								isFormContactOnlyContacts ?? { desktop: false, mobile: false }
 							}
+							title={contactFormTitle}
 							classNames={stocks && styles.contactForm_radius}
 						/>
 					)}

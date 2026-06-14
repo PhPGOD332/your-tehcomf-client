@@ -11,6 +11,9 @@ import PartnersBenefits, {
 	type PartnersBenefit,
 } from '@/widgets/PartnersBenefits/PartnersBenefits';
 import PartnersHowWeWork from '@/widgets/PartnersHowWeWork/PartnersHowWeWork';
+import PartnersOtherWorks from '@/widgets/PartnersOtherWorks/PartnersOtherWorks';
+import { PortfolioService } from '@/services/PortfolioService';
+import { type IWork } from '@/types/IWork';
 import modelImage from '@/data/images/stocks_banners/model.png';
 import moneyImage from '@/data/images/stocks_banners/money.png';
 import buildersImage from '@/data/images/stocks_banners/builders.png';
@@ -184,7 +187,25 @@ const partnerBenefits: PartnersBenefit[] = [
 	},
 ];
 
-const Page = () => {
+const getKitchenWorks = async (): Promise<IWork[]> => {
+	try {
+		const works = await PortfolioService.getAllWorks();
+
+		return works
+			.filter((work) => {
+				const type = `${work.type?.name ?? ''} ${work.type?.caption ?? ''}`;
+
+				return /кух|kitchen/i.test(type);
+			})
+			.slice(0, 4);
+	} catch {
+		return [];
+	}
+};
+
+const Page = async () => {
+	const kitchenWorks = await getKitchenWorks();
+
 	return (
 		<>
 			<main className={styles.main}>
@@ -203,8 +224,16 @@ const Page = () => {
 					popupClaimTypeOptions={['Дизайнер интерьера', 'Ремонтное бюро']}
 				/>
 				<PartnersHowWeWork />
+				<PartnersOtherWorks works={kitchenWorks} />
 
-				<Footer isContact={true} />
+				<Footer
+					isFormContact
+					contactFormTitle={
+						<>
+							Давайте рассмотрим <br /> ваш проект
+						</>
+					}
+				/>
 			</main>
 		</>
 	);

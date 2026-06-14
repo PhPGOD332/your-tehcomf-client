@@ -1,0 +1,171 @@
+@use '@/shared/styles/vars' as vars;
+
+.section {
+	padding: vars.rem(80) 0 vars.rem(48);
+	border-radius: vars.rem(60) vars.rem(60) 0 0;
+	background-color: vars.$dark-gray;
+	color: vars.$white;
+}
+
+.container {
+	width: 100%;
+	max-width: vars.rem(1240);
+	margin: 0 auto;
+}
+
+.title {
+	margin-bottom: vars.rem(52);
+	font-size: vars.rem(50);
+	font-weight: 500;
+	line-height: 120%;
+	text-align: center;
+}
+
+.desktopGrid {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: vars.rem(20);
+}
+
+.workCard,
+.portfolioCard {
+	display: block;
+	min-width: 0;
+	color: vars.$white;
+}
+
+.imageWrapper,
+.searchCard {
+	position: relative;
+	height: vars.rem(400);
+	margin-bottom: vars.rem(28);
+	overflow: hidden;
+	border-radius: vars.rem(20);
+	background-color: vars.$gray;
+}
+
+.desktopImages {
+	width: 100%;
+	height: 100%;
+}
+
+.mobileImage {
+	display: none;
+	object-fit: cover;
+}
+
+.workType {
+	display: block;
+	margin-bottom: vars.rem(8);
+	font-size: vars.rem(13);
+	font-weight: 400;
+	line-height: 140%;
+	text-transform: uppercase;
+}
+
+.workTitle {
+	overflow: hidden;
+	font-size: vars.rem(25);
+	font-weight: 500;
+	line-height: 130%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.searchCard {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: vars.$green;
+	color: vars.$white;
+	transition: box-shadow 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.portfolioCard:hover {
+		.searchCard {
+			box-shadow: inset vars.rem(-2) vars.rem(2) vars.rem(100) vars.rem(10)
+				rgba(vars.$white, 0.5);
+		}
+	}
+}
+
+.mobileSlider {
+	display: none;
+}
+
+@media (max-width: vars.$max-1300) and (min-width: calc(vars.$max-1000 + 0.01em)) {
+	.container {
+		padding: 0 vars.rem(32);
+	}
+
+	.imageWrapper,
+	.searchCard {
+		height: vars.rem(300);
+	}
+}
+
+@media (max-width: vars.$max-1000) {
+	.section {
+		overflow: hidden;
+		padding: vars.rem(32) 0 vars.rem(68);
+		border-radius: 0;
+		background-color: vars.$white;
+		color: vars.$dark-gray;
+	}
+
+	.title {
+		margin-bottom: vars.rem(24);
+		padding: 0 vars.rem(16);
+		font-size: vars.rem(31);
+		line-height: 140%;
+		text-align: left;
+	}
+
+	.desktopGrid {
+		display: none;
+	}
+
+	.mobileSlider {
+		display: block;
+		overflow: visible;
+		padding: 0 vars.rem(16);
+	}
+
+	.mobileSlide {
+		width: vars.rem(220);
+	}
+
+	.workCard,
+	.portfolioCard {
+		color: vars.$dark-gray;
+	}
+
+	.imageWrapper,
+	.searchCard {
+		height: vars.rem(300);
+		margin-bottom: vars.rem(16);
+		border-radius: vars.rem(16);
+	}
+
+	.desktopImages {
+		display: none;
+	}
+
+	.mobileImage {
+		display: block;
+	}
+
+	.workType {
+		margin-bottom: vars.rem(10);
+		font-size: vars.rem(13);
+	}
+
+	.workTitle {
+		font-size: vars.rem(25);
+	}
+
+	.searchCard {
+		color: vars.$white;
+	}
+}
