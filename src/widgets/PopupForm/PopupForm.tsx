@@ -1,11 +1,10 @@
-import React, {RefObject, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './PopupForm.module.scss';
 import TextInput from "@/shared/UI/TextInput/TextInput";
 import MaskedInput from "@/shared/UI/MaskedInput/MaskedInput";
 import TextArea from "@/shared/UI/TextArea/TextArea";
 import Link from "next/link";
 import DragAndDropButton from "@/shared/UI/DragAndDropButton/DragAndDropButton";
-import CheckInput from "@/shared/UI/CheckInput/CheckInput";
 import {ClaimDto} from "@/types/dtos/Claim.dto";
 import {useForm} from "react-hook-form";
 import {TFormInputs} from "@/types/TFormInputs";
@@ -18,25 +17,32 @@ export interface PopupProps {
     setIsOpen: (isOpen: boolean) => void;
     noteText?: string;
     isPopup?: boolean;
+    claimTypeOptions?: readonly [string, string];
 }
+
+const defaultClaimTypeOptions = ['Вызвать дизайнера', 'Обсудить проект'] as const;
 
 const PopupForm = (
     {
         isOpen,
         setIsOpen,
-        noteText
+        noteText,
+        claimTypeOptions = defaultClaimTypeOptions
     }: PopupProps) => {
     const {
         register,
         handleSubmit,
         formState: {errors},
         resetField,
-        control
-    } = useForm<TFormInputs>({mode: "onChange", reValidateMode: "onChange"});
-    const [customDesignCheck, setCustomDesignCheck] = useState(false);
-    const [customProjectCheck, setCustomProjectCheck] = useState(false);
-    const checkDesignerRef = useRef<HTMLLabelElement | null>(null);
-    const checkProjectRef = useRef<HTMLLabelElement | null>(null);
+        watch
+    } = useForm<TFormInputs>({
+        mode: "onChange",
+        reValidateMode: "onChange",
+        defaultValues: {
+            claimType: ''
+        }
+    });
+    const selectedClaimType = watch('claimType');
 
     const popupBgRef = useRef<HTMLDivElement | null>(null);
     const popupFormRef = useRef<HTMLFormElement | null>(null);
@@ -61,38 +67,12 @@ const PopupForm = (
             resetField('firstName');
             resetField('mobilePhone');
             resetField('note');
+            resetField('claimType');
 
             setIsOpen(false);
         }, 2000);
 
         return () => clearTimeout(timeout);
-    }
-
-    const checkChangeHandle = (labelRef: RefObject<HTMLLabelElement | null> | null) => {
-        if (!labelRef)
-            return;
-
-        if (labelRef === checkProjectRef) {
-            if (customDesignCheck && !customProjectCheck) {
-                setCustomProjectCheck(true);
-                setCustomDesignCheck(false);
-            } else if (!customDesignCheck && !customProjectCheck) {
-                setCustomProjectCheck(true);
-            } else {
-                setCustomProjectCheck(false);
-            }
-        }
-
-        if (labelRef === checkDesignerRef) {
-            if (customProjectCheck && !customDesignCheck) {
-                setCustomProjectCheck(false);
-                setCustomDesignCheck(true);
-            } else if (!customDesignCheck && !customProjectCheck) {
-                setCustomDesignCheck(true);
-            } else {
-                setCustomDesignCheck(false);
-            }
-        }
     }
 
     const bgPopupHandler = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -141,6 +121,44 @@ const PopupForm = (
         }
     }, [isOpen]);
 
+    const claimTypeChooseBlock = (
+        <div className={styles.chooseWrapper}>
+            <div className={styles.chooseBlock}>
+                {claimTypeOptions.map((option) => (
+                    <label
+                        className={`${styles.claimTypeOption} ${selectedClaimType === option ? styles.claimTypeOption_checked : ''}`}
+                        key={option}
+                    >
+                        <span className={styles.claimTypeCaption}>{option}</span>
+                        <input
+                            type='radio'
+                            value={option}
+                            className={styles.claimTypeInput}
+                            {...register('claimType', {
+                                required: 'Выберите тип заявки'
+                            })}
+                        />
+                        <span className={styles.claimTypeIcon}>
+                            {selectedClaimType === option && (
+                                <svg width='12.5' height='7' viewBox='0 0 12 9' fill='none'>
+                                    <path
+                                        d='M1 4.5L3.2706 7.14903C3.65929 7.60251 4.35624 7.61636 4.76265 7.17869L10.5 1'
+                                        stroke='#FAFAFA'
+                                        strokeWidth='3'
+                                        strokeLinecap='round'
+                                    />
+                                </svg>
+                            )}
+                        </span>
+                    </label>
+                ))}
+            </div>
+            {errors.claimType && (
+                <span className={styles.claimTypeError}>{errors.claimType.message}</span>
+            )}
+        </div>
+    );
+
     return (
         <>
             {!isMobile ?
@@ -154,30 +172,7 @@ const PopupForm = (
                         ref={popupFormRef}
                     >
                         <div className={styles.mobileDragBlock}></div>
-                        <div className={styles.chooseBlock}>
-                            <CheckInput
-                                firstIsChecked={false}
-                                caption='Вызвать дизайнера'
-                                {...register("callDesign")}
-                                labelRef={checkDesignerRef}
-                                changeHandle={checkChangeHandle}
-                                customIsChecked={customDesignCheck}
-                                setCustomIsChecked={setCustomDesignCheck}
-                                classNames={styles.checkInputLabel}
-                                control={control}
-                            />
-                            <CheckInput
-                                firstIsChecked={false}
-                                caption='Обсудить проект'
-                                {...register("discussProject")}
-                                labelRef={checkProjectRef}
-                                changeHandle={checkChangeHandle}
-                                customIsChecked={customProjectCheck}
-                                setCustomIsChecked={setCustomProjectCheck}
-                                classNames={styles.checkInputLabel}
-                                control={control}
-                            />
-                        </div>
+                        {claimTypeChooseBlock}
                         <div className={styles.inputsBlock}>
                             <TextInput
                                 label={'Имя'}
@@ -236,7 +231,7 @@ const PopupForm = (
                     style={{
                         transform: `translateY(${popupPosition}px)`,
                         transition: '0.1s',
-                        bottom: `${errors.firstName || errors.mobilePhone || errors.note ? '-665px' : '-630px'}`
+                        bottom: `${errors.firstName || errors.mobilePhone || errors.note || errors.claimType ? '-665px' : '-630px'}`
                     }}
                 >
                     <div
@@ -245,30 +240,7 @@ const PopupForm = (
                         onTouchMove={touchMoveHandle}
                         onTouchEnd={touchEndHandle}
                     ></div>
-                    <div className={styles.chooseBlock}>
-                        <CheckInput
-                            firstIsChecked={false}
-                            caption='Вызвать дизайнера'
-                            {...register("callDesign")}
-                            labelRef={checkDesignerRef}
-                            changeHandle={checkChangeHandle}
-                            customIsChecked={customDesignCheck}
-                            setCustomIsChecked={setCustomDesignCheck}
-                            classNames={styles.checkInputLabel}
-                            control={control}
-                        />
-                        <CheckInput
-                            firstIsChecked={false}
-                            caption='Обсудить проект'
-                            {...register("discussProject")}
-                            labelRef={checkProjectRef}
-                            changeHandle={checkChangeHandle}
-                            customIsChecked={customProjectCheck}
-                            setCustomIsChecked={setCustomProjectCheck}
-                            classNames={styles.checkInputLabel}
-                            control={control}
-                        />
-                    </div>
+                    {claimTypeChooseBlock}
                     <div className={styles.inputsBlock}>
                         <TextInput
                             label={'Имя'}

@@ -183,13 +183,49 @@
 		color: vars.$dark-gray;
 	}
 
-	.mobileImageWrapper {
+	.mobileImageSlider {
 		position: relative;
 		height: vars.rem(400);
 		margin-bottom: vars.rem(40);
 		overflow: hidden;
 		border-radius: vars.rem(20);
-		background-color: vars.$light-gray;
+	}
+
+	.mobileImageSlide {
+		position: relative;
+		height: 100%;
+		overflow: hidden;
+		border-radius: vars.rem(20);
+	}
+
+	.mobilePagination {
+		position: absolute;
+		right: 0;
+		bottom: vars.rem(12) !important;
+		left: 0;
+		z-index: 2;
+		display: flex;
+		justify-content: center;
+		gap: vars.rem(6);
+	}
+
+	.mobilePaginationBullet {
+		width: vars.rem(8);
+		height: vars.rem(8);
+		margin: 0 !important;
+		border-radius: 50%;
+		background-color: rgba(vars.$white, 0.65);
+		opacity: 1;
+		cursor: pointer;
+	}
+
+	.mobilePaginationBulletActive {
+		background-color: vars.$white;
+	}
+
+	.mobileDetails {
+		display: block;
+		color: vars.$dark-gray;
 	}
 
 	.mobileMeta {

@@ -10,9 +10,16 @@ export interface LinkScreenProps {
 	photoAlt?: string;
 	title: string;
 	text?: string;
+	popupClaimTypeOptions?: readonly [string, string];
 }
 
-const LinkScreen = ({ photo, photoAlt, title, text }: LinkScreenProps) => {
+const LinkScreen = ({
+	photo,
+	photoAlt,
+	title,
+	text,
+	popupClaimTypeOptions,
+}: LinkScreenProps) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
@@ -24,7 +31,11 @@ const LinkScreen = ({ photo, photoAlt, title, text }: LinkScreenProps) => {
 
 	return (
 		<section className={styles.screen}>
-			<PopupForm isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+			<PopupForm
+				isOpen={isModalOpen}
+				setIsOpen={setIsModalOpen}
+				claimTypeOptions={popupClaimTypeOptions}
+			/>
 			<div className={styles.imageWrapper}>
 				<Image
 					src={photo}

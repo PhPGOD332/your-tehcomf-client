@@ -44,7 +44,7 @@ const TwoStepsOrderForm = (
     const isMobile = useMediaQuery('(max-width: 800px)');
     const [step, setStep] = useState<'first' | 'second'>('first');
 
-    const submitHandler = async (data: ClaimDto) => {
+    const submitHandler = async (data: TLimitedFormInputs) => {
         if (step === 'second') {
             const timeout = setTimeout(async () => {
                 const claimDto: ClaimDto = new ClaimDto({

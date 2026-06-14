@@ -88,7 +88,11 @@ const advantages: IAdvantageEl[] = [
 
 const portfolioWorks: PartnersPortfolioWork[] = [
 	{
-		photo: '/sliders/examples/yellow.jpg',
+		photos: [
+			'/sliders/examples/yellow.jpg',
+			'/sliders/examples/green.jpg',
+			'/sliders/examples/black.jpg',
+		],
 		photoAlt: 'Квартира в Москва-сити',
 		title: 'Квартира в Москва-сити',
 		area: '180 м²',
@@ -96,7 +100,11 @@ const portfolioWorks: PartnersPortfolioWork[] = [
 		text: 'Полная меблировка квартиры под ключ в элитном ЖК',
 	},
 	{
-		photo: '/sliders/examples/green.jpg',
+		photos: [
+			'/sliders/examples/green.jpg',
+			'/sliders/examples/blue.jpg',
+			'/sliders/examples/turquoise.jpg',
+		],
 		photoAlt: 'Квартира в ЖК',
 		title: 'Квартира в современном ЖК',
 		area: '140 м²',
@@ -104,7 +112,11 @@ const portfolioWorks: PartnersPortfolioWork[] = [
 		text: 'Корпусная мебель по индивидуальному дизайн-проекту',
 	},
 	{
-		photo: '/sliders/examples/black.jpg',
+		photos: [
+			'/sliders/examples/black.jpg',
+			'/sliders/examples/turquoise.jpg',
+			'/sliders/examples/yellow.jpg',
+		],
 		photoAlt: 'Квартира на Патриках',
 		title: 'Квартира на Патриках',
 		area: '165 м²',
@@ -112,7 +124,7 @@ const portfolioWorks: PartnersPortfolioWork[] = [
 		text: 'Комплексная меблировка жилого пространства',
 	},
 	{
-		photo: '/sliders/examples/blue.jpg',
+		photos: ['/sliders/examples/blue.jpg'],
 		photoAlt: 'Квартира в Москва-сити',
 		title: 'Квартира в Москва-сити',
 		area: '125 м²',
@@ -120,7 +132,7 @@ const portfolioWorks: PartnersPortfolioWork[] = [
 		text: 'Полная меблировка квартиры под ключ',
 	},
 	{
-		photo: '/sliders/examples/turquoise.jpg',
+		photos: ['/sliders/examples/turquoise.jpg'],
 		photoAlt: 'Современная квартира',
 		title: 'Современная квартира',
 		area: '120 м²',
@@ -138,6 +150,7 @@ const Page = () => {
 					photoAlt='Кухня'
 					title='Надежный партнер по производству мебели для ваших проектов'
 					text='Помогаем ремонтным бюро и дизайнерам реализовывать интерьерные проекты от отдельных изделий до комплексных объектов'
+					popupClaimTypeOptions={['Дизайнер интерьера', 'Ремонтное бюро']}
 				/>
 				<Advantages elements={advantages} />
 				<PartnersPortfolio works={portfolioWorks} />

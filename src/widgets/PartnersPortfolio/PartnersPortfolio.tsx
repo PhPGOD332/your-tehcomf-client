@@ -2,12 +2,13 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { pagesLinks } from '@/shared/constants';
 import styles from './PartnersPortfolio.module.scss';
 
 export interface PartnersPortfolioWork {
-	photo: string;
+	photos: [string, ...string[]];
 	photoAlt?: string;
 	title: string;
 	area: string;
@@ -76,13 +77,13 @@ const PartnersPortfolio = ({ works }: PartnersPortfolioProps) => {
 						grabCursor
 					>
 						{works.map((work) => (
-							<SwiperSlide className={styles.slide} key={work.photo}>
+							<SwiperSlide className={styles.slide} key={work.photos[0]}>
 								<Link
 									href={pagesLinks.portfolio}
 									className={styles.desktopCard}
 								>
 									<Image
-										src={work.photo}
+										src={work.photos[0]}
 										alt={work.photoAlt || work.title}
 										fill
 										sizes='(max-width: 1400px) 55vw, 720px'
@@ -109,28 +110,42 @@ const PartnersPortfolio = ({ works }: PartnersPortfolioProps) => {
 
 				<div className={styles.mobileList}>
 					{works.slice(0, 3).map((work) => (
-						<Link
-							href={pagesLinks.portfolio}
-							className={styles.mobileCard}
-							key={work.photo}
-						>
-							<div className={styles.mobileImageWrapper}>
-								<Image
-									src={work.photo}
-									alt={work.photoAlt || work.title}
-									fill
-									sizes='calc(100vw - 32px)'
-									className={styles.image}
-								/>
-							</div>
-							<div className={styles.mobileMeta}>
-								<span>{work.area}</span>
-								<span className={styles.mobileMetaDivider}>•</span>
-								<span>{work.date}</span>
-							</div>
-							<h3 className={styles.mobileCardTitle}>{work.title}</h3>
-							{work.text && <p className={styles.mobileText}>{work.text}</p>}
-						</Link>
+						<article className={styles.mobileCard} key={work.photos[0]}>
+							<Swiper
+								className={styles.mobileImageSlider}
+								modules={[Pagination]}
+								slidesPerView={1}
+								spaceBetween={8}
+								nested
+								pagination={{
+									clickable: true,
+									horizontalClass: styles.mobilePagination,
+									bulletClass: styles.mobilePaginationBullet,
+									bulletActiveClass: styles.mobilePaginationBulletActive,
+								}}
+							>
+								{work.photos.map((photo) => (
+									<SwiperSlide className={styles.mobileImageSlide} key={photo}>
+										<Image
+											src={photo}
+											alt={work.photoAlt || work.title}
+											fill
+											sizes='calc(100vw - 32px)'
+											className={styles.image}
+										/>
+									</SwiperSlide>
+								))}
+							</Swiper>
+							<Link href={pagesLinks.portfolio} className={styles.mobileDetails}>
+								<div className={styles.mobileMeta}>
+									<span>{work.area}</span>
+									<span className={styles.mobileMetaDivider}>•</span>
+									<span>{work.date}</span>
+								</div>
+								<h3 className={styles.mobileCardTitle}>{work.title}</h3>
+								{work.text && <p className={styles.mobileText}>{work.text}</p>}
+							</Link>
+						</article>
 					))}
 				</div>
 			</div>

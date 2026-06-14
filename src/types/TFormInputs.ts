@@ -3,8 +3,7 @@ export interface TFormInputs {
     mobilePhone: string;
     note: string;
     date: Date;
-    callDesign: boolean;
-    discussProject: boolean;
+    claimType: string;
 }
 
 export interface TLimitedFormInputs {
