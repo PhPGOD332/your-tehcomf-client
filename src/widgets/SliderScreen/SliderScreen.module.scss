@@ -1,151 +1,150 @@
 @use '@/shared/styles/vars' as vars;
 
 .screen {
-  height: 100vh;
-  max-width: 100vw;
+	height: 100vh;
+	max-width: 100vw;
 }
 
 .swiper {
-  position: relative;
-  height: 100vh;
-  z-index: 4;
+	position: relative;
+	height: 100vh;
+	z-index: 4;
 
-  .paginationBullet {
-    background-color: vars.$gray;
-    width: vars.rem(20);
-    height: vars.rem(8);
-    border-radius: vars.rem(40);
-    cursor: pointer;
+	.paginationBullet {
+		background-color: vars.$gray;
+		width: vars.rem(20);
+		height: vars.rem(8);
+		border-radius: vars.rem(40);
+		cursor: pointer;
 
-    @media (max-width: vars.$max-1000) {
-      width: vars.rem(16);
-      height: vars.rem(4);
-    }
-  }
-  
-  .paginationBulletActive {
-    transition: 0.2s;
-    background-color: vars.$light-gray;
+		@media (max-width: vars.$max-1000) {
+			width: vars.rem(16);
+			height: vars.rem(4);
+		}
+	}
 
-    @media (max-width: vars.$max-1000) {
-      width: vars.rem(24);
-      height: vars.rem(4);
-    }
-  }
+	.paginationBulletActive {
+		transition: 0.2s;
+		background-color: vars.$light-gray;
 
-  .horizontalPagination {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    bottom: 5.5%;
-    gap: vars.rem(8);
+		@media (max-width: vars.$max-1000) {
+			width: vars.rem(24);
+			height: vars.rem(4);
+		}
+	}
 
-    @media (max-width: vars.$max-1000) {
-      bottom: 46%;
-    }
+	.horizontalPagination {
+		display: flex;
+		justify-content: center;
+		position: absolute;
+		bottom: 5.5%;
+		gap: vars.rem(8);
 
-    @media (max-height: vars.$max-800) and (max-width: vars.$max-1000) {
-      bottom: 56%;
-    }
-  }
+		@media (max-width: vars.$max-1000) {
+			bottom: 46%;
+		}
 
-  .mobileNavigation {
-    position: absolute;
-    bottom: vars.rem(25);
-    margin-bottom: vars.$safe-area-bottom;
-  }
+		@media (max-height: vars.$max-800) and (max-width: vars.$max-1000) {
+			bottom: 56%;
+		}
+	}
+
+	.mobileNavigation {
+		position: absolute;
+		bottom: vars.rem(25);
+		margin-bottom: vars.$safe-area-bottom;
+	}
 }
 
 .swiperSlide {
-  position: relative;
-  
-  &_mobile {
-    .swiperSlideContent {
-      background-color: #fff;
-    }
-  }
+	position: relative;
 
-  .swiperWrapper {
-    position: relative;
-    height: 100%;
-  }
+	&_mobile {
+		.swiperSlideContent {
+			background-color: #fff;
+		}
+	}
 
-  .swiperImageWrapper {
+	.swiperWrapper {
+		position: relative;
+		height: 100%;
+	}
 
-    @media (max-width: vars.$max-1000) {
-      position: absolute;
-      bottom: 42.5%;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
+	.swiperImageWrapper {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
 
-    .swiperImage {
-      position: absolute;
-      min-width: 100%;
-      max-height: 100%;
-      //object-fit: cover;
-      z-index: -1;
+		@media (max-width: vars.$max-1000) {
+			bottom: 42%;
+		}
 
-      @media (max-width: vars.$max-500) {
-        max-height: fit-content;
-      }
-    }
-  }
-  
-  .swiperSlideContent {
-    position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: vars.rem(20);
-    text-align: center;
-    background: linear-gradient(rgba(#0A0A0A00, 0) 0%, rgba(#0A0A0A00, 0.2) 10%, rgba(#0A0A0A00, 0.6) 100%);
+		.swiperImage {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			z-index: 0;
+		}
+	}
 
-    @media (max-width: vars.$max-1000) {
-      position: absolute;
-      padding: vars.rem(36) vars.rem(16) vars.rem(125) vars.rem(16);
-      background: vars.$white;
-      border-top-left-radius: vars.rem(30);
-      border-top-right-radius: vars.rem(30);
-      width: 100%;
-      height: 45%;
-      bottom: 0;
-      margin-bottom: vars.$safe-area-bottom;
-      z-index: 6;
-    }
+	.swiperSlideContent {
+		position: relative;
+		z-index: 1;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: vars.rem(20);
+		text-align: center;
+		background: linear-gradient(
+			rgba(#0a0a0a00, 0) 0%,
+			rgba(#0a0a0a00, 0.2) 10%,
+			rgba(#0a0a0a00, 0.6) 100%
+		);
 
-    @media (max-height: vars.$max-800) and (max-width: vars.$max-1000) {
-      height: 55%;
-    }
+		@media (max-width: vars.$max-1000) {
+			position: absolute;
+			padding: vars.rem(36) vars.rem(16) vars.rem(125) vars.rem(16);
+			background: vars.$white;
+			border-top-left-radius: vars.rem(30);
+			border-top-right-radius: vars.rem(30);
+			width: 100%;
+			height: 45%;
+			bottom: 0;
+			margin-bottom: vars.$safe-area-bottom;
+			z-index: 6;
+		}
 
-    .swiperTitle {
-      font-size: vars.rem(50);
-      font-weight: 700;
-      color: #EFEFEF;
-      padding: 0 vars.rem(16);
+		@media (max-height: vars.$max-800) and (max-width: vars.$max-1000) {
+			height: 55%;
+		}
 
-      @media (max-width: vars.$max-1000) {
-        font-size: vars.rem(31);
-        color: vars.$dark-gray;
-        margin-bottom: vars.rem(16);
-      }
-    }
+		.swiperTitle {
+			font-size: vars.rem(50);
+			font-weight: 700;
+			color: #efefef;
+			padding: 0 vars.rem(16);
 
-    .swiperText {
-      font-size: vars.rem(31);
-      font-weight: 500;
-      color: #EFEFEF;
-      max-width: vars.rem(800);
+			@media (max-width: vars.$max-1000) {
+				font-size: vars.rem(31);
+				color: vars.$dark-gray;
+				margin-bottom: vars.rem(16);
+			}
+		}
 
-      @media (max-width: vars.$max-1000) {
-        font-size: vars.rem(16);
-        color: vars.$dark-gray;
-        margin-bottom: vars.rem(36);
-      }
-    }
-  }
+		.swiperText {
+			font-size: vars.rem(31);
+			font-weight: 500;
+			color: #efefef;
+			max-width: vars.rem(800);
+
+			@media (max-width: vars.$max-1000) {
+				font-size: vars.rem(16);
+				color: vars.$dark-gray;
+				margin-bottom: vars.rem(36);
+			}
+		}
+	}
 }
-

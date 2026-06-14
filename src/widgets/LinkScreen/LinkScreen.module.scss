@@ -103,9 +103,9 @@
 	.screen {
 		flex-direction: column;
 		align-items: stretch;
-		height: auto;
-		min-height: 100vh;
-		overflow: visible;
+		height: 100vh;
+		height: 100dvh;
+		min-height: 0;
 		padding-top: vars.rem(80);
 		background-color: vars.$white;
 	}
@@ -114,7 +114,7 @@
 		position: relative;
 		flex-shrink: 0;
 		width: 100%;
-		height: clamp(vars.rem(540), 65vh, vars.rem(680));
+		height: 57.5%;
 
 		&::after {
 			display: none;
@@ -126,6 +126,7 @@
 	}
 
 	.container {
+		flex: 1;
 		height: auto;
 		margin-top: vars.rem(-32);
 	}
@@ -136,9 +137,9 @@
 		align-items: center;
 		justify-content: flex-start;
 		gap: vars.rem(16);
-		min-height: auto;
+		min-height: 100%;
 		padding: vars.rem(42) vars.rem(16) vars.rem(56);
-		border-radius: vars.rem(40) vars.rem(40) 0 0;
+		border-radius: vars.rem(30) vars.rem(30) 0 0;
 		background-color: vars.$white;
 		color: vars.$dark-gray;
 		text-align: center;
@@ -180,11 +181,13 @@
 	}
 }
 
-@media (max-width: vars.$max-500) {
+@media (max-height: vars.$max-800) and (max-width: vars.$max-1000) {
 	.imageWrapper {
-		height: clamp(vars.rem(520), 65vh, vars.rem(640));
+		height: 47.5%;
 	}
+}
 
+@media (max-width: vars.$max-500) {
 	.image {
 		object-position: 56% center;
 	}
