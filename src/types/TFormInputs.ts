@@ -4,6 +4,7 @@ export interface TFormInputs {
     note: string;
     date: Date;
     claimType: string;
+    company?: string;
 }
 
 export interface TLimitedFormInputs {

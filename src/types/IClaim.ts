@@ -4,4 +4,5 @@ export interface IClaim {
     mobilPhone: string;
     note?: string;
     claimType: string;
+    company?: string;
 }

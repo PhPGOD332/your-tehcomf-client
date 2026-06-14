@@ -21,6 +21,7 @@ export interface PopupProps {
 }
 
 const defaultClaimTypeOptions = ['Вызвать дизайнера', 'Обсудить проект'] as const;
+const repairBureauClaimType = 'Ремонтное бюро';
 
 const PopupForm = (
     {
@@ -43,6 +44,7 @@ const PopupForm = (
         }
     });
     const selectedClaimType = watch('claimType');
+    const isRepairBureau = selectedClaimType === repairBureauClaimType;
 
     const popupBgRef = useRef<HTMLDivElement | null>(null);
     const popupFormRef = useRef<HTMLFormElement | null>(null);
@@ -68,6 +70,7 @@ const PopupForm = (
             resetField('mobilePhone');
             resetField('note');
             resetField('claimType');
+            resetField('company');
 
             setIsOpen(false);
         }, 2000);
@@ -121,6 +124,22 @@ const PopupForm = (
         }
     }, [isOpen]);
 
+    useEffect(() => {
+        if (!isRepairBureau) {
+            resetField('company');
+        }
+
+        if (!isMobile || !isOpen) return;
+
+        const animationFrame = requestAnimationFrame(() => {
+            if (popupFormRef.current) {
+                setPopupPosition(-popupFormRef.current.offsetHeight);
+            }
+        });
+
+        return () => cancelAnimationFrame(animationFrame);
+    }, [isMobile, isOpen, isRepairBureau, resetField]);
+
     const claimTypeChooseBlock = (
         <div className={styles.chooseWrapper}>
             <div className={styles.chooseBlock}>
@@ -159,6 +178,19 @@ const PopupForm = (
         </div>
     );
 
+    const companyInput = isRepairBureau ? (
+        <div className={styles.companyInput}>
+            <TextInput
+                label='Компания'
+                placeholder='Название'
+                {...register('company', {
+                    required: 'Введите название компании'
+                })}
+                error={errors.company}
+            />
+        </div>
+    ) : null;
+
     return (
         <>
             {!isMobile ?
@@ -174,6 +206,7 @@ const PopupForm = (
                         <div className={styles.mobileDragBlock}></div>
                         {claimTypeChooseBlock}
                         <div className={styles.inputsBlock}>
+                            {companyInput}
                             <TextInput
                                 label={'Имя'}
                                 placeholder={'Иван'}
@@ -231,7 +264,7 @@ const PopupForm = (
                     style={{
                         transform: `translateY(${popupPosition}px)`,
                         transition: '0.1s',
-                        bottom: `${errors.firstName || errors.mobilePhone || errors.note || errors.claimType ? '-665px' : '-630px'}`
+                        bottom: `${errors.firstName || errors.mobilePhone || errors.note || errors.claimType || errors.company ? '-665px' : '-630px'}`
                     }}
                 >
                     <div
@@ -242,6 +275,7 @@ const PopupForm = (
                     ></div>
                     {claimTypeChooseBlock}
                     <div className={styles.inputsBlock}>
+                        {companyInput}
                         <TextInput
                             label={'Имя'}
                             placeholder={'Иван'}

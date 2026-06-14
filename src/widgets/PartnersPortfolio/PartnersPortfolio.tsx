@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { pagesLinks } from '@/shared/constants';
@@ -22,6 +23,30 @@ interface PartnersPortfolioProps {
 
 const SliderNavigation = () => {
 	const swiper = useSwiper();
+	const [isBeginning, setIsBeginning] = useState(swiper.isBeginning);
+	const [isEnd, setIsEnd] = useState(swiper.isEnd);
+
+	useEffect(() => {
+		const updateNavigationState = () => {
+			setIsBeginning(swiper.isBeginning);
+			setIsEnd(swiper.isEnd);
+		};
+
+		updateNavigationState();
+		swiper.on('slideChange', updateNavigationState);
+		swiper.on('reachBeginning', updateNavigationState);
+		swiper.on('reachEnd', updateNavigationState);
+		swiper.on('fromEdge', updateNavigationState);
+		swiper.on('resize', updateNavigationState);
+
+		return () => {
+			swiper.off('slideChange', updateNavigationState);
+			swiper.off('reachBeginning', updateNavigationState);
+			swiper.off('reachEnd', updateNavigationState);
+			swiper.off('fromEdge', updateNavigationState);
+			swiper.off('resize', updateNavigationState);
+		};
+	}, [swiper]);
 
 	return (
 		<div className={styles.navigation}>
@@ -30,15 +55,20 @@ const SliderNavigation = () => {
 				className={styles.navigationButton}
 				aria-label='Предыдущий проект'
 				onClick={() => swiper.slidePrev()}
+				disabled={isBeginning}
 			>
-				{/* TODO: заменить временную SVG-стрелку на финальную. */}
-				<svg width='18' height='18' viewBox='0 0 18 18' fill='none'>
+				<svg
+					width='21'
+					height='15'
+					viewBox='0 0 21 15'
+					fill='none'
+					xmlns='http://www.w3.org/2000/svg'
+				>
 					<path
-						d='M11.5 4L6.5 9L11.5 14'
+						d='M19.293 7.5H1.79297M7.29297 1.5L1.64652 7.14645C1.45126 7.34171 1.45126 7.65829 1.64652 7.85355L7.29297 13.5'
 						stroke='currentColor'
-						strokeWidth='1.5'
+						strokeWidth='3'
 						strokeLinecap='round'
-						strokeLinejoin='round'
 					/>
 				</svg>
 			</button>
@@ -47,15 +77,21 @@ const SliderNavigation = () => {
 				className={styles.navigationButton}
 				aria-label='Следующий проект'
 				onClick={() => swiper.slideNext()}
+				disabled={isEnd}
 			>
 				{/* TODO: заменить временную SVG-стрелку на финальную. */}
-				<svg width='18' height='18' viewBox='0 0 18 18' fill='none'>
+				<svg
+					width='21'
+					height='15'
+					viewBox='0 0 21 15'
+					fill='none'
+					xmlns='http://www.w3.org/2000/svg'
+				>
 					<path
-						d='M6.5 4L11.5 9L6.5 14'
+						d='M1.5 7.5H19M13.5 1.5L19.1464 7.14645C19.3417 7.34171 19.3417 7.65829 19.1464 7.85355L13.5 13.5'
 						stroke='currentColor'
-						strokeWidth='1.5'
+						strokeWidth='3'
 						strokeLinecap='round'
-						strokeLinejoin='round'
 					/>
 				</svg>
 			</button>
@@ -136,7 +172,10 @@ const PartnersPortfolio = ({ works }: PartnersPortfolioProps) => {
 									</SwiperSlide>
 								))}
 							</Swiper>
-							<Link href={pagesLinks.portfolio} className={styles.mobileDetails}>
+							<Link
+								href={pagesLinks.portfolio}
+								className={styles.mobileDetails}
+							>
 								<div className={styles.mobileMeta}>
 									<span>{work.area}</span>
 									<span className={styles.mobileMetaDivider}>•</span>

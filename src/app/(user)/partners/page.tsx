@@ -10,6 +10,7 @@ import PartnersPortfolio, {
 import PartnersBenefits, {
 	type PartnersBenefit,
 } from '@/widgets/PartnersBenefits/PartnersBenefits';
+import PartnersHowWeWork from '@/widgets/PartnersHowWeWork/PartnersHowWeWork';
 import modelImage from '@/data/images/stocks_banners/model.png';
 import moneyImage from '@/data/images/stocks_banners/money.png';
 import buildersImage from '@/data/images/stocks_banners/builders.png';
@@ -196,7 +197,12 @@ const Page = () => {
 				/>
 				<Advantages elements={advantages} />
 				<PartnersPortfolio works={portfolioWorks} />
-				<PartnersBenefits benefits={partnerBenefits} />
+
+				<PartnersBenefits
+					benefits={partnerBenefits}
+					popupClaimTypeOptions={['Дизайнер интерьера', 'Ремонтное бюро']}
+				/>
+				<PartnersHowWeWork />
 
 				<Footer isContact={true} />
 			</main>

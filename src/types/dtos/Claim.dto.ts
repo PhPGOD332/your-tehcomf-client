@@ -5,6 +5,7 @@ export class ClaimDto {
     note?: string;
     date: Date;
     claimType: string;
+    company?: string;
 
     constructor(props: {
         id?: number;
@@ -13,6 +14,7 @@ export class ClaimDto {
         note?: string;
         date: Date;
         claimType?: string;
+        company?: string;
     }) {
         this.id = props.id ?? 0;
         this.firstName = props.firstName;
@@ -20,5 +22,6 @@ export class ClaimDto {
         this.note = props.note ?? '';
         this.date = props.date;
         this.claimType = props.claimType ?? 'Обсудить проект';
+        this.company = props.company ?? '';
     }
 }

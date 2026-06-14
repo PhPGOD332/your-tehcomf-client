@@ -33,6 +33,20 @@
 	overflow: hidden;
 	border-radius: vars.rem(20);
 	color: vars.$white;
+	transition: 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.swiper:has(.desktopCard:hover) {
+		.desktopCard {
+			opacity: 0.2;
+		}
+
+		.desktopCard:hover {
+			opacity: 1;
+			transform: scale(0.9);
+		}
+	}
 }
 
 .image {
@@ -108,10 +122,6 @@
 	line-height: 140%;
 }
 
-.desktopCard:hover .image {
-	transform: scale(1.02);
-}
-
 .navigation {
 	position: absolute;
 	right: 0;
@@ -136,6 +146,15 @@
 
 	&:hover {
 		color: vars.$green;
+	}
+
+	&:disabled {
+		color: rgba(vars.$gray, 0.3);
+		cursor: default;
+	}
+
+	&:disabled:hover {
+		color: rgba(vars.$gray, 0.3);
 	}
 }
 

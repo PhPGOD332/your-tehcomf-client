@@ -1,5 +1,17 @@
 @use '@/shared/styles/vars' as vars;
 
+@keyframes showCompanyInput {
+	from {
+		opacity: 0;
+		transform: translateY(vars.rem(14));
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 .popupWrapper {
 	display: flex;
 	justify-content: center;
@@ -127,6 +139,11 @@
 		gap: vars.rem(20);
 		width: 100%;
 		margin-bottom: vars.rem(28);
+	}
+
+	.companyInput {
+		width: 100%;
+		animation: showCompanyInput 0.28s ease-out both;
 	}
 
 	.submitBlock {
