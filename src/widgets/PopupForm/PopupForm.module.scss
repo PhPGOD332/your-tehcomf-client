@@ -44,7 +44,6 @@
 	border-radius: vars.rem(40);
 	width: vars.rem(480);
 	box-shadow: vars.rem(3) vars.rem(10) vars.rem(22) 0 vars.$shadow;
-	//bottom: vars.rem(-665);
 	transform: translateY(vars.rem(0));
 
 	&_hidden {
@@ -80,6 +79,10 @@
 		cursor: pointer;
 		user-select: none;
 		transition: background-color 0.2s;
+
+		@media (max-width: vars.$max-1000) {
+			min-width: 0;
+		}
 
 		&:hover {
 			background-color: vars.$gray;
@@ -182,20 +185,21 @@
 		//}
 
 		position: fixed;
-
+		right: 0;
+		bottom: 0;
+		left: 0;
+		max-height: calc(100dvh - vars.rem(24));
+		overflow-y: auto;
 		padding-top: vars.rem(16);
 		padding-bottom: vars.rem(50);
 		width: 100vw;
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
-		transition: bottom 0.2s ease;
+		transition: transform 0.2s ease;
 		z-index: 5;
 
 		&_hidden {
-			//transition: bottom 0.2s ease-in-out;
-			//bottom: -90vh;
-			//opacity: 0;
-			//visibility: hidden;
+			pointer-events: none;
 		}
 
 		.mobileDragBlock {
