@@ -187,31 +187,25 @@ const partnerBenefits: PartnersBenefit[] = [
 	},
 ];
 
-const getKitchenWorks = async (): Promise<IWork[]> => {
+const getLatestWorks = async (): Promise<IWork[]> => {
 	try {
-		const works = await PortfolioService.getAllWorks();
+		const works = await PortfolioService.getLastWorks();
 
-		return works
-			.filter((work) => {
-				const type = `${work.type?.name ?? ''} ${work.type?.caption ?? ''}`;
-
-				return /кух|kitchen/i.test(type);
-			})
-			.slice(0, 4);
+		return [...works].sort((first, second) => second.id - first.id).slice(0, 4);
 	} catch {
 		return [];
 	}
 };
 
 const Page = async () => {
-	const kitchenWorks = await getKitchenWorks();
+	const latestWorks = await getLatestWorks();
 
 	return (
 		<>
 			<main className={styles.main}>
 				<LinkScreen
-					photo='/sliders/main/start-slider-1.png'
-					photoAlt='Кухня'
+					photo='/sliders/partners/partners-1.jpg'
+					photoAlt='Интерьер с мебелью на заказ'
 					title='Надежный партнер по производству мебели для ваших проектов'
 					text='Помогаем ремонтным бюро и дизайнерам реализовывать интерьерные проекты от отдельных изделий до комплексных объектов'
 					popupClaimTypeOptions={['Дизайнер интерьера', 'Ремонтное бюро']}
@@ -224,7 +218,7 @@ const Page = async () => {
 					popupClaimTypeOptions={['Дизайнер интерьера', 'Ремонтное бюро']}
 				/>
 				<PartnersHowWeWork />
-				<PartnersOtherWorks works={kitchenWorks} />
+				<PartnersOtherWorks works={latestWorks} />
 
 				<Footer
 					isFormContact

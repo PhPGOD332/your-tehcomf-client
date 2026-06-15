@@ -65,11 +65,13 @@
 
 .workTitle {
 	overflow: hidden;
-	font-size: vars.rem(25);
+	font-size: vars.rem(22);
 	font-weight: 500;
 	line-height: 130%;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 	text-overflow: ellipsis;
-	white-space: nowrap;
 }
 
 .searchCard {
@@ -162,7 +164,7 @@
 	}
 
 	.workTitle {
-		font-size: vars.rem(25);
+		font-size: vars.rem(19);
 	}
 
 	.searchCard {

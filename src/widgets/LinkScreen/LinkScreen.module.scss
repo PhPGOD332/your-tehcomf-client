@@ -2,11 +2,11 @@
 
 .screen {
 	position: relative;
+	height: max(100vh, vars.rem(800));
 	min-height: vars.rem(800);
 	overflow: hidden;
 	background-color: vars.$dark-gray;
 	display: flex;
-	align-items: flex-end;
 }
 
 .imageWrapper {
@@ -36,17 +36,20 @@
 
 .content {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 	height: 100%;
-	align-items: flex-end;
-	justify-content: space-between;
-	gap: vars.rem(40);
-	padding-bottom: vars.rem(80);
+	align-items: center;
+	justify-content: center;
+	gap: vars.rem(32);
+	padding: vars.rem(120) 0 vars.rem(80);
 	color: vars.$light-gray;
+	text-align: center;
 }
 
 .textContent {
 	width: 100%;
+	max-width: vars.rem(1100);
 }
 
 .title {
@@ -61,7 +64,8 @@
 }
 
 .text {
-	max-width: vars.rem(780);
+	max-width: vars.rem(900);
+	margin: 0 auto;
 	font-size: vars.rem(31);
 	font-weight: 500;
 	line-height: 130%;
@@ -71,7 +75,6 @@
 	flex-shrink: 0;
 	min-width: vars.rem(260);
 	padding: vars.rem(20) vars.rem(60);
-	margin-bottom: vars.rem(60);
 
 	> span {
 		font-size: vars.rem(19);
@@ -87,7 +90,7 @@
 	}
 
 	.textContent {
-		max-width: vars.rem(720);
+		max-width: vars.rem(900);
 	}
 
 	.title {
@@ -103,8 +106,7 @@
 	.screen {
 		flex-direction: column;
 		align-items: stretch;
-		height: 100vh;
-		height: 100dvh;
+		height: 90vh;
 		min-height: 0;
 		padding-top: vars.rem(80);
 		background-color: vars.$white;

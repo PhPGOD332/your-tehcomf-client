@@ -1,7 +1,7 @@
 'use client';
 
 import Image, { type StaticImageData } from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import conceptImage1 from '@/data/images/how_we_works/1/image 41.jpg';
 import conceptImage2 from '@/data/images/how_we_works/1/image 43.jpg';
 import designImage1 from '@/data/images/how_we_works/2/image 44.jpg';
@@ -144,6 +144,8 @@ const StageDescription = ({ description }: Pick<WorkStage, 'description'>) => (
 const PartnersHowWeWork = () => {
 	const [activeStageIndex, setActiveStageIndex] = useState<number | null>(0);
 	const activeStage = workStages[activeStageIndex ?? 0];
+	const stageRefs = useRef<(HTMLElement | null)[]>([]);
+	const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	useEffect(() => {
 		const mobileMedia = window.matchMedia('(max-width: 1000px)');
@@ -160,14 +162,39 @@ const PartnersHowWeWork = () => {
 	}, []);
 
 	const handleStageClick = (index: number) => {
-		setActiveStageIndex((currentIndex) => {
-			const isMobile = window.matchMedia('(max-width: 1000px)').matches;
+		const isMobile = window.matchMedia('(max-width: 1000px)').matches;
+		const isClosingMobileStage = isMobile && activeStageIndex === index;
 
-			if (isMobile && currentIndex === index) return null;
+		setActiveStageIndex(isClosingMobileStage ? null : index);
 
-			return index;
-		});
+		if (isClosingMobileStage) return;
+
+		if (scrollTimeoutRef.current) {
+			clearTimeout(scrollTimeoutRef.current);
+		}
+
+		scrollTimeoutRef.current = setTimeout(() => {
+			const stage = stageRefs.current[index];
+			if (!stage) return;
+
+			const navigationOffset = isMobile ? 96 : 120;
+			const stageTop = window.scrollY + stage.getBoundingClientRect().top;
+
+			window.scrollTo({
+				top: stageTop - navigationOffset,
+				behavior: 'smooth',
+			});
+		}, 380);
 	};
+
+	useEffect(
+		() => () => {
+			if (scrollTimeoutRef.current) {
+				clearTimeout(scrollTimeoutRef.current);
+			}
+		},
+		[],
+	);
 
 	return (
 		<section className={styles.section}>
@@ -192,6 +219,9 @@ const PartnersHowWeWork = () => {
 
 						return (
 							<article
+								ref={(element) => {
+									stageRefs.current[index] = element;
+								}}
 								className={`${styles.stage} ${isActive ? styles.stageActive : ''}`}
 								key={stage.title}
 							>
