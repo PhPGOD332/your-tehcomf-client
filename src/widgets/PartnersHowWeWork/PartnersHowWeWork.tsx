@@ -142,19 +142,21 @@ const StageDescription = ({ description }: Pick<WorkStage, 'description'>) => (
 );
 
 const PartnersHowWeWork = () => {
-	const [activeStageIndex, setActiveStageIndex] = useState<number | null>(0);
-	const activeStage = workStages[activeStageIndex ?? 0];
+	const [activeStageIndex, setActiveStageIndex] = useState(0);
+	const [openMobileStageIndexes, setOpenMobileStageIndexes] = useState(
+		() => new Set([0]),
+	);
+	const [isMobile, setIsMobile] = useState(false);
+	const activeStage = workStages[activeStageIndex];
+	const sectionRef = useRef<HTMLElement | null>(null);
 	const stageRefs = useRef<(HTMLElement | null)[]>([]);
 	const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	useEffect(() => {
 		const mobileMedia = window.matchMedia('(max-width: 1000px)');
-		const handleViewportChange = () => {
-			if (!mobileMedia.matches) {
-				setActiveStageIndex((currentIndex) => currentIndex ?? 0);
-			}
-		};
+		const handleViewportChange = () => setIsMobile(mobileMedia.matches);
 
+		handleViewportChange();
 		mobileMedia.addEventListener('change', handleViewportChange);
 
 		return () =>
@@ -162,29 +164,44 @@ const PartnersHowWeWork = () => {
 	}, []);
 
 	const handleStageClick = (index: number) => {
-		const isMobile = window.matchMedia('(max-width: 1000px)').matches;
-		const isClosingMobileStage = isMobile && activeStageIndex === index;
+		if (isMobile) {
+			setOpenMobileStageIndexes((currentIndexes) => {
+				const nextIndexes = new Set(currentIndexes);
 
-		setActiveStageIndex(isClosingMobileStage ? null : index);
+				if (nextIndexes.has(index)) {
+					nextIndexes.delete(index);
+				} else {
+					nextIndexes.add(index);
+				}
 
-		if (isClosingMobileStage) return;
+				return nextIndexes;
+			});
+			return;
+		}
 
 		if (scrollTimeoutRef.current) {
 			clearTimeout(scrollTimeoutRef.current);
 		}
 
+		setActiveStageIndex(index);
+
 		scrollTimeoutRef.current = setTimeout(() => {
 			const stage = stageRefs.current[index];
-			if (!stage) return;
+			const section = sectionRef.current;
+			if (!stage || !section) return;
 
-			const navigationOffset = isMobile ? 96 : 120;
+			const navigationOffset = 120;
 			const stageTop = window.scrollY + stage.getBoundingClientRect().top;
+			const sectionBottom =
+				window.scrollY + section.getBoundingClientRect().bottom;
+			const targetTop = stageTop - navigationOffset;
+			const sectionBottomTop = sectionBottom - window.innerHeight;
 
 			window.scrollTo({
-				top: stageTop - navigationOffset,
+				top: Math.max(0, Math.min(targetTop, sectionBottomTop)),
 				behavior: 'smooth',
 			});
-		}, 380);
+		}, 500);
 	};
 
 	useEffect(
@@ -197,11 +214,12 @@ const PartnersHowWeWork = () => {
 	);
 
 	return (
-		<section className={styles.section}>
+		<section ref={sectionRef} className={styles.section}>
 			<div className={styles.container}>
 				<div className={styles.desktopAside}>
 					<h2 className={styles.title}>Как мы работаем</h2>
 					<StageImages
+						key={activeStage.title}
 						images={activeStage.images}
 						title={activeStage.title}
 						className={styles.desktopImages}
@@ -214,7 +232,9 @@ const PartnersHowWeWork = () => {
 
 				<div className={styles.accordion}>
 					{workStages.map((stage, index) => {
-						const isActive = activeStageIndex === index;
+						const isActive = isMobile
+							? openMobileStageIndexes.has(index)
+							: activeStageIndex === index;
 						const contentId = `partners-work-stage-${index}`;
 
 						return (

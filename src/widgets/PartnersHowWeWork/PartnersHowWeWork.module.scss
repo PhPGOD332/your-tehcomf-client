@@ -36,6 +36,7 @@
 	flex-direction: column;
 	gap: vars.rem(24);
 	width: vars.rem(420);
+	animation: images-appear 0.45s ease-out;
 }
 
 .imageWrapper {
@@ -95,8 +96,8 @@
 	flex-shrink: 0;
 	margin-left: auto;
 	transition:
-		transform 0.25s ease,
-		color 0.25s ease;
+		transform 0.4s ease,
+		color 0.4s ease;
 }
 
 .stageContent {
@@ -104,8 +105,8 @@
 	grid-template-rows: 0fr;
 	opacity: 0;
 	transition:
-		grid-template-rows 0.35s ease,
-		opacity 0.25s ease;
+		grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 0.35s ease;
 }
 
 .stageContentInner {
@@ -136,6 +137,18 @@
 	.chevron {
 		transform: rotate(180deg);
 		color: vars.$green;
+	}
+}
+
+@keyframes images-appear {
+	from {
+		opacity: 0;
+		transform: translateY(vars.rem(8));
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
 
