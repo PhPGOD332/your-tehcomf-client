@@ -210,7 +210,7 @@ const PortfolioItemView = (
                                          backgroundColor: work.tableTopColor.hexCode ?? 'transparent',
                                          border: work.tableTopColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
                                      }}></div>
-                                <span className={`${styles.tableTextContent}`}>{work.tableTopColor.captionCode ?? '-'}</span>
+                                <span className={`${styles.tableTextContent}`}>{work.tableTopColor.caption ?? '-'}</span>
                             </td>
                         </tr>
                         <tr className={`${styles.tableRow} ${styles.tableRowColor}`}>
@@ -223,7 +223,7 @@ const PortfolioItemView = (
                                          backgroundColor: work.bodyColor.hexCode ?? 'transparent',
                                          border: work.bodyColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
                                      }}></div>
-                                <span className={`${styles.tableTextContent}`}>{work.bodyColor.captionCode ?? '-'}</span>
+                                <span className={`${styles.tableTextContent}`}>{work.bodyColor.caption ?? '-'}</span>
                             </td>
                         </tr>
                         </tbody>
