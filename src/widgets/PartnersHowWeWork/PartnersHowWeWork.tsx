@@ -2,13 +2,13 @@
 
 import Image, { type StaticImageData } from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import conceptImage from '@/data/images/partners_how_we_work/Концепция.png';
-import designImage from '@/data/images/partners_how_we_work/Проектирование.png';
-import equipmentImage from '@/data/images/partners_how_we_work/Комплектация.png';
-import productionImage from '@/data/images/partners_how_we_work/Производство.png';
-import qualityImage from '@/data/images/partners_how_we_work/Проверка качества.png';
-import logisticsImage from '@/data/images/partners_how_we_work/Логистика.png';
-import installationImage from '@/data/images/partners_how_we_work/Монтаж.jpeg';
+import conceptImage from '@/data/images/partners_how_we_work/concept.png';
+import designImage from '@/data/images/partners_how_we_work/design.png';
+import equipmentImage from '@/data/images/partners_how_we_work/equipment.png';
+import productionImage from '@/data/images/partners_how_we_work/production.png';
+import qualityImage from '@/data/images/partners_how_we_work/quality-control.png';
+import logisticsImage from '@/data/images/partners_how_we_work/logistics.png';
+import installationImage from '@/data/images/partners_how_we_work/installation.jpeg';
 import styles from './PartnersHowWeWork.module.scss';
 
 interface WorkStage {
