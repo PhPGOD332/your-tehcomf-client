@@ -2,18 +2,13 @@
 
 import Image, { type StaticImageData } from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import conceptImage1 from '@/data/images/how_we_works/1/image 41.jpg';
-import conceptImage2 from '@/data/images/how_we_works/1/image 43.jpg';
-import designImage1 from '@/data/images/how_we_works/2/image 44.jpg';
-import designImage2 from '@/data/images/how_we_works/2/image 45.jpg';
-import equipmentImage1 from '@/data/images/how_we_works/3/Fritz_Egger_Logo-1.png';
-import equipmentImage2 from '@/data/images/how_we_works/3/Fritz_Egger_Logo-2.png';
-import equipmentImage3 from '@/data/images/how_we_works/3/Fritz_Egger_Logo-3.png';
-import equipmentImage4 from '@/data/images/how_we_works/3/Fritz_Egger_Logo.png';
-import productionImage1 from '@/data/images/how_we_works/4/image 43.jpg';
-import productionImage2 from '@/data/images/how_we_works/4/image 44.jpg';
-import installationImage1 from '@/data/images/how_we_works/7/image 44.jpg';
-import installationImage2 from '@/data/images/how_we_works/7/image 45.jpg';
+import conceptImage from '@/data/images/partners_how_we_work/Концепция.png';
+import designImage from '@/data/images/partners_how_we_work/Проектирование.png';
+import equipmentImage from '@/data/images/partners_how_we_work/Комплектация.png';
+import productionImage from '@/data/images/partners_how_we_work/Производство.png';
+import qualityImage from '@/data/images/partners_how_we_work/Проверка качества.png';
+import logisticsImage from '@/data/images/partners_how_we_work/Логистика.png';
+import installationImage from '@/data/images/partners_how_we_work/Монтаж.jpeg';
 import styles from './PartnersHowWeWork.module.scss';
 
 interface WorkStage {
@@ -33,7 +28,7 @@ const workStages: WorkStage[] = [
 			'Создаем детальный эскиз и визуализируем;',
 			'Финальное согласовывание с клиентом или руководителем проекта (дизайнером).',
 		],
-		images: [conceptImage1, conceptImage2],
+		images: [conceptImage],
 	},
 	{
 		title: 'Проектирование',
@@ -44,7 +39,7 @@ const workStages: WorkStage[] = [
 			'Создаются карты раскроя: оптимизация расположения деталей на листах материала (ЛДСП, МДФ, фанера, дерево) для минимизации отходов и оптимизации ненужных расходов на дополнительное количество материала.',
 			'Вывод необходимых для производства моделей на специализированном программном обеспечении: работа ведется Базис-Мебельщик, AutoCAD, SolidWorks, bCAD.',
 		],
-		images: [designImage1, designImage2],
+		images: [designImage],
 	},
 	{
 		title: 'Комплектация',
@@ -55,12 +50,7 @@ const workStages: WorkStage[] = [
 			'Фурнитура: петли, направляющие для ящиков, ручки, подъемные механизмы, конфирматы, эксцентрики и другое.',
 			'Расходники: клей, шлифовальные шкурки, сверла, упаковка.',
 		],
-		images: [
-			equipmentImage4,
-			equipmentImage1,
-			equipmentImage2,
-			equipmentImage3,
-		],
+		images: [equipmentImage],
 	},
 	{
 		title: 'Производство',
@@ -68,7 +58,7 @@ const workStages: WorkStage[] = [
 			'Передаем подготовленный проект в производство.',
 			'Изготавливаем детали и выполняем предварительную сборку изделий.',
 		],
-		images: [productionImage1, productionImage2],
+		images: [productionImage],
 	},
 	{
 		title: 'Контроль качества',
@@ -79,7 +69,7 @@ const workStages: WorkStage[] = [
 			'Фрезеровка. Создание пазов, выборка четвертей, фигурная обработка краев при необходимости.',
 			'Покраска/лакировка (для МДФ или массива): подготовка поверхности, грунтовка, нанесение эмали или лака, сушка.',
 		],
-		images: [],
+		images: [qualityImage],
 	},
 	{
 		title: 'Логистика',
@@ -87,7 +77,7 @@ const workStages: WorkStage[] = [
 			'Производим обязательный контроль соответствия размеров чертежам, качества кромки, отсутствия сколов.',
 			'Контрольная сборка (на производстве): для сложных или нестандартных изделий проводится сборка на фабрике, чтобы убедиться, что все отверстия совпадают, фурнитура работает корректно, а зазоры минимальны. Это позволяет избежать проблем при монтаже у клиента.',
 		],
-		images: [],
+		images: [logisticsImage],
 	},
 	{
 		title: 'Монтаж',
@@ -96,7 +86,7 @@ const workStages: WorkStage[] = [
 			'Упаковка всей фурнитуры (винтов, заглушек, ручек) в отдельные пакеты/коробки для удобства монтажа.',
 			'Каждая упаковка маркируется, чтобы сборщикам было легко найти нужную деталь.',
 		],
-		images: [installationImage1, installationImage2],
+		images: [installationImage],
 	},
 ];
 
