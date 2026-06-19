@@ -11,6 +11,10 @@ import PopupSlideWrapper from "@/widgets/PopupSlideWrapper/PopupSlideWrapper";
 const tkImage: TImage = image;
 type TItems = 'mission' | 'production' | 'values' | 'experience';
 
+interface AboutCompanyProps {
+    titleAs?: 'h1' | 'h2';
+}
+
 const advantages: IAdvantageEl[] = [
     {
         icon: (<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +44,7 @@ const advantages: IAdvantageEl[] = [
     }
 ];
 
-const AboutCompany = () => {
+const AboutCompany = ({ titleAs = 'h2' }: AboutCompanyProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [currItem, setCurrItem] = useState<TItems>('mission');
 
@@ -54,7 +58,7 @@ const AboutCompany = () => {
     return (
         <div className={styles.main}>
             <div className={styles.wrapper}>
-                <SubTitle classNames={styles.title}>О компании</SubTitle>
+                <SubTitle classNames={styles.title} as={titleAs}>О компании</SubTitle>
                 <div className={styles.content}>
                     <div className={`${styles.textEl} ${styles.textEl_firstEl}`}>
                         <span className={styles.text}>

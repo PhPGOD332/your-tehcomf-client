@@ -1,14 +1,9 @@
 import React from 'react';
-import {Metadata} from "next";
 import {pagesData} from "@/shared/constants";
 import AboutCompanyView from "@/views/AboutCompanyView/AboutCompanyView";
+import {createPageMetadata} from "@/shared/seo";
 
-export const metadata: Metadata = {
-    metadataBase: new URL(pagesData.about.url),
-    title: pagesData.about.title,
-    description: pagesData.about.description,
-    keywords: pagesData.about.keywords
-}
+export const metadata = createPageMetadata(pagesData.about);
 
 const Page = () => {
 

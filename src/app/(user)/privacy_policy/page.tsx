@@ -1,15 +1,10 @@
 import React from 'react';
 import styles from '@/app/styles/pages/docs.module.scss';
 import Link from "next/link";
-import {Metadata} from "next";
 import {pagesData} from "@/shared/constants";
+import {createPageMetadata} from "@/shared/seo";
 
-export const metadata: Metadata = {
-    metadataBase: new URL(pagesData.privacyPolicy.url),
-    title: pagesData.privacyPolicy.title,
-    description: pagesData.privacyPolicy.description,
-    keywords: pagesData.privacyPolicy.keywords,
-}
+export const metadata = createPageMetadata(pagesData.privacyPolicy);
 
 const Page = () => {
     return (

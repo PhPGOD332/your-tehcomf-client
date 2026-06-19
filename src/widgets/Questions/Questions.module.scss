@@ -136,6 +136,7 @@
       width: 100%;
       padding: vars.rem(32) 0;
       gap: vars.rem(15);
+      cursor: pointer;
 
       &::-webkit-details-marker {
         display: none;
@@ -166,7 +167,7 @@
         height: vars.rem(32);
         border-radius: 50%;
         background-color: vars.$white;
-        cursor: pointer;
+        pointer-events: none;
         z-index: 1;
 
         > svg {
@@ -185,7 +186,7 @@
           }
 
           &.closed {
-            animation: closeQuestion 0.2s ease-in-out forwards;
+            animation: hideQuestion 0.2s ease-in-out forwards;
           }
         }
       }

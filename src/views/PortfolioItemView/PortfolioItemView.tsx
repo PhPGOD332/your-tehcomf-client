@@ -77,7 +77,7 @@ const PortfolioItemView = (
                     </div>
                 </div>
                 <div className={styles.titleBlock}>
-                    <SubTitle classNames={styles.title}>
+                    <SubTitle classNames={styles.title} as="h1">
                         {work && work.title ?
                             work.title
                             :

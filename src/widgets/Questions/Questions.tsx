@@ -23,10 +23,12 @@ const Questions = (
     const [currentCategoryId, setCurrentCategoryId] = useState<number>(categories ? categories[0].id : 0);
     const isMobile = useMediaQuery('(max-width: 1000px)');
 
-    const questionMarkerHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-        const summary = e.currentTarget?.parentElement;
+    const questionClickHandler = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+
+        const summary = e.currentTarget;
         const details = summary?.parentElement as HTMLDetailsElement;
-        const svgElement = e.currentTarget.children.item(0) instanceof SVGSVGElement ? e.currentTarget.children.item(0) : null;
+        const svgElement = summary.querySelector('svg');
         const answerElement = details?.children.item(1);
 
         if (details) {
@@ -89,14 +91,10 @@ const Questions = (
                                 <details
                                     className={styles.questionItem}
                                     key={question.id}
-                                    onClick={(e) => e.preventDefault()}
                                 >
-                                    <summary>
+                                    <summary onClick={(e) => questionClickHandler(e)}>
                                         <MiniTitle classNames={styles.questionCaption}>{question.question}</MiniTitle>
-                                        <div
-                                            className={styles.markerIcon}
-                                            onClick={(e) => questionMarkerHandler(e)}
-                                        >
+                                        <div className={styles.markerIcon}>
                                             <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M6 10.5L12 16.5L18 10.5" stroke="#58595B" strokeWidth="2"

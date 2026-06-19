@@ -99,7 +99,7 @@ const AboutCompanyView = () => {
     return (
         <>
             <div className={styles.main}>
-                <AboutCompany/>
+                <AboutCompany titleAs="h1"/>
                 <div className={styles.slidersBlock}>
                     <SubTitle classNames={styles.title}>Производство и материалы</SubTitle>
                     <TextWithSmoothSlider

@@ -1,6 +1,5 @@
 import React from 'react';
 import Footer from "@/widgets/Footer/Footer";
-import {Metadata} from "next";
 import {pagesData} from "@/shared/constants";
 import PortfolioView from "@/views/PortfolioView/PortfolioView";
 import {IWork} from "@/types/IWork";
@@ -11,13 +10,9 @@ import {PortfolioFiltersService} from "@/services/PortfolioFiltersService";
 import {IFilterColor} from "@/types/PortfolioFilters/IFilterColor";
 import {IFilterType} from "@/types/PortfolioFilters/IFilterType";
 import {IFilterLayout} from "@/types/PortfolioFilters/IFilterLayout";
+import {createPageMetadata} from "@/shared/seo";
 
-export const metadata: Metadata = {
-    metadataBase: new URL(pagesData.portfolio.url),
-    title: pagesData.portfolio.title,
-    description: pagesData.portfolio.description,
-    keywords: pagesData.portfolio.keywords
-}
+export const metadata = createPageMetadata(pagesData.portfolio);
 
 const getColors = async (): Promise<IFilterColor[]> => {
     return await PortfolioFiltersService.getFilterColors() ?? [];
@@ -51,6 +46,7 @@ const Page = async () => {
             <main className={styles.portfolioPage}>
                 <PortfolioView
                     title={'Портфолио'}
+                    titleAs="h1"
                     subTitle={'Создаём мебель, которой гордимся'}
                     colors={colors}
                     layouts={stylingItems}

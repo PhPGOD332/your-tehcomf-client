@@ -1,5 +1,5 @@
-import {Metadata} from "next";
 import {pagesData} from "@/shared/constants";
+import {createPageMetadata} from "@/shared/seo";
 import styles from '@/app/styles/pages/main.module.scss';
 import SliderScreen, {PhotoSliderSlides} from "@/widgets/SliderScreen/SliderScreen";
 import Advantages, {IAdvantageEl} from "@/widgets/Advantages/Advantages";
@@ -14,12 +14,7 @@ import Footer from "@/widgets/Footer/Footer";
 import React from "react";
 import QuestionsService from "@/services/QuestionsService";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(pagesData.main.url),
-  title: pagesData.main.title,
-  description: pagesData.main.description,
-  keywords: pagesData.main.keywords,
-}
+export const metadata = createPageMetadata(pagesData.main);
 
 const startScreenSlides: PhotoSliderSlides = [
     {

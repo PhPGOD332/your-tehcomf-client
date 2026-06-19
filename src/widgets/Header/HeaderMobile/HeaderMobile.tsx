@@ -1,6 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
 import styles from './HeaderMobile.module.scss';
-import TextInput from "@/shared/UI/TextInput/TextInput";
 import PopupForm from "@/widgets/PopupForm/PopupForm";
 import Link from "next/link";
 import {HeaderProps} from "@/widgets/Header/Header";
@@ -12,25 +11,13 @@ const HeaderMobile = (
         navItems
     }: HeaderProps) => {
     const [isOpenPopupForm, setIsOpenPopupForm] = useState(false);
-    const [isSearchActive, setIsSearchActive] = useState(false);
     const [isNavActive, setIsNavActive] = useState(false);
     const [scrollPos, setScrollPos] = useState(0);
 
     const navButtonRef = useRef<HTMLDivElement | null>(null);
-    const searchButtonRef = useRef<HTMLDivElement | null>(null);
-    const searchBlockRef = useRef<HTMLDivElement | null>(null);
-    const searchInputBlockRef = useRef<HTMLDivElement | null>(null);
     const logoRef = useRef<HTMLAnchorElement | null>(null);
     const navBlockRef = useRef<HTMLDivElement| null>(null);
     const navModalRef = useRef<HTMLDivElement | null>(null);
-
-    const searchClickHandle = () => {
-        setIsSearchActive(true);
-    }
-
-    const searchBackClickHandle = () => {
-        setIsSearchActive(false);
-    }
 
     const navButtonClickHandle = () => {
         if (navModalRef.current?.classList.contains(styles.navModal_active))
@@ -41,23 +28,6 @@ const HeaderMobile = (
         navButtonRef.current?.classList.toggle(styles.navButton_active);
         navModalRef.current?.classList.toggle(styles.navModal_active);
     }
-
-    useEffect(() => {
-        if (isSearchActive) {
-            logoRef.current?.classList.add(styles.hide);
-            navBlockRef.current?.classList.add(styles.hide);
-            searchBlockRef.current?.classList.add(styles.searchBlock_active);
-            searchInputBlockRef.current?.classList.add(styles.inputSearchBlock_active);
-            searchButtonRef.current?.classList.add(styles.searchButton_active);
-        } else {
-            searchButtonRef.current?.classList.remove(styles.searchButton_active);
-            searchBlockRef.current?.classList.remove(styles.searchBlock_active);
-            searchInputBlockRef.current?.classList.remove(styles.inputSearchBlock_active);
-
-            logoRef.current?.classList.remove(styles.hide);
-            navBlockRef.current?.classList.remove(styles.hide);
-        }
-    }, [isSearchActive]);
 
     const navItemClickHandle = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
@@ -96,39 +66,6 @@ const HeaderMobile = (
     return (
         <>
             <header className={`${styles.mobileHeader} ${!isNavActive ? (scrollPos !== 0 ? styles.mobileHeader_white : styles.mobileHeader_transparent) : styles.mobileHeader_white}`}>
-                <div className={styles.searchBlock} ref={searchBlockRef}>
-                    <div className={styles.inputSearchBlock} ref={searchInputBlockRef}>
-                        <div
-                            className={styles.backButton}
-                            onClick={() => searchBackClickHandle()}
-                        >
-                            <svg width="10" height="17" viewBox="0 0 10 17" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M9 0.999982L1.77817 7.77055C1.35676 8.16563 1.35676 8.83455 1.77818 9.22962L9 16"
-                                    stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round"/>
-                            </svg>
-                        </div>
-                        <TextInput
-                            placeholder={'Введите запрос'}
-                            classNames={styles.searchInput}
-                        />
-                    </div>
-                    <div
-                        className={styles.searchButton}
-                        ref={searchButtonRef}
-                        onClick={() => searchClickHandle()}
-                    >
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M14.6667 25.3333C20.5577 25.3333 25.3333 20.5577 25.3333 14.6667C25.3333 8.77563 20.5577 4 14.6667 4C8.77563 4 4 8.77563 4 14.6667C4 20.5577 8.77563 25.3333 14.6667 25.3333Z"
-                                stroke="#29292B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M27.9999 27.9997L22.1999 22.1997" stroke="#29292B" strokeWidth="3"
-                                  strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                    </div>
-                </div>
                 <Link
                     href={pagesLinks.main}
                     className={styles.logoBlock}

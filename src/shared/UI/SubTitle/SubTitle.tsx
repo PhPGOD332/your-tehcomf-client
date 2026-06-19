@@ -12,9 +12,10 @@ export interface TitleProps {
     classNames?: string;
     children: React.ReactNode;
     htmlContent?: string;
+    as?: 'h1' | 'h2';
 }
 
-const SubTitle = ({children, htmlContent, color, classNames}: TitleProps) => {
+const SubTitle = ({children, htmlContent, color, classNames, as: Component = 'h2'}: TitleProps) => {
     const getColorStyle = (color: TitleColors): string => {
         let checkColor: never;
 
@@ -31,20 +32,22 @@ const SubTitle = ({children, htmlContent, color, classNames}: TitleProps) => {
         }
     }
 
+    const className = `${styles.subTitle} ${color ? getColorStyle(color) : getColorStyle(TitleColors.BLACK)} ${classNames ?? ''}`;
+
     return (
         <>
             {htmlContent ?
-                <h2
-                    className={`${styles.subTitle} ${color ? getColorStyle(color) : getColorStyle(TitleColors.BLACK)} ${classNames ?? ''}`}
+                <Component
+                    className={className}
                     dangerouslySetInnerHTML={{__html: htmlContent ?? ''}}
                 >
-                </h2>
+                </Component>
                 :
-                <h2
-                    className={`${styles.subTitle} ${color ? getColorStyle(color) : getColorStyle(TitleColors.BLACK)} ${classNames ?? ''}`}
+                <Component
+                    className={className}
                 >
                     {children}
-                </h2>
+                </Component>
             }
         </>
     );

@@ -3,13 +3,17 @@ import React from 'react';
 import styles from './Contacts.module.scss';
 import SubTitle from "@/shared/UI/SubTitle/SubTitle";
 
-const Contacts = () => {
+interface ContactsProps {
+    titleAs?: 'h1' | 'h2';
+}
+
+const Contacts = ({ titleAs = 'h2' }: ContactsProps) => {
     return (
         <div className={styles.contacts}>
             <div className={'container'}>
                 <div className={styles.wrapper}>
                     <div className={styles.mapBlock}>
-                        <SubTitle classNames={styles.title}>Контакты</SubTitle>
+                        <SubTitle classNames={styles.title} as={titleAs}>Контакты</SubTitle>
                         <div className={styles.map}>
                             <div style={{position: "relative", overflow: "hidden"}}><a
                                 href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps"

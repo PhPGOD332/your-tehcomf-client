@@ -103,34 +103,38 @@ const SliderScreen = ({ slides }: PhotoSliderProps) => {
 				}}
 				effect={'fade'}
 			>
-				{slides.map((slide, num) => (
-					<SwiperSlide
-						className={styles.swiperSlide}
-						key={num}
-						onTouchStart={(e) => e.stopPropagation()}
-					>
-						<div className={styles.swiperWrapper}>
-							<div className={styles.swiperImageWrapper}>
-								<Image
-									src={slide.photo}
-									alt={slide.photoAlt || ''}
-									fill={true}
-									className={styles.swiperImage}
-								/>
+				{slides.map((slide, num) => {
+					const TitleTag = num === 0 ? 'h1' : 'h2';
+
+					return (
+						<SwiperSlide
+							className={styles.swiperSlide}
+							key={num}
+							onTouchStart={(e) => e.stopPropagation()}
+						>
+							<div className={styles.swiperWrapper}>
+								<div className={styles.swiperImageWrapper}>
+									<Image
+										src={slide.photo}
+										alt={slide.photoAlt || ''}
+										fill={true}
+										className={styles.swiperImage}
+									/>
+								</div>
+								<div className={styles.swiperSlideContent}>
+									<TitleTag
+										className={styles.swiperTitle}
+										dangerouslySetInnerHTML={{ __html: slide.title ?? '' }}
+									/>
+									<span
+										className={styles.swiperText}
+										dangerouslySetInnerHTML={{ __html: slide.text ?? '' }}
+									></span>
+								</div>
 							</div>
-							<div className={styles.swiperSlideContent}>
-								<h2
-									className={styles.swiperTitle}
-									dangerouslySetInnerHTML={{ __html: slide.title ?? '' }}
-								></h2>
-								<span
-									className={styles.swiperText}
-									dangerouslySetInnerHTML={{ __html: slide.text ?? '' }}
-								></span>
-							</div>
-						</div>
-					</SwiperSlide>
-				))}
+						</SwiperSlide>
+					);
+				})}
 				<SwiperNavigation
 					isMobilePanel={true}
 					mobilePanelHandler={handleMoreClick}

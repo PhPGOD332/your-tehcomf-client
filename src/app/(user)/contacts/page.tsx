@@ -1,5 +1,4 @@
 import React from 'react';
-import {Metadata} from "next";
 import {pagesData} from "@/shared/constants";
 import Footer from "@/widgets/Footer/Footer";
 import Image, {StaticImageData} from "next/image";
@@ -17,6 +16,7 @@ import photo5 from '@/data/images/sliders/circular/fifth.png';
 import photo6 from '@/data/images/sliders/circular/sixth.png';
 import photo7 from '@/data/images/sliders/circular/seventh.png';
 import photo8 from '@/data/images/sliders/circular/eighth.png';
+import {createPageMetadata} from "@/shared/seo";
 
 type TImage = StaticImageData;
 const contactPreview: TImage = previewImage;
@@ -25,12 +25,7 @@ const imagesArray = [
     photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8
 ] as StaticImageData[]
 
-export const metadata: Metadata = {
-    metadataBase: new URL(pagesData.contacts.url),
-    title: pagesData.contacts.title,
-    description: pagesData.contacts.description,
-    keywords: pagesData.contacts.keywords
-}
+export const metadata = createPageMetadata(pagesData.contacts);
 
 const sliderPhotos: IFillImage[] = [
     {
@@ -83,7 +78,7 @@ const Page = () => {
                     />
                 </div>
             </div>
-            <Contacts />
+            <Contacts titleAs="h1" />
             <ProductionInfo />
             <CircularSlider photos={sliderPhotos} />
             <Footer isFormContact={true} isFormContactOnlyContacts={{desktop: false, mobile: false}}/>

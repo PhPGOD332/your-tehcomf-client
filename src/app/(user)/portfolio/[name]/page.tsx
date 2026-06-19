@@ -1,21 +1,25 @@
 import React from 'react';
-import { Metadata } from "next";
 import { pagesData } from "@/shared/constants";
 import { PortfolioService } from "@/services/PortfolioService";
 import styles from '@/app/styles/pages/portfolioItem.module.scss';
 import PortfolioItemView from "@/views/PortfolioItemView/PortfolioItemView";
 import Footer from "@/widgets/Footer/Footer";
 import {IWork} from "@/types/IWork";
+import {createPageMetadata, createPortfolioItemMetadata} from "@/shared/seo";
 
 interface PortfolioItemProps {
     params: Promise<{name: string}>;
 }
 
-export const metadata: Metadata = {
-    metadataBase: new URL(pagesData.portfolio.url),
-    title: pagesData.portfolio.title,
-    description: pagesData.portfolio.description,
-    keywords: pagesData.portfolio.keywords
+export const generateMetadata = async ({ params }: PortfolioItemProps) => {
+    try {
+        const { name } = await params;
+        const work = await PortfolioService.getWork(name);
+
+        return createPortfolioItemMetadata(work);
+    } catch {
+        return createPageMetadata(pagesData.portfolio);
+    }
 }
 
 const Page = async (

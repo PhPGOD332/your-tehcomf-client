@@ -3,7 +3,6 @@ import styles from './HeaderDesktop.module.scss';
 import Link from "next/link";
 import GreenButton from "@/shared/UI/GreenButton/GreenButton";
 import PopupForm from "@/widgets/PopupForm/PopupForm";
-import SearchPopup from "@/widgets/SearchPopup/SearchPopup";
 import {HeaderProps} from "@/widgets/Header/Header";
 import {pagesLinks} from "@/shared/constants";
 
@@ -12,12 +11,10 @@ const HeaderDesktop = (
         navItems
     }: HeaderProps) => {
     const [isOpenPopupForm, setIsOpenPopupForm] = useState(false);
-    const [isOpenPopupSearch, setIsOpenPopupSearch] = useState(false);
     const [activeTel, setActiveTel] = useState(false);
     const telRef = useRef<HTMLDivElement | null>(null);
     const noticeRef = useRef<HTMLSpanElement | null>(null);
     const orderRef = useRef<HTMLButtonElement | null>(null);
-    const searchRef = useRef<HTMLDivElement | null>(null);
 
     const telClickHandler = async (e: React.MouseEvent<HTMLDivElement>) => {
         try {
@@ -75,8 +72,6 @@ const HeaderDesktop = (
 
             if (document.body.clientWidth >= 1400) {
                 orderRef.current?.classList.add(styles.hide);
-            } else {
-                searchRef.current?.classList.add(styles.hide);
             }
         }
     }, [])
@@ -112,7 +107,6 @@ const HeaderDesktop = (
         }
 
         orderRef.current?.classList.remove(styles.hide);
-        searchRef.current?.classList.remove(styles.hide);
     }
 
     useEffect(() => {
@@ -154,10 +148,20 @@ const HeaderDesktop = (
                             >
                                 <Link
                                     href={navItem.href ?? ''}
-                                    className={styles.navItem}
+                                    className={`${styles.navItem} ${navItem.subItems ? styles.navItem_withSubMenu : ''}`}
                                     onMouseEnter={(e) => hoverNavItemHandler(e)}
                                     data-full={navItem.isFull}
-                                >{navItem.caption}</Link>
+                                >
+                                    <span>{navItem.caption}</span>
+                                    {navItem.subItems && (
+                                        <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path
+                                                d="M1 1.5L6.35982 5.96651C6.73066 6.27555 7.26934 6.27555 7.64018 5.96651L13 1.5"
+                                                stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                        </svg>
+                                    )}
+                                </Link>
                                 {navItem.subItems
                                     ?
                                     <ul className={styles.subNavList}>
@@ -178,17 +182,7 @@ const HeaderDesktop = (
 
                     </ul>
                 </div>
-                <div className={styles.searchSide} ref={searchRef}>
-                    <div className={styles.searchButton} onClick={() => setIsOpenPopupSearch(true)}>
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M14.6667 25.3333C20.5577 25.3333 25.3333 20.5577 25.3333 14.6667C25.3333 8.77563 20.5577 4 14.6667 4C8.77563 4 4 8.77563 4 14.6667C4 20.5577 8.77563 25.3333 14.6667 25.3333Z"
-                                stroke="#29292B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M27.9999 27.9997L22.1999 22.1997" stroke="#29292B" strokeWidth="3"
-                                  strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                    </div>
+                <div className={styles.searchSide}>
                     <GreenButton
                         ref={orderRef}
                         classNames={styles.orderButton}
@@ -212,10 +206,6 @@ const HeaderDesktop = (
             <PopupForm
                 isOpen={isOpenPopupForm}
                 setIsOpen={setIsOpenPopupForm}
-            />
-            <SearchPopup
-                isOpen={isOpenPopupSearch}
-                setIsOpen={setIsOpenPopupSearch}
             />
         </>
     );

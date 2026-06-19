@@ -1,5 +1,4 @@
 import styles from '@/app/styles/pages/docs.module.scss';
-import { Metadata } from 'next';
 import { pagesData } from '@/shared/constants';
 import Footer from '@/widgets/Footer/Footer';
 import LinkScreen from '@/widgets/LinkScreen/LinkScreen';
@@ -18,13 +17,9 @@ import modelImage from '@/data/images/stocks_banners/model.png';
 import moneyImage from '@/data/images/stocks_banners/money.png';
 import buildersImage from '@/data/images/stocks_banners/builders.png';
 import calendarImage from '@/data/images/stocks_banners/calendar.png';
+import { createPageMetadata } from '@/shared/seo';
 
-export const metadata: Metadata = {
-	metadataBase: new URL(pagesData.partners.url),
-	title: pagesData.partners.title,
-	description: pagesData.partners.description,
-	keywords: pagesData.partners.keywords,
-};
+export const metadata = createPageMetadata(pagesData.partners);
 
 const advantages: IAdvantageEl[] = [
 	{

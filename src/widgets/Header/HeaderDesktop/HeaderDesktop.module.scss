@@ -113,12 +113,6 @@
         visibility: hidden;
         display: none;
       }
-
-      .searchButton {
-        opacity: 0;
-        visibility: hidden;
-        display: none;
-      }
     }
   }
 
@@ -179,6 +173,9 @@
     }
 
     .navItem {
+      display: flex;
+      align-items: center;
+      gap: vars.rem(6);
       color: vars.$black;
       transition: 0.3s;
       text-wrap: nowrap;
@@ -197,6 +194,14 @@
       &:hover {
         color: vars.$green;
         text-decoration: underline;
+      }
+
+      &_withSubMenu {
+        > svg {
+          width: vars.rem(14);
+          min-width: vars.rem(14);
+          transform: rotate(-90deg);
+        }
       }
     }
 
@@ -251,18 +256,6 @@
   display: flex;
   align-items: center;
   gap: vars.rem(30);
-
-  .searchButton {
-    cursor: pointer;
-
-    &:hover {
-
-      svg > path {
-        transition: 0.2s;
-        stroke: vars.$gray;
-      }
-    }
-  }
 
   .orderButton {
     > span {

@@ -27,6 +27,7 @@ const blueStockImage: TImage = blueStock;
 
 interface PortfolioProps {
     title: string;
+    titleAs?: 'h1' | 'h2';
     subTitle: string;
     colors: IFilterColor[];
     layouts: IFilterLayout[];
@@ -38,6 +39,7 @@ interface PortfolioProps {
 const PortfolioView = (
     {
         title,
+        titleAs = 'h2',
         subTitle,
         colors,
         layouts,
@@ -188,7 +190,7 @@ const PortfolioView = (
         <div className={styles.portfolioView}>
             <div className={'container'}>
                 <div className={styles.titleBlock}>
-                    <SubTitle classNames={styles.title}>{title}</SubTitle>
+                    <SubTitle classNames={styles.title} as={titleAs}>{title}</SubTitle>
                     <MiniTitle classNames={styles.subTitle}>{subTitle}</MiniTitle>
                     <PortfolioFilter
                         colors={colors}
