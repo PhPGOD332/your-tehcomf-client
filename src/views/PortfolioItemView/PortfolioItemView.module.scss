@@ -392,6 +392,7 @@
 
           td {
             border: none !important;
+            gap: vars.rem(20);
 
             &:has(img) {
               display: flex;
@@ -442,7 +443,7 @@
     @media (max-width: vars.$max-1100) {
       h1, h2, h3, h4, h5, h6 {
         text-align: center;
-        margin-bottom: vars.rem(20);
+        //margin-bottom: vars.rem(20);
       }
 
       ul {
@@ -503,6 +504,10 @@
     }
 
     @media (max-width: vars.$max-700) {
+      article {
+        gap: vars.rem(20) !important;
+      }
+
       ul {
         display: flex;
         flex-direction: column;

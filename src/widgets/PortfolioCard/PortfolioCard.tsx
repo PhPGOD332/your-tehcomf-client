@@ -27,8 +27,8 @@ const PortfolioCard = React.memo((
 
     return (
         <Link
-            href={`${pagesLinks.portfolio}/${work.name}`}
-            // href={'#'}
+            // href={`${pagesLinks.portfolio}/${work.name}`}
+            href={'#'}
             className={styles.card}
         >
             <div
