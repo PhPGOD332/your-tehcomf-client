@@ -131,6 +131,8 @@ const getCategories = async () => {
     return await QuestionsService.getQuestionsByCategories();
 }
 
+export const revalidate = 30;
+
 export default async function Home() {
     const categories = await getCategories();
 

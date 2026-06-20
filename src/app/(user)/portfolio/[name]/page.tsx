@@ -22,6 +22,8 @@ export const generateMetadata = async ({ params }: PortfolioItemProps) => {
     }
 }
 
+export const revalidate = 30;
+
 const Page = async (
     {
         params

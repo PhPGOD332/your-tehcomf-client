@@ -3,7 +3,7 @@ import styles from './PortfolioCard.module.scss';
 import {IWork} from "@/types/IWork";
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
 import Link from "next/link";
-// import {pagesLinks} from "@/shared/constants";
+import {pagesLinks} from "@/shared/constants";
 import SliderImagesHover from "@/widgets/SliderHover/SliderImagesHover";
 
 interface ICardProps {
