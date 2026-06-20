@@ -3,12 +3,14 @@ import { CLIENT_URL, SITE_NAME, pagesData } from '@/shared/constants';
 import type { IWork } from '@/types/IWork';
 
 const DEFAULT_OG_IMAGE = '/sliders/main/start-slider-1.png';
+const YANDEX_VERIFICATION = process.env.NEXT_PUBLIC_YANDEX_VERIFICATION;
 
 type PageData = (typeof pagesData)[keyof typeof pagesData];
 
 const getAbsoluteUrl = (path: string) => new URL(path, CLIENT_URL).toString();
 
-const stripHtml = (value?: string) => value?.replace(/<[^>]*>/g, '').trim() ?? '';
+const stripHtml = (value?: string) =>
+	value?.replace(/<[^>]*>/g, '').trim() ?? '';
 
 export const createPageMetadata = (page: PageData): Metadata => {
 	const imageUrl = getAbsoluteUrl(DEFAULT_OG_IMAGE);
@@ -20,6 +22,9 @@ export const createPageMetadata = (page: PageData): Metadata => {
 		keywords: page.keywords,
 		alternates: {
 			canonical: page.url,
+		},
+		verification: {
+			yandex: YANDEX_VERIFICATION,
 		},
 		openGraph: {
 			title: page.title,
@@ -48,7 +53,9 @@ export const createPageMetadata = (page: PageData): Metadata => {
 
 export const createPortfolioItemMetadata = (work: IWork): Metadata => {
 	const imageUrl = work.images?.[0]?.src ?? DEFAULT_OG_IMAGE;
-	const description = stripHtml(work.subtitle || work.description) || pagesData.portfolio.description;
+	const description =
+		stripHtml(work.subtitle || work.description) ||
+		pagesData.portfolio.description;
 	const title = `${work.title} - ${SITE_NAME}`;
 	const url = getAbsoluteUrl(`/portfolio/${work.name}`);
 
