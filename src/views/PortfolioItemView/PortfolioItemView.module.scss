@@ -323,6 +323,14 @@
         font-weight: 300;
       }
 
+      ol {
+        list-style: inherit;
+        padding-left: vars.rem(15);
+        font-size: vars.rem(19);
+        font-family: 'Onest', sans-serif;
+        font-weight: 300;
+      }
+
       span {
         font-family: 'Onest', sans-serif;
         font-size: vars.rem(19);
@@ -348,6 +356,8 @@
       }
 
       table {
+        width: 100%;
+
         img {
           width: 100%;
           max-height: vars.rem(212) !important;
@@ -367,13 +377,26 @@
           align-items: center;
           gap: vars.rem(20);
 
+          &:not(:has(img)) {
+            gap: vars.rem(20);
+
+            td {
+              flex-grow: 1;
+              //width: auto !important;
+            }
+          }
+
+          &:has(img) {
+            gap: vars.rem(20);
+          }
+
           td {
             border: none !important;
 
             &:has(img) {
               display: flex;
               gap: vars.rem(20);
-              width: auto !important;
+              width: 50% !important;
               height: auto !important;
 
               p {
@@ -383,9 +406,19 @@
               figure {
                 flex-grow: 1;
                 border-radius: vars.rem(20);
-                // overflow: hidden;
                 min-width: vars.rem(295);
+
+                img {
+                  max-height: none !important;
+                  width: 100% !important;
+                }
               }
+            }
+
+            &:not(:has(img)) {
+              display: flex;
+              flex-direction: column;
+              flex-grow: 1;
             }
 
             &:has(p) {
@@ -407,6 +440,27 @@
     }
 
     @media (max-width: vars.$max-1100) {
+      h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+        margin-bottom: vars.rem(20);
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: vars.rem(10);
+        text-align: center;
+      }
+
+      ol {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: vars.rem(10);
+        text-align: center;
+      }
+
       table {
 
         tbody {
@@ -449,11 +503,33 @@
     }
 
     @media (max-width: vars.$max-700) {
+      ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: vars.rem(10);
+        text-align: left;
+      }
+
+      ol {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: vars.rem(10);
+        text-align: left;
+      }
+
       table {
 
         tbody {
 
           tr {
+
+            &:not(:has(img)) {
+              td {
+                width: 100% !important;
+              }
+            }
 
             td {
               width: 100% !important;
