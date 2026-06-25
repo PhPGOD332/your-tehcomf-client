@@ -126,11 +126,11 @@ const StageImages = ({ images, title, className }: StageImagesProps) => {
 };
 
 const StageDescription = ({ description }: Pick<WorkStage, 'description'>) => (
-	<ol className={styles.description}>
+	<div className={styles.description}>
 		{description.map((paragraph) => (
-			<li key={paragraph}>{paragraph}</li>
+			<p key={paragraph}>{paragraph}</p>
 		))}
-	</ol>
+	</div>
 );
 
 const PartnersHowWeWork = () => {

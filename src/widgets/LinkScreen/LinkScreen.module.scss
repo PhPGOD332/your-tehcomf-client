@@ -185,11 +185,11 @@
 	}
 }
 
-@media (max-height: vars.$max-800) and (max-width: vars.$max-1000) {
-	.imageWrapper {
-		height: 47.5%;
-	}
-}
+// @media (max-height: vars.$max-800) and (max-width: vars.$max-1000) {
+// 	.imageWrapper {
+// 		height: 47.5%;
+// 	}
+// }
 
 @media (max-width: vars.$max-500) {
 	.image {
