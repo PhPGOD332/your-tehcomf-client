@@ -2,8 +2,7 @@ import React from 'react';
 import Footer from "@/widgets/Footer/Footer";
 import {pagesData} from "@/shared/constants";
 import PortfolioView from "@/views/PortfolioView/PortfolioView";
-import {IWork} from "@/types/IWork";
-import {PortfolioService} from "@/services/PortfolioService";
+import {PortfolioPageResponse, PortfolioService} from "@/services/PortfolioService";
 import styles from '@/app/styles/pages/portfolio.module.scss';
 import {IFilterBudget} from "@/types/PortfolioFilters/IFilterBudget";
 import {PortfolioFiltersService} from "@/services/PortfolioFiltersService";
@@ -30,8 +29,11 @@ const getBudgets = async (): Promise<IFilterBudget[]> => {
     return await PortfolioFiltersService.getFilterBudgets() ?? [];
 }
 
-const getAllWorks = async (): Promise<IWork[]> => {
-    return await PortfolioService.getAllWorks();
+const getWorks = async (): Promise<PortfolioPageResponse> => {
+    return await PortfolioService.getWorksPage({
+        offset: 0,
+        limit: 12,
+    });
 }
 
 export const revalidate = 30;
@@ -41,7 +43,7 @@ const Page = async () => {
     const types = (await getTypes()).sort((type1, type2) => type1.order - type2.order);
     const stylingItems = (await getStyles()).sort((style1, style2) => style1.order - style2.order);
     const budgets = (await getBudgets()).sort((budget1, budget2) => budget1.order - budget2.order);
-    const works = await getAllWorks();
+    const works = await getWorks();
 
     return (
         <>
@@ -54,7 +56,8 @@ const Page = async () => {
                     layouts={stylingItems}
                     types={types}
                     budgets={budgets}
-                    works={works}
+                    works={works.items}
+                    totalWorks={works.total}
                 />
             </main>
             <Footer

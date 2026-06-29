@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from './PortfolioView.module.scss';
 import PortfolioFilter from "@/widgets/PortfolioFilter/PortfolioFilter";
 import SubTitle from "@/shared/UI/SubTitle/SubTitle";
@@ -20,6 +20,7 @@ import PopupForm from "@/widgets/PopupForm/PopupForm";
 import {useRouter} from "next/navigation";
 import {IStock} from "@/types/IStock";
 import StockBanners from "@/widgets/StockBanners/StockBanners";
+import {PortfolioService} from "@/services/PortfolioService";
 
 const greenStockImage: TImage = greenStock;
 const greenMobileStockImage: TImage = greenMobileStock;
@@ -34,7 +35,11 @@ interface PortfolioProps {
     types: IFilterType[];
     budgets: IFilterBudget[];
     works: IWork[];
+    totalWorks: number;
 }
+
+const INITIAL_WORKS_LIMIT = 12;
+const NEXT_WORKS_LIMIT = 8;
 
 const PortfolioView = (
     {
@@ -45,119 +50,58 @@ const PortfolioView = (
         layouts,
         types,
         budgets,
-        works = []
+        works = [],
+        totalWorks
     }: PortfolioProps
 ) => {
     const router = useRouter();
-    const [currentCount, setCurrentCount] = useState<number>(11);
-    const step = 6;
-    const [allWorks, ] = useState<IWork[]>(works);
-    const [currentWorks, setCurrentWorks] = useState<IWork[]>([]);
+    const [currentWorks, setCurrentWorks] = useState<IWork[]>(works);
+    const [totalCount, setTotalCount] = useState<number>(totalWorks);
     const [filters, setFilters] = useState<IFilters>({
         color: null,
         layout: null,
         type: null,
         budget: null
     });
+    const [isLoadingWorks, setIsLoadingWorks] = useState<boolean>(false);
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
 
-    const getCountedWorks = (works: IWork[]) => {
-        return works.filter((work, num) => num <= currentCount)
-    }
-
-    const filtersApplyHandler = (newFilters: IFilters) => {
+    const filtersApplyHandler = async (newFilters: IFilters) => {
         setFilters({
             ...newFilters
         });
+
+        setIsLoadingWorks(true);
+        try {
+            const response = await PortfolioService.getWorksPage({
+                offset: 0,
+                limit: INITIAL_WORKS_LIMIT,
+                filters: newFilters,
+            });
+
+            setCurrentWorks(response.items);
+            setTotalCount(response.total);
+        } finally {
+            setIsLoadingWorks(false);
+        }
     }
 
-    useEffect(() => {
-        setCurrentWorks(getCountedWorks(allWorks));
-    }, []);
+    const moreClickHandle = async () => {
+        if (isLoadingWorks) return;
 
-    useEffect(() => {
-        let newWorks: IWork[] = [];
+        setIsLoadingWorks(true);
+        try {
+            const response = await PortfolioService.getWorksPage({
+                offset: currentWorks.length,
+                limit: NEXT_WORKS_LIMIT,
+                filters,
+            });
 
-        if (
-            filters.layout === null
-            && filters.type === null
-            && filters.color === null
-            && filters.budget === null
-        ) {
-            setCurrentWorks(getCountedWorks(allWorks));
-            return;
+            setCurrentWorks([...currentWorks, ...response.items]);
+            setTotalCount(response.total);
+        } finally {
+            setIsLoadingWorks(false);
         }
-
-        let isFiltered = false;
-
-        for (const [, filter] of Object.entries(filters)) {
-            if (filter) {
-                if (filter === filters.layout) {
-                    if (!isFiltered) {
-                        newWorks = [...allWorks.filter(work => work.layout.id === filters.layout?.id)];
-
-                        isFiltered = true;
-                    } else {
-                        newWorks = [...newWorks.filter(work => work.layout.id === filters.layout?.id)];
-                    }
-                }
-
-                if (filter === filters.type) {
-                    if (!isFiltered) {
-                        newWorks = [...allWorks.filter(work => work.type.id === filters.type?.id)];
-
-                        isFiltered = true;
-                    } else {
-                        newWorks = [...newWorks.filter(work => work.type.id === filters.type?.id)];
-                    }
-                }
-
-                if (filter === filters.color) {
-                    if (!isFiltered) {
-                        newWorks = [...allWorks.filter(work => work.color.id === filters.color?.id)];
-
-                        isFiltered = true;
-                    } else {
-                        newWorks = [...newWorks.filter(work => work.color.id === filters.color?.id)];
-                    }
-                }
-
-                if (filter === filters.budget) {
-                    if (!isFiltered) {
-                        newWorks = [...allWorks.filter(work => {
-                            if (filter.minValue && filter.maxValue)
-                                return work.price >= filter.minValue && work.price <= filter.maxValue;
-
-                            if (filter.minValue && !filter.maxValue)
-                                return work.price >= filter.minValue;
-
-                            if (!filter.minValue && filter.maxValue)
-                                return work.price <= filter.maxValue;
-                        })]
-                    } else {
-                        newWorks = [...newWorks.filter(work => {
-                            if (filter.minValue && filter.maxValue)
-                                return work.price >= filter.minValue && work.price <= filter.maxValue;
-
-                            if (filter.minValue && !filter.maxValue)
-                                return work.price >= filter.minValue;
-
-                            if (!filter.minValue && filter.maxValue)
-                                return work.price <= filter.maxValue;
-                        })]
-                    }
-                }
-            }
-        }
-        setCurrentWorks(newWorks);
-    }, [filters]);
-
-    useEffect(() => {
-        setCurrentWorks(works.filter((work, num) => num - 1 <= currentCount));
-    }, [currentCount]);
-
-    const moreClickHandle = () => {
-        setCurrentCount(currentCount + step);
     }
 
     const stocks: IStock[] = [
@@ -194,7 +138,7 @@ const PortfolioView = (
                     <MiniTitle classNames={styles.subTitle}>{subTitle}</MiniTitle>
                     <PortfolioFilter
                         colors={colors}
-                        countItems={currentWorks ? currentWorks.length : 0}
+                        countItems={totalCount}
                         layouts={layouts}
                         types={types}
                         budgets={budgets}
@@ -206,7 +150,7 @@ const PortfolioView = (
                     { currentWorks && currentWorks.length > 0 ?
                         currentWorks.map((work, num) =>
                             <PortfolioCard
-                                key={num}
+                                key={work.id ?? num}
                                 work={work}
                             />
                         )
@@ -216,9 +160,11 @@ const PortfolioView = (
                         </div>
                     }
                 </div>
-                {works && works.length > currentCount - 1 ?
+                {currentWorks.length < totalCount ?
                     <div className={styles.moreBtnBlock}>
-                        <GreenButton classNames={styles.moreBtn} onClick={moreClickHandle}>Показать еще</GreenButton>
+                        <GreenButton classNames={styles.moreBtn} onClick={moreClickHandle}>
+                            {isLoadingWorks ? 'Загрузка...' : 'Показать еще'}
+                        </GreenButton>
                     </div>
                     :
                     ''
