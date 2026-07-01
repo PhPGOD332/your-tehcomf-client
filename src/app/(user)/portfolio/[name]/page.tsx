@@ -1,79 +1,92 @@
 import React from 'react';
-import { pagesData } from "@/shared/constants";
-import { PortfolioService } from "@/services/PortfolioService";
+import { pagesData } from '@/shared/constants';
+import { PortfolioService } from '@/services/PortfolioService';
 import styles from '@/app/styles/pages/portfolioItem.module.scss';
-import PortfolioItemView from "@/views/PortfolioItemView/PortfolioItemView";
-import Footer from "@/widgets/Footer/Footer";
-import {IWork} from "@/types/IWork";
-import {createPageMetadata, createPortfolioItemMetadata} from "@/shared/seo";
+import PortfolioItemView from '@/views/PortfolioItemView/PortfolioItemView';
+import Footer from '@/widgets/Footer/Footer';
+import { IWork } from '@/types/IWork';
+import { createPageMetadata, createPortfolioItemMetadata } from '@/shared/seo';
+import { notFound } from 'next/navigation';
 
 interface PortfolioItemProps {
-    params: Promise<{name: string}>;
+	params: Promise<{ name: string }>;
 }
 
 export const generateMetadata = async ({ params }: PortfolioItemProps) => {
-    try {
-        const { name } = await params;
-        const work = await PortfolioService.getWork(name);
+	try {
+		const { name } = await params;
+		const work = await PortfolioService.getWork(name);
 
-        return createPortfolioItemMetadata(work);
-    } catch {
-        return createPageMetadata(pagesData.portfolio);
-    }
-}
+		return createPortfolioItemMetadata(work);
+	} catch {
+		return createPageMetadata(pagesData.portfolio);
+	}
+};
 
 export const revalidate = 30;
 
-const Page = async (
-    {
-        params
-    }: PortfolioItemProps
-) => {
-    const { name } = await params;
-    const work = await PortfolioService.getWork(name);
+const Page = async ({ params }: PortfolioItemProps) => {
+	const { name } = await params;
+	let work: IWork;
 
-    const filterWorks = (works: IWork[]): IWork[] => {
-        const setWorks = new Set<IWork>();
+	try {
+		work = await PortfolioService.getWork(name);
+	} catch {
+		notFound();
+	}
 
-        works.filter(work => {
-            let isFound = false;
-            setWorks.forEach(setWork => {
-                if (work.name === setWork.name) {
-                    isFound = true;
-                }
-            });
+	const filterWorks = (works: IWork[]): IWork[] => {
+		const setWorks = new Set<IWork>();
 
-            if (isFound) {
-                return false;
-            }
+		works.filter((work) => {
+			let isFound = false;
+			setWorks.forEach((setWork) => {
+				if (work.name === setWork.name) {
+					isFound = true;
+				}
+			});
 
-            setWorks.add(work);
-            return true;
-        })
+			if (isFound) {
+				return false;
+			}
 
-        return [...setWorks];
-    }
+			setWorks.add(work);
+			return true;
+		});
 
-    const similarWorksWithStyles = await PortfolioService.getWorksByFilter('style', work.style.name, work.name) ?? [];
+		return [...setWorks];
+	};
 
-    const similarWorksWithTypes = await PortfolioService.getWorksByFilter('type', work.type.name, work.name) ?? [];
+	const similarWorksWithStyles =
+		(await PortfolioService.getWorksByFilter(
+			'style',
+			work.style.name,
+			work.name,
+		)) ?? [];
 
-    const similarWorks = filterWorks([...similarWorksWithStyles, ...similarWorksWithTypes]);
+	const similarWorksWithTypes =
+		(await PortfolioService.getWorksByFilter(
+			'type',
+			work.type.name,
+			work.name,
+		)) ?? [];
 
-    return (
-        <>
-            <main className={styles.portfolioWorkPage}>
-                <PortfolioItemView
-                    work={work}
-                    similarWorks={similarWorks}
-                />
-            </main>
-            <Footer
-                isFormContact={true}
-                isFormContactOnlyContacts={{ desktop: false, mobile: true }}
-            />
-        </>
-    );
+	const similarWorks = filterWorks([
+		...similarWorksWithStyles,
+		...similarWorksWithTypes,
+	]);
+
+	return (
+		<>
+			<main className={styles.portfolioWorkPage}>
+				<PortfolioItemView work={work} similarWorks={similarWorks} />
+			</main>
+			<Footer
+				isFormContact={true}
+				isFormContactOnlyContacts={{ desktop: false, mobile: true }}
+			/>
+		</>
+	);
 };
 
 export default Page;

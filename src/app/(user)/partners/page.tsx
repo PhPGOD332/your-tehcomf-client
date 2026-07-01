@@ -184,9 +184,7 @@ const partnerBenefits: PartnersBenefit[] = [
 
 const getLatestWorks = async (): Promise<IWork[]> => {
 	try {
-		const works = await PortfolioService.getLastWorks();
-
-		return [...works].sort((first, second) => second.id - first.id).slice(0, 4);
+		return await PortfolioService.getLastWorksByType('kitchens', 4);
 	} catch {
 		return [];
 	}

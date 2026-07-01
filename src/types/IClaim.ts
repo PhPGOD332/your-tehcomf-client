@@ -1,8 +1,10 @@
 export interface IClaim {
-    id: string;
-    fistName?: string;
-    mobilPhone: string;
-    note?: string;
-    claimType: string;
-    company?: string;
+	id: number;
+	firstName: string;
+	mobilePhone: string;
+	note?: string;
+	claimType: string;
+	company?: string;
+	date?: string;
+	createdAt?: string;
 }

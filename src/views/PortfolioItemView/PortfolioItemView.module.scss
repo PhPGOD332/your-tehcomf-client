@@ -434,6 +434,125 @@
           }
         }
       }
+
+      a {
+        color: vars.$green;
+        text-decoration: underline;
+        text-underline-offset: vars.rem(3);
+        transition: color 0.2s;
+
+        &:hover {
+          color: vars.$black;
+        }
+      }
+
+      b,
+      strong {
+        font-weight: 700 !important;
+      }
+
+      i,
+      em {
+        font-style: italic !important;
+      }
+
+      s,
+      strike,
+      del {
+        text-decoration: line-through;
+      }
+
+      u {
+        text-decoration: underline;
+        text-underline-offset: vars.rem(3);
+      }
+
+      table,
+      table * {
+        border: 0 !important;
+        outline: 0 !important;
+        box-shadow: none !important;
+      }
+
+      table {
+        display: block !important;
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        background: transparent !important;
+
+        colgroup {
+          display: none !important;
+        }
+
+        tbody {
+          display: flex !important;
+          width: 100% !important;
+          flex-direction: column !important;
+          gap: vars.rem(52) !important;
+        }
+
+        tr {
+          display: grid !important;
+          width: 100% !important;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: vars.rem(20) !important;
+          align-items: center !important;
+        }
+
+        td,
+        th {
+          display: flex !important;
+          width: 100% !important;
+          min-width: 0 !important;
+          height: auto !important;
+          min-height: 0 !important;
+          padding: 0 !important;
+          flex-direction: column;
+          justify-content: center;
+          background: transparent !important;
+          vertical-align: middle !important;
+        }
+
+        td:has(img),
+        th:has(img) {
+          align-self: stretch !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          flex-direction: row !important;
+          align-items: stretch !important;
+          justify-content: stretch !important;
+          gap: vars.rem(20) !important;
+        }
+
+        p {
+          margin: 0;
+
+          &:not(:last-child) {
+            margin-bottom: vars.rem(12);
+          }
+        }
+
+        figure {
+          display: block !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          min-width: 0 !important;
+          flex: 1 1 0 !important;
+          overflow: hidden;
+          border-radius: vars.rem(20);
+        }
+
+        img {
+          display: block;
+          width: 100% !important;
+          min-width: 100% !important;
+          height: auto !important;
+          max-height: none !important;
+          object-fit: cover;
+          border-radius: vars.rem(20);
+        }
+      }
     }
 
     @media (max-width: vars.$max-1300) {
@@ -468,6 +587,7 @@
           gap: vars.rem(20) !important;
 
           tr {
+            display: flex !important;
             flex-direction: column;
 
             td {
@@ -529,6 +649,8 @@
         tbody {
 
           tr {
+            display: flex !important;
+            flex-direction: column;
 
             &:not(:has(img)) {
               td {
@@ -553,6 +675,41 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+
+    @media (max-width: vars.$max-800) {
+      .descriptionContent {
+        table {
+          tbody,
+          tr,
+          td,
+          th {
+            display: flex !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+
+          tbody,
+          tr {
+            flex-direction: column !important;
+          }
+
+          tr {
+            grid-template-columns: minmax(0, 1fr) !important;
+          }
+
+          td,
+          th {
+            min-width: 0 !important;
+            grid-column: 1 / -1 !important;
+          }
+
+          td:has(img),
+          th:has(img) {
+            flex-direction: column !important;
           }
         }
       }
