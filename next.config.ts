@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
 			},
 			{
 				protocol: 'https',
-				hostname: 'cms.tehcomf.neuroluv.ru',
+				hostname: 'cms.tehcomf.ru',
 				pathname: '/assets/**',
 			},
 		],
