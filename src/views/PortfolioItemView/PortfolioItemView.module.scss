@@ -313,7 +313,11 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: vars.rem(50);
+      gap: vars.rem(20);
+
+      //br {
+      //   line-height: vars.rem(5);
+      // }
 
       ul {
         list-style: inherit;
@@ -397,7 +401,7 @@
             &:has(img) {
               display: flex;
               gap: vars.rem(20);
-              width: 50% !important;
+              //width: 50% !important;
               height: auto !important;
 
               p {
