@@ -6,9 +6,9 @@ import {IWork} from "@/types/IWork";
 import Link from "next/link";
 import {pagesLinks} from "@/shared/constants";
 // import { EffectCreative } from 'swiper/modules';
-import {Swiper, SwiperSlide} from "swiper/react";
+// import {Swiper, SwiperSlide} from "swiper/react";
 import Image from "next/image";
-import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
+// import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 import TwoStepsOrderForm from "@/widgets/TwoStepsOrderForm/TwoStepsOrderForm";
 import PortfolioCard from "@/widgets/PortfolioCard/PortfolioCard";
@@ -92,72 +92,77 @@ const PortfolioItemView = (
                         }
                     </MiniTitle>
                 </div>
-                <Swiper
-                    grabCursor={true}
-                    className={styles.imageSlider}
-                    // modules={[EffectCredevative]}
-                    // effect={'creative'}
-                    speed={300}
-                    slidesPerView={2}
-                    initialSlide={isMobile ? 0 : work && work.images ? work.images.length - 1 : 0}
-                    loop={true}
-                    // centeredSlides={true}
-                    resizeObserver
-                    // creativeEffect={{
-                    //     prev: {
-                    //         shadow: true,
-                    //         translate: ['-100%', 0, 0],
-                    //         opacity: 0,
-                    //         scale: 1
-                    //     },
-                    //     next: {
-                    //         translate: ['85%', 0, 0],
-                    //         scale: 1
-                    //     },
-                    // }}
-                    spaceBetween={20}
-                    wrapperClass={styles.sliderWrapper}
-                    slideActiveClass={styles.activeSlide}
-                    slidePrevClass={styles.prevSlide}
-                    slideNextClass={styles.nextSlide}
-                    onSlideChange={(swiper) => {
-                        if (!work || !work.images || work.images.length === 0) return;
+                {/*<Swiper*/}
+                {/*    grabCursor={true}*/}
+                {/*    className={styles.imageSlider}*/}
+                {/*    // modules={[EffectCredevative]}*/}
+                {/*    // effect={'creative'}*/}
+                {/*    speed={300}*/}
+                {/*    slidesPerView={2}*/}
+                {/*    initialSlide={isMobile ? 0 : work && work.images ? work.images.length - 1 : 0}*/}
+                {/*    loop={true}*/}
+                {/*    // centeredSlides={true}*/}
+                {/*    resizeObserver*/}
+                {/*    // creativeEffect={{*/}
+                {/*    //     prev: {*/}
+                {/*    //         shadow: true,*/}
+                {/*    //         translate: ['-100%', 0, 0],*/}
+                {/*    //         opacity: 0,*/}
+                {/*    //         scale: 1*/}
+                {/*    //     },*/}
+                {/*    //     next: {*/}
+                {/*    //         translate: ['85%', 0, 0],*/}
+                {/*    //         scale: 1*/}
+                {/*    //     },*/}
+                {/*    // }}*/}
+                {/*    spaceBetween={20}*/}
+                {/*    wrapperClass={styles.sliderWrapper}*/}
+                {/*    slideActiveClass={styles.activeSlide}*/}
+                {/*    slidePrevClass={styles.prevSlide}*/}
+                {/*    slideNextClass={styles.nextSlide}*/}
+                {/*    onSlideChange={(swiper) => {*/}
+                {/*        if (!work || !work.images || work.images.length === 0) return;*/}
 
-                        const maxIndex = work.images.length - 1;
-                        if (work.images.length <= 1) return setActive(0);
+                {/*        const maxIndex = work.images.length - 1;*/}
+                {/*        if (work.images.length <= 1) return setActive(0);*/}
 
-                        if (isMobile) {
-                            setActive(clamp(swiper.activeIndex, 0, maxIndex));
-                        } else {
-                            setActive(clamp(swiper.activeIndex + 1, 1, maxIndex));
-                        }
-                    }}
-                >
-                    {work && work.images && work.images.length > 0 ?
-                        work.images.map((image, num) =>
-                            <SwiperSlide
-                                className={styles.imageSlide}
-                                key={num}
-                            >
-                                <div className={styles.imageBlock}>
-                                    <Image
-                                        src={image.src}
-                                        alt={image.imageAlt ?? ''}
-                                        fill={true}
-                                        className={styles.image}
-                                    />
-                                </div>
-                            </SwiperSlide>
-                        )
-                        :
-                        ''
-                    }
-                    <SwiperNavigation/>
-                </Swiper>
+                {/*        if (isMobile) {*/}
+                {/*            setActive(clamp(swiper.activeIndex, 0, maxIndex));*/}
+                {/*        } else {*/}
+                {/*            setActive(clamp(swiper.activeIndex + 1, 1, maxIndex));*/}
+                {/*        }*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    {work && work.images && work.images.length > 0 ?*/}
+                {/*        work.images.map((image, num) =>*/}
+                {/*            <SwiperSlide*/}
+                {/*                className={styles.imageSlide}*/}
+                {/*                key={num}*/}
+                {/*            >*/}
+                {/*                <div className={styles.imageBlock}>*/}
+                {/*                    <Image*/}
+                {/*                        src={image.src}*/}
+                {/*                        alt={image.imageAlt ?? ''}*/}
+                {/*                        fill={true}*/}
+                {/*                        className={styles.image}*/}
+                {/*                    />*/}
+                {/*                </div>*/}
+                {/*            </SwiperSlide>*/}
+                {/*        )*/}
+                {/*        :*/}
+                {/*        ''*/}
+                {/*    }*/}
+                {/*    <SwiperNavigation/>*/}
+                {/*</Swiper>*/}
+                <div className={styles.imageCard}>
+                    <Image
+                        src={work.images[0].src}
+                        alt={work.images[0].imageAlt ?? ''}
+                        fill={true}
+                        className={styles.cardImage}
+                    />
+                </div>
                 <div className={styles.propertiesBlock}>
-                    <div className={styles.catalog}>
-
-                    </div>
                     <table className={styles.propertiesTable}>
                         <tbody>
                         <tr className={styles.tableRow}>
@@ -165,7 +170,8 @@ const PortfolioItemView = (
                                 <span className={`${styles.tableSubTitle}`}>Стиль</span>
                             </td>
                             <td>
-                                <span className={`${styles.tableTextContent}`}>{work.style ? work.style.caption : '-'}</span>
+                                <span
+                                    className={`${styles.tableTextContent}`}>{work.style ? work.style.caption : '-'}</span>
                             </td>
                         </tr>
                         <tr className={styles.tableRow}>
@@ -194,23 +200,46 @@ const PortfolioItemView = (
                         </tr>
                         <tr className={styles.tableRow}>
                             <td className={styles.titleColumn}>
-                                <span className={`${styles.tableSubTitle}`}>Материалы</span>
+                                <span className={`${styles.tableSubTitle}`}>Материал корпуса</span>
+                            </td>
+                            <td>
+                                <span className={`${styles.tableTextContent}`}>{work.housingMaterial ?? '-'}</span>
+                            </td>
+                        </tr>
+                        <tr className={styles.tableRow}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Материал фасадов</span>
                             </td>
                             <td>
                                 <span className={`${styles.tableTextContent}`}>{work.facadeMaterial ?? '-'}</span>
                             </td>
                         </tr>
-                        <tr className={`${styles.tableRow} ${styles.tableRowColor}`}>
+                        <tr className={styles.tableRow}>
                             <td className={styles.titleColumn}>
-                                <span className={`${styles.tableSubTitle}`}>Цвет столешницы</span>
+                                <span className={`${styles.tableSubTitle}`}>Материал столешницы</span>
                             </td>
-                            <td className={styles.colorColumn}>
-                                <div className={styles.colorSquare}
-                                     style={{
-                                         backgroundColor: work.tableTopColor.hexCode ?? 'transparent',
-                                         border: work.tableTopColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
-                                     }}></div>
-                                <span className={`${styles.tableTextContent}`}>{work.tableTopColor.caption ?? '-'}</span>
+                            <td>
+                                <span className={`${styles.tableTextContent}`}>{work.tableTopMaterial ?? '-'}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table className={styles.propertiesTable}>
+                        <tbody>
+                        <tr className={styles.tableRow}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Покрытие фасадов</span>
+                            </td>
+                            <td>
+                                <span className={`${styles.tableTextContent}`}>{work.facadeCoating ?? '-'}</span>
+                            </td>
+                        </tr>
+                        <tr className={styles.tableRow}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Фурнитура и механизмы</span>
+                            </td>
+                            <td>
+                                <span className={`${styles.tableTextContent}`}>{work.furnitureMechanisms ?? '-'}</span>
                             </td>
                         </tr>
                         <tr className={`${styles.tableRow} ${styles.tableRowColor}`}>
@@ -220,10 +249,37 @@ const PortfolioItemView = (
                             <td className={styles.colorColumn}>
                                 <div className={styles.colorSquare}
                                      style={{
-                                         backgroundColor: work.bodyColor.hexCode ?? 'transparent',
+                                         backgroundColor: work.bodyColor && work.bodyColor.hexCode ? work.bodyColor.hexCode : 'transparent',
                                          border: work.bodyColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
                                      }}></div>
-                                <span className={`${styles.tableTextContent}`}>{work.bodyColor.caption ?? '-'}</span>
+                                <span className={`${styles.tableTextContent}`}>{work.bodyColor && work.bodyColor.caption ? work.bodyColor.caption : '-'}</span>
+                            </td>
+                        </tr>
+                        <tr className={`${styles.tableRow} ${styles.tableRowColor}`}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Цвет фасадов</span>
+                            </td>
+                            <td className={styles.colorColumn}>
+                                <div className={styles.colorSquare}
+                                     style={{
+                                         backgroundColor: work.facadeColor && work.facadeColor.hexCode ? work.facadeColor.hexCode : 'transparent',
+                                         border: work.bodyColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
+                                     }}></div>
+                                <span className={`${styles.tableTextContent}`}>{work.facadeColor && work.facadeColor.caption ? work.facadeColor.caption : '-'}</span>
+                            </td>
+                        </tr>
+                        <tr className={`${styles.tableRow} ${styles.tableRowColor}`}>
+                            <td className={styles.titleColumn}>
+                                <span className={`${styles.tableSubTitle}`}>Цвет столешницы</span>
+                            </td>
+                            <td className={styles.colorColumn}>
+                                <div className={styles.colorSquare}
+                                     style={{
+                                         backgroundColor: work.tableTopColor && work.tableTopColor.hexCode ? work.tableTopColor.hexCode : 'transparent',
+                                         border: work.tableTopColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
+                                     }}></div>
+                                <span
+                                    className={`${styles.tableTextContent}`}>{work.tableTopColor && work.tableTopColor.caption ? work.tableTopColor.caption : '-'}</span>
                             </td>
                         </tr>
                         </tbody>
@@ -246,7 +302,7 @@ const PortfolioItemView = (
                 />
                 <div className={styles.similarWorksBlock}>
                     <div className={styles.similarTitleBlock}>
-                        <SubTitle>Похожие проекты</SubTitle>
+                    <SubTitle>Похожие проекты</SubTitle>
                     </div>
                     <div className={styles.similarWorks}>
                         {similarWorks.map((similarWork, num) =>

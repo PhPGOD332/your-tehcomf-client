@@ -21,8 +21,11 @@ export interface IWork {
     sizesFurniture: string;
     housingMaterial: string;
     facadeMaterial: string;
+    facadeCoating: string;
     tableTopMaterial: string;
+    furnitureMechanisms: string;
     bodyColor: IColor;
+    facadeColor: IColor;
     facadeColors: IColor[];
     tableTopColor: IColor;
     furnitureAccessories: string;

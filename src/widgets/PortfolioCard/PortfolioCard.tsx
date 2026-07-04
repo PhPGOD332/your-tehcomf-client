@@ -4,7 +4,7 @@ import { IWork } from '@/types/IWork';
 import MiniTitle from '@/shared/UI/MiniTitle/MiniTitle';
 import Link from 'next/link';
 import SliderImagesHover from '@/widgets/SliderHover/SliderImagesHover';
-import {pagesLinks} from "@/shared/constants";
+// import {pagesLinks} from "@/shared/constants";
 
 interface ICardProps {
 	work: IWork;
@@ -24,7 +24,7 @@ const PortfolioCard = React.memo(({ work }: ICardProps) => {
 	return (
 		<Link
 			// href={`${pagesLinks.portfolio}/${work.name}`}
-			href={'#'}
+			href={'#'}	
 			className={styles.card}
 		>
 			<div className={styles.imageBlock} ref={imageBlockRef}>

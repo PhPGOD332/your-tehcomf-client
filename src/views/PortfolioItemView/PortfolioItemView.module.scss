@@ -99,6 +99,20 @@
     }
   }
 
+  .imageCard {
+    width: 100%;
+    height: auto;
+    margin-bottom: vars.rem(45);
+    border-radius: vars.rem(20);
+    
+
+    .cardImage {
+      position: relative !important;
+      width: 100%;
+      border-radius: vars.rem(20);
+    }
+  }
+
   .imageSlider {
     //margin-right: vars.rem(-20);
     margin-bottom: vars.rem(45);
@@ -207,7 +221,7 @@
 
   .propertiesBlock {
     display: grid;
-    grid-template-columns: 35% 65%;
+    grid-template-columns: repeat(2, 1fr);
     gap: vars.rem(20);
     margin-bottom: vars.rem(52);
 
@@ -222,7 +236,7 @@
       .tableRow {
         border-bottom: vars.rem(2) solid #DEDEDE;
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr 1fr;
         gap: vars.rem(10);
         padding: vars.rem(24) vars.rem(0) vars.rem(12) vars.rem(0);
 
