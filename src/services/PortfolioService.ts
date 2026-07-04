@@ -75,12 +75,6 @@ type DirectusPortfolio = {
 	style?: DirectusFilter | null;
 	layout?: DirectusFilter | null;
 	filterColor?: DirectusFilter | null;
-	types?: DirectusRelation<{ filter_types_id?: DirectusFilter | null }>[];
-	styles?: DirectusRelation<{ filter_styles_id?: DirectusFilter | null }>[];
-	layouts?: DirectusRelation<{ filter_layouts_id?: DirectusFilter | null }>[];
-	filterColors?: DirectusRelation<{
-		filter_colors_id?: DirectusFilter | null;
-	}>[];
 	facadeColors?: DirectusRelation<{ colors_id?: DirectusColor | null }>[];
 	images?: DirectusRelation<{ directus_files_id?: DirectusFile | null }>[];
 };
@@ -127,26 +121,6 @@ const PORTFOLIO_FIELDS = [
 	'filterColor.name',
 	'filterColor.caption',
 	'filterColor.order',
-	'types.sort',
-	'types.filter_types_id.id',
-	'types.filter_types_id.name',
-	'types.filter_types_id.caption',
-	'types.filter_types_id.order',
-	'styles.sort',
-	'styles.filter_styles_id.id',
-	'styles.filter_styles_id.name',
-	'styles.filter_styles_id.caption',
-	'styles.filter_styles_id.order',
-	'layouts.sort',
-	'layouts.filter_layouts_id.id',
-	'layouts.filter_layouts_id.name',
-	'layouts.filter_layouts_id.caption',
-	'layouts.filter_layouts_id.order',
-	'filterColors.sort',
-	'filterColors.filter_colors_id.id',
-	'filterColors.filter_colors_id.name',
-	'filterColors.filter_colors_id.caption',
-	'filterColors.filter_colors_id.order',
 	'facadeColors.sort',
 	'facadeColors.colors_id.id',
 	'facadeColors.colors_id.name',
@@ -248,27 +222,7 @@ const mapImages = (images?: DirectusPortfolio['images']): IImage[] =>
 		})
 		.filter((image): image is IImage => Boolean(image));
 
-const pickFirstRelation = <T>(
-	items: DirectusRelation<T>[] | undefined,
-	getValue: (item: DirectusRelation<T>) => DirectusFilter | null | undefined,
-): DirectusFilter | null =>
-	sortRelations(items)
-		.map(getValue)
-		.find((item): item is DirectusFilter => Boolean(item)) ?? null;
-
 const mapPortfolio = (portfolio: DirectusPortfolio): IWork => {
-	const type =
-		portfolio.type ??
-		pickFirstRelation(portfolio.types, (item) => item.filter_types_id);
-	const style =
-		portfolio.style ??
-		pickFirstRelation(portfolio.styles, (item) => item.filter_styles_id);
-	const layout =
-		portfolio.layout ??
-		pickFirstRelation(portfolio.layouts, (item) => item.filter_layouts_id);
-	const color =
-		portfolio.filterColor ??
-		pickFirstRelation(portfolio.filterColors, (item) => item.filter_colors_id);
 	const facadeColors = uniqueColors([
 		...sortRelations(portfolio.facadeColors).map((item) =>
 			mapColor(item.colors_id),
@@ -290,10 +244,10 @@ const mapPortfolio = (portfolio: DirectusPortfolio): IWork => {
 		tableTopMaterial: portfolio.tableTopMaterial ?? '',
 		furnitureAccessories: portfolio.furnitureAccessories ?? '',
 		images: mapImages(portfolio.images),
-		type: mapFilterType(type),
-		style: mapFilterStyle(style),
-		layout: mapFilterLayout(layout),
-		color: mapFilterColor(color),
+		type: mapFilterType(portfolio.type),
+		style: mapFilterStyle(portfolio.style),
+		layout: mapFilterLayout(portfolio.layout),
+		color: mapFilterColor(portfolio.filterColor),
 		bodyColor: mapColor(portfolio.bodyColor),
 		tableTopColor: mapColor(portfolio.tableTopColor),
 		facadeColors,
@@ -303,19 +257,10 @@ const mapPortfolio = (portfolio: DirectusPortfolio): IWork => {
 const appendRelationFilter = (
 	params: URLSearchParams,
 	index: number,
-	singleRelation: string,
-	manyRelation: string,
-	manyRelationField: string,
+	relation: string,
 	value: string,
 ) => {
-	params.append(
-		`filter[_and][${index}][_or][0][${singleRelation}][name][_eq]`,
-		value,
-	);
-	params.append(
-		`filter[_and][${index}][_or][1][${manyRelation}][${manyRelationField}][name][_eq]`,
-		value,
-	);
+	params.append(`filter[_and][${index}][${relation}][name][_eq]`, value);
 };
 
 const appendPortfolioFilters = (
@@ -331,36 +276,15 @@ const appendPortfolioFilters = (
 
 		switch (filter.type) {
 			case 'type':
-				appendRelationFilter(
-					params,
-					index,
-					'type',
-					'types',
-					'filter_types_id',
-					filter.name,
-				);
+				appendRelationFilter(params, index, 'type', filter.name);
 				index++;
 				break;
 			case 'layout':
-				appendRelationFilter(
-					params,
-					index,
-					'layout',
-					'layouts',
-					'filter_layouts_id',
-					filter.name,
-				);
+				appendRelationFilter(params, index, 'layout', filter.name);
 				index++;
 				break;
 			case 'color':
-				appendRelationFilter(
-					params,
-					index,
-					'filterColor',
-					'filterColors',
-					'filter_colors_id',
-					filter.name,
-				);
+				appendRelationFilter(params, index, 'filterColor', filter.name);
 				index++;
 				break;
 			case 'budget':
@@ -457,14 +381,7 @@ export class PortfolioService {
 			sort: '-sort,-id',
 		});
 		appendPublishedStatusFilter(params);
-		appendRelationFilter(
-			params,
-			0,
-			'type',
-			'types',
-			'filter_types_id',
-			typeName,
-		);
+		appendRelationFilter(params, 0, 'type', typeName);
 
 		const response = await getPortfolioList(params);
 
@@ -484,44 +401,16 @@ export class PortfolioService {
 		appendPublishedStatusFilter(params);
 
 		if (filterName === 'type') {
-			appendRelationFilter(
-				params,
-				0,
-				'type',
-				'types',
-				'filter_types_id',
-				filterValue,
-			);
+			appendRelationFilter(params, 0, 'type', filterValue);
 		}
 		if (filterName === 'style') {
-			appendRelationFilter(
-				params,
-				0,
-				'style',
-				'styles',
-				'filter_styles_id',
-				filterValue,
-			);
+			appendRelationFilter(params, 0, 'style', filterValue);
 		}
 		if (filterName === 'layout') {
-			appendRelationFilter(
-				params,
-				0,
-				'layout',
-				'layouts',
-				'filter_layouts_id',
-				filterValue,
-			);
+			appendRelationFilter(params, 0, 'layout', filterValue);
 		}
 		if (filterName === 'color') {
-			appendRelationFilter(
-				params,
-				0,
-				'filterColor',
-				'filterColors',
-				'filter_colors_id',
-				filterValue,
-			);
+			appendRelationFilter(params, 0, 'filterColor', filterValue);
 		}
 
 		const response = await getPortfolioList(params);

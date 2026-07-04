@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const DIRECTUS_URL = (
-	process.env.NEXT_PUBLIC_API_URL || 'https://cms.tehcomf.neuroluv.ru'
+	process.env.NEXT_PUBLIC_API_URL || 'https://cms.tehcomf.ru'
 ).replace(/\/$/, '');
 
 export const DIRECTUS_PUBLISHED_STATUS = 'published';
