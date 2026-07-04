@@ -67,7 +67,9 @@ type DirectusPortfolio = {
 	housingMaterial?: string | null;
 	facadeMaterial?: string | null;
 	tableTopMaterial?: string | null;
+	facadeCoating?: string | null;
 	furnitureAccessories?: string | null;
+	furnitureMechanisms?: string | null;
 	bodyColor?: DirectusColor | null;
 	tableTopColor?: DirectusColor | null;
 	facadeColor?: DirectusColor | null;
@@ -91,7 +93,9 @@ const PORTFOLIO_FIELDS = [
 	'sizesFurniture',
 	'housingMaterial',
 	'facadeMaterial',
+	'facadeCoating',
 	'tableTopMaterial',
+	'furnitureMechanisms',
 	'furnitureAccessories',
 	'bodyColor.id',
 	'bodyColor.name',
@@ -241,7 +245,9 @@ const mapPortfolio = (portfolio: DirectusPortfolio): IWork => {
 		sizesFurniture: portfolio.sizesFurniture ?? '',
 		housingMaterial: portfolio.housingMaterial ?? '',
 		facadeMaterial: portfolio.facadeMaterial ?? '',
+		facadeCoating: portfolio.facadeCoating ?? '',
 		tableTopMaterial: portfolio.tableTopMaterial ?? '',
+		furnitureMechanisms: portfolio.furnitureMechanisms ?? '',
 		furnitureAccessories: portfolio.furnitureAccessories ?? '',
 		images: mapImages(portfolio.images),
 		type: mapFilterType(portfolio.type),
@@ -250,6 +256,7 @@ const mapPortfolio = (portfolio: DirectusPortfolio): IWork => {
 		color: mapFilterColor(portfolio.filterColor),
 		bodyColor: mapColor(portfolio.bodyColor),
 		tableTopColor: mapColor(portfolio.tableTopColor),
+		facadeColor: mapColor(portfolio.facadeColor),
 		facadeColors,
 	};
 };
