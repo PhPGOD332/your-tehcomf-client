@@ -138,12 +138,14 @@ const PortfolioFilter = ({
 					width={208}
 					caption={'Тип'}
 					options={types}
+					value={currentFilters.type?.name ?? ''}
 					changeHandle={typesChangeHandler}
 				/>
 				<Select
 					width={208}
 					caption={'Бюджет'}
 					options={budgets}
+					value={currentFilters.budget?.name ?? ''}
 					changeHandle={budgetsChangeHandler}
 				/>
 				<div className={styles.countBlock}>
@@ -155,12 +157,14 @@ const PortfolioFilter = ({
 					width={208}
 					caption={'Планировка'}
 					options={layouts}
+					value={currentFilters.layout?.name ?? ''}
 					changeHandle={stylesChangeHandler}
 				/>
 				<Select
 					width={208}
 					caption={'Цвет'}
 					options={colors}
+					value={currentFilters.color?.name ?? ''}
 					changeHandle={colorsChangeHandler}
 				/>
 			</div>

@@ -1,4 +1,4 @@
-import {pagesData} from "@/shared/constants";
+import {pagesData, pagesLinks} from "@/shared/constants";
 import {createPageMetadata} from "@/shared/seo";
 import styles from '@/app/styles/pages/main.module.scss';
 import SliderScreen, {PhotoSliderSlides} from "@/widgets/SliderScreen/SliderScreen";
@@ -13,6 +13,10 @@ import Questions from "@/widgets/Questions/Questions";
 import Footer from "@/widgets/Footer/Footer";
 import React from "react";
 import QuestionsService from "@/services/QuestionsService";
+import {PortfolioService} from "@/services/PortfolioService";
+import {featuredPortfolioWorkNames} from "@/shared/featuredPortfolioWorks";
+import {IWork} from "@/types/IWork";
+import {TPhotoSliderSlides} from "@/types/IPhotoSlides";
 
 export const metadata = createPageMetadata(pagesData.main);
 
@@ -46,39 +50,6 @@ const startScreenSlides: PhotoSliderSlides = [
         photoAlt: 'Кухня',
         title: 'Мебель в любую комнату <br>в вашем дизайне',
         text: 'Мебель для всей квартиры<br> по индивидуальному проекту от производителя'
-    },
-];
-
-const examplesSlides: PhotoSliderSlides = [
-    {
-        photo: '/sliders/examples/yellow.jpg',
-        photoAlt: 'Желтая',
-        title: 'Белая детская с деревом',
-        text: 'Функциональная мебель для детской комнаты в белом цвете с корпусом Egger под дерево. Отличное сочетание вместительных шкафов и рабочей зоны с подсветкой.'
-    },
-    {
-        photo: '/sliders/examples/turquoise.jpg',
-        photoAlt: 'Бирюзовая',
-        title: 'Шкаф с подвесной тумбой',
-        text: 'Стильный шкаф в цвете графит и подвесная тумба из ЛДСП Egger с антуражной подсветкой в гостинной. Накладные профиль-ручки в черном цвете.'
-    },
-    {
-        photo: '/sliders/examples/black.jpg',
-        photoAlt: 'Бежевая кухня',
-        title: 'Бежевая кухня. Еггер',
-        text: 'Эффектная угловая кухня в бежевых тонах с фрезерованными фасадами и столешницей из искусственного камня.'
-    },
-    {
-        photo: '/sliders/examples/blue.jpg',
-        photoAlt: 'Синяя',
-        title: 'Шкаф в спальню',
-        text: 'Белый шкаф в спальню с открытыми полками. Консервативное и функциональное решение для комнат небольшой площадью.'
-    },
-    {
-        photo: '/sliders/examples/green.jpg',
-        photoAlt: 'Зеленая',
-        title: 'Серая гостиная с рабочим местом',
-        text: 'Функциональная прямая гостиная в белом цвете: шкаф, тумба под ТВ, рабочее место. 3 в 1 для максимального использования пространства.'
     },
 ];
 
@@ -131,10 +102,33 @@ const getCategories = async () => {
     return await QuestionsService.getQuestionsByCategories();
 }
 
+const getFeaturedWorks = async (): Promise<IWork[]> => {
+    try {
+        return await PortfolioService.getWorksByNames(featuredPortfolioWorkNames);
+    } catch {
+        return [];
+    }
+}
+
+const getExamplesSlides = (works: IWork[]): TPhotoSliderSlides =>
+    works
+        .filter((work) => work.images.length > 0)
+        .map((work) => ({
+            photo: work.images[0].src,
+            photoAlt: work.images[0].imageAlt || work.title,
+            title: work.title,
+            text: work.subtitle,
+            href: `${pagesLinks.portfolio}/${work.name}`,
+        }));
+
 export const revalidate = 30;
 
 export default async function Home() {
-    const categories = await getCategories();
+    const [categories, featuredWorks] = await Promise.all([
+        getCategories(),
+        getFeaturedWorks(),
+    ]);
+    const examplesSlides = getExamplesSlides(featuredWorks);
 
     return (
         <>

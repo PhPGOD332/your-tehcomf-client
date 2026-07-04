@@ -1,50 +1,38 @@
 {
-  "name": "--template",
-  "version": "0.1.0",
-  "author": {
-    "name": "Гизатуллин Тимур",
-    "email": "tima.gizatullin.01@mail.ru",
-    "url": "https://t.me/timagiz"
-  },
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@lexical/html": "^0.39.0",
-    "@lexical/list": "^0.39.0",
-    "@lexical/markdown": "^0.39.0",
-    "@lexical/react": "^0.39.0",
-    "@lexical/rich-text": "^0.39.0",
-    "@lexical/selection": "^0.39.0",
-    "@lexical/utils": "^0.39.0",
-    "@lexkit/editor": "^0.0.38",
-    "@react-input/mask": "^2.0.4",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "@types/swiper": "^5.4.3",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.5.0",
-    "lexical": "^0.39.0",
-    "next": "^15.3.3",
-    "prettier": "^3.8.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hook-form": "^7.58.1",
-    "swiper": "^11.2.8"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@neuroluv/core": "^1.1.0",
-    "@types/node": "^22.15.29",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "axios": "^1.9.0",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.2",
-    "sass": "^1.89.0",
-    "typescript": "^5.8.3"
-  }
+	"name": "your-tehcomf-client",
+	"version": "0.2.0",
+	"author": {
+		"name": "Гизатуллин Тимур",
+		"email": "tima.gizatullin.01@mail.ru",
+		"url": "https://t.me/timagiz"
+	},
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "eslint ."
+	},
+	"dependencies": {
+		"@react-input/mask": "^2.0.4",
+		"axios": "^1.18.1",
+		"next": "^16.2.10",
+		"react": "^19.2.7",
+		"react-dom": "^19.2.7",
+		"react-hook-form": "^7.80.0",
+		"swiper": "^14.0.1"
+	},
+	"devDependencies": {
+		"@types/node": "^26.1.0",
+		"@types/react": "^19.2.17",
+		"@types/react-dom": "^19.2.3",
+		"eslint": "^9.39.4",
+		"eslint-config-next": "^16.2.10",
+		"prettier": "^3.9.4",
+		"sass": "^1.101.0",
+		"typescript": "^6.0.3"
+	},
+	"overrides": {
+		"postcss": "8.5.10"
+	}
 }

@@ -419,6 +419,25 @@ export class PortfolioService {
 		return works.filter((work) => work.name !== currWorkName);
 	}
 
+	static async getWorksByNames(names: string[]): Promise<IWork[]> {
+		if (names.length === 0) return [];
+
+		const params = new URLSearchParams({
+			fields: PORTFOLIO_FIELDS,
+			limit: names.length.toString(),
+		});
+		appendPublishedStatusFilter(params);
+		params.append('filter[name][_in]', names.join(','));
+
+		const response = await getPortfolioList(params);
+		const works = response.data.map(mapPortfolio);
+		const worksByName = new Map(works.map((work) => [work.name, work]));
+
+		return names
+			.map((name) => worksByName.get(name))
+			.filter((work): work is IWork => Boolean(work));
+	}
+
 	static async getWork(name: string): Promise<IWork> {
 		const params = new URLSearchParams({
 			fields: PORTFOLIO_FIELDS,

@@ -1,5 +1,5 @@
 'use client'
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from './Select.module.scss';
 import {TFilter, TFiltersList} from "@/types/IFilters";
 
@@ -7,6 +7,7 @@ interface SelectProps {
     width: number;
     caption: string;
     options: TFiltersList;
+    value?: string;
     changeHandle: (optionName: string) => void;
 }
 
@@ -15,39 +16,32 @@ const Select = (
         width = 208,
         caption,
         options,
+        value = '',
         changeHandle
     }: SelectProps
 ) => {
-    const [currentOption, setCurrentOption] = useState<string>('');
-    const [currentCaption, setCurrentCaption] = useState<string>(caption ?? options[0].name ?? '')
     const [isSelectActive, setIsSelectActive] = useState<boolean>(false);
-
-    useEffect(() => {
-        if (changeHandle)
-            changeHandle(currentOption);
-    }, [currentOption]);
+    const currentCaption = options.find((option) => option.name === value)?.caption ?? caption;
 
     const selectClickHandle = () => {
         setIsSelectActive(!isSelectActive);
     }
 
     const changeOptionHandle = (option: TFilter) => {
-        if (option.name === currentOption) {
-            setCurrentOption('');
-            setCurrentCaption(caption);
+        if (option.name === value) {
+            changeHandle('');
             setIsSelectActive(!isSelectActive);
             return;
         }
 
-        setCurrentOption(option.name);
-        setCurrentCaption(option.caption);
+        changeHandle(option.name);
         setIsSelectActive(!isSelectActive);
     }
 
     return (
         <div className={`${styles.selectWrapper} ${isSelectActive ? styles.selectWrapper_active : styles.selectWrapper_inactive}`} >
             <div
-                className={styles.select}
+                className={`${styles.select} ${value ? styles.select_active : ''}`}
                 style={{ width: width }}
                 onClick={() => selectClickHandle()}
             >
@@ -69,8 +63,8 @@ const Select = (
                             onClick={() => changeOptionHandle(option)}
                         >
                             <div
-                                className={`${styles.checkIcon} ${currentOption === option.name ? styles.checkIcon_active : ''}`}>
-                                {currentOption === option.name ?
+                                className={`${styles.checkIcon} ${value === option.name ? styles.checkIcon_active : ''}`}>
+                                {value === option.name ?
                                     <svg width="17" height="12" viewBox="0 0 17 12" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path

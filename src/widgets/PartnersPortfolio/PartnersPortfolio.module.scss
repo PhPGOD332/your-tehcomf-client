@@ -73,7 +73,7 @@
 	left: 0;
 	z-index: 2;
 	display: flex;
-	align-items: flex-end;
+	align-items: baseline;
 	justify-content: space-between;
 	gap: vars.rem(5);
 	padding: vars.rem(20);
@@ -81,7 +81,7 @@
 
 .desktopHeading {
 	display: flex;
-	align-items: flex-end;
+	align-items: baseline;
 	gap: vars.rem(10);
 	min-width: 0;
 }
@@ -93,19 +93,19 @@
 }
 
 .desktopDivider {
-	font-size: vars.rem(30);
+	font-size: vars.rem(20);
 	font-weight: 200;
 	line-height: 130%;
 }
 .desktopArea {
-	font-size: vars.rem(30);
+	font-size: vars.rem(20);
 	font-weight: 500;
 	line-height: 130%;
 }
 
 .date {
 	flex-shrink: 0;
-	font-size: vars.rem(19);
+	font-size: vars.rem(18);
 	font-weight: 500;
 	line-height: 140%;
 }
@@ -116,7 +116,7 @@
 	bottom: vars.rem(24);
 	left: vars.rem(24);
 	z-index: 2;
-	max-width: vars.rem(350);
+	max-width: vars.rem(420);
 	font-size: vars.rem(19);
 	font-weight: 500;
 	line-height: 140%;
@@ -249,7 +249,7 @@
 
 	.mobileMeta {
 		display: flex;
-		align-items: center;
+		align-items: baseline;
 		gap: vars.rem(10);
 		margin-bottom: vars.rem(20);
 		font-size: vars.rem(14);

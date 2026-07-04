@@ -3,6 +3,7 @@ export interface IPhotoSlide {
     photoAlt?: string;
     title: string;
     text?: string;
+    href?: string;
 }
 
 export type TPhotoSliderSlides = IPhotoSlide[];

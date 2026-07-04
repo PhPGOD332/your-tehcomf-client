@@ -90,7 +90,7 @@ const SliderScreen = ({ slides }: PhotoSliderProps) => {
 				className={styles.swiper}
 				modules={[Pagination, Autoplay, EffectFade]}
 				spaceBetween={0}
-				slidesPerView={3}
+				slidesPerView={1}
 				pagination={{
 					enabled: true,
 					clickable: true,
@@ -102,6 +102,9 @@ const SliderScreen = ({ slides }: PhotoSliderProps) => {
 					delay: 10000,
 				}}
 				effect={'fade'}
+				fadeEffect={{
+					crossFade: true,
+				}}
 			>
 				{slides.map((slide, num) => {
 					const TitleTag = num === 0 ? 'h1' : 'h2';

@@ -111,14 +111,6 @@ const SliderImagesHover = (
                 fadeEffect={{
                     crossFade: true
                 }}
-                breakpoints={{
-                    1000: {
-                        autoplay: {
-                            delay: 5000
-                        },
-
-                    }
-                }}
             >
                 {images.map((image, num) =>
                     <SwiperSlide

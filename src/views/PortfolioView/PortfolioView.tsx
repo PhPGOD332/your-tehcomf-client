@@ -21,6 +21,7 @@ import {useRouter} from "next/navigation";
 import {IStock} from "@/types/IStock";
 import StockBanners from "@/widgets/StockBanners/StockBanners";
 import {PortfolioService} from "@/services/PortfolioService";
+import {getPortfolioFiltersHref} from "@/shared/utils/portfolioFiltersQuery";
 
 const greenStockImage: TImage = greenStock;
 const greenMobileStockImage: TImage = greenMobileStock;
@@ -36,9 +37,9 @@ interface PortfolioProps {
     budgets: IFilterBudget[];
     works: IWork[];
     totalWorks: number;
+    initialFilters: IFilters;
 }
 
-const INITIAL_WORKS_LIMIT = 12;
 const NEXT_WORKS_LIMIT = 8;
 
 const PortfolioView = (
@@ -51,39 +52,30 @@ const PortfolioView = (
         types,
         budgets,
         works = [],
-        totalWorks
+        totalWorks,
+        initialFilters,
     }: PortfolioProps
 ) => {
     const router = useRouter();
     const [currentWorks, setCurrentWorks] = useState<IWork[]>(works);
     const [totalCount, setTotalCount] = useState<number>(totalWorks);
-    const [filters, setFilters] = useState<IFilters>({
-        color: null,
-        layout: null,
-        type: null,
-        budget: null
-    });
+    const [filters, setFilters] = useState<IFilters>(initialFilters);
     const [isLoadingWorks, setIsLoadingWorks] = useState<boolean>(false);
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
 
-    const filtersApplyHandler = async (newFilters: IFilters) => {
+    React.useEffect(() => {
+        setCurrentWorks(works);
+        setTotalCount(totalWorks);
+        setFilters(initialFilters);
+        setIsLoadingWorks(false);
+    }, [works, totalWorks, initialFilters]);
+
+    const filtersApplyHandler = (newFilters: IFilters) => {
         setFilters({
             ...newFilters
         });
-
         setIsLoadingWorks(true);
-        try {
-            const response = await PortfolioService.getWorksPage({
-                offset: 0,
-                limit: INITIAL_WORKS_LIMIT,
-                filters: newFilters,
-            });
-
-            setCurrentWorks(response.items);
-            setTotalCount(response.total);
-        } finally {
-            setIsLoadingWorks(false);
-        }
+        router.push(getPortfolioFiltersHref(newFilters), { scroll: false });
     }
 
     const moreClickHandle = async () => {

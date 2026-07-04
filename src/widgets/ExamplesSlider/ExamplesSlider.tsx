@@ -1,98 +1,104 @@
-'use client'
+'use client';
 import React from 'react';
-import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
-import styles from "./ExamplesSlider.module.scss";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
-import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
-import SubTitle, { TitleColors } from "@/shared/UI/SubTitle/SubTitle";
-import Link from "next/link";
-import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
-import {TPhotoSliderSlides} from "@/types/IPhotoSlides";
-import {pagesLinks} from "@/shared/constants";
+import type { SwiperOptions } from 'swiper/types';
+import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
+import styles from './ExamplesSlider.module.scss';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Image from 'next/image';
+import SwiperNavigation from '@/widgets/SwiperNavigation/SwiperNavigation';
+import SubTitle, { TitleColors } from '@/shared/UI/SubTitle/SubTitle';
+import Link from 'next/link';
+import MiniTitle from '@/shared/UI/MiniTitle/MiniTitle';
+import { TPhotoSliderSlides } from '@/types/IPhotoSlides';
+import { pagesLinks } from '@/shared/constants';
 
 interface PhotoSliderProps {
-    slides: TPhotoSliderSlides;
-    title: string;
-    isNavigation?: boolean;
-    isPagination?: boolean;
+	slides: TPhotoSliderSlides;
+	title: string;
+	isNavigation?: boolean;
+	isPagination?: boolean;
 }
 
 const ExamplesSlider = ({ slides, title }: PhotoSliderProps) => {
-    return (
-        <div className={styles.screen}>
-            <SubTitle classNames={styles.title}>{title}</SubTitle>
-            <Link href={pagesLinks.portfolio} className={styles.linkDetail}>смотреть всё</Link>
-            <Swiper
-                className={styles.swiper}
-                modules={[Pagination, Autoplay, EffectCoverflow]}
-                spaceBetween={20}
-                slidesPerView={'auto'}
-                centeredSlides={true}
-                initialSlide={1}
-                wrapperClass={styles.swiperWrapper}
-                pagination={{
-                    enabled: true,
-                    clickable: true,
-                    horizontalClass: styles.horizontalPagination,
-                    bulletClass: styles.paginationBullet,
-                    bulletActiveClass: styles.paginationBulletActive
-                }}
-                autoplay={{
-                    delay: 5000,
-                }}
-                effect={"coverflow"}
-                coverflowEffect={{
-                    rotate: 20,
-                    stretch: -30,
-                    depth: 100,
-                    modifier: 2,
-                    slideShadows: true
-                }}
-                breakpoints={{
-                    0: {
-                        effect: 'coverflow',
-                        coverflowEffect: {
-                            stretch: -100
-                        }
-                    },
-                    1000: {
-                        coverflowEffect: {
-                            rotate: 20,
-                            stretch: -30,
-                            depth: 100,
-                            modifier: 2,
-                            slideShadows: true
-                        }
-                    }
-                }}
-            >
-                {slides.map((slide, num) =>
-                    <SwiperSlide
-                        className={styles.swiperSlide}
-                        key={num}
-                    >
-                        <div className={styles.swiperSlideContent}>
-                            <Image
-                                src={slide.photo}
-                                alt={slide.photoAlt || ''}
-                                fill={true}
-                                className={styles.swiperImage}
-                            />
-                            <MiniTitle
-                                classNames={styles.swiperTitle}
-                                color={TitleColors.WHITE}
-                            >
-                                {slide.title}
-                            </MiniTitle>
-                            <span className={styles.swiperText}>{slide.text}</span>
-                        </div>
-                    </SwiperSlide>
-                )}
-                <SwiperNavigation />
-            </Swiper>
-        </div>
-    );
+	return (
+		<div className={styles.screen}>
+			<SubTitle classNames={styles.title}>{title}</SubTitle>
+			<Link href={pagesLinks.portfolio} className={styles.linkDetail}>
+				смотреть всё
+			</Link>
+			<Swiper
+				className={styles.swiper}
+				modules={[Pagination, Autoplay, EffectCoverflow]}
+				spaceBetween={20}
+				slidesPerView={'auto'}
+				centeredSlides={true}
+				initialSlide={1}
+				wrapperClass={styles.swiperWrapper}
+				pagination={{
+					enabled: true,
+					clickable: true,
+					horizontalClass: styles.horizontalPagination,
+					bulletClass: styles.paginationBullet,
+					bulletActiveClass: styles.paginationBulletActive,
+				}}
+				autoplay={{
+					delay: 5000,
+				}}
+				effect={'coverflow'}
+				coverflowEffect={{
+					rotate: 20,
+					stretch: -30,
+					depth: 100,
+					modifier: 2,
+					slideShadows: true,
+				}}
+				breakpoints={
+					{
+						0: {
+							effect: 'coverflow',
+							coverflowEffect: {
+								stretch: -100,
+							},
+						},
+						1000: {
+							coverflowEffect: {
+								rotate: 20,
+								stretch: -30,
+								depth: 100,
+								modifier: 2,
+								slideShadows: true,
+							},
+						},
+					} as unknown as SwiperOptions['breakpoints']
+				}
+			>
+				{slides.map((slide, num) => (
+					<SwiperSlide className={styles.swiperSlide} key={num}>
+						<Link
+							// href={slide.href ?? pagesLinks.portfolio}
+							href={pagesLinks.portfolio}
+							className={styles.swiperSlideContent}
+						>
+							<Image
+								src={slide.photo}
+								alt={slide.photoAlt || ''}
+								fill={true}
+								className={styles.swiperImage}
+							/>
+							<MiniTitle
+								classNames={styles.swiperTitle}
+								color={TitleColors.WHITE}
+							>
+								{slide.title}
+							</MiniTitle>
+							<span className={styles.swiperText}>{slide.text}</span>
+						</Link>
+					</SwiperSlide>
+				))}
+				<SwiperNavigation />
+			</Swiper>
+		</div>
+	);
 };
 
 export default ExamplesSlider;

@@ -1,10 +1,9 @@
 import '@/app/styles/globals.scss';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/scss/pagination';
+import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 import 'swiper/css/effect-coverflow';
-import 'swiper/modules/effect-coverflow.min.css';
 import 'swiper/css/effect-creative';
 import './styles';
 import type { Metadata, Viewport } from 'next';

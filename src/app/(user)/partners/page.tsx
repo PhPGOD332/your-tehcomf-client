@@ -1,5 +1,5 @@
 import styles from '@/app/styles/pages/docs.module.scss';
-import { pagesData } from '@/shared/constants';
+import { pagesData, pagesLinks } from '@/shared/constants';
 import Footer from '@/widgets/Footer/Footer';
 import LinkScreen from '@/widgets/LinkScreen/LinkScreen';
 import Advantages, { type IAdvantageEl } from '@/widgets/Advantages/Advantages';
@@ -13,6 +13,7 @@ import PartnersHowWeWork from '@/widgets/PartnersHowWeWork/PartnersHowWeWork';
 import PartnersOtherWorks from '@/widgets/PartnersOtherWorks/PartnersOtherWorks';
 import { PortfolioService } from '@/services/PortfolioService';
 import { type IWork } from '@/types/IWork';
+import { featuredPortfolioWorkNames } from '@/shared/featuredPortfolioWorks';
 import modelImage from '@/data/images/stocks_banners/model.png';
 import moneyImage from '@/data/images/stocks_banners/money.png';
 import buildersImage from '@/data/images/stocks_banners/builders.png';
@@ -92,61 +93,6 @@ const advantages: IAdvantageEl[] = [
 	},
 ];
 
-const portfolioWorks: PartnersPortfolioWork[] = [
-	{
-		photos: [
-			'/sliders/examples/yellow.jpg',
-			'/sliders/examples/green.jpg',
-			'/sliders/examples/black.jpg',
-		],
-		photoAlt: 'Квартира в Москва-сити',
-		title: 'Квартира в Москва-сити',
-		area: '180 м²',
-		date: 'Апрель — Май 2026',
-		text: 'Полная меблировка квартиры под ключ в элитном ЖК',
-	},
-	{
-		photos: [
-			'/sliders/examples/green.jpg',
-			'/sliders/examples/blue.jpg',
-			'/sliders/examples/turquoise.jpg',
-		],
-		photoAlt: 'Квартира в ЖК',
-		title: 'Квартира в современном ЖК',
-		area: '140 м²',
-		date: 'Март — Апрель 2026',
-		text: 'Корпусная мебель по индивидуальному дизайн-проекту',
-	},
-	{
-		photos: [
-			'/sliders/examples/black.jpg',
-			'/sliders/examples/turquoise.jpg',
-			'/sliders/examples/yellow.jpg',
-		],
-		photoAlt: 'Квартира на Патриках',
-		title: 'Квартира на Патриках',
-		area: '165 м²',
-		date: 'Январь — Март 2026',
-		text: 'Комплексная меблировка жилого пространства',
-	},
-	{
-		photos: ['/sliders/examples/blue.jpg'],
-		photoAlt: 'Квартира в Москва-сити',
-		title: 'Квартира в Москва-сити',
-		area: '125 м²',
-		date: 'Апрель — Май 2026',
-		text: 'Полная меблировка квартиры под ключ',
-	},
-	{
-		photos: ['/sliders/examples/turquoise.jpg'],
-		photoAlt: 'Современная квартира',
-		title: 'Современная квартира',
-		area: '120 м²',
-		date: 'Ноябрь — Декабрь 2025',
-		text: 'Мебель по индивидуальным размерам',
-	},
-];
-
 const partnerBenefits: PartnersBenefit[] = [
 	{
 		title: 'Учитываем каждый нюанс и&nbsp;м²',
@@ -190,8 +136,41 @@ const getLatestWorks = async (): Promise<IWork[]> => {
 	}
 };
 
+const getFeaturedWorks = async (): Promise<IWork[]> => {
+	try {
+		return await PortfolioService.getWorksByNames(featuredPortfolioWorkNames);
+	} catch {
+		return [];
+	}
+};
+
+const getWorkMeta = (work: IWork): string =>
+	work.sizesRoom || work.sizesFurniture || work.type.caption || 'Проект на заказ';
+
+const getWorkCategory = (work: IWork): string =>
+	[work.style.caption, work.layout.caption].filter(Boolean).join(' • ') ||
+	work.type.caption ||
+	'Индивидуальный проект';
+
+const getPortfolioWorks = (works: IWork[]): PartnersPortfolioWork[] =>
+	works
+		.filter((work) => work.images.length > 0)
+		.map((work) => ({
+			photos: work.images.map((image) => image.src) as [string, ...string[]],
+			photoAlt: work.images[0].imageAlt || work.title,
+			title: work.title,
+			area: getWorkMeta(work),
+			date: getWorkCategory(work),
+			text: work.subtitle,
+			href: `${pagesLinks.portfolio}/${work.name}`,
+		}));
+
 const Page = async () => {
-	const latestWorks = await getLatestWorks();
+	const [latestWorks, featuredWorks] = await Promise.all([
+		getLatestWorks(),
+		getFeaturedWorks(),
+	]);
+	const portfolioWorks = getPortfolioWorks(featuredWorks);
 
 	return (
 		<>

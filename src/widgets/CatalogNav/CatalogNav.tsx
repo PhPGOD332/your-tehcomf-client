@@ -16,6 +16,7 @@ import Image, {StaticImageData} from "next/image";
 import {Swiper, SwiperRef, SwiperSlide} from "swiper/react";
 import {Autoplay, EffectFade, Pagination} from "swiper/modules";
 import Link from "next/link";
+import { getPortfolioFilterHref } from '@/shared/utils/portfolioFiltersQuery';
 
 export interface CatalogProps {
     title: string;
@@ -28,6 +29,7 @@ interface ICatalogCard {
     isIcon?: boolean;
     order: number;
     mobileOrder?: number;
+    portfolioTypeName?: string;
 }
 
 const catalogCards: ICatalogCard[] = [
@@ -36,49 +38,56 @@ const catalogCards: ICatalogCard[] = [
         caption: 'Ванные',
         className: styles.catalogItem_bathrooms,
         order: 0,
-        mobileOrder: 4
+        mobileOrder: 4,
+        portfolioTypeName: 'bathroomfurniture'
     },
     {
         image: ImageOffice,
         caption: 'Для офиса',
         className: styles.catalogItem_offices,
         order: 1,
-        mobileOrder: 5
+        mobileOrder: 5,
+        portfolioTypeName: 'officefurniture'
     },
     {
         image: ImageKitchens,
         caption: 'Кухни',
         className: styles.catalogItem_kitchens,
         order: 2,
-        mobileOrder: 1
+        mobileOrder: 1,
+        portfolioTypeName: 'kitchens'
     },
     {
         image: ImageWardrobes,
         caption: 'Шкафы',
         className: styles.catalogItem_wardrobes,
         order: 3,
-        mobileOrder: 2
+        mobileOrder: 2,
+        portfolioTypeName: 'wardrobes'
     },
     {
         image: ImageLivings,
         caption: 'Гостинные',
         className: styles.catalogItem_livings,
         order: 4,
-        mobileOrder: 3
+        mobileOrder: 3,
+        portfolioTypeName: 'livingfurniture'
     },
     {
         image: ImageHallways,
         caption: 'Прихожие',
         className: styles.catalogItem_hallways,
         order: 5,
-        mobileOrder: 6
+        mobileOrder: 6,
+        portfolioTypeName: 'entrancehalls'
     },
     {
         image: ImageDressings,
         caption: 'Гардеробные',
         className: styles.catalogItem_dressings,
         order: 6,
-        mobileOrder: 7
+        mobileOrder: 7,
+        portfolioTypeName: 'dressingrooms'
     },
     {
         image: ImageFurnishings,
@@ -92,7 +101,8 @@ const catalogCards: ICatalogCard[] = [
         caption: 'Детские',
         className: styles.catalogItem_childish,
         order: 8,
-        mobileOrder: 8
+        mobileOrder: 8,
+        portfolioTypeName: 'nurseryfurniture'
     },
     {
         image: ImageBasket,
@@ -103,6 +113,9 @@ const catalogCards: ICatalogCard[] = [
         mobileOrder: 0
     },
 ];
+
+const getCatalogCardHref = (card: ICatalogCard): string =>
+    getPortfolioFilterHref('type', card.portfolioTypeName);
 
 const CatalogNav = ({ title }: CatalogProps) => {
     const sliderRef = useRef<SwiperRef | null>(null);
@@ -128,7 +141,7 @@ const CatalogNav = ({ title }: CatalogProps) => {
                 <SubTitle color={TitleColors.BLACK} classNames={`${styles.subTitle}`}>{title}</SubTitle>
                 {catalogCards.sort((card1, card2) => card1.order - card2.order).map((card, num) =>
                     <Link
-                        href='#'
+                        href={getCatalogCardHref(card)}
                         className={`${styles.catalogItem} ${card.className} ${card.isIcon ? styles.catalogItem_withIcon : ''}`}
                         key={num}
                     >
@@ -167,7 +180,7 @@ const CatalogNav = ({ title }: CatalogProps) => {
                     <SwiperSlide key={num} className={styles.catalogItem}>
                         {!card.isIcon
                             ?
-                            <Link href={'#'} className={styles.catalogItemLinkImage}>
+                            <Link href={getCatalogCardHref(card)} className={styles.catalogItemLinkImage}>
                                 <div className={styles.catalogItemIcon}>
                                     <svg width="48" height="64" viewBox="0 0 48 64" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -184,7 +197,7 @@ const CatalogNav = ({ title }: CatalogProps) => {
                                 />
                             </Link>
                             :
-                            <Link href={'#'} className={styles.catalogItemLinkIcon}>
+                            <Link href={getCatalogCardHref(card)} className={styles.catalogItemLinkIcon}>
                                 <div className={styles.catalogItemIcon}>
                                     <svg width="48" height="64" viewBox="0 0 48 64" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">

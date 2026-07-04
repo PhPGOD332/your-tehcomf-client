@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
-import { pagesLinks } from '@/shared/constants';
 import styles from './PartnersPortfolio.module.scss';
 
 export interface PartnersPortfolioWork {
@@ -15,6 +14,7 @@ export interface PartnersPortfolioWork {
 	area: string;
 	date: string;
 	text?: string;
+	href: string;
 }
 
 interface PartnersPortfolioProps {
@@ -79,7 +79,6 @@ const SliderNavigation = () => {
 				onClick={() => swiper.slideNext()}
 				disabled={isEnd}
 			>
-				{/* TODO: заменить временную SVG-стрелку на финальную. */}
 				<svg
 					width='21'
 					height='15'
@@ -114,10 +113,7 @@ const PartnersPortfolio = ({ works }: PartnersPortfolioProps) => {
 					>
 						{works.map((work) => (
 							<SwiperSlide className={styles.slide} key={work.photos[0]}>
-								<Link
-									href={pagesLinks.portfolio}
-									className={styles.desktopCard}
-								>
+								<Link href={work.href} className={styles.desktopCard}>
 									<Image
 										src={work.photos[0]}
 										alt={work.photoAlt || work.title}
@@ -172,10 +168,7 @@ const PartnersPortfolio = ({ works }: PartnersPortfolioProps) => {
 									</SwiperSlide>
 								))}
 							</Swiper>
-							<Link
-								href={pagesLinks.portfolio}
-								className={styles.mobileDetails}
-							>
+							<Link href={'#'} className={styles.mobileDetails}>
 								<div className={styles.mobileMeta}>
 									<span>{work.area}</span>
 									<span className={styles.mobileMetaDivider}>•</span>
