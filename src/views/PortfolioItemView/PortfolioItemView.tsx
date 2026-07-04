@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './PortfolioItemView.module.scss';
 import SubTitle, {TitleColors} from "@/shared/UI/SubTitle/SubTitle";
 import {IWork} from "@/types/IWork";
@@ -9,7 +9,7 @@ import {pagesLinks} from "@/shared/constants";
 // import {Swiper, SwiperSlide} from "swiper/react";
 import Image from "next/image";
 // import SwiperNavigation from "@/widgets/SwiperNavigation/SwiperNavigation";
-import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
+// import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 import TwoStepsOrderForm from "@/widgets/TwoStepsOrderForm/TwoStepsOrderForm";
 import PortfolioCard from "@/widgets/PortfolioCard/PortfolioCard";
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
@@ -21,7 +21,7 @@ interface PortfolioItemProps {
     similarWorks: IWork[];
 }
 
-const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
+// const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 
 const PortfolioItemView = (
     {
@@ -29,8 +29,8 @@ const PortfolioItemView = (
         similarWorks
     }: PortfolioItemProps
 ) => {
-    const isMobile = useMediaQuery('(max-width: 800px)');
-    const [, setActive] = useState(1);
+    // const isMobile = useMediaQuery('(max-width: 800px)');
+    // const [, setActive] = useState(1);
 
     // const canPrev =
 
