@@ -50,7 +50,7 @@ const Contacts = ({ titleAs = 'h2' }: ContactsProps) => {
                                     <span className={styles.tableSubTitle}>Телефон</span>
                                 </td>
                                 <td>
-                                    <span className={styles.phone}>+7 (495) 988-55-28</span>
+                                    <span className={styles.phone}>+7 (495) 032-50-60</span>
                                 </td>
                             </tr>
                             <tr className={styles.tableRow}>

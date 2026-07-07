@@ -92,7 +92,7 @@ export const organizationStructuredData = {
 	url: CLIENT_URL,
 	logo: getAbsoluteUrl('/favicon.ico'),
 	image: getAbsoluteUrl(DEFAULT_OG_IMAGE),
-	telephone: '+7-495-988-55-28',
+	telephone: '+7-495-032-50-60',
 	email: 'info@tehcomf.ru',
 	address: {
 		'@type': 'PostalAddress',

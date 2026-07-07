@@ -11,8 +11,7 @@ export interface PartnersPortfolioWork {
 	photos: [string, ...string[]];
 	photoAlt?: string;
 	title: string;
-	area: string;
-	date: string;
+	meta?: string[];
 	text?: string;
 	href: string;
 }
@@ -123,12 +122,16 @@ const PartnersPortfolio = ({ works }: PartnersPortfolioProps) => {
 									/>
 									<div className={styles.overlay} />
 									<div className={styles.desktopTop}>
-										<div className={styles.desktopHeading}>
-											<h3 className={styles.desktopCardTitle}>{work.title}</h3>
-											<span className={styles.desktopDivider}>•</span>
-											<span className={styles.desktopArea}>{work.area}</span>
-										</div>
-										<span className={styles.date}>{work.date}</span>
+										<h3 className={styles.desktopCardTitle}>{work.title}</h3>
+										{work.meta && work.meta.length > 0 && (
+											<div className={styles.desktopMeta}>
+												{work.meta.map((item) => (
+													<span className={styles.metaItem} key={item}>
+														{item}
+													</span>
+												))}
+											</div>
+										)}
 									</div>
 									{work.text && (
 										<p className={styles.desktopText}>{work.text}</p>
@@ -168,12 +171,16 @@ const PartnersPortfolio = ({ works }: PartnersPortfolioProps) => {
 									</SwiperSlide>
 								))}
 							</Swiper>
-							<Link href={'#'} className={styles.mobileDetails}>
-								<div className={styles.mobileMeta}>
-									<span>{work.area}</span>
-									<span className={styles.mobileMetaDivider}>•</span>
-									<span>{work.date}</span>
-								</div>
+							<Link href={work.href} className={styles.mobileDetails}>
+								{work.meta && work.meta.length > 0 && (
+									<div className={styles.mobileMeta}>
+										{work.meta.map((item) => (
+											<span className={styles.metaItem} key={item}>
+												{item}
+											</span>
+										))}
+									</div>
+								)}
 								<h3 className={styles.mobileCardTitle}>{work.title}</h3>
 								{work.text && <p className={styles.mobileText}>{work.text}</p>}
 							</Link>

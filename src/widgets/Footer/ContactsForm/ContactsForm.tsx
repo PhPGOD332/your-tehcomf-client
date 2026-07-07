@@ -55,8 +55,8 @@ const ContactsForm = ({
 							<SwitchButton
 								color={SwitchButtonColors.GRAY}
 								isSwitch={false}
-								previewText={'+7 (495) 988-55-28'}
-								href='tel:+74959885528'
+								previewText={'+7 (495) 032-50-60'}
+								href='tel:+74950325060'
 								image={ContactTeamImage}
 								isOnlyMobileImage={true}
 								icon={

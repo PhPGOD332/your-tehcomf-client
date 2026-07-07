@@ -58,7 +58,7 @@ const Contacts = (
                             </div>
                         </div>
                         <div className={`${styles.contactPostview} ${styles.hidden}`}>
-                            <span className={styles.caption}>+7 (495) 988-55-28</span>
+                            <span className={styles.caption}>+7 (495) 032-50-60</span>
                         </div>
                     </div>
                     <Link href={'https://max.ru/u/f9LHodD0cOIRh5Lz_sziSBOk_tZHto4PxQIapM0Nl6NTm0Bs1Zd69OQCE7Q'} className={styles.contact}>

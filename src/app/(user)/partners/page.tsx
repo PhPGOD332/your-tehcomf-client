@@ -144,13 +144,11 @@ const getFeaturedWorks = async (): Promise<IWork[]> => {
 	}
 };
 
-const getWorkMeta = (work: IWork): string =>
-	work.sizesRoom || work.sizesFurniture || work.type.caption || 'Проект на заказ';
-
-const getWorkCategory = (work: IWork): string =>
-	[work.style.caption, work.layout.caption].filter(Boolean).join(' • ') ||
-	work.type.caption ||
-	'Индивидуальный проект';
+const getWorkMetaItems = (work: IWork): string[] =>
+	[
+		work.sizesRoom || work.sizesFurniture || work.type.caption,
+		[work.style.caption, work.layout.caption].filter(Boolean).join(' · '),
+	].filter(Boolean);
 
 const getPortfolioWorks = (works: IWork[]): PartnersPortfolioWork[] =>
 	works
@@ -159,8 +157,7 @@ const getPortfolioWorks = (works: IWork[]): PartnersPortfolioWork[] =>
 			photos: work.images.map((image) => image.src) as [string, ...string[]],
 			photoAlt: work.images[0].imageAlt || work.title,
 			title: work.title,
-			area: getWorkMeta(work),
-			date: getWorkCategory(work),
+			meta: getWorkMetaItems(work),
 			text: work.subtitle,
 			href: `${pagesLinks.portfolio}/${work.name}`,
 		}));
