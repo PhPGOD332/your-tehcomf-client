@@ -230,20 +230,24 @@
     }
 
     .propertiesTable {
-      // width: 100%;
-      margin-right: vars.rem(20);
+      width: 100%;
+      border-collapse: collapse;
 
       .tableRow {
         border-bottom: vars.rem(2) solid #DEDEDE;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: vars.rem(10);
-        padding: vars.rem(24) vars.rem(0) vars.rem(12) vars.rem(0);
+        align-items: center;
+        box-sizing: border-box;
+        min-height: vars.rem(74);
+        padding: 0;
 
         @media (max-width: vars.$max-800) {
           display: flex;
           flex-direction: column;
           gap: vars.rem(6);
+          min-height: 0;
           padding: vars.rem(16) vars.rem(0);
           border: none;
           border-top: vars.rem(2) solid #DEDEDE;
@@ -261,10 +265,20 @@
           justify-content: flex-end;
           align-items: center;
           gap: vars.rem(16);
+          min-width: 0;
+
+          .colorSwatches {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: vars.rem(8);
+            min-width: 0;
+          }
 
           .colorSquare {
-            width: vars.rem(52);
-            height: vars.rem(52);
+            flex: 0 0 vars.rem(44);
+            width: vars.rem(44);
+            height: vars.rem(44);
 
             @media (max-width: vars.$max-800) {
               display: none;
@@ -273,6 +287,8 @@
 
           .tableTextContent {
             width: fit-content;
+            min-width: 0;
+            text-align: left;
           }
 
           @media (max-width: vars.$max-800) {
@@ -283,13 +299,14 @@
 
       .titleColumn {
         display: flex;
-        align-items: flex-end;
+        align-items: center;
       }
 
       .tableSubTitle {
         font-size: vars.rem(19);
         font-weight: 500;
         color: vars.$gray;
+        line-height: 140%;
       }
 
       .tableTextContent {
@@ -298,6 +315,8 @@
         text-align: right;
         font-size: vars.rem(19);
         font-weight: 300;
+        line-height: 140%;
+        overflow-wrap: anywhere;
 
         @media (max-width: vars.$max-800) {
           text-align: left;

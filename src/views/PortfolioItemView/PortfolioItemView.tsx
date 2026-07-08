@@ -13,6 +13,7 @@ import Image from "next/image";
 import TwoStepsOrderForm from "@/widgets/TwoStepsOrderForm/TwoStepsOrderForm";
 import PortfolioCard from "@/widgets/PortfolioCard/PortfolioCard";
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
+import { IColor } from '@/types/IColor';
 
 interface PortfolioItemProps {
     title?: string;
@@ -20,6 +21,49 @@ interface PortfolioItemProps {
     work: IWork;
     similarWorks: IWork[];
 }
+
+const getAvailableColors = (colors: IColor[]): IColor[] =>
+    colors.filter((color) => Boolean(color.caption || color.captionCode || color.name || color.hexCode));
+
+const getColorCaption = (colors: IColor[]): string => {
+    const captions = Array.from(
+        new Set(colors.map((color) => color.caption || color.captionCode || color.name).filter(Boolean)),
+    );
+
+    return captions.length > 0 ? captions.join(', ') : '-';
+};
+
+const isLightColor = (color: IColor): boolean => {
+    const hex = color.hexCode.toLowerCase();
+
+    return color.name === 'white' || hex === '#fff' || hex === '#ffffff' || hex === 'transparent';
+};
+
+const ColorValue = ({ colors }: { colors: IColor[] }) => {
+    const availableColors = getAvailableColors(colors);
+
+    return (
+        <td className={styles.colorColumn}>
+            {availableColors.length > 0 && (
+                <div className={styles.colorSwatches}>
+                    {availableColors.map((color) => (
+                        <div
+                            className={styles.colorSquare}
+                            key={`${color.id}-${color.name}-${color.hexCode}`}
+                            style={{
+                                backgroundColor: color.hexCode || 'transparent',
+                                border: isLightColor(color) ? '2px solid #0A0A0AFF' : '',
+                            }}
+                        />
+                    ))}
+                </div>
+            )}
+            <span className={`${styles.tableTextContent}`}>
+                {getColorCaption(availableColors)}
+            </span>
+        </td>
+    );
+};
 
 // const clamp = (n: number, min: number, max: number) => Math.max(min, Math.min(max, n));
 
@@ -246,41 +290,19 @@ const PortfolioItemView = (
                             <td className={styles.titleColumn}>
                                 <span className={`${styles.tableSubTitle}`}>Цвет каркаса</span>
                             </td>
-                            <td className={styles.colorColumn}>
-                                <div className={styles.colorSquare}
-                                     style={{
-                                         backgroundColor: work.bodyColor && work.bodyColor.hexCode ? work.bodyColor.hexCode : 'transparent',
-                                         border: work.bodyColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
-                                     }}></div>
-                                <span className={`${styles.tableTextContent}`}>{work.bodyColor && work.bodyColor.caption ? work.bodyColor.caption : '-'}</span>
-                            </td>
+                            <ColorValue colors={[work.bodyColor]} />
                         </tr>
                         <tr className={`${styles.tableRow} ${styles.tableRowColor}`}>
                             <td className={styles.titleColumn}>
                                 <span className={`${styles.tableSubTitle}`}>Цвет фасадов</span>
                             </td>
-                            <td className={styles.colorColumn}>
-                                <div className={styles.colorSquare}
-                                     style={{
-                                         backgroundColor: work.facadeColor && work.facadeColor.hexCode ? work.facadeColor.hexCode : 'transparent',
-                                         border: work.bodyColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
-                                     }}></div>
-                                <span className={`${styles.tableTextContent}`}>{work.facadeColor && work.facadeColor.caption ? work.facadeColor.caption : '-'}</span>
-                            </td>
+                            <ColorValue colors={work.facadeColors.length > 0 ? work.facadeColors : [work.facadeColor]} />
                         </tr>
                         <tr className={`${styles.tableRow} ${styles.tableRowColor}`}>
                             <td className={styles.titleColumn}>
                                 <span className={`${styles.tableSubTitle}`}>Цвет столешницы</span>
                             </td>
-                            <td className={styles.colorColumn}>
-                                <div className={styles.colorSquare}
-                                     style={{
-                                         backgroundColor: work.tableTopColor && work.tableTopColor.hexCode ? work.tableTopColor.hexCode : 'transparent',
-                                         border: work.tableTopColor.name === 'white' ? '2px solid #0A0A0AFF' : ''
-                                     }}></div>
-                                <span
-                                    className={`${styles.tableTextContent}`}>{work.tableTopColor && work.tableTopColor.caption ? work.tableTopColor.caption : '-'}</span>
-                            </td>
+                            <ColorValue colors={[work.tableTopColor]} />
                         </tr>
                         </tbody>
                     </table>
