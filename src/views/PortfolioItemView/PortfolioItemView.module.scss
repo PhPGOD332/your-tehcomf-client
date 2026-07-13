@@ -104,12 +104,15 @@
     height: auto;
     margin-bottom: vars.rem(45);
     border-radius: vars.rem(20);
-    
 
     .cardImage {
       position: relative !important;
       width: 100%;
       border-radius: vars.rem(20);
+    }
+
+    @media (max-width: vars.$max-1300) {
+      padding: 0 vars.rem(16);
     }
   }
 
@@ -390,6 +393,10 @@
       p {
         font-size: vars.rem(19);
         font-weight: 300;
+
+        > img {
+          max-width: 100%;
+        }
       }
 
       table {
