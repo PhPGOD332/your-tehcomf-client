@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './PortfolioItemView.module.scss';
 import SubTitle, {TitleColors} from "@/shared/UI/SubTitle/SubTitle";
 import {IWork} from "@/types/IWork";
@@ -14,6 +14,7 @@ import TwoStepsOrderForm from "@/widgets/TwoStepsOrderForm/TwoStepsOrderForm";
 import PortfolioCard from "@/widgets/PortfolioCard/PortfolioCard";
 import MiniTitle from "@/shared/UI/MiniTitle/MiniTitle";
 import { IColor } from '@/types/IColor';
+import PopupImageWrapper from "@/widgets/PopupImageWrapper/PopupImageWrapper";
 
 interface PortfolioItemProps {
     title?: string;
@@ -75,8 +76,41 @@ const PortfolioItemView = (
 ) => {
     // const isMobile = useMediaQuery('(max-width: 800px)');
     // const [, setActive] = useState(1);
+    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+    const [selectedImage, setSelectedImage] = useState<string>('');
+    const descriptionContainerRef = useRef<HTMLDivElement | null>(null);
 
     // const canPrev =
+
+    useEffect(() => {
+        const container = descriptionContainerRef.current;
+        if (!container) return;
+
+        const clickHandler = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+
+            if (target.tagName === 'IMG') {
+                const imgSrc = target.getAttribute('src');
+                if (imgSrc) {
+                    setIsPopupOpen(true);
+                    setSelectedImage(imgSrc);
+                }
+            }
+        }
+
+        container.addEventListener('click', clickHandler);
+
+        return () => {
+            container.removeEventListener('click', clickHandler);
+        }
+    }, []);
+
+    // useEffect(() => {
+    //     if (isPopupOpen)
+    //         document.body.classList.add('overflowYHidden');
+    //     else
+    //         document.body.classList.remove('overflowYHidden');
+    // }, [isPopupOpen]);
 
     return (
         <div className={styles.portfolioItemView}>
@@ -314,6 +348,7 @@ const PortfolioItemView = (
                     <article
                         className={styles.descriptionContent}
                         dangerouslySetInnerHTML={{__html: work.description}}
+                        ref={descriptionContainerRef}
                     >
                     </article>
                 </div>
@@ -336,6 +371,11 @@ const PortfolioItemView = (
                     </div>
                 </div>
             </div>
+            <PopupImageWrapper
+                isOpen={isPopupOpen}
+                setIsOpen={setIsPopupOpen}
+                imgSrc={selectedImage}
+            />
         </div>
     );
 };
