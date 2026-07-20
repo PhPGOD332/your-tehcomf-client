@@ -328,6 +328,21 @@ const getPortfolioList = async (
 };
 
 export class PortfolioService {
+	static async getPublishedWorkNames(): Promise<string[]> {
+		const params = new URLSearchParams({
+			fields: 'name',
+			limit: '-1',
+			sort: '-sort,-id',
+		});
+		appendPublishedStatusFilter(params);
+
+		const response = await getPortfolioList(params);
+
+		return response.data
+			.map((portfolio) => portfolio.name)
+			.filter((name): name is string => Boolean(name));
+	}
+
 	static async getAllWorks(): Promise<IWork[]> {
 		const params = new URLSearchParams({
 			fields: PORTFOLIO_FIELDS,

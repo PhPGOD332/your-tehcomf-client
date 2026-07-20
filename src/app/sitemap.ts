@@ -1,5 +1,8 @@
 import type { MetadataRoute } from 'next';
 import { CLIENT_URL, pagesLinks } from '@/shared/constants';
+import { PortfolioService } from '@/services/PortfolioService';
+
+export const revalidate = 300;
 
 const getRouteUrl = (path: string) => new URL(path, CLIENT_URL).toString();
 
@@ -38,5 +41,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		},
 	];
 
-	return staticRoutes;
+	try {
+		const workNames = await PortfolioService.getPublishedWorkNames();
+		const portfolioRoutes: MetadataRoute.Sitemap = Array.from(
+			new Set(workNames),
+		).map((name) => ({
+			url: getRouteUrl(`${pagesLinks.portfolio}/${encodeURIComponent(name)}`),
+			lastModified,
+			changeFrequency: 'monthly',
+			priority: 0.8,
+		}));
+
+		return [...staticRoutes, ...portfolioRoutes];
+	} catch (error) {
+		console.error('Failed to load portfolio routes for sitemap:', error);
+		return staticRoutes;
+	}
 }
