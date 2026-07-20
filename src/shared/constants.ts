@@ -1,4 +1,4 @@
-export const SITE_NAME = 'Тех комф';
+export const SITE_NAME = 'Технологии комфорта';
 export const CLIENT_URL = 'https://tehcomf.ru';
 
 export const pagesData: IPages = {
