@@ -4,7 +4,7 @@ import styles from './Select.module.scss';
 import {TFilter, TFiltersList} from "@/types/IFilters";
 
 interface SelectProps {
-    width: number;
+    width?: React.CSSProperties['width'];
     caption: string;
     options: TFiltersList;
     value?: string;

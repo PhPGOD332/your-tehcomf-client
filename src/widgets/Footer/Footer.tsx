@@ -2,7 +2,7 @@ import React, { type ReactNode } from 'react';
 import styles from './Footer.module.scss';
 import Link from 'next/link';
 import Contacts from '@/widgets/Footer/Contacts/Contacts';
-import { pagesLinks } from '@/shared/constants';
+import { MAX_MESSENGER_URL, pagesLinks } from '@/shared/constants';
 import ContactsForm from '@/widgets/Footer/ContactsForm/ContactsForm';
 import { IStock } from '@/types/IStock';
 import StockBanners from '@/widgets/StockBanners/StockBanners';
@@ -151,9 +151,7 @@ const Footer = ({
 						</div>
 						<div className={styles.footerSocials}>
 							<Link
-								href={
-									'https://max.ru/join/is89AQCget0P25BWYijEziDtijZw0ThWbIgg01b0X6o'
-								}
+								href={MAX_MESSENGER_URL}
 								className={styles.socialLink}
 							>
 								<div className={styles.socialLinkBg}>

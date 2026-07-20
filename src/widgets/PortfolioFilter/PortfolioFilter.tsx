@@ -8,10 +8,8 @@ import { IFilterColor } from '@/types/PortfolioFilters/IFilterColor';
 import { IFilterLayout } from '@/types/PortfolioFilters/IFilterLayout';
 import { IFilterType } from '@/types/PortfolioFilters/IFilterType';
 import PopupFilters from '@/widgets/PopupFilters/PopupFilters';
-import { getRussianPluralForm } from '@/shared/utils/getRussianPluralForm';
 
 interface FilterProps {
-	countItems: number;
 	types: IFilterType[];
 	colors: IFilterColor[];
 	layouts: IFilterLayout[];
@@ -21,7 +19,6 @@ interface FilterProps {
 }
 
 const PortfolioFilter = ({
-	countItems,
 	types,
 	colors,
 	layouts,
@@ -30,11 +27,6 @@ const PortfolioFilter = ({
 	filtersApplyHandler,
 }: FilterProps) => {
 	const [filtersPopupIsOpen, setFiltersPopupIsOpen] = useState(false);
-	const projectsCountLabel = getRussianPluralForm(countItems, [
-		'проект',
-		'проекта',
-		'проектов',
-	]);
 
 	const colorsChangeHandler = (colorName: string) => {
 		filtersApplyHandler({
@@ -135,33 +127,28 @@ const PortfolioFilter = ({
 			</div>
 			<div className={styles.filterDesktop}>
 				<Select
-					width={208}
+					width='100%'
 					caption={'Тип'}
 					options={types}
 					value={currentFilters.type?.name ?? ''}
 					changeHandle={typesChangeHandler}
 				/>
 				<Select
-					width={208}
+					width='100%'
 					caption={'Бюджет'}
 					options={budgets}
 					value={currentFilters.budget?.name ?? ''}
 					changeHandle={budgetsChangeHandler}
 				/>
-				<div className={styles.countBlock}>
-					<span className={styles.countSpan}>
-						{countItems} {projectsCountLabel}
-					</span>
-				</div>
 				<Select
-					width={208}
+					width='100%'
 					caption={'Планировка'}
 					options={layouts}
 					value={currentFilters.layout?.name ?? ''}
 					changeHandle={stylesChangeHandler}
 				/>
 				<Select
-					width={208}
+					width='100%'
 					caption={'Цвет'}
 					options={colors}
 					value={currentFilters.color?.name ?? ''}

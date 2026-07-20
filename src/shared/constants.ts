@@ -1,5 +1,7 @@
 export const SITE_NAME = 'Технологии комфорта';
 export const CLIENT_URL = 'https://tehcomf.ru';
+export const MAX_MESSENGER_URL =
+	'https://max.ru/u/f9LHodD0cOI6eGFsXH_0Tp_wF0nQ4cPesEvLtSeiHEYo54AXQfl0voXCLtM';
 
 export const pagesData: IPages = {
 	main: {

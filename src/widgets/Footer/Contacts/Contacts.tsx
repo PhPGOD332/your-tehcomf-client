@@ -8,6 +8,7 @@ import WomanImage from '@/data/images/contacts/woman.png';
 import {IBooleanOptions} from "@/widgets/Footer/Footer";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 import Link from "next/link";
+import { MAX_MESSENGER_URL } from '@/shared/constants';
 
 type TImage = StaticImageData;
 
@@ -61,7 +62,7 @@ const Contacts = (
                             <span className={styles.caption}>+7 (495) 032-50-60</span>
                         </div>
                     </div>
-                    <Link href={'https://max.ru/u/f9LHodD0cOIRh5Lz_sziSBOk_tZHto4PxQIapM0Nl6NTm0Bs1Zd69OQCE7Q'} className={styles.contact}>
+                    <Link href={MAX_MESSENGER_URL} className={styles.contact}>
                         <Image
                             className={styles.contactImage}
                             src={ContactWomanImage}

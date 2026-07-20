@@ -1,101 +1,94 @@
 @use '@/shared/styles/vars' as vars;
 
 .filterBlock {
-  .filterMobile {
-    display: none;
-    flex-direction: column;
-    gap: vars.rem(20);
+	.filterMobile {
+		display: none;
+		flex-direction: column;
+		gap: vars.rem(20);
 
-    @media (max-width: vars.$max-1400) {
-      display: flex;
-    }
+		@media (max-width: vars.$max-1400) {
+			display: flex;
+		}
 
-    .typesFilterBlock {
-      display: flex;
-      align-items: center;
-      gap: vars.rem(12);
-      overflow-x: auto;
-      white-space: nowrap;
-      padding: vars.rem(15) 0;
-      width: 100%;
+		.typesFilterBlock {
+			display: flex;
+			align-items: center;
+			gap: vars.rem(12);
+			overflow-x: auto;
+			white-space: nowrap;
+			padding: vars.rem(15) 0;
+			width: 100%;
 
-      .filterTypeBtn {
-        font-size: vars.rem(14);
-        font-weight: 500;
-        padding: vars.rem(8) vars.rem(16);
-        background-color: vars.$light-gray;
-        border: none;
-        border-radius: vars.rem(14);
-        cursor: pointer;
-        width: max-content;
-        text-wrap: nowrap;
+			.filterTypeBtn {
+				font-size: vars.rem(14);
+				font-weight: 500;
+				padding: vars.rem(8) vars.rem(16);
+				background-color: vars.$light-gray;
+				border: none;
+				border-radius: vars.rem(14);
+				cursor: pointer;
+				width: max-content;
+				text-wrap: nowrap;
 
-        &_active {
-          transition: 0.3s;
-          background-color: vars.$green;
-          color: vars.$white;
-        }
-      }
+				&_active {
+					transition: 0.3s;
+					background-color: vars.$green;
+					color: vars.$white;
+				}
+			}
 
-      @media (max-width: vars.$max-1000) {
-        clip-path: inset(0 0 vars.rem(10) 0);
-      }
-    }
+			@media (max-width: vars.$max-1000) {
+				clip-path: inset(0 0 vars.rem(10) 0);
+			}
+		}
 
-    .filterPopupBlock {
+		.filterPopupBlock {
+			.filterPopupBtn {
+				display: flex;
+				gap: vars.rem(8);
+				align-items: center;
+				cursor: pointer;
+				background-color: transparent;
+				border: none;
 
-      .filterPopupBtn {
-        display: flex;
-        gap: vars.rem(8);
-        align-items: center;
-        cursor: pointer;
-        background-color: transparent;
-        border: none;
+				.filterBtnIcon {
+					path {
+						transition: 0.3s;
+					}
+				}
 
-        .filterBtnIcon {
-          path {
-            transition: 0.3s;
-          }
-        }
+				.btnSpan {
+					font-size: vars.rem(14);
+					font-weight: 500;
+					transition: 0.3s;
+				}
 
-        .btnSpan {
-          font-size: vars.rem(14);
-          font-weight: 500;
-          transition: 0.3s;
-        }
+				&:hover {
+					.filterBtnIcon {
+						path {
+							fill: vars.$gray;
+						}
+					}
 
-        &:hover {
-          .filterBtnIcon {
-            path {
-              fill: vars.$gray;
-            }
-          }
+					.btnSpan {
+						color: vars.$gray;
+					}
+				}
+			}
+		}
+	}
 
-          .btnSpan {
-            color: vars.$gray;
-          }
-        }
-      }
-    }
-  }
+	.filterDesktop {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: vars.rem(50);
 
-  .filterDesktop {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: vars.rem(50);
-    
-    @media (max-width: vars.$max-1400) {
-      display: none;
-    }
+		> * {
+			min-width: 0;
+		}
 
-    .countBlock {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .countSpan {
-        font-size: vars.rem(19);
-        font-weight: 400;
-      }
-    }
-  }
+		@media (max-width: vars.$max-1400) {
+			display: none;
+		}
+	}
 }

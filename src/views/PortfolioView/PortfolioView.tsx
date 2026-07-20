@@ -130,7 +130,6 @@ const PortfolioView = (
                     <MiniTitle classNames={styles.subTitle}>{subTitle}</MiniTitle>
                     <PortfolioFilter
                         colors={colors}
-                        countItems={totalCount}
                         layouts={layouts}
                         types={types}
                         budgets={budgets}
