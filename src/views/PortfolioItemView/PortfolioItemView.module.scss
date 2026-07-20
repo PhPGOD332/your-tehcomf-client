@@ -401,6 +401,7 @@
         > img {
           max-width: 100%;
           border-radius: vars.rem(20);
+          width: 100%;
         }
       }
 
@@ -445,10 +446,12 @@
 
             &:has(img) {
               display: flex;
+              justify-content: center !important;
+              align-items: center !important;
               gap: vars.rem(20);
               flex: 1;
               //width: 50% !important;
-              height: auto !important;
+              // height: auto !important;
 
               p {
                 display: none;
@@ -469,12 +472,12 @@
             &:not(:has(img)) {
               display: flex;
               flex-direction: column;
-              flex-grow: 1;
+              flex: 1;
             }
 
             &:has(p) {
               &:not(:has(img)) {
-                flex-grow: 1;
+                flex: 1;
 
                 p:not(:last-of-type) {
                   margin-bottom: vars.rem(12);
@@ -595,11 +598,11 @@
 
         img {
           display: block;
-          width: 100% !important;
-          min-width: 100% !important;
-          height: auto !important;
+          // width: 100% !important;
+          // min-width: 100% !important;
+          // height: auto !important;
           max-height: none !important;
-          object-fit: cover;
+          // object-fit: cover;
           border-radius: vars.rem(20);
         }
       }
