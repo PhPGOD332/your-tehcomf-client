@@ -596,11 +596,15 @@
           border-radius: vars.rem(20);
         }
 
+        span:has(img) {
+          height: 100%;
+        }
+
         img {
           display: block;
           // width: 100% !important;
           // min-width: 100% !important;
-          // height: auto !important;
+          height: 100%;
           max-height: none !important;
           // object-fit: cover;
           border-radius: vars.rem(20);
