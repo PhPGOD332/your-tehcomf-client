@@ -11,7 +11,7 @@ import SwitchButton, {
 } from '@/shared/UI/SwitchButton/SwitchButton';
 import { IBooleanOptions } from '@/widgets/Footer/Footer';
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
-import { MAX_MESSENGER_URL } from '@/shared/constants';
+import { MAX_MANAGER_URL } from '@/shared/constants';
 
 const ContactWomanImage: TImage = WomanImage;
 const ContactTeamImage: TImage = TeamImage;
@@ -94,7 +94,7 @@ const ContactsForm = ({
 								}
 								isSwitch={false}
 								previewText={'Написать менеджеру'}
-								href={MAX_MESSENGER_URL}
+								href={MAX_MANAGER_URL}
 							/>
 						</div>
 					) : (

@@ -22,6 +22,7 @@ import {IStock} from "@/types/IStock";
 import StockBanners from "@/widgets/StockBanners/StockBanners";
 import {PortfolioService} from "@/services/PortfolioService";
 import {getPortfolioFiltersHref} from "@/shared/utils/portfolioFiltersQuery";
+import {TELEGRAM_CHANNEL_URL} from "@/shared/constants";
 
 const greenStockImage: TImage = greenStock;
 const greenMobileStockImage: TImage = greenMobileStock;
@@ -114,7 +115,7 @@ const PortfolioView = (
             caption: 'Скидка 2% подписчикам <br> нашего ТГ канала',
             mobileCaption: 'Скидка 2% <br> подписчикам <br> ТГ канала',
             buttonText: 'Подписаться',
-            clickAction: () => router.replace('https://t.me/youkuhnya'),
+            clickAction: () => router.replace(TELEGRAM_CHANNEL_URL),
             color: 'blue',
             image: blueStockImage,
             imageWidth: 160,

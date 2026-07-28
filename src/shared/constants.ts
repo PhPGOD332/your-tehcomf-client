@@ -1,6 +1,9 @@
 export const SITE_NAME = 'Технологии комфорта';
 export const CLIENT_URL = 'https://tehcomf.ru';
-export const MAX_MESSENGER_URL =
+export const TELEGRAM_CHANNEL_URL = 'https://t.me/mebel_tehcomf';
+export const MAX_CHANNEL_URL =
+	'https://max.ru/join/is89AQCget0P25BWYijEziDtijZw0ThWbIgg01b0X6o';
+export const MAX_MANAGER_URL =
 	'https://max.ru/u/f9LHodD0cOI6eGFsXH_0Tp_wF0nQ4cPesEvLtSeiHEYo54AXQfl0voXCLtM';
 
 export const pagesData: IPages = {

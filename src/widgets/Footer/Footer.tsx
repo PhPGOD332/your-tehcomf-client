@@ -2,7 +2,11 @@ import React, { type ReactNode } from 'react';
 import styles from './Footer.module.scss';
 import Link from 'next/link';
 import Contacts from '@/widgets/Footer/Contacts/Contacts';
-import { MAX_MESSENGER_URL, pagesLinks } from '@/shared/constants';
+import {
+	MAX_CHANNEL_URL,
+	TELEGRAM_CHANNEL_URL,
+	pagesLinks,
+} from '@/shared/constants';
 import ContactsForm from '@/widgets/Footer/ContactsForm/ContactsForm';
 import { IStock } from '@/types/IStock';
 import StockBanners from '@/widgets/StockBanners/StockBanners';
@@ -151,7 +155,7 @@ const Footer = ({
 						</div>
 						<div className={styles.footerSocials}>
 							<Link
-								href={MAX_MESSENGER_URL}
+								href={MAX_CHANNEL_URL}
 								className={styles.socialLink}
 							>
 								<div className={styles.socialLinkBg}>
@@ -163,7 +167,7 @@ const Footer = ({
 									/>
 								</div>
 							</Link>
-							<Link href={'#'} className={styles.socialLink}>
+							<Link href={TELEGRAM_CHANNEL_URL} className={styles.socialLink}>
 								<svg
 									width='57'
 									height='56'
