@@ -13,6 +13,7 @@ import {
 	organizationStructuredData,
 	websiteStructuredData,
 } from '@/shared/seo';
+import CookiesBanner from '@/widgets/CookiesBanner/CookiesBanner';
 import YandexMetrika from '@/widgets/YandexMetrika/YandexMetrika';
 
 export const metadata: Metadata = createPageMetadata(pagesData.main);
@@ -38,6 +39,7 @@ export default function RootLayout({
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
 				/>
 				{children}
+				<CookiesBanner />
 				<YandexMetrika />
 			</body>
 		</html>
