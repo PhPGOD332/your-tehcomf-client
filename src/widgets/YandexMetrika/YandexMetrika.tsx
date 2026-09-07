@@ -1,35 +1,52 @@
-import Script from 'next/script';
+import { Suspense } from 'react';
+import {
+	buildYandexMetrikaBootstrap,
+	isValidYandexMetrikaCounter,
+} from '@/shared/utils/yandexMetrika';
+import YandexMetrikaRouteTracker from './YandexMetrikaRouteTracker';
 
-const YANDEX_METRIKA_ID = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID;
+interface YandexMetrikaProps {
+	counterId: string;
+}
 
-const YandexMetrika = () => {
-	if (!YANDEX_METRIKA_ID) return null;
+export const YandexMetrikaHead = ({ counterId }: YandexMetrikaProps) => {
+	const normalizedCounterId = counterId.trim();
+
+	if (!isValidYandexMetrikaCounter(normalizedCounterId)) {
+		return null;
+	}
+
+	return (
+		<script
+			id={`yandex-metrika-${normalizedCounterId}`}
+			dangerouslySetInnerHTML={{
+				__html: buildYandexMetrikaBootstrap(normalizedCounterId),
+			}}
+		/>
+	);
+};
+
+export const YandexMetrika = ({ counterId }: YandexMetrikaProps) => {
+	const normalizedCounterId = counterId.trim();
+
+	if (!isValidYandexMetrikaCounter(normalizedCounterId)) {
+		return null;
+	}
 
 	return (
 		<>
-			<Script id="yandex-metrika" strategy="afterInteractive">
-				{`
-					(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-					m[i].l=1*new Date();
-					for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-					k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-					(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-					ym(${YANDEX_METRIKA_ID}, "init", {
-						clickmap:true,
-						trackLinks:true,
-						accurateTrackBounce:true,
-						webvisor:true
-					});
-				`}
-			</Script>
+			<Suspense fallback={null}>
+				<YandexMetrikaRouteTracker counterId={normalizedCounterId} />
+			</Suspense>
 			<noscript>
 				<div>
 					{/* eslint-disable-next-line @next/next/no-img-element */}
 					<img
-						src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_ID}`}
-						style={{ position: 'absolute', left: '-9999px' }}
-						alt=""
+						alt=''
+						height='1'
+						src={`https://mc.yandex.ru/watch/${normalizedCounterId}`}
+						style={{ left: '-9999px', position: 'absolute' }}
+						width='1'
 					/>
 				</div>
 			</noscript>
