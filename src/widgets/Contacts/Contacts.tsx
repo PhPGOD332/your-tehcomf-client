@@ -2,6 +2,7 @@
 import React from 'react';
 import styles from './Contacts.module.scss';
 import SubTitle from '@/shared/UI/SubTitle/SubTitle';
+import { CONTACT_PHONE_LABEL } from '@/shared/constants';
 
 interface ContactsProps {
 	titleAs?: 'h1' | 'h2';
@@ -58,7 +59,7 @@ const Contacts = ({ titleAs = 'h2' }: ContactsProps) => {
 										<span className={styles.tableSubTitle}>Телефон</span>
 									</td>
 									<td>
-										<span className={styles.phone}>+7 (495) 032-50-60</span>
+									<span className={styles.phone}>{CONTACT_PHONE_LABEL}</span>
 									</td>
 								</tr>
 								<tr className={styles.tableRow}>

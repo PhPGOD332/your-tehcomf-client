@@ -8,7 +8,7 @@ import WomanImage from '@/data/images/contacts/woman.png';
 import {IBooleanOptions} from "@/widgets/Footer/Footer";
 import {useMediaQuery} from "@/shared/hooks/useMediaQuery";
 import Link from "next/link";
-import { MAX_MANAGER_URL } from '@/shared/constants';
+import { CONTACT_PHONE_LABEL, MAX_MANAGER_URL } from '@/shared/constants';
 
 type TImage = StaticImageData;
 
@@ -59,7 +59,7 @@ const Contacts = (
                             </div>
                         </div>
                         <div className={`${styles.contactPostview} ${styles.hidden}`}>
-                            <span className={styles.caption}>+7 (495) 032-50-60</span>
+                            <span className={styles.caption}>{CONTACT_PHONE_LABEL}</span>
                         </div>
                     </div>
                     <Link href={MAX_MANAGER_URL} className={styles.contact}>

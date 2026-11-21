@@ -11,7 +11,11 @@ import SwitchButton, {
 } from '@/shared/UI/SwitchButton/SwitchButton';
 import { IBooleanOptions } from '@/widgets/Footer/Footer';
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery';
-import { MAX_MANAGER_URL } from '@/shared/constants';
+import {
+	CONTACT_PHONE,
+	CONTACT_PHONE_LABEL,
+	MAX_MANAGER_URL,
+} from '@/shared/constants';
 
 const ContactWomanImage: TImage = WomanImage;
 const ContactTeamImage: TImage = TeamImage;
@@ -56,8 +60,8 @@ const ContactsForm = ({
 							<SwitchButton
 								color={SwitchButtonColors.GRAY}
 								isSwitch={false}
-								previewText={'+7 (495) 032-50-60'}
-								href='tel:+74950325060'
+								previewText={CONTACT_PHONE_LABEL}
+								href={`tel:${CONTACT_PHONE}`}
 								image={ContactTeamImage}
 								isOnlyMobileImage={true}
 								icon={

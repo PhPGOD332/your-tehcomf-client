@@ -1,5 +1,10 @@
 import type { Metadata } from 'next';
-import { CLIENT_URL, SITE_NAME, pagesData } from '@/shared/constants';
+import {
+	CLIENT_URL,
+	CONTACT_PHONE,
+	SITE_NAME,
+	pagesData,
+} from '@/shared/constants';
 import type { IWork } from '@/types/IWork';
 
 const DEFAULT_OG_IMAGE = '/sliders/main/start-slider-1.png';
@@ -92,7 +97,7 @@ export const organizationStructuredData = {
 	url: CLIENT_URL,
 	logo: getAbsoluteUrl('/favicon.ico'),
 	image: getAbsoluteUrl(DEFAULT_OG_IMAGE),
-	telephone: '+7-495-032-50-60',
+	telephone: CONTACT_PHONE,
 	email: 'info@tehcomf.ru',
 	address: {
 		'@type': 'PostalAddress',
