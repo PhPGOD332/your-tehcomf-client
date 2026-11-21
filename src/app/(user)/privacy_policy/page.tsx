@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '@/app/styles/pages/docs.module.scss';
 import Link from "next/link";
-import {pagesData} from "@/shared/constants";
+import {CONTACT_PHONE_LABEL, pagesData} from "@/shared/constants";
 import {createPageMetadata} from "@/shared/seo";
 
 export const metadata = createPageMetadata(pagesData.privacyPolicy);
@@ -430,7 +430,7 @@ const Page = () => {
                             <br/><br/>
                             Юридический адрес: 105082, г. Москва, Спартаковский пер., д.2, стр. 1, этаж 2-н.п.19
                             <br/><br/>
-                            Телефон: +7 (495) 032-50-60
+                            Телефон: {CONTACT_PHONE_LABEL}
                             <br/><br/>
                             E-mail: info@tehcomf.ru
                         </p>
@@ -807,7 +807,7 @@ const Page = () => {
                             <br/><br/>
                             Юридический адрес: 105082, г. Москва, Спартаковский пер., д.2, стр. 1, этаж 2-н.п.19
                             <br/><br/>
-                            Телефон: +7 (495) 032-50-60
+                            Телефон: {CONTACT_PHONE_LABEL}
                             <br/><br/>
                             E-mail: info@tehcomf.ru
                         </p>
@@ -1004,7 +1004,7 @@ const Page = () => {
                             <br/><br/>
                             Юридический адрес: 105082, г. Москва, Спартаковский пер., д.2, стр. 1, этаж 2-н.п.19
                             <br/><br/>
-                            Телефон: +7 (495) 032-50-60
+                            Телефон: {CONTACT_PHONE_LABEL}
                             <br/><br/>
                             E-mail: info@tehcomf.ru
                         </p>
@@ -2993,7 +2993,7 @@ const Page = () => {
                         </ul>
                         <p>Обращаться с вопросами и предложениями относительно обработки cookie можно:</p>
                         <ul>
-                            <li>Телефон горячей линии: +7 (495) 032-50-60</li>
+                            <li>Телефон горячей линии: {CONTACT_PHONE_LABEL}</li>
                             <li>Электронная почта: info@tehcomf.ru</li>
                             <li>Юридический адрес: 105082, г. Москва, Спартаковский пер., д.2,
                                 стр. 1, этаж 2-н.п.19

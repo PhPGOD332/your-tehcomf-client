@@ -1,5 +1,7 @@
 export const SITE_NAME = 'Технологии комфорта';
 export const CLIENT_URL = 'https://tehcomf.ru';
+export const CONTACT_PHONE_LABEL = '+7 (495) 970-74-73';
+export const CONTACT_PHONE = CONTACT_PHONE_LABEL.replace(/[^\d+]/g, '');
 export const TELEGRAM_CHANNEL_URL = 'https://t.me/mebel_tehcomf';
 export const MAX_CHANNEL_URL =
 	'https://max.ru/join/is89AQCget0P25BWYijEziDtijZw0ThWbIgg01b0X6o';
